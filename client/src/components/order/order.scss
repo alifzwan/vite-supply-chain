@@ -1,0 +1,117 @@
+.ord-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    width: 80%; /* Increase the width to make it larger */
+    margin: 50px auto; /* Center the grid with some margin from the top */
+    box-sizing: border-box;
+    
+
+    h1 {
+        text-align: left;
+        font-weight: bold;
+        width: 100%;
+    }
+    
+}
+.ord-section-title{
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+    color: rebeccapurple;
+  }
+
+
+
+.current-address {
+    grid-column: span 2; /* Span across both columns */
+    margin-bottom: 20px;
+    label {
+        font-weight: bold;
+    }
+}
+
+.ord-section {
+    border: 2px solid rebeccapurple;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    max-height: auto; /* Make sure all sections have the same height */
+    overflow-y: auto;
+
+    h2 {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .input-container {
+        input {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            
+        }
+    }
+
+    .order-button {
+        button {
+          padding: 0px 10px;
+          height: 25px;
+          border: 1px solid green;
+          border-radius: 10px;
+          background-color: transparent;
+          color: green;
+          margin-right: 20px;
+          cursor: pointer;
+          font-weight: bold;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          text-align: center;
+          
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+        border: 1px solid white;
+        border-radius: 20px;
+        width: 100%;
+        height:30px;
+        font-size: 14px;
+        margin-bottom: 20px;
+        margin-right: 5px;
+        
+        
+
+        th, td {
+            color: white;
+            padding: 10px;
+            text-align: center;
+            
+            
+        }
+
+        th {
+            background-color: transparent;
+           
+           
+        }
+
+        tr:nth-child(even) {
+            background-color: transparent;
+            
+        }
+        td:last-child {
+            color: green;
+        }
+
+        tr:hover {
+            background-color: transparent;
+        }
+
+        
+    }
+}
