@@ -1,11 +1,8 @@
 import React from "react";
 import "./project.scss";
 import { motion } from "framer-motion";
-import ProjectLinksReg from "./projectlinks/ProjectLinksReg"
-import ProjectLinksOrd from "./projectlinks/ProjectLinksOrd"
-import ProjectLinksInfo from "./projectlinks/ProjectLinksInfo"
-import ProjectLinksTrack from "./projectlinks/ProjectLinksTrack"
-import ProjectLinksAdmin from "./projectlinks/ProjectLinksAdmin"
+import { useNavigate } from "react-router-dom"
+
 
 const Variants = {
   initial: {
@@ -24,17 +21,41 @@ const Variants = {
 
 
 const Project = () => {
+    const navigate = useNavigate()
+
+    const redirect_to_home = () => {
+      navigate('/')
+    }
+
+    const redirect_to_registration = () => {
+      navigate('/register')
+    }
+    const redirect_to_ordering = () => {
+      navigate('/order')
+    }
+    const redirect_to_administration = () => {
+      navigate('/admin')
+    }
+    const redirect_to_tracking = () => {
+      navigate('/track')
+    }
+    const redirect_to_information = () => {
+      navigate('/info')
+  }
+   
+
+    
   const supplychains = [
-    { name: "Farmer"      , image: "/farmer.svg"      , action:  <ProjectLinksReg />},
+    { name: "Farmer"      , image: "/farmer.svg"      , action:  redirect_to_registration, label: "Register"},
     { image: "/arrow.png"},
 
-    { name: "Manufacturer", image: "/manufacturer.svg", action:  <ProjectLinksOrd /> },
+    { name: "Manufacturer", image: "/manufacturer.svg", action:  redirect_to_ordering    , label: "Order"},
     { image: "/arrow.png"},
 
-    { name: "Distributor" , image: "/distributor.svg" , action:  <ProjectLinksTrack />},
+    { name: "Distributor" , image: "/distributor.svg" , action:  redirect_to_tracking    , label: "Track"},
     { image: "/arrow.png"},
 
-    { name: "Retailer"    , image: "/retailer.svg"    , action:  <ProjectLinksInfo />},
+    { name: "Retailer"    , image: "/retailer.svg"    , action:  redirect_to_information , label: "Info"},
   ];
 
   return (
@@ -42,6 +63,7 @@ const Project = () => {
           variants={Variants} 
           initial="initial"
           animate="animate" >
+
 
       <h2 className="section-title">Supply Chain Flow</h2>
 
@@ -71,9 +93,10 @@ const Project = () => {
             <motion.div className="supplychain-button">
                 <motion.button
                   whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.95 }}              
+                  onClick={supplychain.action}  
                 >
-                  {supplychain.action}
+                  {supplychain.label}
                 </motion.button>
             </motion.div>
               
@@ -87,8 +110,9 @@ const Project = () => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={redirect_to_administration}
                 >
-                  <ProjectLinksAdmin />
+                  Administer
                 </motion.button>
       </motion.div>
 
@@ -97,6 +121,16 @@ const Project = () => {
         <a href="https://coinsbench.com/understanding-contract-ownership-in-solidity-and-access-control-patterns-1a04116042ce#:~:text=Contract%20ownership%20refers%20to%20the,transferred%20dynamically%20using%20specific%20functions."> Owner </a> 
         <b>can register the supply chain. Owner is the the person who deployed the smart contract on the blockchain</b>
       </p>
+
+      <motion.div className="back-button">
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={redirect_to_home}
+                        >
+                            Back to Home
+                        </motion.button>
+      </motion.div>
 
     </motion.div>
   );
