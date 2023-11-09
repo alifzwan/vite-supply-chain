@@ -1,63 +1,31 @@
 
 import "./app.scss";
-import Hero from "./components/homepage/hero/Hero";
-import Navbar from "./components/homepage/navbar/Navbar";
-import Register from "./components/register/Register";
-import Order from "./components/order/Order";
-import Admin from "./components/admin/Admin";
-import Track from "./components/track/Track";
-import Info from "./components/info/Info";
-import About from "./components/about/About";
-import AboutNavBar from "./components/about/aboutNavbar/AboutNavBar";
-import Project from "./components/project/Project";
-import Frameworks from "./components/frameworks/Frameworks";
-import Credits from "./components/credits/Credits";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Home from "./components/home/Home"
+import Project from "./components/showcase/project/Project";
+import Register from "./components/showcase/register/Register";
+import Order from "./components/showcase/order/Order";
+import Admin from "./components/showcase/admin/Admin";
+import Track from "./components/showcase/track/Track";
+import Info from "./components/showcase/info/Info";
 
 const App = () => {
   return (
-    <div>
-      
-      <section id="Homepage">
-      <Navbar />
-      <Hero />
-      </section>
-
-      <section id="About Me">
-      <AboutNavBar />
-      <About />
-      </section>
-
-      <section id="Project Overview">
-      <Project />
-      </section>
-
-      <section id="Register">
-      <Register />
-      </section>
-
-      <section id="Order">
-      <Order />
-      </section>
-
-      <section id="Admin">
-      <Admin />
-      </section>
-
-      <section id="Track">
-      <Track />
-      </section>
-
-      <section id="Info">
-      <Info />
-      </section>
-
-      <section id="Frameworks">
-      <Frameworks />
-      <Credits />
-      </section>
+    <>
+    <Router>
+    <Routes>
+        <Route path = '/' exact element={<Home />}/>
+          <Route path = '/project' exact  element={<Project />} />
+          <Route path = '/register' exact  element={<Register />} />
+          <Route path = '/order' exact  element={<Order />} />
+          <Route path = '/admin' exact  element={<Admin />} />
+          <Route path = '/track' exact  element={<Track />} />
+          <Route path = '/info' exact  element={<Info />} />
+        </Routes>
+    </Router>
+    </>
     
-    </div>
   );
 };
 
