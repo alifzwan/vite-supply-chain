@@ -39,16 +39,16 @@ const Order = () => {
         loadBlockchaindata();
     }, [])
 
-    const [currentaccount, setCurrentaccount]  = useState("");
-    const [loader        , setloader        ]  = useState(true);
-    const [SupplyChain   , setSupplyChain   ]  = useState();
-    const [Items         , setItems         ]  = useState();
-    const [ItemName      , setItemName      ]  = useState();
-    const [ItemCategories, setItemCategories]  = useState();
-    const [ItemBrand     , setItemBrand     ]  = useState();
-    const [ItemOrigin    , setItemOrigin    ]  = useState();
-    const [ItemInfo      , setItemInfo      ]  = useState();
-    const [ItemPhase     , setItemPhase     ]  = useState();
+    const [currentaccount , setCurrentaccount ]  = useState("");
+    const [loader         , setloader         ]  = useState(true);
+    const [SupplyChain    , setSupplyChain    ]  = useState();
+    const [Items          , setItems          ]  = useState();
+    const [ItemName       , setItemName       ]  = useState();
+    const [ItemCategories , setItemCategories ]  = useState();
+    const [ItemBrand      , setItemBrand      ]  = useState();
+    const [ItemOrigin     , setItemOrigin     ]  = useState();
+    const [ItemDescription, setItemDescription]  = useState();
+    const [ItemPhase      , setItemPhase      ]  = useState();
     
     const loadWeb3 = async () => {
         if (window.ethereum) {
@@ -81,7 +81,7 @@ const Order = () => {
             const item = {};
             const ItemPhase = [];
             for (i = 0; i < itemsCount; i++) {
-                item[i] = await supplychain.methods.myItems(i + 1).call();
+                item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
             }
             setItems(item);
@@ -119,8 +119,8 @@ const Order = () => {
     const regItemOrigin     = (event) => {
         setItemOrigin    (event.target.value);
     }
-    const regItemInfo       = (event) => {
-        setItemInfo      (event.target.value);
+    const regItemDescription       = (event) => {
+        setItemDescription      (event.target.value);
     }
 
 
@@ -132,7 +132,7 @@ const Order = () => {
                 ItemCategories, 
                 ItemBrand, 
                 ItemOrigin, 
-                ItemInfo).send({ from: currentaccount });
+                ItemDescription).send({ from: currentaccount });
                 
             if (receipt) {
                 loadBlockchaindata();
@@ -178,7 +178,7 @@ const Order = () => {
 
                     <motion.div variants={itemVariants}>
                         <label>Description</label><br />
-                        <input type="text" onChange={regItemInfo} placeholder="Description" /><br />
+                        <input type="text" onChange={regItemDescription} placeholder="Description" /><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="order-button">
@@ -209,10 +209,10 @@ const Order = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {Items && Object.keys(Items).map(function (key) {
+                            {Object.keys(Items).map(function (key) {
                                 return (
                                     <tr key={key}>
-                                        <td>{Items[key].id}</td>
+                                        <td>{Number(Items[key].id)}</td>
                                         <td>{Items[key].name}</td>
                                         <td>{Items[key].categories}</td>
                                         <td>{Items[key].brand}</td>
