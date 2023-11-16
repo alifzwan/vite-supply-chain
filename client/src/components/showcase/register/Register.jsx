@@ -44,18 +44,26 @@ const Register = () => {
     const [currentaccount     , setCurrentaccount     ]   = useState("");
     const [loader             , setloader             ]   = useState(true);
     const [SupplyChain        , setSupplyChain        ]   = useState();
+
+    
     const [FarmerName         , setFarmerName         ]   = useState();
     const [ManufacturerName   , setManufacturerName   ]   = useState();
     const [DistributorName    , setDistributorName    ]   = useState();
     const [RetailerName       , setRetailerName       ]   = useState();
+
+
     const [FarmerOrigin       , setFarmerOrigin       ]   = useState();
     const [ManufacturerOrigin , setManufacturerOrigin ]   = useState();
     const [DistributorOrigin  , setDistributorOrigin  ]   = useState();
     const [RetailerOrigin     , setRetailerOrigin     ]   = useState();
+
+
     const [FarmerAddress      , setFarmerAddress      ]   = useState();
     const [ManufacturerAddress, setManufacturerAddress]   = useState();
     const [DistributorAddress , setDistributorAddress ]   = useState();
     const [RetailerAddress    , setRetailerAddress    ]   = useState();
+
+
     const [Farmer             , setFarmer             ]   = useState();
     const [Manufacturer       , setManufacturer       ]   = useState();
     const [Distributor        , setDistributor        ]   = useState();
@@ -87,13 +95,14 @@ const Register = () => {
         if (networkData) {
             const supplychain = new web3.eth.Contract(SupplyChainABI.abi, networkData.address);
             setSupplyChain(supplychain);
+            
             var i;
 
 
-            const farmerCount = await supplychain.methods.farmerCount().call();
-            const farmer = {};
-            for (i = 0; i < farmerCount; i++) {
-                farmer[i] = await supplychain.methods.myFarmer(i + 1).call();
+            const farmerCount = await supplychain.methods.farmerCount().call();  
+            const farmer = {}; 
+            for (i = 0; i < farmerCount; i++) {  
+                farmer[i] = await supplychain.methods.farmerInfo(i + 1).call();
             }
             setFarmer(farmer);
 
@@ -101,7 +110,7 @@ const Register = () => {
             const manufacturerCount = await supplychain.methods.manufacturerCount().call();
             const manufacture = {};
             for (i = 0; i < manufacturerCount; i++) {
-                manufacture[i] = await supplychain.methods.myManufacturer(i + 1).call();
+                manufacture[i] = await supplychain.methods.manufacturerInfo(i + 1).call();
             }
             setManufacturer(manufacture);
 
@@ -110,7 +119,7 @@ const Register = () => {
             const distributorCount = await supplychain.methods.distributorCount().call();
             const distribute = {};
             for (i = 0; i < distributorCount; i++) {
-                distribute[i] = await supplychain.methods.myDistributor(i + 1).call();
+                distribute[i] = await supplychain.methods.distributorInfo(i + 1).call();
             }
             setDistributor(distribute);
 
@@ -119,11 +128,12 @@ const Register = () => {
             const retailerCount = await supplychain.methods.retailerCount().call();
             const retailer = {};
             for (i = 0; i < retailerCount; i++) {
-                retailer[i] = await supplychain.methods.myRetailer(i + 1).call();
+                retailer[i] = await supplychain.methods.retailerInfo(i + 1).call();
             }
             setRetailer(retailer);
             setloader(false);
         }
+
         else {
             window.alert('The smart contract is not deployed to current network')
         }
@@ -287,21 +297,21 @@ const Register = () => {
 
                          <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Based In</th>
-                                <th scope="col">Contract Address</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Based In</th>
+                                <th>Contract Address</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {Farmer && Object.keys(Farmer).map(function (key) {
+                            {Object.keys(Farmer).map(function (key) {
                                 return (
                                     <tr key={key}>
-                                        <td>{Farmer[key].id}</td>
-                                        <td>{Farmer[key].farmerName}</td>
+                                        <td>{Number(Farmer[key].id)}</td>
+                                        <td>{Farmer[key].name}</td>
                                         <td>{Farmer[key].location}</td>
-                                        <td>{Farmer[key].accountAddress}</td>
+                                        <td>{Farmer[key].addr}</td>
                                     </tr>
                                 )
                             })}
@@ -349,21 +359,21 @@ const Register = () => {
 
                          <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Based In</th>
-                                <th scope="col">Contract Address</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Based In</th>
+                                <th>Contract Address</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {Manufacturer && Object.keys(Manufacturer).map(function (key) {
+                            {Object.keys(Manufacturer).map(function (key) {
                                 return (
                                  <tr key={key}>
-                                      <td>{Manufacturer[key].id}</td>
-                                      <td>{Manufacturer[key].manufacturerName}</td>
+                                      <td>{Number(Manufacturer[key].id)}</td>
+                                      <td>{Manufacturer[key].name}</td>
                                       <td>{Manufacturer[key].location}</td>
-                                      <td>{Manufacturer[key].accountAddress}</td>
+                                      <td>{Manufacturer[key].addr}</td>
                                  </tr>
                                 )
                             })}
@@ -385,8 +395,8 @@ const Register = () => {
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
-                        <label>Farmer Name:</label><br />
-                        <input type="text" onChange={adminNameDistributor} placeholder="Farmer Name" /><br />
+                        <label>Distributor Name:</label><br />
+                        <input type="text" onChange={adminNameDistributor} placeholder="Distributor Name" /><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
@@ -411,21 +421,21 @@ const Register = () => {
                     <table className="table-container" border="1" >
                          <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Based In</th>
-                                <th scope="col">Contract Address</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Based In</th>
+                                <th>Contract Address</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {Distributor && Object.keys(Distributor).map(function (key) {
+                            {Object.keys(Distributor).map(function (key) {
                                 return (
                                     <tr key={key}>
-                                        <td>{Distributor[key].id}</td>
-                                        <td>{Distributor[key].distributorName}</td>
+                                        <td>{Number(Distributor[key].id)}</td>
+                                        <td>{Distributor[key].name}</td>
                                         <td>{Distributor[key].location}</td>
-                                        <td>{Distributor[key].accountAddress}</td>
+                                        <td>{Distributor[key].addr}</td>
                                     </tr>
                                 )
                             })}
@@ -473,21 +483,21 @@ const Register = () => {
                     <table border="1" >
                          <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Based In</th>
-                                <th scope="col">Contract Address</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Based In</th>
+                                <th>Contract Address</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {Retailer && Object.keys(Retailer).map(function (key) {
+                            {Object.keys(Retailer).map(function (key) {
                                 return (
                                     <tr key={key}>
-                                       <td>{Retailer[key].id}</td>
-                                       <td>{Retailer[key].retailerName}</td>
+                                       <td>{Number(Retailer[key].id)}</td>
+                                       <td>{Retailer[key].name}</td>
                                        <td>{Retailer[key].location}</td>
-                                       <td>{Retailer[key].accountAddress}</td>
+                                       <td>{Retailer[key].addr}</td>
                                     </tr>
                                 )
                             })}
