@@ -82,7 +82,7 @@ const Admin = () => {
             const item = {};
             const ItemPhase = [];
             for (i = 0; i < itemsCount; i++) {
-                item[i] = await supplychain.methods.myItems(i + 1).call();
+                item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
             }
             setItems(item);
@@ -202,10 +202,10 @@ const Admin = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Items && Object.keys(Items).map(function (key) {
+                        {Object.keys(Items).map(function (key) {
                             return (
                                 <tr key={key}>
-                                    <td>{Items[key].id}</td>
+                                    <td>{Number(Items[key].id)}</td>
                                     <td>{Items[key].name}</td>
                                     <td>{Items[key].categories}</td>
                                     <td>{Items[key].brand}</td>
