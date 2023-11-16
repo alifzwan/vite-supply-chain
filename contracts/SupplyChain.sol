@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-contract SupplyChain{
-    address public Owner;
+contract SupplyChain {
 
-    constructor(){
-        Owner = msg.sender; // msg.sender - whoever deploy this contract (owner)
+     address public Creator;  // msg.sender - whoever deploy this contract (creator)
+
+     constructor(){
+        Creator = msg.sender;
     }
-
 
     /* MODIFIER
       
@@ -27,13 +27,11 @@ contract SupplyChain{
       - If you put it under, it will tell the function to do the modifier first
       - If you put it above, it will tell the function to do the function first 
        */
-
-    modifier onlyOwner(){
-        require(msg.sender == Owner, "Not owner");
-        _;      
-                
+    modifier onlyCreator() {   // This modifier is to esatblish certain function that can only be run by Creator
+        require(msg.sender == Creator , "Not owner");  
+        _;
     }
-   
+
     /* Supply Chain Flow
 
             Farmer ---> Manufacturer ---> Distributor --> Retailer
@@ -65,39 +63,18 @@ contract SupplyChain{
 
      */
 
-    /* STRUCT 
-
-        Notes: https://www.tutorialspoint.com/solidity/solidity_structs.htm
-    
-        - Struct types are used to represent a record
-
-        - Suppose you want to keep track of your books in a library. You might want to track the following attributes about each book
-
-        -> Title
-        -> Author
-        -> Subject
-        -> Book ID
-
-        struct Book { 
-            string title;
-            string author;
-            string subject;
-            uint256 book_id;
-
-        }
-
-     */
-
-
     
     // Establish count for each flow 
+    uint256 public itemsCount = 0;
     uint256 public farmerCount = 0;
     uint256 public manufacturerCount = 0;
     uint256 public distributorCount = 0;
     uint256 public retailerCount = 0;
-    uint256 public itemsCount = 0;
+
+
     
-    /* ENUM
+
+     /* ENUM
         
         Notes: https://solidity-by-example.org/enum/
 
@@ -134,8 +111,26 @@ contract SupplyChain{
 
         - The AnimalGame contract has two variables, player1Choice and player2Choice, to keep track of the choices made by the players. 
         - We also have functions like player1ChooseDog, player1ChooseCat, player2ChooseBird, and player2ChooseFish to allow the players to make their choices.
-    */
-    enum PHASE{
+      */
+
+     /* PHASE
+        The Phase is going to be like this:-
+
+        Order ==> Farmer ==> Manufacturer ==> Distributor ==> Retailer ==> Sold
+
+        - 1) Item Ordered                     (Plugin)
+        - 2) Item are collected by Farmer     (Farmer)
+        - 3) Item are being manufactured      (Manufacturer)
+        - 4) Item are being Distribute        (Distribution)
+        - 5) Item are safely arrived at store (Retail)
+        - 6) Item sold                        (Sold)
+
+        */
+
+
+    
+    
+    enum PHASE {   
         Plugin,
         Farmer,
         Manufacturer,
@@ -143,8 +138,34 @@ contract SupplyChain{
         Retail,
         Sold
     }
+
     
-    struct items{
+    /* STRUCT 
+
+        Notes: https://www.tutorialspoint.com/solidity/solidity_structs.htm
+    
+        - Struct types are used to represent a record
+
+        - Suppose you want to keep track of your books in a library. You might want to track the following attributes about each book
+
+        -> Title
+        -> Author
+        -> Subject
+        -> Book ID
+
+        struct Book { 
+            string title;
+            string author;
+            string subject;
+            uint256 book_id;
+
+        }
+
+     */
+
+    struct items {
+
+        // Items Attributes
         uint256 id;
         string name;
         string categories;
@@ -152,35 +173,42 @@ contract SupplyChain{
         string origin;
         string nutritionInfo;
 
-        uint256 farmerId;
+        // Id of the Admin that going to process the items
+        uint256 farmerId;  
         uint256 manufacturerId;
         uint256 distributorId;
         uint256 retailerId;
-        PHASE chronology;
-    } 
 
-    mapping(uint256 => items) public myItems;
+        
+        PHASE chronology; // The item chronology
+    }
+
+    mapping(uint256 => items) public ItemsInfo;   //mapping is like you stuff everything into 1 variable.
 
 
     function Chronology(
-        uint256 itemID
-    ) public view returns (string memory){
-        require(itemsCount > 0);
-        if(myItems[itemID].chronology == PHASE.Plugin)
+        uint256 _itemID
+    ) public view returns (string memory) {
+
+        require(itemsCount > 0);  // You have to order the item first
+
+
+        if (ItemsInfo[_itemID].chronology == PHASE.Plugin)
             return "Your item is already Ordered. Please wait for further processes.";
-        if(myItems[itemID].chronology == PHASE.Farmer)     
+        else if (ItemsInfo[_itemID].chronology == PHASE.Farmer)
             return "Your item is being collected by the farmers. Please wait for further processes.";     
-        if(myItems[itemID].chronology == PHASE.Manufacturer)            
+        else if (ItemsInfo[_itemID].chronology == PHASE.Manufacturer)
             return "Your item is being manufactured. Please wait for further processes.";  
-        if(myItems[itemID].chronology == PHASE.Distribution)            
+        else if (ItemsInfo[_itemID].chronology == PHASE.Distribution)
             return "Your item is being distrubuted. Please wait for further processes.";  
-        if(myItems[itemID].chronology == PHASE.Retail)            
+        else if (ItemsInfo[_itemID].chronology == PHASE.Retail)
             return "Your item is safely at the store.";  
-        if(myItems[itemID].chronology == PHASE.Sold)            
+        else if (ItemsInfo[_itemID].chronology == PHASE.Sold)
             return "Your item is already sold.";  
 
         return "Unknown item chronology";
     }
+
 
     /* MAPPING
 
@@ -198,46 +226,46 @@ contract SupplyChain{
      */
 
 
-
-    struct farmer{
+    struct farmer {
+        address addr;
         uint256 id;
-        address accountAddress;
-        string farmerName;
+        string name; 
+        string location; 
+    }
+
+    mapping(uint256 => farmer) public farmerInfo;  // You can call this variable and it'll show all the admin's attributes
+
+
+    struct manufacturer {
+        address addr;
+        uint256 id;
+        string name; 
+        string location; 
+    }
+
+    mapping(uint256 => manufacturer) public manufacturerInfo;
+   
+
+    struct distributor {
+        address addr;
+        uint256 id;
+        string name; 
         string location;
     }
 
-    
-    mapping(uint256 => farmer) public myFarmer;
-
-
-    struct manufacturer{
-        uint256 id;
-        address accountAddress;
-        string manufacturerName;
-        string location;
-    }
-
-    mapping(uint256 => manufacturer) public myManufacturer;
-
-
-    struct distributor{
-        uint256 id;
-        address accountAddress;
-        string distributorName;
-        string location;
-    }
-
-    mapping(uint256 => distributor) public myDistributor;
+    mapping(uint256 => distributor) public distributorInfo;
 
 
     struct retailer{
-        uint256 id;
-        address accountAddress;
-        string retailerName;
-        string location;
+        address addr;
+        uint256 id; 
+        string name; 
+        string location; 
     }
 
-    mapping(uint256 => retailer) public myRetailer;
+    mapping(uint256 => retailer) public retailerInfo;
+
+
 
     /*-----------------Register Each Flow----------------------
      Farmer ---> Manufacturer ---> Distributor --> Retailer
@@ -260,6 +288,7 @@ contract SupplyChain{
 
         // The count will increase. The Owner will register 3 attributes occupied with the flow.
      */
+
     /* Data Location
 
         Notes: https://solidity-by-example.org/data-locations/
@@ -272,44 +301,48 @@ contract SupplyChain{
 
 
      */
+
+
     function regFarmer(
-        address _account_Address,    // This is wallet address 
-        string memory _farmName,
+        address _address,  // This is wallet address 
+        string memory _name,
         string memory _location
-    )public onlyOwner{
+    ) public onlyCreator {  // Only creator/owner can register all the admin
         farmerCount++;
-        myFarmer[farmerCount] = farmer(farmerCount, _account_Address, _farmName, _location);
+        farmerInfo[farmerCount] = farmer(_address, farmerCount, _name, _location);  // All this attributes will be stored in farmerInfo
     }
-        
+
 
     function regManufacturer(
-        address _account_Address,
-        string memory _manufacturerName,
+        address _address,
+        string memory _name,
         string memory _location
-    )public onlyOwner{
+    ) public onlyCreator {
         manufacturerCount++;
-        myManufacturer[manufacturerCount] = manufacturer(manufacturerCount, _account_Address, _manufacturerName, _location);
-     }
-        
+        manufacturerInfo[manufacturerCount] = manufacturer(_address, manufacturerCount, _name, _location);  // All this attributes will be stored in manufacturerInfo
+    }
     
-    function regDistributor(
-        address _account_Address,
-        string memory _distributorName,
-        string memory _location
-    )public onlyOwner{
-         distributorCount++;
-         myDistributor[distributorCount] = distributor(distributorCount, _account_Address, _distributorName, _location);
-    }
-       
 
-    function regRetailer(
-        address _account_Address,
-        string memory _retailerName,
+
+    function regDistributor(
+        address _address,
+        string memory _name,
         string memory _location
-    )public onlyOwner{
-        retailerCount++;
-        myRetailer[retailerCount] = retailer(retailerCount, _account_Address, _retailerName, _location);
+    ) public onlyCreator {
+        distributorCount++;
+        distributorInfo[distributorCount] = distributor(_address, distributorCount, _name, _location); // All this attributes will be stored in distributorInfo
     }
+
+     //To add retailer. Only contract owner can add a new retailer
+    function regRetailer(
+        address _address,
+        string memory _name,
+        string memory _location
+    ) public onlyCreator {
+        retailerCount++;
+        retailerInfo[retailerCount] = retailer(_address, retailerCount, _name, _location); // All this attributes will be stored in retailerInfo
+    }
+
 
 
     /*-----------------Ordering----------------------
@@ -353,38 +386,63 @@ contract SupplyChain{
          PHASE chronology;
      } 
      */
-     
 
     function orderItems(
         string memory _name,
         string memory _categories,
         string memory _brand,
-        string memory _origin, 
+        string memory _origin,
         string memory _nutritionInfo
 
-    )public onlyOwner{
-        require((farmerCount > 0) && (manufacturerCount > 0) && (distributorCount > 0) && (retailerCount > 0));
+    ) public onlyCreator {
+        require((farmerCount > 0) && (manufacturerCount > 0) && (distributorCount > 0) && (retailerCount > 0));   // Before order, Creator have to register all the admin
         itemsCount++;
-        myItems[itemsCount] = items(itemsCount, _name, _categories, _brand, _origin, _nutritionInfo, 0, 0, 0, 0, PHASE.Plugin);
+        ItemsInfo[itemsCount] = items(itemsCount, _name, _categories, _brand, _origin, _nutritionInfo, 0, 0, 0, 0, PHASE.Plugin); // All this attributes will be stored in ItemsInfo
+    }  
 
 
-    }
+
+    /*-----------------Administration------------------
+
+
+
+
+     Admin is where each admin of the flow establish the status of item.
+
+     Alright let's give an example:
+
+     - Let's say we already ordered an item. It PHASE would be "Ordered"
+     - So to change the PHASE from Ordered-to-Farmer, The farmer have to established the status of the item
+     - So Farmer will establish the item as their responsibility
+
+     The Flow is going to be like this:-
+
+     Farmer ==> Manufacturer ==> Distributor ==> Retailer 
+
+     - 1) Item Ordered                     (Plugin)
+     - 2) Item are collected by Farmer     (Farmer)
+     - 3) Item are being manufactured      (Manufacturer)
+     - 4) Item are being Distribute        (Distribution)
+     - 5) Item are safely arrived at store (Retail)
+     - 6) Item sold                        (Sold)
+     */
+
+
     /* ----------------Tracking------------------
+      
+     The Flow is going to be like this:-
+
+     Farmer ==> Manufacturer ==> Distributor ==> Retailer 
     
-    The Flow is going to be like this:-
+     We going to track the items through Supply Chain
 
-    Farmer ==> Manufacturer ==> Distributor ==> Retailer 
-    
-    We going to track the items through Supply Chain
+     uint256 public farmerCount = 0;
+     uint256 public manufacturerCount = 0;
+     uint256 public distributorCount = 0;
+     uint256 public retailerCount = 0;
+     uint256 public itemsCount = 0;
 
-
-    uint256 public farmerCount = 0;
-    uint256 public manufacturerCount = 0;
-    uint256 public distributorCount = 0;
-    uint256 public retailerCount = 0;
-    uint256 public itemsCount = 0;
-
-    struct items{
+     struct items{
         uint256 Id;
         string name;
         string categories;
@@ -397,107 +455,114 @@ contract SupplyChain{
         uint256 distributorId;
         uint256 retailerId;
         PHASE chronology;
-    } 
+     } 
 
-    enum PHASE{
+     enum PHASE{
         Plugin,  
         Farmer,
         Manufacturer,
         Distribution,
         Retail,
         Sold
-    }
+     }
+     */
 
-    */
-    
     // To change the flow from Ordered ==> Farmer
-    function Farmering(uint256 itemID) public{
-        require (itemID > 0 && itemID <= itemsCount);  
+    function Farmering(uint256 _itemID) public {
+        require(_itemID > 0 && _itemID <= itemsCount);  //
         uint256 _id = trackFarmer(msg.sender);
         require(_id > 0);
-        require(myItems[itemID].chronology == PHASE.Plugin);
-        myItems[itemID].farmerId = _id;
-        myItems[itemID].chronology = PHASE.Farmer;
-
+        require(ItemsInfo[_itemID].chronology == PHASE.Plugin);
+        ItemsInfo[_itemID].farmerId = _id;
+        ItemsInfo[_itemID].chronology = PHASE.Farmer;
     }
 
     // To track 
-    function trackFarmer(address _account_Address) private view returns (uint256){
+    function trackFarmer(address _address) private view returns (uint256) {
         require(farmerCount > 0);
-        for(uint256 i = 1; i <= farmerCount; i++){
-            if(myFarmer[i].accountAddress == _account_Address) return myFarmer[i].id;
+        for (uint256 i = 1; i <= farmerCount; i++) {
+            if (farmerInfo[i].addr == _address) return farmerInfo[i].id;
         }
         return 0;
     }
-
-
 
     // To change the flow from Farmer ==> Manufacturer
-    function Manufacturing(uint256 itemID) public{
-        require (itemID > 0 && itemID <= itemsCount);  
+    function Manufacturing(uint256 _itemID) public {
+        require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackManufacture(msg.sender);
         require(_id > 0);
-        require(myItems[itemID].chronology == PHASE.Farmer);
-        myItems[itemID].manufacturerId = _id;
-        myItems[itemID].chronology = PHASE.Manufacturer;
-
+        require(ItemsInfo[_itemID].chronology == PHASE.Farmer);
+        ItemsInfo[_itemID].manufacturerId = _id;
+        ItemsInfo[_itemID].chronology = PHASE.Manufacturer;
     }
 
-    function trackManufacture(address _account_Address) private view returns (uint256){
+    // To track 
+    function trackManufacture(address _address) private view returns (uint256) {
         require(manufacturerCount > 0);
-        for(uint256 i = 1; i <= manufacturerCount; i++){
-            if(myManufacturer[i].accountAddress == _account_Address) return myManufacturer[i].id;
+        for (uint256 i = 1; i <= manufacturerCount; i++) {
+            if (manufacturerInfo[i].addr == _address) return manufacturerInfo[i].id;
         }
         return 0;
     }
+
+
 
     // To change the flow from Manufacturer ==> Distributor
-    function Distributing(uint256 itemID) public{
-        require (itemID > 0 && itemID <= itemsCount);  
+    function Distributing(uint256 _itemID) public {
+        require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackDistribution(msg.sender);
         require(_id > 0);
-        require(myItems[itemID].chronology == PHASE.Manufacturer);
-        myItems[itemID].distributorId = _id;
-        myItems[itemID].chronology = PHASE.Distribution;
-
+        require(ItemsInfo[_itemID].chronology == PHASE.Manufacturer);
+        ItemsInfo[_itemID].distributorId = _id;
+        ItemsInfo[_itemID].chronology = PHASE.Distribution;
     }
 
-    function trackDistribution(address _account_Address) private view returns (uint256){
+    // To track 
+    function trackDistribution(address _address) private view returns (uint256) {
         require(distributorCount > 0);
-        for(uint256 i = 1; i <= distributorCount; i++){
-            if(myDistributor[i].accountAddress == _account_Address) return myDistributor[i].id;
+        for (uint256 i = 1; i <= distributorCount; i++) {
+            if (distributorInfo[i].addr == _address) return distributorInfo[i].id;
         }
         return 0;
     }
+
 
     // To change the flow from Distributor ==> Retail
-    function Retailing(uint256 itemID) public{
-        require (itemID > 0 && itemID <= itemsCount);  
+    function Retail(uint256 _itemID) public {
+        require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackRetailer(msg.sender);
         require(_id > 0);
-        require(myItems[itemID].chronology == PHASE.Distribution);
-        myItems[itemID].retailerId = _id;
-        myItems[itemID].chronology = PHASE.Retail;
-
+        require(ItemsInfo[_itemID].chronology == PHASE.Distribution);
+        ItemsInfo[_itemID].retailerId = _id;
+        ItemsInfo[_itemID].chronology = PHASE.Retail;
     }
 
-    function trackRetailer(address _account_Address) private view returns (uint256){
+    // To track 
+    function trackRetailer(address _address) private view returns (uint256) {
         require(retailerCount > 0);
-        for(uint256 i = 1; i <= retailerCount; i++){
-            if(myRetailer[i].accountAddress == _account_Address) return myRetailer[i].id;
+        for (uint256 i = 1; i <= retailerCount; i++) {
+            if (retailerInfo[i].addr == _address) return retailerInfo[i].id;
         }
         return 0;
     }
 
-
     // To change the flow from Retail ==> Sold
-     function Sold(uint256 itemID) public view{
-        require (itemID > 0 && itemID <= itemsCount);  
+    function sold(uint256 _itemID) public {
+        require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackRetailer(msg.sender);
         require(_id > 0);
-        require(_id == myItems[itemID].retailerId);
-        require(myItems[itemID].chronology == PHASE.Retail);
-        myItems[itemID].chronology == PHASE.Sold;
-
+        require(_id == ItemsInfo[_itemID].retailerId); //Only correct retailer can mark medicine as sold
+        require(ItemsInfo[_itemID].chronology == PHASE.Retail);
+        ItemsInfo[_itemID].chronology = PHASE.Sold;
     }
+
+
+    
+
+
+
+
+
+
+
 }
