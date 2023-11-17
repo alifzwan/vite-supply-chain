@@ -3,21 +3,6 @@ import './info.scss';
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
 
-
-
-const variants = {
-    open: {
-        transition: {
-            staggerChildren: 0.1,
-        },
-    },
-    closed: {
-        transition: {
-            staggerChildren: 0.05,
-            staggerDirection: 0,
-        },
-    },
-};
 const itemVariants = {
     open: {
         y: 0,
