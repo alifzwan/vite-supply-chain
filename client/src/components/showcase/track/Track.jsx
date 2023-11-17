@@ -7,6 +7,7 @@ import Web3 from "web3";
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
 
 
+
 const variants = {
     open: {
         transition: {
@@ -41,6 +42,187 @@ const Track = () => {
     const redirect_to_project = () => {
         navigate('/project')
     }
+
+    const supplychainsfarmer = [
+
+        { name: "Farmer"      , image: "/farmer.svg"      }
+       
+    ];
+
+    const supplychainsmanufacturer = [
+
+        { name: "Farmer"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+    
+        { name: "Manufacturer", image: "/manufacturer.svg"}
+    ];
+
+    const supplychainsdistributor = [
+
+        { name: "Farmer"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+    
+        { name: "Manufacturer", image: "/manufacturer.svg"},
+        { image: "/arrow.png"},
+    
+        { name: "Distributor" , image: "/distributor.svg" }
+    ];
+
+    const supplychainsretailer = [
+
+        { name: "Farmer"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+    
+        { name: "Manufacturer", image: "/manufacturer.svg"},
+        { image: "/arrow.png"},
+    
+        { name: "Distributor" , image: "/distributor.svg" },
+        { image: "/arrow.png"},
+    
+        { name: "Retailer"    , image: "/retailer.svg"    },
+    ];
+
+    const supplychainssold = [
+
+        { name: "Farmer"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+    
+        { name: "Manufacturer", image: "/manufacturer.svg"},
+        { image: "/arrow.png"},
+    
+        { name: "Distributor" , image: "/distributor.svg" },
+        { image: "/arrow.png"},
+    
+        { name: "Retailer"    , image: "/retailer.svg"    },
+    ];
+
+    const chronologyTableFarmer = (name) => {
+        switch (name) {
+          case "Farmer":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].name}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+          default:
+            return null;
+        }
+    };
+    
+    const chronologyTableManufacturer = (name) => {
+        switch (name) {
+          case "Farmer":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].name}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+          case "Manufacturer":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Manufacturer[Number(Items[ItemID].manufacturerId)].id)}</td>
+                  <td>{Manufacturer[Number(Items[ItemID].manufacturerId)].name}</td>
+                  <td>{Manufacturer[Number(Items[ItemID].manufacturerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+          default:
+            return null;
+        }
+      };  
+
+    const chronologyTableDistributor = (name) => {
+        switch (name) {
+          case "Farmer":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].name}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+          case "Manufacturer":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Manufacturer[Number(Items[ItemID].manufacturerId)].id)}</td>
+                  <td>{Manufacturer[Number(Items[ItemID].manufacturerId)].name}</td>
+                  <td>{Manufacturer[Number(Items[ItemID].manufacturerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+            case "Distributor":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Distributor[Number(Items[ItemID].distributorId)].id)}</td>
+                  <td>{Distributor[Number(Items[ItemID].distributorId)].name}</td>
+                  <td>{Distributor[Number(Items[ItemID].distributorId)].location}</td>
+                </tr>
+              </tbody>
+            );
+          default:
+            return null;
+        }
+      };  
+
+    const chronologyTableRetail = (name) => {
+        switch (name) {
+          case "Farmer":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].name}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+            case "Manufacturer":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Manufacturer[Number(Items[ItemID].manufacturerId)].id)}</td>
+                  <td>{Manufacturer[Number(Items[ItemID].manufacturerId)].name}</td>
+                  <td>{Manufacturer[Number(Items[ItemID].manufacturerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+            case "Distributor":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Distributor[Number(Items[ItemID].distributorId)].id)}</td>
+                  <td>{Distributor[Number(Items[ItemID].distributorId)].name}</td>
+                  <td>{Distributor[Number(Items[ItemID].distributorId)].location}</td>
+                </tr>
+              </tbody>
+            );
+            case "Retailer":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Retailer[Number(Items[ItemID].retailerId)].id)}</td>
+                  <td>{Retailer[Number(Items[ItemID].retailerId)].name}</td>
+                  <td>{Retailer[Number(Items[ItemID].retailerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+          default:
+            return null;
+        }
+    };
 
     useEffect(() => {
         loadWeb3();
@@ -165,27 +347,51 @@ const Track = () => {
 
     if (TrackTillOrdered) {
         return (
-            <div className="container-xl">
-                <article className="col-4">
-                    <h3><b><u>Items:</u></b></h3>
-                    <span><b>Items ID:</b>      {Number(Items[ItemID].id)}</span>
-                    <br />
-                    <span><b>Name:</b>          {Items[ItemID].name}</span>
-                    <br />
-                    <span><b>Categories:</b>    {Items[ItemID].categories}</span>
-                    <br />
-                    <span><b>Brand: </b>        {Items[ItemID].brand}</span>
-                    <br />
-                    <span><b>Origin: </b>       {Items[ItemID].origin}</span>
-                    <br />
-                    <span><b>Description: </b>  {Items[ItemID].nutritionInfo}</span>
-                    <br />
-                    <span><b>Current Phase: </b>{ItemPhase[ItemID]}</span>
-                    <hr />
-                    <br />
-                    <h5>Your Item is not process yet. Please wait.</h5>
+            <div className="chronology-main-container">
+            <h2 className="chronology-section-title">Information</h2>
+            <div className="chronology-section">
+                <h2>Item Information</h2>
 
-                    <motion.div variants={itemVariants} className="back-button">
+                <div className="table-container">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Categories</th>
+                                <th>Brand</th>
+                                <th>Based In</th>
+                                <th>Description</th>
+                                <th>Current Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{Number(Items[ItemID].id)}</td>
+                                <td>{Items[ItemID].name}</td>
+                                <td>{Items[ItemID].categories}</td>
+                                <td>{Items[ItemID].brand}</td>
+                                <td>{Items[ItemID].origin}</td>
+                                <td>{Items[ItemID].nutritionInfo}</td>
+                                <td>{ItemPhase[ItemID]}</td>
+                            </tr>
+
+    
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div className="chronology-track-section">
+                
+
+                <h2>Your Item has already ordered, Please wait</h2>
+
+            </div>
+
+
+            <motion.div variants={itemVariants} className="back-button">
                         <motion.button
                             variants={itemVariants}
                             whileHover={{ scale: 1.1 }}
@@ -204,43 +410,83 @@ const Track = () => {
                             Back To Project Overview
                         </motion.button>
                 </motion.div>
-                </article>
-            </div >
+        </div>
         )
     }
 
     if (TrackTillFarmer) {
         return (
-            <div className="container-xl">
-                <article className="col-4">
-                    <h3><b><u>Items:</u></b></h3>
-                    <span><b>Items ID: </b>{Number(Items[ItemID].id)}</span>
-                    <br />
-                    <span><b>Name:</b> {Items[ItemID].name}</span>
-                    <br />
-                    <span><b>Categories: </b>{Items[ItemID].categories}</span>
-                    <br />
-                    <span><b>Brand: </b>{Items[ItemID].brand}</span>
-                    <br />
-                    <span><b>Origin: </b>{Items[ItemID].origin}</span>
-                    <br />
-                    <span><b>Description: </b>{Items[ItemID].nutritionInfo}</span>
-                    <br />
-                    <span><b>Current Phase: </b>{ItemPhase[ItemID]}</span>
-                </article>
-                <hr />
-                <br />
-                <section className="row">
+            <div className="chronology-main-container">
+            <h2 className="chronology-section-title">Information</h2>
+            <div className="chronology-section">
+                <h2>Item Information</h2>
 
-                    <article className="col-3">
-                        <h4><u>Farmer:</u></h4>
-                        <p><b>Farmer ID: </b>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</p>
-                        <p><b>Name:</b> {Farmer[Number(Items[ItemID].farmerId)].name}</p>
-                        <p><b>Place: </b>{Farmer[Number(Items[ItemID].farmerId)].location}</p>
-                    </article>
-                </section>
+                <div className="table-container">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Categories</th>
+                                <th>Brand</th>
+                                <th>Based In</th>
+                                <th>Description</th>
+                                <th>Current Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{Number(Items[ItemID].id)}</td>
+                                <td>{Items[ItemID].name}</td>
+                                <td>{Items[ItemID].categories}</td>
+                                <td>{Items[ItemID].brand}</td>
+                                <td>{Items[ItemID].origin}</td>
+                                <td>{Items[ItemID].nutritionInfo}</td>
+                                <td>{ItemPhase[ItemID]}</td>
+                            </tr>
 
-                <motion.div variants={itemVariants} className="back-button">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div className="supplychain-list">
+
+                {supplychainsfarmer.map((supplychain, index) => (
+                    <motion.div className="supplychain-item" key={index}>
+                    {supplychain.name && (<>
+                            
+                        <motion.img src={supplychain.image} alt={supplychain.name} 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.95 }} />
+
+                        <motion.p 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.95 }}>
+                            {supplychain.name}
+                        </motion.p>
+
+                        <motion.div className="chronology-track-section">
+                            <h2>{supplychain.name} Information</h2>
+                                <table className="chronology-table-container" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Based In</th>
+                                        </tr>
+                                    </thead>
+                                    {chronologyTableFarmer(supplychain.name)}
+                                </table>
+                        </motion.div>
+                    </>
+                    )}
+                    </motion.div>
+                ))}
+                   
+             </div>
+
+            <motion.div variants={itemVariants} className="back-button">
                         <motion.button
                             variants={itemVariants}
                             whileHover={{ scale: 1.1 }}
@@ -259,51 +505,83 @@ const Track = () => {
                             Back To Project Overview
                         </motion.button>
                 </motion.div>
-            </div >
+        </div>
         )
     }
 
 
     if (TrackTillManufacture) {
         return (
-            <div className="container-xl">
-                <article className="col-4">
-                    <h3><b><u>Items:</u></b></h3>
-                    <span><b>Items ID: </b>{Number(Items[ItemID].id)}</span>
-                    <br />
-                    <span><b>Name:</b> {Items[ItemID].name}</span>
-                    <br />
-                    <span><b>Categories: </b>{Items[ItemID].categories}</span>
-                    <br />
-                    <span><b>Brand: </b>{Items[ItemID].brand}</span>
-                    <br />
-                    <span><b>Origin: </b>{Items[ItemID].origin}</span>
-                    <br />
-                    <span><b>Description: </b>{Items[ItemID].nutritionInfo}</span>
-                    <br />
-                    <span><b>Current Phase: </b>{ItemPhase[ItemID]}</span>
-                </article>
-                <hr />
-                <br />
-                <section className="row">
+            <div className="chronology-main-container">
+            <h2 className="chronology-section-title">Information</h2>
+            <div className="chronology-section">
+                <h2>Item Information</h2>
 
-                    <article className="col-3">
-                        <h4><u>Farmer:</u></h4>
-                        <p><b>Farmer ID: </b>{Number(Farmer[(Number(Items[ItemID].farmerId))].id)}</p>
-                        <p><b>Name:</b> {Farmer[(Number(Items[ItemID].farmerId))].name}</p>
-                        <p><b>Place: </b>{Farmer[(Number(Items[ItemID].farmerId))].location}</p>
-                    </article>
-                    <span>&#10132;</span>
-                    <article className="col-3">
-                        <h4><u>Manufactured by:</u></h4>
-                        <p><b>Manufacturer ID: </b>{Number(Manufacturer[Number(Items[ItemID].manufacturerId)].id)}</p>
-                        <p><b>Name:</b> {Manufacturer[Number(Items[ItemID].manufacturerId)].name}</p>
-                        <p><b>Place: </b>{Manufacturer[Number(Items[ItemID].manufacturerId)].location}</p>
-                    </article>
-                </section>
+                <div className="table-container">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Categories</th>
+                                <th>Brand</th>
+                                <th>Based In</th>
+                                <th>Description</th>
+                                <th>Current Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{Number(Items[ItemID].id)}</td>
+                                <td>{Items[ItemID].name}</td>
+                                <td>{Items[ItemID].categories}</td>
+                                <td>{Items[ItemID].brand}</td>
+                                <td>{Items[ItemID].origin}</td>
+                                <td>{Items[ItemID].nutritionInfo}</td>
+                                <td>{ItemPhase[ItemID]}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
+            <div className="supplychain-list">
 
-                <motion.div variants={itemVariants} className="back-button">
+                {supplychainsmanufacturer.map((supplychain, index) => (
+                    <motion.div className="supplychain-item" key={index}>
+                    {supplychain.name && (<>
+                            
+                        <motion.img src={supplychain.image} alt={supplychain.name} 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.95 }} />
+
+                        <motion.p 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.95 }}>
+                            {supplychain.name}
+                        </motion.p>
+
+                        <motion.div className="chronology-track-section">
+                            <h2>{supplychain.name} Information</h2>
+                                <table className="chronology-table-container" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Based In</th>
+                                        </tr>
+                                    </thead>
+                                    {chronologyTableManufacturer(supplychain.name)}
+                                </table>
+                        </motion.div>
+                    </>
+                    )}
+                    </motion.div>
+                ))}
+                   
+             </div>
+
+            <motion.div variants={itemVariants} className="back-button">
                         <motion.button
                             variants={itemVariants}
                             whileHover={{ scale: 1.1 }}
@@ -322,56 +600,82 @@ const Track = () => {
                             Back To Project Overview
                         </motion.button>
                 </motion.div>
-
-            </div >
+        </div>
         )
     }
 
     if (TrackTillDistribute) {
         return (
-            <div className="container-xl">
-                <article className="col-4">
-                    <h3><b><u>Items:</u></b></h3>
-                    <span><b>Items ID: </b>{Number(Items[ItemID].id)}</span>
-                    <br />
-                    <span><b>Name:</b> {Items[ItemID].name}</span>
-                    <br />
-                    <span><b>Categories: </b>{Items[ItemID].categories}</span>
-                    <br />
-                    <span><b>Brand: </b>{Items[ItemID].brand}</span>
-                    <br />
-                    <span><b>Origin: </b>{Items[ItemID].origin}</span>
-                    <br />
-                    <span><b>Description: </b>{Items[ItemID].nutritionInfo}</span>
-                    <br />
-                    <span><b>Current Phase: </b>{ItemPhase[ItemID]}</span>
-                </article>
-                <hr />
-                <br />
-                <section className="row">
+            <div className="chronology-main-container">
+            <h2 className="chronology-section-title">Information</h2>
+            <div className="chronology-section">
+                <h2>Item Information</h2>
 
-                    <article className="col-3">
-                        <h4><u>Farmer:</u></h4>
-                        <p><b>Farmer ID: </b>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</p>
-                        <p><b>Name:</b> {Farmer[Number(Items[ItemID].farmerId)].name}</p>
-                        <p><b>Place: </b>{Farmer[Number(Items[ItemID].farmerId)].location}</p>
-                    </article>
-                    <span>&#10132;</span>
-                    <article className="col-3">
-                        <h4><u>Manufactured by:</u></h4>
-                        <p><b>Manufacturer ID: </b>{Number(Manufacturer[Number(Items[ItemID].manufacturerId)].id)}</p>
-                        <p><b>Name:</b> {Manufacturer[Number(Items[ItemID].manufacturerId)].name}</p>
-                        <p><b>Place: </b>{Manufacturer[Number(Items[ItemID].manufacturerId)].location}</p>
-                    </article>
-                    <span>&#10132;</span>
-                    <article className="col-3">
-                        <h4><u>Distributed by:</u></h4>
-                        <p><b>Distributor ID: </b>{Number(Distributor[Number(Items[ItemID].distributorId)].id)}</p>
-                        <p><b>Name:</b> {Distributor[Number(Items[ItemID].distributorId)].name}</p>
-                        <p><b>Place: </b>{Distributor[Number(Items[ItemID].distributorId)].location}</p>
-                    </article>
-                </section>
-                <motion.div variants={itemVariants} className="back-button">
+                <div className="table-container">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Categories</th>
+                                <th>Brand</th>
+                                <th>Based In</th>
+                                <th>Description</th>
+                                <th>Current Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{Number(Items[ItemID].id)}</td>
+                                <td>{Items[ItemID].name}</td>
+                                <td>{Items[ItemID].categories}</td>
+                                <td>{Items[ItemID].brand}</td>
+                                <td>{Items[ItemID].origin}</td>
+                                <td>{Items[ItemID].nutritionInfo}</td>
+                                <td>{ItemPhase[ItemID]}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div className="supplychain-list">
+
+                {supplychainsdistributor.map((supplychain, index) => (
+                    <motion.div className="supplychain-item" key={index}>
+                    {supplychain.name && (<>
+                            
+                        <motion.img src={supplychain.image} alt={supplychain.name} 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.95 }} />
+
+                        <motion.p 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.95 }}>
+                            {supplychain.name}
+                        </motion.p>
+
+                        <motion.div className="chronology-track-section">
+                            <h2>{supplychain.name} Information</h2>
+                                <table className="chronology-table-container" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Based In</th>
+                                        </tr>
+                                    </thead>
+                                    {chronologyTableDistributor(supplychain.name)}
+                                </table>
+                        </motion.div>
+                    </>
+                    )}
+                    </motion.div>
+                ))}
+                   
+             </div>
+
+            <motion.div variants={itemVariants} className="back-button">
                         <motion.button
                             variants={itemVariants}
                             whileHover={{ scale: 1.1 }}
@@ -390,62 +694,82 @@ const Track = () => {
                             Back To Project Overview
                         </motion.button>
                 </motion.div>
-            </div >
+        </div>
         )
     }
 
     if (TrackTillRetail) {
         return (
-            <div className="container-xl">
-                <article className="col-4">
-                    <h3><b><u>Items:</u></b></h3>
-                    <span><b>Items ID: </b>{Number(Items[ItemID].id)}</span>
-                    <br />
-                    <span><b>Name:</b> {Items[ItemID].name}</span>
-                    <br />
-                    <span><b>Categories: </b>{Items[ItemID].categories}</span>
-                    <br />
-                    <span><b>Brand: </b>{Items[ItemID].brand}</span>
-                    <br />
-                    <span><b>Origin: </b>{Items[ItemID].origin}</span>
-                    <br />
-                    <span><b>Description: </b>{Items[ItemID].nutritionInfo}</span>
-                    <br />
-                    <span><b>Current Phase: </b>{ItemPhase[ItemID]}</span>
-                </article>
-                <hr />
-                <br />
-                <section className="row">
+            <div className="chronology-main-container">
+            <h2 className="chronology-section-title">Information</h2>
+            <div className="chronology-section">
+                <h2>Item Information</h2>
 
-                    <article className="col-3">
-                        <h4><u>Farmer:</u></h4>
-                        <p><b>Farmer ID: </b>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</p>
-                        <p><b>Name:</b> {Farmer[Number(Items[ItemID].farmerId)].name}</p>
-                        <p><b>Place: </b>{Farmer[Number(Items[ItemID].farmerId)].location}</p>
-                    </article>
-                    <span>&#10132;</span>
-                    <article className="col-3">
-                        <h4><u>Manufactured by:</u></h4>
-                        <p><b>Manufacturer ID: </b>{Number(Manufacturer[Number(Items[ItemID].manufacturerId)].id)}</p>
-                        <p><b>Name:</b> {Manufacturer[Number(Items[ItemID].manufacturerId)].name}</p>
-                        <p><b>Place: </b>{Manufacturer[Number(Items[ItemID].manufacturerId)].location}</p>
-                    </article>
-                    <span>&#10132;</span>
-                    <article className="col-3">
-                        <h4><u>Distributed by:</u></h4>
-                        <p><b>Distributor ID: </b>{Number(Distributor[Number(Items[ItemID].distributorId)].id)}</p>
-                        <p><b>Name:</b> {Distributor[Number(Items[ItemID].distributorId)].name}</p>
-                        <p><b>Place: </b>{Distributor[Number(Items[ItemID].distributorId)].location}</p>
-                    </article>
-                    <span>&#10132;</span>
-                    <article className="col-3">
-                        <h4><u>Retailed by:</u></h4>
-                        <p><b>Retailer ID: </b>{Number(Retailer[Number(Items[ItemID].retailerId)].id)}</p>
-                        <p><b>Name:</b> {Retailer[Number(Items[ItemID].retailerId)].name}</p>
-                        <p><b>Place: </b>{Retailer[Number(Items[ItemID].retailerId)].location}</p>
-                    </article>
-                </section>
-                <motion.div variants={itemVariants} className="back-button">
+                <div className="table-container">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Categories</th>
+                                <th>Brand</th>
+                                <th>Based In</th>
+                                <th>Description</th>
+                                <th>Current Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{Number(Items[ItemID].id)}</td>
+                                <td>{Items[ItemID].name}</td>
+                                <td>{Items[ItemID].categories}</td>
+                                <td>{Items[ItemID].brand}</td>
+                                <td>{Items[ItemID].origin}</td>
+                                <td>{Items[ItemID].nutritionInfo}</td>
+                                <td>{ItemPhase[ItemID]}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div className="supplychain-list">
+
+                {supplychainsretailer.map((supplychain, index) => (
+                    <motion.div className="supplychain-item" key={index}>
+                    {supplychain.name && (<>
+                            
+                        <motion.img src={supplychain.image} alt={supplychain.name} 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.95 }} />
+
+                        <motion.p 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.95 }}>
+                            {supplychain.name}
+                        </motion.p>
+
+                        <motion.div className="chronology-track-section">
+                            <h2>{supplychain.name} Information</h2>
+                                <table className="chronology-table-container" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Based In</th>
+                                        </tr>
+                                    </thead>
+                                    {chronologyTableRetail(supplychain.name)}
+                                </table>
+                        </motion.div>
+                    </>
+                    )}
+                    </motion.div>
+                ))}
+                   
+             </div>
+
+            <motion.div variants={itemVariants} className="back-button">
                         <motion.button
                             variants={itemVariants}
                             whileHover={{ scale: 1.1 }}
@@ -464,67 +788,87 @@ const Track = () => {
                             Back To Project Overview
                         </motion.button>
                 </motion.div>
-            </div >
+        </div>
         )
     }
 
 
     if (TrackTillSold) {
         return (
-            <div className="container-xl">
-                <article className="col-4">
-                    <h3><b><u>Item:</u></b></h3>
-                    <span><b>Item ID: </b>{Number(Items[ItemID].id)}</span>
-                    <br />
-                    <span><b>Name:</b> {Items[ItemID].name}</span>
-                    <br />
-                    <span><b>Categories: </b>{Items[ItemID].categories}</span>
-                    <br />
-                    <span><b>Brand: </b>{Items[ItemID].brand}</span>
-                    <br />
-                    <span><b>Origin: </b>{Items[ItemID].origin}</span>
-                    <br />
-                    <span><b>Description: </b>{Items[ItemID].nutritionInfo}</span>
-                    <br />
-                    <span><b>Current Phase: </b>{ItemPhase[ItemID]}</span>
-                </article>
-                <hr />
-                <br />
-                <section className="row">
+            <div className="chronology-main-container">
+            <h2 className="chronology-section-title">Information</h2>
+            <div className="chronology-section">
+                <h2>Item Information</h2>
 
-                    <article className="col-3">
-                        <h4><u>Farmer by:</u></h4>
-                        <p><b>Farmer ID: </b>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</p>
-                        <p><b>Name:</b> {Farmer[Number(Items[ItemID].farmerId)].name}</p>
-                        <p><b>Place: </b>{Farmer[Number(Items[ItemID].farmerId)].location}</p>
-                    </article>
-                    <span>&#10132;</span>
-                    <article className="col-3">
-                        <h4><u>Manufactured by:</u></h4>
-                        <p><b>Manufacturer ID: </b>{Number(Manufacturer[Number(Items[ItemID].manufacturerId)].id)}</p>
-                        <p><b>Name:</b> {Manufacturer[Number(Items[ItemID].manufacturerId)].name}</p>
-                        <p><b>Place: </b>{Manufacturer[Number(Items[ItemID].manufacturerId)].location}</p>
-                    </article>
-                    <span>&#10132;</span>
-                    <article className="col-3">
-                        <h4><u>Distributed by:</u></h4>
-                        <p><b>Distributor ID: </b>{Number(Distributor[Number(Items[ItemID].distributorId)].id)}</p>
-                        <p><b>Name:</b> {Distributor[Number(Items[ItemID].distributorId)].name}</p>
-                        <p><b>Place: </b>{Distributor[Number(Items[ItemID].distributorId)].location}</p>
-                    </article>
-                    <span>&#10132;</span>
-                    <article className="col-3">
-                        <h4><u>Retailed by:</u></h4>
-                        <p><b>Retailer ID: </b>{Number(Retailer[Number(Items[ItemID].retailerId)].id)}</p>
-                        <p><b>Name:</b> {Retailer[Number(Items[ItemID].retailerId)].name}</p>
-                        <p><b>Place: </b>{Retailer[Number(Items[ItemID].retailerId)].location}</p>
-                    </article>
-                    <span>&#10132;</span>
-                    <article className="col-3">
-                        <h4><u>Sold</u></h4>
-                    </article>
-                </section>
-                <motion.div variants={itemVariants} className="back-button">
+                <div className="table-container">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Categories</th>
+                                <th>Brand</th>
+                                <th>Based In</th>
+                                <th>Description</th>
+                                <th>Current Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{Number(Items[ItemID].id)}</td>
+                                <td>{Items[ItemID].name}</td>
+                                <td>{Items[ItemID].categories}</td>
+                                <td>{Items[ItemID].brand}</td>
+                                <td>{Items[ItemID].origin}</td>
+                                <td>{Items[ItemID].nutritionInfo}</td>
+                                <td>{ItemPhase[ItemID]}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div className="supplychain-list">
+
+                {supplychainssold.map((supplychain, index) => (
+                    <motion.div className="supplychain-item" key={index}>
+                    {supplychain.name && (<>
+                            
+                        <motion.img src={supplychain.image} alt={supplychain.name} 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.95 }} />
+
+                        <motion.p 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.95 }}>
+                            {supplychain.name}
+                        </motion.p>
+
+                        <motion.div className="chronology-track-section">
+                            <h2>{supplychain.name} Information</h2>
+                                <table className="chronology-table-container" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Based In</th>
+                                        </tr>
+                                    </thead>
+                                    {chronologyTableRetail(supplychain.name)}
+                                </table>
+                        </motion.div>
+
+                        
+                    </>
+                    )}
+                    </motion.div>
+                    
+                ))}
+                <h2>Your Item is Sold already</h2>
+                   
+             </div>
+
+            <motion.div variants={itemVariants} className="back-button">
                         <motion.button
                             variants={itemVariants}
                             whileHover={{ scale: 1.1 }}
@@ -542,10 +886,11 @@ const Track = () => {
                         >
                             Back To Project Overview
                         </motion.button>
-                </motion.div>
-            </div >
+            </motion.div>
+        </div>
         )
     }
+
 
 
     const adminID = (event) => {
