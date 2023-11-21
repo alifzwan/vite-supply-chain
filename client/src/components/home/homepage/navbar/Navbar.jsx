@@ -21,7 +21,7 @@ const Navbar = () => {
           Final Year Project
         </motion.span>
         <div className="social">
-          <a href="https://github.com/alifzwan">
+          <a href="https://github.com/alifzwan/React-Supply-Chain" target="_blank" rel="noopener noreferrer">
             <GithubIcon style={{fontSize: 30}}></GithubIcon>
           </a> 
         </div>

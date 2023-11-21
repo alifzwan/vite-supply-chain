@@ -100,7 +100,7 @@ const Project = () => {
                 </motion.button>
             </motion.div>
               
-            )}
+          )}
         </motion.div>
         
         ))}
@@ -117,9 +117,11 @@ const Project = () => {
       </motion.div>
 
       <p className="project-description">
-        <b>Only</b> 
-        <a href="https://coinsbench.com/understanding-contract-ownership-in-solidity-and-access-control-patterns-1a04116042ce#:~:text=Contract%20ownership%20refers%20to%20the,transferred%20dynamically%20using%20specific%20functions."> Owner </a> 
-        <b>can register the supply chain. Owner is the the person who deployed the smart contract on the blockchain</b>
+        <b>Only </b> 
+          <a href="https://coinsbench.com/understanding-contract-ownership-in-solidity-and-access-control-patterns-1a04116042ce#:~:text=Contract%20ownership%20refers%20to%20the,transferred%20dynamically%20using%20specific%20functions." target="_blank" rel="noopener noreferrer"> 
+            Owner 
+          </a> 
+        <b> can register the supply chain. Owner is the the person who deployed the smart contract on the blockchain</b>
       </p>
 
       <motion.div className="back-button">

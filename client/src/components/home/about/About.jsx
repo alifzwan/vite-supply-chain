@@ -24,7 +24,7 @@ const About = () => {
       <p>
         I am currently a <b>Final Year Computer Network Student</b> at{" "}
 
-        <a href="https://www.upm.edu.my/">University Putra Malaysia, Serdang</a>. I am undertaking a
+        <a href="https://www.upm.edu.my/" target="_blank" rel="noopener noreferrer">University Putra Malaysia, Serdang</a>. I am undertaking a
 
         full-time <b> Bachelor of Computer Science</b> in <b>Computer Network. </b>
       </p>

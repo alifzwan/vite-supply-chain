@@ -48,16 +48,16 @@ const AboutNavbar = () => {
         </motion.span>
 
         <div className="social">
-          <a href="https://github.com/alifzwan">
+          <a href="https://github.com/alifzwan" target="_blank" rel="noopener noreferrer">
             <GithubIcon style={{fontSize: 30}}></GithubIcon>
           </a>
-          <a href="https://open.spotify.com/user/alifzwan?si=b4ddb3a5803e4954">
+          <a href="https://open.spotify.com/user/alifzwan?si=b4ddb3a5803e4954" target="_blank" rel="noopener noreferrer">
             <img src="/spotify.svg" alt="" />
           </a>
-          <a href="https://mail.google.com/mail/u/1/#inbox?compose=DmwnWrRmTNmrvgjlGHhNSPWcSzqXSTrDZMzcXRCFrKHNbWPVLPBSGXdGXhnxTgvZfHVgwBfldHtl">
+          <a href="https://mail.google.com/mail/u/1/#inbox?compose=DmwnWrRmTNmrvgjlGHhNSPWcSzqXSTrDZMzcXRCFrKHNbWPVLPBSGXdGXhnxTgvZfHVgwBfldHtl" target="_blank" rel="noopener noreferrer">
             <EmailRoundedIcon style={{fontSize: 30}}></EmailRoundedIcon>
           </a>
-          <a href="https://www.linkedin.com/in/alif-zakwan-965066257/">
+          <a href="https://www.linkedin.com/in/alif-zakwan-965066257/" target="_blank" rel="noopener noreferrer">
             <LinkedInIcon style={{fontSize: 30}}></LinkedInIcon>
           </a>
 
