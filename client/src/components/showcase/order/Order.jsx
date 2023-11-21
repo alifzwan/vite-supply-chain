@@ -158,27 +158,27 @@ const Order = () => {
                     <motion.div className="input-container" variants={variants}>
                     <motion.div variants={itemVariants}>
                         <label>Name:</label><br />
-                        <input type="text" onChange={regItemName} placeholder="Name" /><br />
+                        <input type="text" onChange={regItemName} placeholder="Name" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Categories:</label><br />
-                        <input type="text" onChange={regItemCategories} placeholder="Categories" /><br />
+                        <input type="text" onChange={regItemCategories} placeholder="Categories" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Brand:</label><br />
-                        <input type="text" onChange={regItemBrand} placeholder="Brand" /><br />
+                        <input type="text" onChange={regItemBrand} placeholder="Brand" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Based In:</label><br />
-                        <input type="text" onChange={regItemOrigin} placeholder="Based In" /><br />
+                        <input type="text" onChange={regItemOrigin} placeholder="Based In" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Description</label><br />
-                        <input type="text" onChange={regItemDescription} placeholder="Description" /><br />
+                        <input type="text" onChange={regItemDescription} placeholder="Description" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="order-button">

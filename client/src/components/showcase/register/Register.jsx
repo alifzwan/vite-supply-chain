@@ -266,17 +266,17 @@ const Register = () => {
                 <motion.div className="input-container" variants={variants}>
                     <motion.div variants={itemVariants}>
                         <label >Ethereum Address:</label><br />
-                        <input type="text" onChange={adminAddressFarmer} placeholder="Ethereum Address" /><br />
+                        <input type="text" onChange={adminAddressFarmer} placeholder="Ethereum Address" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Farmer Name:</label><br />
-                        <input type="text" onChange={adminNameFarmer} placeholder="Farmer Name" /><br />
+                        <input type="text" onChange={adminNameFarmer} placeholder="Farmer Name" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Based In:</label><br />
-                        <input type="text" onChange={adminOriginFarmer} placeholder="Based In" /><br />
+                        <input type="text" onChange={adminOriginFarmer} placeholder="Based In" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="register-button">
@@ -328,17 +328,17 @@ const Register = () => {
                     <motion.div className="input-container" variants={variants}>
                     <motion.div variants={itemVariants}>
                         <label>Ethereum Address:</label><br />
-                        <input type="text" onChange={adminAddressManufacturer} placeholder="Ethereum Address" /><br />
+                        <input type="text" onChange={adminAddressManufacturer} placeholder="Ethereum Address" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label >Manufacturer Name:</label><br />
-                        <input type="text" onChange={adminNameManufacturer} placeholder="Manufacturer Name" /><br />
+                        <input type="text" onChange={adminNameManufacturer} placeholder="Manufacturer Name" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Based In:</label><br />
-                        <input type="text" onChange={adminOriginManufacturer} placeholder="Based In" /><br />
+                        <input type="text" onChange={adminOriginManufacturer} placeholder="Based In" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="register-button">
@@ -391,17 +391,17 @@ const Register = () => {
 
                     <motion.div variants={itemVariants}>
                         <label>Ethereum Address:</label><br />
-                        <input type="text" onChange={adminAddressDistributor} placeholder="Ethereum Address" /><br />
+                        <input type="text" onChange={adminAddressDistributor} placeholder="Ethereum Address" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Distributor Name:</label><br />
-                        <input type="text" onChange={adminNameDistributor} placeholder="Distributor Name" /><br />
+                        <input type="text" onChange={adminNameDistributor} placeholder="Distributor Name" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Based In:</label><br />
-                        <input type="text"  onChange={adminOriginDistributor} placeholder="Based In" /><br />
+                        <input type="text"  onChange={adminOriginDistributor} placeholder="Based In" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="register-button">
@@ -452,17 +452,17 @@ const Register = () => {
                     <motion.div className="input-container" variants={variants}>
                     <motion.div variants={itemVariants}>
                         <label>Ethereum Address:</label><br />
-                        <input type="text" onChange={adminAddressRetailer} placeholder="Ethereum Address" /><br />
+                        <input type="text" onChange={adminAddressRetailer} placeholder="Ethereum Address" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Retailer Name:</label><br />
-                        <input type="text" onChange={adminNameRetailer} placeholder="Retailer Name" /><br />
+                        <input type="text" onChange={adminNameRetailer} placeholder="Retailer Name" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
                         <label>Based In:</label><br />
-                        <input type="text" onChange={adminOriginRetailer} placeholder="Based In" /><br />
+                        <input type="text" onChange={adminOriginRetailer} placeholder="Based In" required/><br />
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="register-button">
