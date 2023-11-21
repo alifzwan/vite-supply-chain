@@ -45,7 +45,8 @@ const Track = () => {
 
     const supplychainsfarmer = [
 
-        { name: "Farmer"      , image: "/farmer.svg"      }
+        { name: "Farmer"      , image: "/farmer.svg"      },
+       
        
     ];
 
@@ -345,11 +346,22 @@ const Track = () => {
 
     }
 
+/* The Flow of the Supply Chain is going to be like this:
+
+    Item Ordered  =>  Farmer  =>  Manufacturer  =>  Distributor  =>  Retailer  =>  Item Sold
+
+         0              1              2                 3              4              5
+
+
+*/
+
+
+// Item Ordered
     if (TrackTillOrdered) {
         return (
-            <div className="chronology-main-container">
-            <h2 className="chronology-section-title">Information</h2>
-            <div className="chronology-section">
+        <div className="chronology-ordered-main-container">
+            <h2 className="chronology-ordered-section-title">Information</h2>
+            <div className="chronology-ordered-section">
                 <h2>Item Information</h2>
 
                 <div className="table-container">
@@ -381,16 +393,7 @@ const Track = () => {
                     </table>
                 </div>
             </div>
-
-
-            <div className="chronology-track-section">
-                
-
-                <h2>Your Item has already ordered, Please wait</h2>
-
-            </div>
-
-
+            <h2>Your Item has already ordered, Please wait</h2>
             <motion.div variants={itemVariants} className="back-button">
                         <motion.button
                             variants={itemVariants}
@@ -414,11 +417,15 @@ const Track = () => {
         )
     }
 
+
+
+// Item Arrived at Farmer
     if (TrackTillFarmer) {
         return (
-            <div className="chronology-main-container">
-            <h2 className="chronology-section-title">Information</h2>
-            <div className="chronology-section">
+        <div className="chronology-farmer-main-container">
+                <h2 className="chronology-farmer-section-title">Information</h2>
+
+            <div className="chronology-farmer-section">
                 <h2>Item Information</h2>
 
                 <div className="table-container">
@@ -450,25 +457,20 @@ const Track = () => {
                 </div>
             </div>
 
-            <div className="supplychain-list">
+            <div className="supplychain-farmer-section">
 
                 {supplychainsfarmer.map((supplychain, index) => (
-                    <motion.div className="supplychain-item" key={index}>
-                    {supplychain.name && (<>
-                            
+                    <motion.div className="supplychain-farmer-item" 
+                    key={index}>
+                
                         <motion.img src={supplychain.image} alt={supplychain.name} 
                             whileHover={{ scale: 1.1 }} 
                             whileTap={{ scale: 0.95 }} />
 
-                        <motion.p 
-                            whileHover={{ scale: 1.1 }} 
-                            whileTap={{ scale: 0.95 }}>
-                            {supplychain.name}
-                        </motion.p>
-
-                        <motion.div className="chronology-track-section">
+                        {supplychain.name && (
+                        <motion.div className="supplychain-farmer-track-section">
                             <h2>{supplychain.name} Information</h2>
-                                <table className="chronology-table-container" border="1">
+                                <table className="table-container" border="1">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -479,12 +481,12 @@ const Track = () => {
                                     {chronologyTableFarmer(supplychain.name)}
                                 </table>
                         </motion.div>
-                    </>
-                    )}
+                        )}
+                   
                     </motion.div>
                 ))}
                    
-             </div>
+            </div>
 
             <motion.div variants={itemVariants} className="back-button">
                         <motion.button
@@ -510,11 +512,14 @@ const Track = () => {
     }
 
 
+
+
+// Item being manufactured
     if (TrackTillManufacture) {
         return (
-            <div className="chronology-main-container">
-            <h2 className="chronology-section-title">Information</h2>
-            <div className="chronology-section">
+            <div className="chronology-manufacturer-main-container">
+            <h2 className="chronology-manufacturer-section-title">Information</h2>
+            <div className="chronology-manufacturer-section">
                 <h2>Item Information</h2>
 
                 <div className="table-container">
@@ -545,37 +550,34 @@ const Track = () => {
                 </div>
             </div>
 
-            <div className="supplychain-list">
+            <div className="supplychain-manufacturer-section">
 
                 {supplychainsmanufacturer.map((supplychain, index) => (
-                    <motion.div className="supplychain-item" key={index}>
-                    {supplychain.name && (<>
-                            
+                    <motion.div className="supplychain-manufacturer-item" 
+                        key={index}>
                         <motion.img src={supplychain.image} alt={supplychain.name} 
                             whileHover={{ scale: 1.1 }} 
                             whileTap={{ scale: 0.95 }} />
 
-                        <motion.p 
-                            whileHover={{ scale: 1.1 }} 
-                            whileTap={{ scale: 0.95 }}>
-                            {supplychain.name}
-                        </motion.p>
+                      
 
-                        <motion.div className="chronology-track-section">
-                            <h2>{supplychain.name} Information</h2>
-                                <table className="chronology-table-container" border="1">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Based In</th>
-                                        </tr>
-                                    </thead>
-                                    {chronologyTableManufacturer(supplychain.name)}
-                                </table>
-                        </motion.div>
-                    </>
-                    )}
+
+                        {supplychain.name && (
+                            <motion.div className="supplychain-manufacturer-track-section">
+                                <h2>{supplychain.name} Information</h2>
+                                    <table className="table-container" border="1">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Based In</th>
+                                            </tr>
+                                        </thead>
+                                        {chronologyTableManufacturer(supplychain.name)}
+                                    </table>
+                            </motion.div>
+                        )}
+                  
                     </motion.div>
                 ))}
                    
@@ -604,11 +606,14 @@ const Track = () => {
         )
     }
 
+
+
+// Item being distribute
     if (TrackTillDistribute) {
         return (
-            <div className="chronology-main-container">
-            <h2 className="chronology-section-title">Information</h2>
-            <div className="chronology-section">
+            <div className="chronology-distributor-main-container">
+            <h2 className="chronology-distributor-section-title">Information</h2>
+            <div className="chronology-distributor-section">
                 <h2>Item Information</h2>
 
                 <div className="table-container">
@@ -639,25 +644,21 @@ const Track = () => {
                 </div>
             </div>
 
-            <div className="supplychain-list">
+            <div className="supplychain-distributor-section">
 
                 {supplychainsdistributor.map((supplychain, index) => (
-                    <motion.div className="supplychain-item" key={index}>
-                    {supplychain.name && (<>
-                            
+                    <motion.div className="supplychain-distributor-item" 
+                        key={index}>
+                   
                         <motion.img src={supplychain.image} alt={supplychain.name} 
                             whileHover={{ scale: 1.1 }} 
                             whileTap={{ scale: 0.95 }} />
+                        
 
-                        <motion.p 
-                            whileHover={{ scale: 1.1 }} 
-                            whileTap={{ scale: 0.95 }}>
-                            {supplychain.name}
-                        </motion.p>
-
-                        <motion.div className="chronology-track-section">
+                        {supplychain.name && (
+                        <motion.div className="supplychain-distributor-track-section">
                             <h2>{supplychain.name} Information</h2>
-                                <table className="chronology-table-container" border="1">
+                                <table className="table-container" border="1">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -668,8 +669,8 @@ const Track = () => {
                                     {chronologyTableDistributor(supplychain.name)}
                                 </table>
                         </motion.div>
-                    </>
-                    )}
+                        )}
+                
                     </motion.div>
                 ))}
                    
@@ -698,11 +699,13 @@ const Track = () => {
         )
     }
 
+
+    // Item safely arrived at retail
     if (TrackTillRetail) {
         return (
-            <div className="chronology-main-container">
-            <h2 className="chronology-section-title">Information</h2>
-            <div className="chronology-section">
+        <div className="chronology-retailer-main-container">
+            <h2 className="chronology-retailer-section-title">Information</h2>
+            <div className="chronology-retailer-section">
                 <h2>Item Information</h2>
 
                 <div className="table-container">
@@ -733,41 +736,38 @@ const Track = () => {
                 </div>
             </div>
             
-            <div className="supplychain-list">
+            <div className="supplychain-retailer-section">
 
                 {supplychainsretailer.map((supplychain, index) => (
-                    <motion.div className="supplychain-item" key={index}>
-                    {supplychain.name && (<>
+                    <motion.div className="supplychain-retailer-item" 
+                        key={index}>
+                  
                             
                         <motion.img src={supplychain.image} alt={supplychain.name} 
                             whileHover={{ scale: 1.1 }} 
                             whileTap={{ scale: 0.95 }} />
 
-                        <motion.p 
-                            whileHover={{ scale: 1.1 }} 
-                            whileTap={{ scale: 0.95 }}>
-                            {supplychain.name}
-                        </motion.p>
-
-                        <motion.div className="chronology-track-section">
-                            <h2>{supplychain.name} Information</h2>
-                                <table className="chronology-table-container" border="1">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Based In</th>
-                                        </tr>
-                                    </thead>
-                                    {chronologyTableRetail(supplychain.name)}
-                                </table>
-                        </motion.div>
-                    </>
-                    )}
+                        
+                        {supplychain.name && (
+                            <motion.div className="supplychain-retailer-track-section">
+                                <h2>{supplychain.name} Information</h2>
+                                    <table className="table-container" border="1">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Based In</th>
+                                            </tr>
+                                        </thead>
+                                        {chronologyTableRetail(supplychain.name)}
+                                    </table>
+                            </motion.div>
+                        )}
+                    
                     </motion.div>
                 ))}
                    
-             </div>
+            </div>
 
             <motion.div variants={itemVariants} className="back-button">
                         <motion.button
@@ -787,17 +787,19 @@ const Track = () => {
                         >
                             Back To Project Overview
                         </motion.button>
-                </motion.div>
+            </motion.div>
         </div>
         )
     }
 
 
+
+    // Item is Sold
     if (TrackTillSold) {
         return (
-            <div className="chronology-main-container">
-            <h2 className="chronology-section-title">Information</h2>
-            <div className="chronology-section">
+            <div className="chronology-sold-main-container">
+            <h2 className="chronology-sold-section-title">Information</h2>
+            <div className="chronology-sold-section">
                 <h2>Item Information</h2>
 
                 <div className="table-container">
@@ -828,46 +830,40 @@ const Track = () => {
                 </div>
             </div>
 
-            <div className="supplychain-list">
+            <div className="supplychain-sold-section">
 
                 {supplychainssold.map((supplychain, index) => (
-                    <motion.div className="supplychain-item" key={index}>
-                    {supplychain.name && (<>
+                    <motion.div className="supplychain-sold-item" key={index}>
+                  
                             
                         <motion.img src={supplychain.image} alt={supplychain.name} 
                             whileHover={{ scale: 1.1 }} 
                             whileTap={{ scale: 0.95 }} />
 
-                        <motion.p 
-                            whileHover={{ scale: 1.1 }} 
-                            whileTap={{ scale: 0.95 }}>
-                            {supplychain.name}
-                        </motion.p>
-
-                        <motion.div className="chronology-track-section">
-                            <h2>{supplychain.name} Information</h2>
-                                <table className="chronology-table-container" border="1">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Based In</th>
-                                        </tr>
-                                    </thead>
-                                    {chronologyTableRetail(supplychain.name)}
-                                </table>
-                        </motion.div>
-
                         
-                    </>
-                    )}
+                        {supplychain.name && (
+                            <motion.div className="supplychain-sold-track-section">
+                                <h2>{supplychain.name} Information</h2>
+                                    <table className="table-container" border="1">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Based In</th>
+                                            </tr>
+                                        </thead>
+                                        {chronologyTableRetail(supplychain.name)}
+                                    </table>
+                            </motion.div>
+                        )}
+
                     </motion.div>
                     
-                ))}
-                <h2>Your Item is Sold already</h2>
-                   
-             </div>
-
+                ))}  
+                 
+            </div>
+            
+            <h2>Your Item is Sold already</h2>
             <motion.div variants={itemVariants} className="back-button">
                         <motion.button
                             variants={itemVariants}
