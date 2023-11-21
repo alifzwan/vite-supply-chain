@@ -344,7 +344,7 @@ const Admin = () => {
                         </motion.div>
                     </form>
                 
-                    </div>
+                </div>
             </div>
 
 
