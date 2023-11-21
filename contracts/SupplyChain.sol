@@ -528,7 +528,7 @@ contract SupplyChain {
 
 
     // To change the flow from Distributor ==> Retail
-    function Retail(uint256 _itemID) public {
+    function Retailing(uint256 _itemID) public {
         require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackRetailer(msg.sender);
         require(_id > 0);
@@ -547,7 +547,7 @@ contract SupplyChain {
     }
 
     // To change the flow from Retail ==> Sold
-    function sold(uint256 _itemID) public {
+    function Sold(uint256 _itemID) public {
         require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackRetailer(msg.sender);
         require(_id > 0);
