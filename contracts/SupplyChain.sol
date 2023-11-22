@@ -79,8 +79,11 @@ contract SupplyChain {
         Notes: https://solidity-by-example.org/enum/
 
         - Enum is user-defined data type that allows you to define a set of named values. 
+        - Enums are often used when you have a fixed set of values that a variable can take.
 
-        - Let's say you're making a game about different animals. You might want to keep track of what kind of animal a player has chosen. You could use an enum to do this. 
+        - Let's say you're making a game about different animals. 
+        - You might want to keep track of what kind of animal a player has chosen. 
+        - You could use an enum to do this. 
 
         Example: 
 
@@ -143,8 +146,10 @@ contract SupplyChain {
     /* STRUCT 
 
         Notes: https://www.tutorialspoint.com/solidity/solidity_structs.htm
-    
-        - Struct types are used to represent a record
+
+        - Structs are used to group variables of different data types under a single name
+
+        - Struct also are used to represent a record
 
         - Suppose you want to keep track of your books in a library. You might want to track the following attributes about each book
 
@@ -160,6 +165,7 @@ contract SupplyChain {
             uint256 book_id;
 
         }
+        mapping(uint256 => Book) public BookInfo;
 
      */
 
@@ -190,9 +196,9 @@ contract SupplyChain {
         uint256 _itemID
     ) public view returns (string memory) {
 
-        require(itemsCount > 0);  // You have to order the item first
+        require(_itemID > 0);  // Ensure that the provided item ID is valid (greater than 0) well which is you have to order item first
 
-
+        // Check the current phase of the item using its ID
         if (ItemsInfo[_itemID].chronology == PHASE.Plugin)
             return "Your item is already Ordered. Please wait for further processes.";
         else if (ItemsInfo[_itemID].chronology == PHASE.Farmer)
@@ -200,7 +206,7 @@ contract SupplyChain {
         else if (ItemsInfo[_itemID].chronology == PHASE.Manufacturer)
             return "Your item is being manufactured. Please wait for further processes.";  
         else if (ItemsInfo[_itemID].chronology == PHASE.Distribution)
-            return "Your item is being distrubuted. Please wait for further processes.";  
+            return "Your item is being distributed. Please wait for further processes.";  
         else if (ItemsInfo[_itemID].chronology == PHASE.Retail)
             return "Your item is safely at the store.";  
         else if (ItemsInfo[_itemID].chronology == PHASE.Sold)
@@ -286,7 +292,12 @@ contract SupplyChain {
         - So the onlyOwner is to make sure only Owner can register the flow
         - This ensure that the system is secure and being handled by authorize person
 
-        // The count will increase. The Owner will register 3 attributes occupied with the flow.
+        The count will increase. The Owner will register 3 attributes occupied with the flow.
+
+
+
+
+
      */
 
     /* Data Location
@@ -301,12 +312,19 @@ contract SupplyChain {
 
 
      */
+    /* Underscore in function's attributes
+
+        - In Solidity, using an underscore before a parameter name, like "address _address", 
+          is a common convention to distinguish between function parameters and state variables. 
+
+        - This convention helps avoid naming conflicts and makes the code more readable.
+     */
 
 
     function regFarmer(
         address _address,  // This is wallet address 
-        string memory _name,
-        string memory _location
+        string memory _name,  // Name of the farmer
+        string memory _location  // Where's the farmer based in?
     ) public onlyCreator {  // Only creator/owner can register all the admin
         farmerCount++;
         farmerInfo[farmerCount] = farmer(_address, farmerCount, _name, _location);  // All this attributes will be stored in farmerInfo
@@ -404,9 +422,6 @@ contract SupplyChain {
 
     /*-----------------Administration------------------
 
-
-
-
      Admin is where each admin of the flow establish the status of item.
 
      Alright let's give an example:
@@ -425,7 +440,11 @@ contract SupplyChain {
      - 4) Item are being Distribute        (Distribution)
      - 5) Item are safely arrived at store (Retail)
      - 6) Item sold                        (Sold)
+
+
      */
+
+    
 
 
     /* ----------------Tracking------------------
@@ -469,21 +488,24 @@ contract SupplyChain {
 
     // To change the flow from Ordered ==> Farmer
     function Farmering(uint256 _itemID) public {
-        require(_itemID > 0 && _itemID <= itemsCount);  //
-        uint256 _id = trackFarmer(msg.sender);
-        require(_id > 0);
-        require(ItemsInfo[_itemID].chronology == PHASE.Plugin);
-        ItemsInfo[_itemID].farmerId = _id;
-        ItemsInfo[_itemID].chronology = PHASE.Farmer;
+        require(_itemID > 0 && _itemID <= itemsCount);          // Ensure that we already order an Item and  
+        uint256 _id = trackFarmer(msg.sender);                  // Get the ID of the calling farmer
+        require(_id > 0);                                       // Ensure the farmer ID is valid
+        require(ItemsInfo[_itemID].chronology == PHASE.Plugin); // Ensure the item is in the Plugin phase
+        ItemsInfo[_itemID].farmerId = _id;                      // Assign the farmer ID to the item
+        ItemsInfo[_itemID].chronology = PHASE.Farmer;           // Update the item's chronology to Farmer
     }
 
     // To track 
     function trackFarmer(address _address) private view returns (uint256) {
-        require(farmerCount > 0);
+        require(farmerCount > 0);                                       // Ensure that there is at least one registered farmer
+
         for (uint256 i = 1; i <= farmerCount; i++) {
-            if (farmerInfo[i].addr == _address) return farmerInfo[i].id;
+            if (farmerInfo[i].addr == _address)   // Ensure that farmer's address same with the farmer's address that we registered 
+            return farmerInfo[i].id;              // if all went well, it'll return ID
         }
         return 0;
+
     }
 
     // To change the flow from Farmer ==> Manufacturer
@@ -500,7 +522,8 @@ contract SupplyChain {
     function trackManufacture(address _address) private view returns (uint256) {
         require(manufacturerCount > 0);
         for (uint256 i = 1; i <= manufacturerCount; i++) {
-            if (manufacturerInfo[i].addr == _address) return manufacturerInfo[i].id;
+            if (manufacturerInfo[i].addr == _address) 
+            return manufacturerInfo[i].id;
         }
         return 0;
     }
@@ -521,7 +544,8 @@ contract SupplyChain {
     function trackDistribution(address _address) private view returns (uint256) {
         require(distributorCount > 0);
         for (uint256 i = 1; i <= distributorCount; i++) {
-            if (distributorInfo[i].addr == _address) return distributorInfo[i].id;
+            if (distributorInfo[i].addr == _address) 
+            return distributorInfo[i].id;
         }
         return 0;
     }
@@ -541,13 +565,14 @@ contract SupplyChain {
     function trackRetailer(address _address) private view returns (uint256) {
         require(retailerCount > 0);
         for (uint256 i = 1; i <= retailerCount; i++) {
-            if (retailerInfo[i].addr == _address) return retailerInfo[i].id;
+            if (retailerInfo[i].addr == _address) 
+            return retailerInfo[i].id;
         }
         return 0;
     }
 
     // To change the flow from Retail ==> Sold
-    function Sold(uint256 _itemID) public {
+    function sold(uint256 _itemID) public {
         require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackRetailer(msg.sender);
         require(_id > 0);
@@ -555,14 +580,5 @@ contract SupplyChain {
         require(ItemsInfo[_itemID].chronology == PHASE.Retail);
         ItemsInfo[_itemID].chronology = PHASE.Sold;
     }
-
-
-    
-
-
-
-
-
-
 
 }

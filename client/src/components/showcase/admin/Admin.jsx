@@ -156,7 +156,7 @@ const Admin = () => {
     const adminRetail = async (event) => {
         event.preventDefault();
         try {
-            var receipt = await SupplyChain.methods.Retail(ItemID).send({ from: currentaccount });
+            var receipt = await SupplyChain.methods.Retailing(ItemID).send({ from: currentaccount });
             if (receipt) {
                 loadBlockchaindata();
             }
