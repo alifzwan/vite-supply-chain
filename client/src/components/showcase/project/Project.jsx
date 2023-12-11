@@ -46,14 +46,20 @@ const Project = () => {
 
     
   const supplychains = [
-    { name: "Farmer"      , image: "/farmer.svg"      , action:  redirect_to_registration, label: "Register"},
-    { image: "/arrow.png"},
+    { name: "Farmer"      , image: "/farmer.svg"      , action:  redirect_to_registration, label: "Stakeholder Registration"},
+    { image: "/arrow1.png"},
 
-    { name: "Manufacturer", image: "/manufacturer.svg", action:  redirect_to_ordering    , label: "Order"},
-    { image: "/arrow.png"},
+    { name: "Slaughterhouse", image: "/chicken.png", action:  redirect_to_ordering    , label: "Slaughter Process"},
+    { image: "/arrow1.png"},
+
+    { name: "Halal Verify", image: "/halal.png", action:  redirect_to_ordering    , label: "Verify Halal"},
+    { image: "/arrow1.png"},
+
+    { name: "Manufacturer", image: "/manufacturer.svg", action:  redirect_to_ordering    , label: "Product Registration"},
+    { image: "/arrow1.png"},
 
     { name: "Distributor" , image: "/distributor.svg" , action:  redirect_to_tracking    , label: "Track"},
-    { image: "/arrow.png"},
+    { image: "/arrow1.png"},
 
     { name: "Retailer"    , image: "/retailer.svg"    , action:  redirect_to_information , label: "Info"},
   ];
@@ -84,7 +90,8 @@ const Project = () => {
             <motion.p 
                 whileHover={{ scale: 1.1 }} 
                 whileTap={{ scale: 0.95 }}>
-                {supplychain.name}
+
+                <p className="name">{supplychain.name}</p >
             </motion.p>
 
           )}
@@ -96,7 +103,8 @@ const Project = () => {
                   whileTap={{ scale: 0.95 }}              
                   onClick={supplychain.action}  
                 >
-                  {supplychain.label}
+                  <p className="label">{supplychain.label}</p>
+                  
                 </motion.button>
             </motion.div>
               
@@ -112,7 +120,7 @@ const Project = () => {
                   whileTap={{ scale: 0.95 }}
                   onClick={redirect_to_administration}
                 >
-                  Administer
+                  <p>Administer</p>
                 </motion.button>
       </motion.div>
 

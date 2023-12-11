@@ -48,38 +48,49 @@
         margin-bottom: 10px;
     }
 
-    .input-container {
+    form {
+        div {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
         input {
             width: calc(100% - 20px);
             margin-bottom: 10px;
             box-sizing: border-box;
             
         }
-    }
+        select {
+            width: auto;
+            margin-left: 5px;
+        }
 
-    .order-button {
-        button {
-          padding: 0px 10px;
-          height: 25px;
-          border: 1px solid green;
-          border-radius: 10px;
-          background-color: transparent;
-          color: green;
-          margin-right: 20px;
-          cursor: pointer;
-          font-weight: bold;
-          margin-top: 20px;
-          margin-bottom: 20px;
-          text-align: center;
-          
+        .order-button {
+            button {
+              padding: 0px 10px;
+              height: 25px;
+              border: 1px solid green;
+              border-radius: 10px;
+              background-color: transparent;
+              color: green;
+              margin-right: 20px;
+              cursor: pointer;
+              font-weight: bold;
+              margin-top: 20px;
+              margin-bottom: 20px;
+              text-align: center;
+              
+            }
+           
+            button:hover { 
+                color: white;
+                border-color: white;
+            }
+            
         }
-       
-        button:hover { 
-            color: white;
-            border-color: white;
-        }
-        
     }
+    
+
+    
 
     table {
         border-collapse: collapse;

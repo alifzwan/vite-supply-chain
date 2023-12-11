@@ -145,54 +145,64 @@ const Order = () => {
 
     return (
         <div className="ord-main-container">
-            <h2 className="ord-section-title">Ordering</h2>
-             <div className="current-address">
+            <h2 className="ord-section-title">Product Registration</h2>
+            <div className="current-address">
                     <label htmlFor="currentAddress">Current Address: </label>
                     <span>{currentaccount}</span>
             </div>
 
            
             <div className="ord-section">
-                <h2>Ordering</h2>
-                <form onSubmit={regItem}>
-                    <motion.div className="input-container" variants={variants}>
-                    <motion.div variants={itemVariants}>
-                        <label>Name:</label><br />
-                        <input type="text" onChange={regItemName} placeholder="Name" required/><br />
-                    </motion.div>
+                <h2>Product Registration</h2>
+                <motion.form onSubmit={regItem} className="input-container" variants={variants}>
 
-                    <motion.div variants={itemVariants}>
-                        <label>Categories:</label><br />
-                        <input type="text" onChange={regItemCategories} placeholder="Categories" required/><br />
-                    </motion.div>
+                        <motion.div variants={itemVariants}>
+                            <label>Name:</label><br />
+                            <input type="text" onChange={regItemName} placeholder="Name" required/><br />
+                        </motion.div>
 
-                    <motion.div variants={itemVariants}>
-                        <label>Brand:</label><br />
-                        <input type="text" onChange={regItemBrand} placeholder="Brand" required/><br />
-                    </motion.div>
+                        <motion.div variants={itemVariants}>
+                            <label>Categories:</label><br />
+                            <input type="text" onChange={regItemCategories} placeholder="Categories" required/><br />
+                        </motion.div>
 
-                    <motion.div variants={itemVariants}>
-                        <label>Based In:</label><br />
-                        <input type="text" onChange={regItemOrigin} placeholder="Based In" required/><br />
-                    </motion.div>
+                        <motion.div variants={itemVariants}>
+                            <label>Brand:</label><br />
+                            <input type="text" onChange={regItemBrand} placeholder="Brand" required/><br />
+                        </motion.div>
 
-                    <motion.div variants={itemVariants}>
-                        <label>Description</label><br />
-                        <input type="text" onChange={regItemDescription} placeholder="Description" required/><br />
-                    </motion.div>
+                        <motion.div variants={itemVariants}>
+                            <label>Based In:</label><br />
+                            <input type="text" onChange={regItemOrigin} placeholder="Based In" required/><br />
+                        </motion.div>
 
-                    <motion.div variants={itemVariants} className="order-button">
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onSubmit={regItem}
-                        >
-                            Order
-                        </motion.button>
-                    </motion.div>
-                </motion.div>
-                </form>
+                        <motion.div variants={itemVariants}>
+                            <label>Description</label><br />
+                            <input type="text" onChange={regItemDescription} placeholder="Description" required/><br />
+                        </motion.div>
+
+                        <motion.div variants={itemVariants}>
+                            <label>Finished Product: 
+                                <select>
+                                    <option value=""> How would you like the item to be done?</option>
+                                    <option value=""> Chicken Nugget</option>
+                                    <option value=""> Fresh Chicken</option>
+                                </select>
+                                
+                            </label><br />
+                        </motion.div>
+
+                        <motion.div variants={itemVariants} className="order-button">
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onSubmit={regItem}
+                            >
+                                Order
+                            </motion.button>
+                        </motion.div>
+                </motion.form>
                 
 
                 <div className="table-container">
