@@ -1,18 +1,18 @@
 
 <p align="center">
-<a href="https://trufflesuite.com/docs/truffle/">
+<a href="https://trufflesuite.com/docs/truffle/" target="_blank" rel="noopener noreferrer">
   <img src="https://seeklogo.com/images/T/truffle-logo-2DC7EBABF2-seeklogo.com.png" width="120" height='120'>
 </a>
   
-<a href="https://trufflesuite.com/docs/ganache/">
+<a href="https://trufflesuite.com/docs/ganache/" target="_blank" rel="noopener noreferrer">
   <img src="https://seeklogo.com/images/G/ganache-logo-1EB72084A8-seeklogo.com.png" width="120" height='120'>
 </a>
 
-<a href="https://react.dev/learn/installation">
+<a href="https://react.dev/learn/installation" target="_blank" rel="noopener noreferrer">
   <img src="https://brandlogos.net/wp-content/uploads/2020/09/react-logo-512x512.png" width="120" height='120'>
 </a>
 
-<a href="https://web3js.readthedocs.io/en/v1.10.0/">
+<a href="https://web3js.readthedocs.io/en/v1.10.0/" target="_blank" rel="noopener noreferrer">
   <img src="https://seeklogo.com/images/W/web3js-logo-62DEE79B50-seeklogo.com.png" width="120" height='120'>
 </a>
 
