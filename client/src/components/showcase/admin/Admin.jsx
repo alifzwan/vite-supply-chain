@@ -7,9 +7,6 @@ import SupplyChainABI from "/src/artifacts/SupplyChain.json"
 
 
 
-
-
-
 const variants = {
     open: {
         transition: {
@@ -94,6 +91,8 @@ const Admin = () => {
         }
     }
 
+
+    
     if (loader) {
         return (
             <div>
@@ -356,7 +355,7 @@ const Admin = () => {
                         whileTap={{ scale: 0.95 }}
                         onClick={redirect_to_project}
                     >
-                        Back to Project Overview
+                        Back to Project 
                     </motion.button>
                  </motion.div>
             </div>

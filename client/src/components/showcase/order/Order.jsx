@@ -70,6 +70,7 @@ const Order = () => {
         const accounts = await web3.eth.getAccounts();
         const account = accounts[0];
         setCurrentaccount(account);
+        
         const networkId = await web3.eth.net.getId();
         const networkData = SupplyChainABI.networks[networkId];
         

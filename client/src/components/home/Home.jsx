@@ -3,7 +3,6 @@ import React from 'react'
 import Navbar from "../home/homepage/navbar/Navbar";
 import Hero from "../home/homepage/hero/Hero";
 
-
 import AboutNavBar from "../home/about/aboutNavbar/AboutNavBar";
 import About from "../home/about/About";
 

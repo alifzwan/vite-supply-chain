@@ -20,8 +20,11 @@ const itemVariants = {
 const AboutBotBar = () => {
   const navigate = useNavigate()
 
-  const redirect_to_projectoverview = () => {
-    navigate('/project')
+  // const redirect_to_projectoverview = () => {
+  //   navigate('/project')
+  // }
+  const redirect_to_login = () => {
+    navigate('/login')
   }
 
 
@@ -34,7 +37,7 @@ const AboutBotBar = () => {
                     variants={itemVariants}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={redirect_to_projectoverview}
+                    onClick={redirect_to_login}
                 >
                    See How My Project Work
                 </motion.button>

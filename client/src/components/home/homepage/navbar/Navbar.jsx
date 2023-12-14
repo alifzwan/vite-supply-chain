@@ -3,9 +3,8 @@ import "./navbar.scss";
 import { motion } from "framer-motion";
 
 
-import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GithubIcon from "@mui/icons-material/Github";
+
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 
 const Navbar = () => {
@@ -22,7 +21,7 @@ const Navbar = () => {
         </motion.span>
         <div className="social">
           <a href="https://github.com/alifzwan/React-Supply-Chain" target="_blank" rel="noopener noreferrer">
-            <GithubIcon style={{fontSize: 30}}></GithubIcon>
+            <GitHubIcon style={{fontSize: 30}}></GitHubIcon>
           </a> 
         </div>
       </div>
