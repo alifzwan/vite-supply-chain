@@ -45,30 +45,6 @@
         }
     }
 
-    .info-button {
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        button {
-          padding: 0px 10px;
-          height: 25px;
-          border: 1px solid green;
-          border-radius: 10px;
-          background-color: transparent;
-          color: green;
-          margin-top: 20px;
-          margin-bottom: 20px;
-          cursor: pointer;
-          font-weight: bold;
-          text-align: center;
-          
-        }
-        button:hover { 
-            color: white;
-            border-color: white;
-        }
-    }
-
     table {
         border-collapse: collapse;
         border: 1px solid white;
