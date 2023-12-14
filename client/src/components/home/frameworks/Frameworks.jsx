@@ -53,7 +53,7 @@ const Frameworks = () => {
           whileTap={{ scale: 0.95 }}>
             
           <a href={framework.link} target="_blank" rel="noopener noreferrer">
-          <img  src={framework.logo} alt={framework.name} />
+          <img src={framework.logo} alt={framework.name} id={framework.name}/>
           <p>{framework.name}</p>
           
           </a>

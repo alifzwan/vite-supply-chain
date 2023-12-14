@@ -95,7 +95,7 @@ const Login = () => {
                             whileTap={{ scale: 0.95 }}
                             onClick={redirect_to_home}
                         >
-                            Back to Project Overview
+                            Back to Front Page
                         </motion.button>
             </motion.div>
         </div>

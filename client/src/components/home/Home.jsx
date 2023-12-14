@@ -13,22 +13,22 @@ import Credits from "../home/credits/Credits";
 
 export const Home = () => {
   return (
-    <div>
-    <section id="Homepage">
-    <Navbar />
-    <Hero />
-    </section>
+    <div id='Home'>
+      <section id="Homepage">
+        <Navbar />
+        <Hero />
+      </section>
 
-    <section id="About Me">
-    <AboutNavBar />
-    <About />
-    <AboutBotBar /> 
-    </section>
+      <section id="About Me">
+        <AboutNavBar />
+        <About />
+        <AboutBotBar /> 
+      </section>
 
-    <section id="Frameworks">
-    <Frameworks />
-    <Credits />
-    </section>
+      <section id="Frameworks">
+        <Frameworks />
+        <Credits />
+      </section>
     </div>
     
 

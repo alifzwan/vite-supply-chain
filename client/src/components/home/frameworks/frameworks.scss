@@ -1,6 +1,6 @@
 .frameworks {
   text-align: center;
-  margin: 50px 0;
+  margin: 70px 0 100px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,7 @@
     font-size: 50px;
     font-weight: bold;
     margin-bottom: 50px;
- 
+    color: white;
     text-align: center;
   }
 
@@ -18,13 +18,17 @@
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
     align-items: center;
-    gap: 90px;
+    gap: 50px;
 
     .framework-item {
       text-align: center;
       max-width: 800px;
       img {
         max-width: 500px;
+        max-height: 70px;
+      }
+      #Remix {
+        max-width: 600px;
         max-height: 100px;
       }
       p {
