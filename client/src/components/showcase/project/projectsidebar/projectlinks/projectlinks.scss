@@ -2,10 +2,9 @@
     height: 92.6vh;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     font-size: 1rem;
     position: relative;
-    
     
     .account {
       overflow: hidden;
@@ -14,7 +13,11 @@
       margin-block-end: 0;
       margin-inline-start: 0px;
       margin-inline-end: 0px;
-      align-items: center;
+      width: 100%;
+      height:50px;
+      .account:hover{
+        visibility: visible;
+      }
     }
     .balance {
       text-align: center;
@@ -25,14 +28,14 @@
       background-color: #5900ff;
       color: #fff !important;
       font-size: 16px;
-      align-items: center;
-      width: 95%;
       height:40px;
       outline: 0;
       cursor: pointer;
       border: 0;
       font-weight: bold;
       margin-bottom: 20px;
-  }
+    }
+
+
   
   }

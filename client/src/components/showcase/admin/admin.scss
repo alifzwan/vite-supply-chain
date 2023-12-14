@@ -13,19 +13,19 @@
     .admin-section-title {
         font-size: 30px;
         font-weight: bold;
-        margin-bottom: 10px;
-        text-align: center;
+        margin: 20px 0 20px 0;
         color: rebeccapurple;
     }
 
     .admin-content {
-
+        display: flex;
+        flex-direction: column;
         table {
             border-collapse: collapse;
             border: 1px solid white;
             border-radius: 10px;
             width: 100%;
-            margin: auto; 
+            margin-bottom: 20px; 
             font-size: 14px;
             max-height: 375px;
             overflow-y: auto;
@@ -75,24 +75,24 @@
 
         .admin-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 50px;
-            grid-column: span 2;
             align-items: center;
-            margin: 0 auto; /* Center the grid */
+            margin-top: 20px;
 
             .admin-section {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
                 border: 2px solid rebeccapurple;
                 border-radius: 10px;
                 padding: 10px;
                 box-sizing: border-box;
-                max-height: auto; /* Make sure all sections have the same height */
                 overflow-y: auto;
                 margin-top: 10px;
-                width: 400px;
+                width: 300px;
             
                 h2 {
-                    text-align: left;
                     font-weight: bold;
                     margin-bottom: 10px;
                 }
@@ -100,6 +100,7 @@
                 .input-container {
                     display: flex; 
                     align-items: center;
+                    
                     input {
                         width: 100%;
                         box-sizing: border-box;
@@ -162,7 +163,7 @@
             border-radius: 10px;
             padding: 10px;
             box-sizing: border-box;
-            width: 400px;
+            width: 300px;
             margin: 0 auto; /* Center the section */
             margin-top: 60px;
         
@@ -225,11 +226,10 @@
             }
         }
 
-
-
         .admin-back-button-container{
-            transform: translateY(50%);
+            transform: translateY(450%);
             display: flex;
+            justify-content: flex-end;
             .admin-back-button{
                 max-width: 1366px;
                 margin: auto;

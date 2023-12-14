@@ -8,36 +8,7 @@
     }
 }
 
-.reg-navbar {
-    height: 50px;
-    width: 100%;
-    .wrapper {
-        max-width: 1366px;
-        margin: auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 100%;
-    
-    
-        span {
-          font-weight: bold;
-          font-size: 30px;
-          margin-left: 100px;
-        }
-    
-        .social {
-          display: flex;
-          gap: 20px;
-    
-          img {
-            width: 30px;
-            height: 30px;
-          }
-        }
-      }
 
-}
 
 
 .main-section {
@@ -49,7 +20,7 @@
     .reg-section-title{ 
         font-size: 30px;
         font-weight: bold;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         text-align: center;
         color: rebeccapurple;
     }
@@ -58,7 +29,8 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
-        width: 80%;
+        width: 90%;
+        height: 88vh;
         margin: 0 auto;
         box-sizing: border-box;
         
@@ -110,7 +82,7 @@
                 border-collapse: collapse;
                 border: 1px solid white;
                 border-radius: 20px;
-                width: 100%;
+                width: calc(100% - 20px);
                 height:30px;
                 font-size: 14px;
                     
@@ -119,8 +91,6 @@
                     color: white;
                     padding: 10px;
                     text-align: center;
-                        
-                        
                 }
             
                 th {
@@ -129,6 +99,9 @@
             
                 tr:nth-child(even) {
                     background-color: transparent;
+                }
+                td:last-child {
+                    color: green;
                 }
             
                 tr:hover {

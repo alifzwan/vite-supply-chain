@@ -19,18 +19,20 @@
     .ord-section-title{
         font-size: 30px;
         font-weight: bold;
-        margin-bottom: 10px;
+        margin: 10px 0 30px 0;
         text-align: left;
         color: rebeccapurple;
     }
 
     .order-content {
+        display: flex;
+        flex-direction: column;
         .ord-section {
             border: 2px solid rebeccapurple;
             border-radius: 10px;
             padding: 10px;
             box-sizing: border-box;
-            width: 105vh;
+            width: 100%;
             overflow-y: auto;
         
             h2 {
@@ -123,6 +125,7 @@
             }
         }
         .order-back-button-container {
+            transform: translateY(200%);
             display: flex;
             .order-back-button{
                 max-width: 1366px;
