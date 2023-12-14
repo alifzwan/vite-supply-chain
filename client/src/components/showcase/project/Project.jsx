@@ -1,149 +1,50 @@
-import React from "react";
-import "./project.scss";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom"
+import {Layout, Button, theme, Menu} from "antd"
+import "./project.scss"
+import Logo from "./projectsidebar/logo/Logo"
+import ProjectLinks from "./projectsidebar/projectlinks/ProjectLinks"  
+import ProjectToggleButton from './projectsidebar/projectToggleButton/ProjectToggleButton' 
+
+import {MenuUnfoldOutlined, MenuFoldOutlined} from "@ant-design/icons"
+import React, { useState } from 'react';
+
+const {Header, Sider} = Layout
 
 
-const Variants = {
-  initial: {
-    x: -500,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-};
+function Project() {
+
+  const [darkTheme, setDarkTheme] = useState(true)
+  const [collapsed, setCollapsed] = useState(false) 
 
 
-const Project = () => {
-    const navigate = useNavigate()
-
-    const redirect_to_home = () => {
-      navigate('/')
-    }
-
-    const redirect_to_registration = () => {
-      navigate('/register')
-    }
-    const redirect_to_ordering = () => {
-      navigate('/order')
-    }
-    const redirect_to_administration = () => {
-      navigate('/admin')
-    }
-    const redirect_to_tracking = () => {
-      navigate('/track')
-    }
-    const redirect_to_information = () => {
-      navigate('/info')
+  const toggleTheme = () => {
+    setDarkTheme(!darkTheme)
   }
-   
 
-    
-  const supplychains = [
-    { name: "Farmer"      , image: "/farmer.svg"      , action:  redirect_to_registration, label: "Stakeholder Registration"},
-    { image: "/arrow1.png"},
 
-    { name: "Slaughterhouse", image: "/chicken.png", action:  redirect_to_ordering    , label: "Slaughter Process"},
-    { image: "/arrow1.png"},
-
-    { name: "Halal Verify", image: "/halal.png", action:  redirect_to_ordering    , label: "Verify Halal"},
-    { image: "/arrow1.png"},
-
-    { name: "Manufacturer", image: "/manufacturer.svg", action:  redirect_to_ordering    , label: "Product Registration"},
-    { image: "/arrow1.png"},
-
-    { name: "Distributor" , image: "/distributor.svg" , action:  redirect_to_tracking    , label: "Track"},
-    { image: "/arrow1.png"},
-
-    { name: "Retailer"    , image: "/retailer.svg"    , action:  redirect_to_information , label: "Info"},
-  ];
+  const {
+    token: {colorBgContainer},
+  } = theme.useToken();
 
   return (
-    <motion.div className="supplychain"
-          variants={Variants} 
-          initial="initial"
-          animate="animate" >
+    <Layout>
+      
+      <Sider collapsed={collapsed} collapsible trigger={null} theme={darkTheme ? 'dark' : 'light'} className='project-navbar'>
+        <Logo />
+        <ProjectLinks darkTheme={darkTheme}/>
+        <ProjectToggleButton darkTheme={darkTheme} toggleTheme={toggleTheme}/>
+      </Sider>
 
 
-      <h2 className="section-title">Supply Chain Flow</h2>
+      <Layout>
+        <Header style={{padding:0, background:colorBgContainer}}>
+          <Button className="toggle" onClick={()=>setCollapsed(!collapsed)} type="text" icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} />
+        </Header>
+      </Layout>
 
 
-      <div className="supplychain-list">
-        {supplychains.map((supplychain, index) => (
+    
+    </Layout>
+  )
+}
 
-        <motion.div className="supplychain-item" 
-          key={index}>
-
-          <motion.img src={supplychain.image} alt={supplychain.name} 
-            whileHover={{ scale: 1.1}}
-             whileTap={{ scale: 0.95 }}/>
-
-        
-            
-          {supplychain.name && (
-            <motion.p 
-                whileHover={{ scale: 1.1 }} 
-                whileTap={{ scale: 0.95 }}>
-
-                <p className="name">{supplychain.name}</p >
-            </motion.p>
-
-          )}
-
-          {supplychain.name && (
-            <motion.div className="supplychain-button">
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}              
-                  onClick={supplychain.action}  
-                >
-                  <p className="label">{supplychain.label}</p>
-                  
-                </motion.button>
-            </motion.div>
-              
-          )}
-        </motion.div>
-        
-        ))}
-      </div>
-
-      <motion.div className="adminsupplychain-button">
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={redirect_to_administration}
-                >
-                  <p>Administer</p>
-                </motion.button>
-      </motion.div>
-
-      <p className="project-description">
-        <b>Only </b> 
-          <a href="https://coinsbench.com/understanding-contract-ownership-in-solidity-and-access-control-patterns-1a04116042ce#:~:text=Contract%20ownership%20refers%20to%20the,transferred%20dynamically%20using%20specific%20functions." target="_blank" rel="noopener noreferrer"> 
-            Owner 
-          </a> 
-        <b> can register the supply chain. Owner is the the person who deployed the smart contract on the blockchain</b>
-      </p>
-
-      <motion.div className="back-button">
-                        <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={redirect_to_home}
-                        >
-                            Back to Home
-                        </motion.button>
-      </motion.div>
-
-    </motion.div>
-  );
-};
-
-export default Project;
+export default Project

@@ -1,0 +1,38 @@
+.menu-bar {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1rem;
+    position: relative;
+    
+    
+    .account {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      align-items: center;
+    }
+    .balance {
+      text-align: center;
+      color: #5900ff;
+      font-weight: bold;
+    }
+    .disconnect-button{
+      background-color: #5900ff;
+      color: #fff !important;
+      font-size: 16px;
+      align-items: center;
+      width: 95%;
+      height:40px;
+      outline: 0;
+      cursor: pointer;
+      border: 0;
+      font-weight: bold;
+      margin-bottom: 20px;
+  }
+  
+  }

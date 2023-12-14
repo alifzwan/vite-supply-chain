@@ -1,0 +1,94 @@
+.supplychain {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    .section-title {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 100px;
+      margin-top: 60px;
+      text-align: center;
+    }
+  
+    .project-description {
+        font-size: 20px;
+        margin-bottom: 50px;
+        margin-top: 70px;
+        text-align: center;
+        max-width: 800px;
+        a {
+          font-size: 20px;
+          font-weight: bold;
+          color:rebeccapurple;
+          text-decoration: none;
+          transition: color 0.3s;
+        }
+    
+        a:hover { 
+          color: white;
+        }
+  
+        b {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        p {
+          font-size: 20px;
+          font-weight: bold;
+        }
+    
+      }
+  
+    .supplychain-list {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      justify-items: center;
+      align-items: center;
+      gap: 10px;
+  
+      .supplychain-item {
+        text-align: center;
+        max-width: 800px;
+    
+        img {
+          max-width: 800px;
+          max-height: 90px;
+          
+        }
+        .name {
+          font-size: 16px;
+          font-weight: bold;
+          color: white;
+          margin-top: 5px;
+        }
+      }
+    }
+    
+   .back-button{
+    max-width: 1366px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    button {
+        padding: 0px 10px;
+        height: 35px;
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: transparent;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 5px;
+        text-align: center;
+      }
+      button:hover { 
+          color: rebeccapurple;
+          border-color: rebeccapurple;
+      }
+  }
+  }
+  
