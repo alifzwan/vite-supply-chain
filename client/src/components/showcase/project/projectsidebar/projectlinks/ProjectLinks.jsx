@@ -2,15 +2,8 @@ import {Menu} from "antd"
 import "./projectlinks.scss"
 import Web3 from 'web3'; 
 import { useNavigate } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
-// import Home from "./components/home/Home"
-// import Project from "./components/showcase/project/Project";
-import ProjectHero from "../../projectHero/ProjectHero";
-// import Register from "./components/showcase/register/Register";
-// import Order from "./components/showcase/order/Order";
-// import Admin from "./components/showcase/admin/Admin";
-// import Track from "./components/showcase/track/Track";
-// import Info from "./components/showcase/info/Info";
 
 import React, { useEffect, useState } from 'react';
 
@@ -31,15 +24,10 @@ const ProjectLinks = ({darkTheme}) => {
     const redirect_to_home = () => {
         navigate('/')
     }
-    const redirect_to_projecthero = () => {
-        navigate('/projecthero')
+    const redirect_to_project = () => {
+        navigate('/project')
     }
-    const redirect_to_register = () => {
-        navigate('/register')
-    }
-    const redirect_to_order = () => {
-        navigate('/order')
-    }
+    
     const redirect_to_admin = () => {
         navigate('/admin')
     }
@@ -50,7 +38,7 @@ const ProjectLinks = ({darkTheme}) => {
         navigate('/info')
     }
     
-
+    
     useEffect(() => {
         loadWeb3();
         loadBlockchaindata();
@@ -103,15 +91,19 @@ const ProjectLinks = ({darkTheme}) => {
         window.location.href = "/login"
     };
 
+   
 
-    
+    const copyAccount =() => {
+        navigator.clipboard.writeText(this.state.textToCopy)
+        
+    };
+
     return (
         
-            <Menu className="menu-bar" theme={darkTheme ? 'dark' : 'light'} mode="inline">
-            
+        <Menu className="menu-bar" theme={darkTheme ? 'dark' : 'light'} mode="inline">
             
             <Menu.Item className="account" icon={<UserOutlined />}>
-                {currentaccount}
+                <Menu.Item onCopy= {copyAccount}> {currentaccount}</Menu.Item>
             </Menu.Item>
 
             <Menu.Item className="balance" icon={<DollarTwoTone />}>
@@ -123,22 +115,31 @@ const ProjectLinks = ({darkTheme}) => {
                 Disconnect 
             </Menu.Item>
 
-           
-
-            <Menu.Item onClick= {redirect_to_home} key="home" icon ={<HomeOutlined />}>
+        
+            <Menu.Item onClick= {redirect_to_project} icon ={<HomeOutlined />}>
                 Home
             </Menu.Item>
 
-            <Menu.Item onClick={redirect_to_projecthero} icon ={<AppstoreOutlined />}>
-                Project Overview
+            <Menu.Item icon ={<AppstoreOutlined />}>
+                <Link to="/projecthero">
+                    Project Overview
+                </Link>           
             </Menu.Item>
 
 
             <Menu.SubMenu icon={<BarsOutlined />} title ="Tasks">
-                <Menu.Item onClick={redirect_to_register}>Stakeholder Registration</Menu.Item>
+                <Menu.Item>
+                    <Link to="/register">Stakeholder Registration</Link>
+                </Menu.Item>
+
+
                 <Menu.Item>Slaughter Process</Menu.Item>
                 <Menu.Item>Halal Verification</Menu.Item>
-                <Menu.Item onClick={redirect_to_order} >Product Registration</Menu.Item>
+
+                <Menu.Item>
+                    <Link to="/order">Product Registration</Link>
+                </Menu.Item>
+
                 <Menu.Item onClick={redirect_to_admin} >Product Administer</Menu.Item>
                 <Menu.Item onClick={redirect_to_track} >Track Product</Menu.Item>
                 <Menu.Item onClick={redirect_to_info} >Product Info</Menu.Item>
@@ -146,16 +147,20 @@ const ProjectLinks = ({darkTheme}) => {
             </Menu.SubMenu>
 
         
-            <Menu.Item key="progress" icon ={<AreaChartOutlined />}>
+            {/* <Menu.Item icon ={<AreaChartOutlined />}>
                 Progress
             </Menu.Item>
 
-            <Menu.Item key="payment" icon ={<PayCircleOutlined />}>
+            <Menu.Item icon ={<PayCircleOutlined />}>
                 Payment
+            </Menu.Item> */}
+
+            <Menu.Item icon ={<SettingOutlined />}>
+                Setting
             </Menu.Item>
 
-            <Menu.Item key="setting" icon ={<SettingOutlined />}>
-                Setting
+            <Menu.Item onClick= {redirect_to_home} icon ={<HomeOutlined />}>
+                Front Page
             </Menu.Item>
         </Menu>
         
