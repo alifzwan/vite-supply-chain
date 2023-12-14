@@ -363,7 +363,7 @@ const Register = () => {
                             </form>
                             
 
-                            <table className="table-container" border="1" >
+                            <table className="reg-table-container" border="1" >
 
                                         <thead>
                                         <tr>
@@ -426,7 +426,7 @@ const Register = () => {
                             </form>
                             
 
-                                <table className="table-container" border="1" >
+                                <table className="reg-table-container" border="1" >
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -485,32 +485,32 @@ const Register = () => {
                             </form>
                             
 
-                            <div className="table-container">
-                                <table border="1" >
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Based In</th>
-                                            <th>Contract Address</th>
-                                        </tr>
-                                    </thead>
+                        
+                            <table className="reg-table-container" border="1" >
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Based In</th>
+                                        <th>Contract Address</th>
+                                    </tr>
+                                </thead>
 
-                                    <tbody>
-                                        {Object.keys(Retailer).map(function (key) {
-                                            return (
-                                                <tr key={key}>
-                                                    <td>{Number(Retailer[key].id)}</td>
-                                                    <td>{Retailer[key].name}</td>
-                                                    <td>{Retailer[key].location}</td>
-                                                    <td>{Retailer[key].addr}</td>
-                                                </tr>
-                                            )
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div>
+                                <tbody>
+                                    {Object.keys(Retailer).map(function (key) {
+                                        return (
+                                            <tr key={key}>
+                                                <td>{Number(Retailer[key].id)}</td>
+                                                <td>{Retailer[key].name}</td>
+                                                <td>{Retailer[key].location}</td>
+                                                <td>{Retailer[key].addr}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
                         </div>
+                     
 
                         <div className="reg-back-button-container">
                                 <motion.div variants={itemVariants} className="reg-back-button">
