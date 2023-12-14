@@ -190,7 +190,7 @@ const Admin = () => {
         </div> 
 
         <div className="main-section">
-            <div className="admin-section-title">Administer</div>
+            <div className="admin-section-title">Administration</div>
                 <div className="admin-content">
                     <table className="table-container" border="1">
                         <thead>
@@ -242,7 +242,7 @@ const Admin = () => {
                                             whileTap={{ scale: 0.95 }}
                                             onSubmit={adminFarmer}
                                         >
-                                            Plug In
+                                            Punch In
                                         </motion.button>
                                     </motion.div>
                                 
@@ -266,7 +266,7 @@ const Admin = () => {
                                             whileTap={{ scale: 0.95 }}
                                             onSubmit={adminManufacture}
                                         >
-                                            Plug In
+                                            Punch In
                                         </motion.button>
                                     </motion.div>
                                 
@@ -291,7 +291,7 @@ const Admin = () => {
                                             whileTap={{ scale: 0.95 }}
                                             onSubmit={adminDistribute}
                                         >
-                                            Plug In
+                                            Punch In
                                         </motion.button>
                                     </motion.div>
                                 
@@ -315,7 +315,7 @@ const Admin = () => {
                                             whileTap={{ scale: 0.95 }}
                                             onSubmit={adminRetail}
                                         >
-                                            Plug In
+                                            Punch In
                                         </motion.button>
                                     </motion.div>
                                 
@@ -339,7 +339,7 @@ const Admin = () => {
                                             whileTap={{ scale: 0.95 }}
                                             onSubmit={adminSold}
                                         >
-                                            Plug In
+                                            Punch In
                                         </motion.button>
                                     </motion.div>
                             
