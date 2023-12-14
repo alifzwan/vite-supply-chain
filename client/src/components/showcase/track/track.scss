@@ -16,6 +16,7 @@
     align-items: center;
     display:flex;
     flex-direction: column;
+
     .track-section-title {
         font-size: 30px;
         font-weight: bold;
@@ -25,6 +26,41 @@
     }
 
     .track-content {
+        .track-table-container {
+            border-collapse: collapse;
+            border: 1px solid white;
+            border-radius: 20px;
+            width: 100%;
+            height:30px;
+            font-size: 14px;
+        
+            th, td {
+                color: white;
+                padding: 10px;
+                text-align: center;
+            }
+    
+            th {
+                background-color: transparent;
+               
+               
+            }
+    
+            tr:nth-child(even) {
+                background-color: transparent;
+                
+            }
+            td:last-child {
+                color: green;
+            }
+    
+            tr:hover {
+                background-color: transparent;
+            }
+    
+            
+        }
+
         .track-section {
             border: 2px solid rebeccapurple;
             border-radius: 10px;
@@ -32,89 +68,41 @@
             box-sizing: border-box;
             max-height: auto; /* Make sure all sections have the same height */
             overflow-y: auto;
-        
-            h2 {
-                text-align: center;
-                font-weight: bold;
-                margin-bottom: 10px;
-            }
-        
-            .input-container {
-                display: flex; /* Make it a flex container */
-                align-items: center;
-                input {
-                    width: 100%;
-                    box-sizing: border-box;
-                   
-                }
-            }
-            .track-button {
-                    display: flex;
-                    align-items: center;
-                    button {
-                        padding: 0px 10px;
-                        height: 25px;
-                        border: 1px solid green;
-                        border-radius: 10px;
-                        background-color: transparent;
-                        color: green;
-                        margin-top: 10px;
-                       
-                        cursor: pointer;
-                        font-weight: bold;
-                        text-align: center;
-                     
-                      
-                    }
-                     button:hover { 
-                        color: white;
-                        border-color: white;
-                    }
-            }
-        
-            
-        
-            table {
-                border-collapse: collapse;
-                border: 1px solid white;
-                border-radius: 20px;
-                width: 100%;
-                height:30px;
-                font-size: 14px;
-                margin-bottom: 30px;
-                
-        
-                th, td {
-                    color: white;
-                    padding: 10px;
-                    text-align: center;
-                    
-                    
-                }
-        
-                th {
-                    background-color: transparent;
-                   
-                   
-                }
-        
-                tr:nth-child(even) {
-                    background-color: transparent;
-                    
-                }
-                td:last-child {
-                    color: green;
-                }
-        
-                tr:hover {
-                    background-color: transparent;
-                }
-        
-                
-            }
-            
         }
-    
+
+        .input-container {
+            display: flex; /* Make it a flex container */
+            align-items: center;
+            input {
+                width: 100%;
+                box-sizing: border-box;
+                margin-top: 10px;
+               
+            }
+        }
+
+        .track-button {
+            display: flex;
+            align-items: center;
+            button {
+                padding: 0px 10px;
+                height: 25px;
+                border: 1px solid green;
+                border-radius: 10px;
+                background-color: transparent;
+                color: green;
+                margin-top: 10px;
+                cursor: pointer;
+                font-weight: bold;
+                text-align: center;
+                 
+                  
+            }
+            button:hover { 
+                color: white;
+                border-color: white;
+            }
+        }
     }
     .track-back-button-container {
         display: flex;
@@ -147,766 +135,993 @@
 }
 
 
-
-
-
-
-
-
-
-
-
 //Track Till Ordered
 .chronology-ordered-main-container{
-    padding: 10px;
-    box-sizing: border-box;
-    max-height: auto; /* Make sure all sections have the same height */
-    overflow-y: auto;
-
-
-    .chronology-ordered-section-title {
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        text-align: left;
-        color: rebeccapurple;
-    }
-
-
-    .chronology-ordered-section{
-        border: 2px solid rebeccapurple;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        padding: 10px;
-        box-sizing: border-box;
-        max-height: auto; /* Make sure all sections have the same height */
-        overflow-y: auto;
-
-        h2 {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        table {  // Item table
-            border-collapse: collapse;
-            border: 1px solid white;
-            border-radius: 20px;
-            width: 100%;
-            height:30px;
-            font-size: 14px;
-            margin-bottom: 30px;
-        
-
-            th, td {
-                color: white;
-                padding: 10px;
-                text-align: center;
-            }
-
-            th {
-                background-color: transparent;
-           
-           
-            }
-
-            tr:nth-child(even) {
-                background-color: transparent;
-            
-            }
-            td:last-child {
-                color: green;
-            }
-
-            tr:hover {
-                background-color: transparent;
-            }
-        }
-    }  
-
-    h2 {
-        display: flex;
-        margin-bottom: 10px;
-        justify-content: center;
-    }
+    display: flex;
 }
 
+    .main-section {
+        flex: 1;
+        padding: 20px; /* Add padding as needed */
+        align-items: center;
+        display:flex;
+        flex-direction: column;
+
+        .chronology-ordered-section-title {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: left;
+            color: rebeccapurple;
+        }
+
+        .chronology-ordered-content {
+            display: flex;
+            flex-direction: column;
+
+            .chronology-ordered-section{
+                border: 2px solid rebeccapurple;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                padding: 10px;
+                box-sizing: border-box;
+                overflow-y: auto;
+        
+                h2 {
+                    text-align: center;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+        
+                table {  // Item table
+                    border-collapse: collapse;
+                    border: 1px solid white;
+                    border-radius: 20px;
+                    width: 100%;
+                    height:30px;
+                    font-size: 14px;
+                   
+                
+        
+                    th, td {
+                        color: white;
+                        padding: 10px;
+                        text-align: center;
+                    }
+        
+                    th {
+                        background-color: transparent;
+                   
+                   
+                    }
+        
+                    tr:nth-child(even) {
+                        background-color: transparent;
+                    
+                    }
+                    td:last-child {
+                        color: green;
+                    }
+        
+                    tr:hover {
+                        background-color: transparent;
+                    }
+                }
+            }  
+            
+        }
 
 
+        .chronology-ordered-back-button-container {
+            display: flex;
+            .chronology-ordered-back-button{
+                gap: 20px;
+                max-width: 1366px;
+                margin: auto;
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                button {
+                    padding: 0px 10px;
+                    height: 35px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    background-color: transparent;
+                    color: white;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-top: 5px;
+                    text-align: center;
+                }
+                button:hover { 
+                    color: rebeccapurple;
+                    border-color: rebeccapurple;
+                }
+            }
+        }
+        .ordered-info {
+            margin-bottom: 10px;
+            justify-content: center;
+        }
 
+        b {
+            color: rebeccapurple;
+        }
+    }
 
 
 
 //Track Till Farmer
 .chronology-farmer-main-container{
-    padding: 10px;
-    box-sizing: border-box;
-    max-height: auto; /* Make sure all sections have the same height */
-    overflow-y: auto;
+    display: flex;
+}
+    .main-section {
+        flex: 1;
+        padding: 20px; /* Add padding as needed */
+        align-items: center;
+        display:flex;
+        flex-direction: column;
 
-
-    .chronology-farmer-section-title {
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        text-align: center;
-        color: rebeccapurple;
-    }
-
-
-    .chronology-farmer-section{
-        border: 2px solid rebeccapurple;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        padding: 10px;
-        box-sizing: border-box;
-        max-height: auto; /* Make sure all sections have the same height */
-        overflow-y: auto;
-
-        h2 {
-            text-align: center;
+        .chronology-farmer-section-title {
+            font-size: 30px;
             font-weight: bold;
             margin-bottom: 10px;
-        }
-
-        table {  // Item table
-            border-collapse: collapse;
-            border: 1px solid white;
-            border-radius: 20px;
-            width: 100%;
-            height:30px;
-            font-size: 14px;
-            margin-bottom: 30px;
-        
-
-            th, td {
-                color: white;
-                padding: 10px;
-                text-align: center;
-            }
-
-            th {
-                background-color: transparent;
-           
-           
-            }
-
-            tr:nth-child(even) {
-                background-color: transparent;
-            
-            }
-            td:last-child {
-                color: green;
-            }
-
-            tr:hover {
-                background-color: transparent;
-            }
-        }
-    }    
-
-    // Flow Information
-    .supplychain-farmer-section{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 100px;
-        margin-bottom: 20px;
-        
-        .supplychain-farmer-item {  
             text-align: center;
-            max-width: 800px;
-            
-            img {
-                max-width: 1000px;
-                max-height: 100px;
-              
-            }
-            p {
-                font-size: 18px;
-                font-weight: bold;
-                margin-top: 10px;
-            }
+            color: rebeccapurple;
         }
 
-        .supplychain-farmer-track-section{
-            h2{
-                margin-bottom: 10px;
-            }
-            table {
-                border-collapse: collapse;
-                border: 1px solid white;
-                border-radius: 20px;
-                width: 100%;
-                height:30px;
-                font-size: 14px;
-                   
+        .chronology-farmer-content {
+            display: flex;
+            flex-direction: column;
+
+            .chronology-farmer-section{
+                border: 2px solid rebeccapurple;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                padding: 10px;
+                box-sizing: border-box;
+                max-height: auto; /* Make sure all sections have the same height */
+                overflow-y: auto;
+        
+                h2 {
+                    text-align: center;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+        
+                table {  // Item table
+                    border-collapse: collapse;
+                    border: 1px solid white;
+                    border-radius: 20px;
+                    width: 100%;
+                    height:30px;
+                    font-size: 14px;
                 
         
-                th, td {
+                    th, td {
+                        color: white;
+                        padding: 10px;
+                        text-align: center;
+                    }
+        
+                    th {
+                        background-color: transparent;
+                   
+                   
+                    }
+        
+                    tr:nth-child(even) {
+                        background-color: transparent;
+                    
+                    }
+                    td:last-child {
+                        color: green;
+                    }
+        
+                    tr:hover {
+                        background-color: transparent;
+                    }
+                }
+            }    
+            // Flow Information
+            .supplychain-farmer-section{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 100px;
+                margin-bottom: 20px;
+                
+                .supplychain-farmer-item {  
+                    text-align: center;
+                    max-width: 800px;
+                    
+                    img {
+                        max-width: 1000px;
+                        max-height: 100px;
+                    
+                    }
+                    p {
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin-top: 10px;
+                    }
+                }
+
+                .supplychain-farmer-track-section{
+                    h2{
+                        margin-bottom: 10px;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        border: 1px solid white;
+                        border-radius: 20px;
+                        width: 100%;
+                        height:30px;
+                        font-size: 14px;
+                        
+                        
+                
+                        th, td {
+                            color: white;
+                            padding: 10px;
+                            text-align: center;
+                        }
+                
+                        th {
+                            background-color: transparent;
+                        }
+                
+                        tr:nth-child(even) {
+                            background-color: transparent;
+                        }
+                        td:last-child {
+                            color: green;
+                        }
+                
+                        tr:hover {
+                            background-color: transparent;
+                        }
+                
+                        
+                    }
+                }
+            }
+
+        }
+        .chronology-farmer-back-button-container {
+            display: flex;
+            .chronology-farmer-back-button{
+                gap: 20px;
+                max-width: 1366px;
+                margin: auto;
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                button {
+                    padding: 0px 10px;
+                    height: 35px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    background-color: transparent;
                     color: white;
-                    padding: 10px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-top: 5px;
                     text-align: center;
                 }
-        
-                th {
-                    background-color: transparent;
+                button:hover { 
+                    color: rebeccapurple;
+                    border-color: rebeccapurple;
                 }
-        
-                tr:nth-child(even) {
-                    background-color: transparent;
-                }
-                td:last-child {
-                    color: green;
-                }
-        
-                tr:hover {
-                    background-color: transparent;
-                }
-        
-                
             }
         }
+
+        
+
     }
-}
+
+
+   
+
+
+   
+
+    
+
 
 
 
 
 //Track Till Manufacturer
 .chronology-manufacturer-main-container{
-    padding: 10px;
-    box-sizing: border-box;
-    max-height: auto; /* Make sure all sections have the same height */
-    overflow-y: auto;
-    
-    
-    .chronology-manufacturer-section-title {
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        text-align: center;
-        color: rebeccapurple;
-    }
-    
-    
-    .chronology-manufacturer-section{
-        border: 2px solid rebeccapurple;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        padding: 10px;
-        box-sizing: border-box;
-        max-height: auto; /* Make sure all sections have the same height */
-        overflow-y: auto;
-    
-        h2 {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-    
-        table {  // Item table
-            border-collapse: collapse;
-            border: 1px solid white;
-            border-radius: 20px;
-            width: 100%;
-            height:30px;
-            font-size: 14px;
-            margin-bottom: 30px;
-            
-    
-            th, td {
-                color: white;
-                padding: 10px;
-                text-align: center;
-            }
-    
-            th {
-                background-color: transparent;
-            }
-    
-            tr:nth-child(even) {
-                background-color: transparent;
-                
-            }
-            td:last-child {
-                color: green;
-            }
-    
-            tr:hover {
-                background-color: transparent;
-             }
-        }
-    }    
-    
-        // Flow Information
-    .supplychain-manufacturer-section{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 50px;
-            
-        .supplychain-manufacturer-item {  
-            text-align: center;
-            max-width: 800px;
-                
-            img {
-                max-width: 1000px;
-                max-height: 100px;
-                  
-            }
-            p {
-                font-size: 18px;
-                font-weight: bold;
-                margin-top: 10px;
-            }
-        }
-    
-        .supplychain-manufacturer-track-section{
-            h2{
-                margin-bottom: 10px;
-            }
-            table {
-                border-collapse: collapse;
-                border: 1px solid white;
-                border-radius: 20px;
-                width: 100%;
-                height:30px;
-                font-size: 14px;
-                       
-                    
-            
-                th, td {
-                    color: white;
-                    padding: 10px;
-                    text-align: center;
-                }
-            
-                th {
-                    background-color: transparent;
-                }
-            
-                tr:nth-child(even) {
-                    background-color: transparent;
-                }
-                td:last-child {
-                    color: green;
-                }
-            
-                tr:hover {
-                    background-color: transparent;
-                }
-            
-                    
-            }
-        }
-    }
+    display: flex;
 }
 
+    .main-section {
+        flex: 1;
+        padding: 20px; /* Add padding as needed */
+        align-items: center;
+        display:flex;
+        flex-direction: column;
+        .chronology-manufacturer-section-title {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            color: rebeccapurple;
+        }
+        .chronology-manufacturer-content {
+            display: flex;
+            flex-direction: column;
 
+            .chronology-manufacturer-section{
+                border: 2px solid rebeccapurple;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                padding: 10px;
+                box-sizing: border-box;
+                max-height: auto; /* Make sure all sections have the same height */
+                overflow-y: auto;
+            
+                h2 {
+                    text-align: center;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+            
+                table {  // Item table
+                    border-collapse: collapse;
+                    border: 1px solid white;
+                    border-radius: 20px;
+                    width: 100%;
+                    height:30px;
+                    font-size: 14px;
+                    
+            
+                    th, td {
+                        color: white;
+                        padding: 10px;
+                        text-align: center;
+                    }
+            
+                    th {
+                        background-color: transparent;
+                    }
+            
+                    tr:nth-child(even) {
+                        background-color: transparent;
+                        
+                    }
+                    td:last-child {
+                        color: green;
+                    }
+            
+                    tr:hover {
+                        background-color: transparent;
+                     }
+                }
+            }    
 
+               // Flow Information
+            .supplychain-manufacturer-section{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 50px;
+                    
+                .supplychain-manufacturer-item {  
+                    text-align: center;
+                    max-width: 800px;
+                        
+                    img {
+                        max-width: 1000px;
+                        max-height: 100px;
+                        
+                    }
+                    p {
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin-top: 10px;
+                    }
+                }
+            
+                .supplychain-manufacturer-track-section{
+                    h2{
+                        margin-bottom: 10px;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        border: 1px solid white;
+                        border-radius: 20px;
+                        width: 100%;
+                        height:30px;
+                        font-size: 14px;
+                            
+                            
+                    
+                        th, td {
+                            color: white;
+                            padding: 10px;
+                            text-align: center;
+                        }
+                    
+                        th {
+                            background-color: transparent;
+                        }
+                    
+                        tr:nth-child(even) {
+                            background-color: transparent;
+                        }
+                        td:last-child {
+                            color: green;
+                        }
+                    
+                        tr:hover {
+                            background-color: transparent;
+                        }      
+                    }
+                }
+            }
+        }
 
-
+        .chronology-manufacturer-back-button-container {
+            display: flex;
+            .chronology-manufacturer-back-button{
+                gap: 20px;
+                max-width: 1366px;
+                margin: auto;
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                button {
+                    padding: 0px 10px;
+                    height: 35px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    background-color: transparent;
+                    color: white;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-top: 5px;
+                    text-align: center;
+                }
+                button:hover { 
+                    color: rebeccapurple;
+                    border-color: rebeccapurple;
+                }
+            }
+        }
+    }
+    
+    
+    
 //Track Till Distributor
 .chronology-distributor-main-container{
-    padding: 10px;
-    box-sizing: border-box;
-    max-height: auto; /* Make sure all sections have the same height */
-    overflow-y: auto;
-    
-    
-    .chronology-distributor-section-title {
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        text-align: center;
-        color: rebeccapurple;
-    }
-    
-    
-    .chronology-distributor-section{
-        border: 2px solid rebeccapurple;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        padding: 10px;
-        box-sizing: border-box;
-        max-height: auto; /* Make sure all sections have the same height */
-        overflow-y: auto;
-    
-        h2 {
-            text-align: center;
+    display: flex;
+}
+    .main-section {
+        flex: 1;
+        padding: 20px; /* Add padding as needed */
+        align-items: center;
+        display:flex;
+        flex-direction: column;
+        .chronology-distributor-section-title {
+            font-size: 30px;
             font-weight: bold;
             margin-bottom: 10px;
-        }
-    
-        table {  // Item table
-            border-collapse: collapse;
-            border: 1px solid white;
-            border-radius: 20px;
-            width: 100%;
-            height:30px;
-            font-size: 14px;
-            margin-bottom: 30px;
-            
-    
-            th, td {
-                color: white;
-                padding: 10px;
-                text-align: center;
-            }
-    
-            th {
-                background-color: transparent;
-            }
-    
-            tr:nth-child(even) {
-                background-color: transparent;
-                
-            }
-            td:last-child {
-                color: green;
-            }
-    
-            tr:hover {
-                background-color: transparent;
-             }
-        }
-    }    
-    
-        // Flow Information
-    .supplychain-distributor-section{
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 50px;
-        max-width: 2000px;
-            
-        .supplychain-distributor-item {  
             text-align: center;
-            max-width: 800px;
-                
-            img {
-                max-width: 1000px;
-                max-height: 100px;
-                  
-            }
-            p {
-                font-size: 18px;
-                font-weight: bold;
-                margin-top: 10px;
-            }
+            color: rebeccapurple;
         }
-    
-        .supplychain-distributor-track-section{
-            h2{
-                margin-bottom: 10px;
-            }
-            table {
-                border-collapse: collapse;
-                border: 1px solid white;
-                border-radius: 20px;
-                width: 100%;
-                height:30px;
-                font-size: 14px;
-                       
+
+        .chronology-distributor-content {
+            display: flex;
+            flex-direction: column;
+            .chronology-distributor-section{
+                border: 2px solid rebeccapurple;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                padding: 10px;
+                box-sizing: border-box;
+                max-height: auto; /* Make sure all sections have the same height */
+                overflow-y: auto;
+            
+                h2 {
+                    text-align: center;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+            
+                table {  // Item table
+                    border-collapse: collapse;
+                    border: 1px solid white;
+                    border-radius: 20px;
+                    width: 100%;
+                    height:30px;
+                    font-size: 14px;
                     
             
-                th, td {
+                    th, td {
+                        color: white;
+                        padding: 10px;
+                        text-align: center;
+                    }
+            
+                    th {
+                        background-color: transparent;
+                    }
+            
+                    tr:nth-child(even) {
+                        background-color: transparent;
+                        
+                    }
+                    td:last-child {
+                        color: green;
+                    }
+            
+                    tr:hover {
+                        background-color: transparent;
+                     }
+                }
+            }    
+
+                    // Flow Information
+            .supplychain-distributor-section{
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 50px;
+                    
+                .supplychain-distributor-item {  
+                    text-align: center;
+                    max-width: 800px;
+                        
+                    img {
+                        max-width: 1000px;
+                        max-height: 100px;
+                        
+                    }
+                    p {
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin-top: 10px;
+                    }
+                }
+            
+                .supplychain-distributor-track-section{
+                    h2{
+                        margin-bottom: 10px;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        border: 1px solid white;
+                        border-radius: 20px;
+                        width: 100%;
+                        height:30px;
+                        font-size: 14px;
+                            
+                            
+                    
+                        th, td {
+                            color: white;
+                            padding: 10px;
+                            text-align: center;
+                        }
+                    
+                        th {
+                            background-color: transparent;
+                        }
+                    
+                        tr:nth-child(even) {
+                            background-color: transparent;
+                        }
+                        td:last-child {
+                            color: green;
+                        }
+                    
+                        tr:hover {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+        .chronology-distributor-back-button-container {
+            display: flex;
+            .chronology-distributor-back-button{
+                gap: 20px;
+                max-width: 1366px;
+                margin: auto;
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                button {
+                    padding: 0px 10px;
+                    height: 35px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    background-color: transparent;
                     color: white;
-                    padding: 10px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-top: 5px;
                     text-align: center;
                 }
-            
-                th {
-                    background-color: transparent;
-                }
-            
-                tr:nth-child(even) {
-                    background-color: transparent;
-                }
-                td:last-child {
-                    color: green;
-                }
-            
-                tr:hover {
-                    background-color: transparent;
+                button:hover { 
+                    color: rebeccapurple;
+                    border-color: rebeccapurple;
                 }
             }
         }
     }
-}
+    
+    
+    
+    
+    
+    
+     
+
 
 
 //Track Till Retailer
 .chronology-retailer-main-container{
-    padding: 10px;
-    box-sizing: border-box;
-    max-height: auto; /* Make sure all sections have the same height */
-    overflow-y: auto;
-    
-    
-    .chronology-retailer-section-title {
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        text-align: center;
-        color: rebeccapurple;
-    }
-    
-    
-    .chronology-retailer-section{
-        border: 2px solid rebeccapurple;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        padding: 10px;
-        box-sizing: border-box;
-        max-height: auto; /* Make sure all sections have the same height */
-        overflow-y: auto;
-    
-        h2 {
-            text-align: center;
+    display: flex;
+}    
+    .main-section {
+        flex: 1;
+        padding: 20px; /* Add padding as needed */
+        align-items: center;
+        display:flex;
+        flex-direction: column;
+        .chronology-retailer-section-title {
+            font-size: 30px;
             font-weight: bold;
             margin-bottom: 10px;
-        }
-    
-        table {  // Item table
-            border-collapse: collapse;
-            border: 1px solid white;
-            border-radius: 20px;
-            width: 100%;
-            height:30px;
-            font-size: 14px;
-            margin-bottom: 30px;
-            
-    
-            th, td {
-                color: white;
-                padding: 10px;
-                text-align: center;
-            }
-    
-            th {
-                background-color: transparent;
-            }
-    
-            tr:nth-child(even) {
-                background-color: transparent;
-                
-            }
-            td:last-child {
-                color: green;
-            }
-    
-            tr:hover {
-                background-color: transparent;
-             }
-        }
-    }    
-    
-        // Flow Information
-    .supplychain-retailer-section{
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 50px;
-        max-width: 2000px;
-            
-        .supplychain-retailer-item {  
             text-align: center;
-            max-width: 800px;
-                
-            img {
-                max-width: 1000px;
-                max-height: 100px;
-                  
-            }
-            p {
-                font-size: 18px;
-                font-weight: bold;
-                margin-top: 10px;
-            }
+            color: rebeccapurple;
         }
-    
-        .supplychain-retailer-track-section{
-            h2{
-                margin-bottom: 10px;
-            }
-            table {
-                border-collapse: collapse;
-                border: 1px solid white;
-                border-radius: 20px;
-                width: 100%;
-                height:30px;
-                font-size: 14px;
-                       
+        .chronology-retailer-content {
+            display: flex;
+            flex-direction: column;
+            .chronology-retailer-section{
+                border: 2px solid rebeccapurple;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                padding: 10px;
+                box-sizing: border-box;
+                max-height: auto; /* Make sure all sections have the same height */
+                overflow-y: auto;
+            
+                h2 {
+                    text-align: center;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+            
+                table {  // Item table
+                    border-collapse: collapse;
+                    border: 1px solid white;
+                    border-radius: 20px;
+                    width: 100%;
+                    height:30px;
+                    font-size: 14px;
                     
             
-                th, td {
+                    th, td {
+                        color: white;
+                        padding: 10px;
+                        text-align: center;
+                    }
+            
+                    th {
+                        background-color: transparent;
+                    }
+            
+                    tr:nth-child(even) {
+                        background-color: transparent;
+                        
+                    }
+                    td:last-child {
+                        color: green;
+                    }
+            
+                    tr:hover {
+                        background-color: transparent;
+                     }
+                }
+            }    
+
+                    // Flow Information
+            .supplychain-retailer-section{
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 50px;
+                max-width: 2000px;
+                    
+                .supplychain-retailer-item {  
+                    text-align: center;
+                    max-width: 800px;
+                        
+                    img {
+                        max-width: 1000px;
+                        max-height: 100px;
+
+                    }
+                    p {
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin-top: 10px;
+                    }
+                }
+            
+                .supplychain-retailer-track-section{
+                    h2{
+                        margin-bottom: 10px;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        border: 1px solid white;
+                        border-radius: 20px;
+                        width: 100%;
+                        height:30px;
+                        font-size: 14px;
+                            
+                            
+                    
+                        th, td {
+                            color: white;
+                            padding: 10px;
+                            text-align: center;
+                        }
+                    
+                        th {
+                            background-color: transparent;
+                        }
+                    
+                        tr:nth-child(even) {
+                            background-color: transparent;
+                        }
+                        td:last-child {
+                            color: green;
+                        }
+                    
+                        tr:hover {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+        .chronology-retailer-back-button-container {
+            display: flex;
+            .chronology-retailer-back-button{
+                gap: 20px;
+                max-width: 1366px;
+                margin: auto;
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                button {
+                    padding: 0px 10px;
+                    height: 35px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    background-color: transparent;
                     color: white;
-                    padding: 10px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-top: 5px;
                     text-align: center;
                 }
-            
-                th {
-                    background-color: transparent;
-                }
-            
-                tr:nth-child(even) {
-                    background-color: transparent;
-                }
-                td:last-child {
-                    color: green;
-                }
-            
-                tr:hover {
-                    background-color: transparent;
+                button:hover { 
+                    color: rebeccapurple;
+                    border-color: rebeccapurple;
                 }
             }
         }
     }
-}
+    
+    
+    
+    
+    
+    
+     
+
 
 
 
 // Track Till Sold
 .chronology-sold-main-container{
-    padding: 10px;
-    box-sizing: border-box;
-    max-height: auto; /* Make sure all sections have the same height */
-    overflow-y: auto;
-    
-    
-    .chronology-sold-section-title {
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        text-align: left;
-        color: rebeccapurple;
-    }
-    
-    
-    .chronology-sold-section{
-        border: 2px solid rebeccapurple;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        padding: 10px;
-        box-sizing: border-box;
-        max-height: auto; /* Make sure all sections have the same height */
-        overflow-y: auto;
-    
-        h2 {
-            text-align: center;
+    display: flex;
+}
+    .main-section {
+        flex: 1;
+        padding: 20px; /* Add padding as needed */
+        align-items: center;
+        display:flex;
+        flex-direction: column;
+        .chronology-sold-section-title {
+            font-size: 40px;
             font-weight: bold;
             margin-bottom: 10px;
+            text-align: left;
+            color: rebeccapurple;
         }
-    
-        table {  // Item table
-            border-collapse: collapse;
-            border: 1px solid white;
-            border-radius: 20px;
-            width: 100%;
-            height:30px;
-            font-size: 14px;
-            margin-bottom: 30px;
-            
-    
-            th, td {
-                color: white;
-                padding: 10px;
-                text-align: center;
-            }
-    
-            th {
-                background-color: transparent;
-            }
-    
-            tr:nth-child(even) {
-                background-color: transparent;
-                
-            }
-            td:last-child {
-                color: green;
-            }
-    
-            tr:hover {
-                background-color: transparent;
-             }
-        }
-    }    
-    
-        // Flow Information
-    .supplychain-sold-section{
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 50px;
-        max-width: 2000px;
 
-       
-        .supplychain-sold-item {  
-            text-align: center;
-            max-width: 800px;
-                
-            img {
-                max-width: 1000px;
-                max-height: 100px;
-                  
-            }
-            p {
-                font-size: 18px;
-                font-weight: bold;
-                margin-top: 10px;
-            }
-        }
-    
-        .supplychain-sold-track-section{
-            h2{
-                margin-bottom: 10px;
-            }
-            table {
-                border-collapse: collapse;
-                border: 1px solid white;
-                border-radius: 20px;
-                width: 100%;
-                height:30px;
-                font-size: 14px;
-                       
+        .chronology-sold-content {
+            display: flex;
+            flex-direction: column;
+            .chronology-sold-section{
+                border: 2px solid rebeccapurple;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                padding: 10px;
+                box-sizing: border-box;
+                max-height: auto; /* Make sure all sections have the same height */
+                overflow-y: auto;
+            
+                h2 {
+                    text-align: center;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+            
+                table {  // Item table
+                    border-collapse: collapse;
+                    border: 1px solid white;
+                    border-radius: 20px;
+                    width: 100%;
+                    height:30px;
+                    font-size: 14px;
                     
             
-                th, td {
+                    th, td {
+                        color: white;
+                        padding: 10px;
+                        text-align: center;
+                    }
+            
+                    th {
+                        background-color: transparent;
+                    }
+            
+                    tr:nth-child(even) {
+                        background-color: transparent;
+                        
+                    }
+                    td:last-child {
+                        color: green;
+                    }
+            
+                    tr:hover {
+                        background-color: transparent;
+                     }
+                }
+            }    
+
+            // Flow Information
+            .supplychain-sold-section{
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 50px;
+                max-width: 2000px;
+
+            
+                .supplychain-sold-item {  
+                    text-align: center;
+                    max-width: 800px;
+                     
+                    img {
+                        max-width: 1000px;
+                        max-height: 100px;
+                        
+                    }
+                    p {
+
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin-top: 10px;
+                    }
+                }
+            
+                .supplychain-sold-track-section{
+                    h2{
+                        margin-bottom: 10px;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        border: 1px solid white;
+                        border-radius: 20px;
+                        width: 100%;
+                        height:30px;
+                        font-size: 14px;
+                            
+                            
+                    
+                        th, td {
+                            color: white;
+                            padding: 10px;
+                            text-align: center;
+                        }
+                    
+                        th {
+                            background-color: transparent;
+                        }
+                    
+                        tr:nth-child(even) {
+                            background-color: transparent;
+                        }
+                        td:last-child {
+                            color: green;
+                        }
+                    
+                        tr:hover {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+           
+        }
+
+        .chronology-sold-back-button-container {
+            display: flex;
+            .chronology-sold-back-button{
+                gap: 20px;
+                max-width: 1366px;
+                margin: auto;
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                button {
+                    padding: 0px 10px;
+                    height: 35px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    background-color: transparent;
                     color: white;
-                    padding: 10px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-top: 5px;
                     text-align: center;
                 }
-            
-                th {
-                    background-color: transparent;
-                }
-            
-                tr:nth-child(even) {
-                    background-color: transparent;
-                }
-                td:last-child {
-                    color: green;
-                }
-            
-                tr:hover {
-                    background-color: transparent;
+                button:hover { 
+                    color: rebeccapurple;
+                    border-color: rebeccapurple;
                 }
             }
         }
+        .sold-info {
+            margin-bottom: 10px;
+            justify-content: center;
+        }
+
+        b {
+            color: rebeccapurple;
+        }
     }
-    h2 {
-        display: flex;
-        color: solid rebeccapurple;
-        margin-bottom: 10px;
-        justify-content: center;
-    }
-}
+    
+    
+
     
 
 

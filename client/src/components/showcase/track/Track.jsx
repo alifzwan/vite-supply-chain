@@ -55,7 +55,7 @@ const Track = () => {
     const supplychainsmanufacturer = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
-        { image: "/arrow.png"},
+        { image: "/arrow1.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"}
     ];
@@ -63,10 +63,10 @@ const Track = () => {
     const supplychainsdistributor = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
-        { image: "/arrow.png"},
+        { image: "/arrow1.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"},
-        { image: "/arrow.png"},
+        { image: "/arrow1.png"},
     
         { name: "Distributor" , image: "/distributor.svg" }
     ];
@@ -74,13 +74,13 @@ const Track = () => {
     const supplychainsretailer = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
-        { image: "/arrow.png"},
+        { image: "/arrow1.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"},
-        { image: "/arrow.png"},
+        { image: "/arrow1.png"},
     
         { name: "Distributor" , image: "/distributor.svg" },
-        { image: "/arrow.png"},
+        { image: "/arrow1.png"},
     
         { name: "Retailer"    , image: "/retailer.svg"    },
     ];
@@ -88,13 +88,13 @@ const Track = () => {
     const supplychainssold = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
-        { image: "/arrow.png"},
+        {image: "/arrow1.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"},
-        { image: "/arrow.png"},
+        { image: "/arrow1.png"},
     
         { name: "Distributor" , image: "/distributor.svg" },
-        { image: "/arrow.png"},
+        { image: "/arrow1.png"},
     
         { name: "Retailer"    , image: "/retailer.svg"    },
     ];
@@ -362,59 +362,64 @@ const Track = () => {
     if (TrackTillOrdered) {
         return (
         <div className="chronology-ordered-main-container">
-            <h2 className="chronology-ordered-section-title">Information</h2>
-            <div className="chronology-ordered-section">
-                <h2>Item Information</h2>
+            <div className="menu-bar">
+                <ProjectSideBar />
+            </div> 
 
-                <div className="table-container">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Categories</th>
-                                <th>Brand</th>
-                                <th>Based In</th>
-                                <th>Description</th>
-                                <th>Current Stage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{Number(Items[ItemID].id)}</td>
-                                <td>{Items[ItemID].name}</td>
-                                <td>{Items[ItemID].categories}</td>
-                                <td>{Items[ItemID].brand}</td>
-                                <td>{Items[ItemID].origin}</td>
-                                <td>{Items[ItemID].nutritionInfo}</td>
-                                <td>{ItemPhase[ItemID]}</td>
-                            </tr>
+            <div className="main-section">
+                <div className="chronology-ordered-section-title">Track Information</div>
+                <div className="chronology-ordered-content">
+                    <div className="chronology-ordered-section">
+                        <table className="table-container" border="1">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Categories</th>
+                                    <th>Brand</th>
+                                    <th>Based In</th>
+                                    <th>Description</th>
+                                    <th>Current Stage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{Number(Items[ItemID].id)}</td>
+                                    <td>{Items[ItemID].name}</td>
+                                    <td>{Items[ItemID].categories}</td>
+                                    <td>{Items[ItemID].brand}</td>
+                                    <td>{Items[ItemID].origin}</td>
+                                    <td>{Items[ItemID].nutritionInfo}</td>
+                                    <td>{ItemPhase[ItemID]}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-    
-                        </tbody>
-                    </table>
+                <h2 className="ordered-info">Your Item has already <b>ordered</b>, Please wait</h2>
+                <div className="chronology-ordered-back-button-container">
+                    <motion.div variants={itemVariants} className="chronology-ordered-back-button">
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => displayTrackTillOrdered(false)}
+                            >
+                                Track Another Item
+                            </motion.button>
+
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={redirect_to_project}
+                            >
+                                Back To Project Overview
+                            </motion.button>
+                    </motion.div>
                 </div>
             </div>
-            <h2>Your Item has already ordered, Please wait</h2>
-            <motion.div variants={itemVariants} className="back-button">
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => displayTrackTillOrdered(false)}
-                        >
-                            Track Another Item
-                        </motion.button>
-
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={redirect_to_project}
-                        >
-                            Back To Project Overview
-                        </motion.button>
-                </motion.div>
         </div>
         )
     }
@@ -424,92 +429,91 @@ const Track = () => {
 // Item Arrived at Farmer
     if (TrackTillFarmer) {
         return (
-        <div className="chronology-farmer-main-container">
-                <h2 className="chronology-farmer-section-title">Information</h2>
+            <div className="chronology-farmer-main-container">
+                <div className="menu-bar">
+                    <ProjectSideBar />
+                </div> 
 
-            <div className="chronology-farmer-section">
-                <h2>Item Information</h2>
+                <div className="main-section">
+                    <div className="chronology-farmer-section-title">Track Information</div>
+                    <div className="chronology-farmer-content">
+                        <div className="chronology-farmer-section">
+                            <table className="table-container" border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Categories</th>
+                                        <th>Brand</th>
+                                        <th>Based In</th>
+                                        <th>Description</th>
+                                        <th>Current Stage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{Number(Items[ItemID].id)}</td>
+                                        <td>{Items[ItemID].name}</td>
+                                        <td>{Items[ItemID].categories}</td>
+                                        <td>{Items[ItemID].brand}</td>
+                                        <td>{Items[ItemID].origin}</td>
+                                        <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{ItemPhase[ItemID]}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="supplychain-farmer-section">
+                            {supplychainsfarmer.map((supplychain, index) => (
+                                <motion.div className="supplychain-farmer-item" 
+                                key={index}>
+                            
+                                    <motion.img src={supplychain.image} alt={supplychain.name} id={supplychain.name}
+                                        whileHover={{ scale: 1.1 }} 
+                                        whileTap={{ scale: 0.95 }} />
 
-                <div className="table-container">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Categories</th>
-                                <th>Brand</th>
-                                <th>Based In</th>
-                                <th>Description</th>
-                                <th>Current Stage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{Number(Items[ItemID].id)}</td>
-                                <td>{Items[ItemID].name}</td>
-                                <td>{Items[ItemID].categories}</td>
-                                <td>{Items[ItemID].brand}</td>
-                                <td>{Items[ItemID].origin}</td>
-                                <td>{Items[ItemID].nutritionInfo}</td>
-                                <td>{ItemPhase[ItemID]}</td>
-                            </tr>
+                                    {supplychain.name && (
+                                    <motion.div className="supplychain-farmer-track-section">
+                                        <h2>{supplychain.name} Information</h2>
+                                            <table className="table-container" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Based In</th>
+                                                    </tr>
+                                                </thead>
+                                                {chronologyTableFarmer(supplychain.name)}
+                                            </table>
+                                    </motion.div>
+                                    )}
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="chronology-farmer-back-button-container">
+                        <motion.div variants={itemVariants} className="chronology-farmer-back-button">
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => displayTrackTillFarmer(false)}
+                            >
+                            Track Another Item
+                            </motion.button>
 
-                        </tbody>
-                    </table>
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={redirect_to_project}
+                            >
+                                Back To Project Overview
+                            </motion.button>
+                        </motion.div>
+                    </div>
                 </div>
             </div>
-
-            <div className="supplychain-farmer-section">
-
-                {supplychainsfarmer.map((supplychain, index) => (
-                    <motion.div className="supplychain-farmer-item" 
-                    key={index}>
-                
-                        <motion.img src={supplychain.image} alt={supplychain.name} 
-                            whileHover={{ scale: 1.1 }} 
-                            whileTap={{ scale: 0.95 }} />
-
-                        {supplychain.name && (
-                        <motion.div className="supplychain-farmer-track-section">
-                            <h2>{supplychain.name} Information</h2>
-                                <table className="table-container" border="1">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Based In</th>
-                                        </tr>
-                                    </thead>
-                                    {chronologyTableFarmer(supplychain.name)}
-                                </table>
-                        </motion.div>
-                        )}
-                   
-                    </motion.div>
-                ))}
-                   
-            </div>
-
-            <motion.div variants={itemVariants} className="back-button">
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => displayTrackTillFarmer(false)}
-                        >
-                            Track Another Item
-                        </motion.button>
-
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={redirect_to_project}
-                        >
-                            Back To Project Overview
-                        </motion.button>
-                </motion.div>
-        </div>
         )
     }
 
@@ -520,91 +524,91 @@ const Track = () => {
     if (TrackTillManufacture) {
         return (
             <div className="chronology-manufacturer-main-container">
-            <h2 className="chronology-manufacturer-section-title">Information</h2>
-            <div className="chronology-manufacturer-section">
-                <h2>Item Information</h2>
+                 <div className="menu-bar">
+                    <ProjectSideBar />
+                </div> 
 
-                <div className="table-container">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Categories</th>
-                                <th>Brand</th>
-                                <th>Based In</th>
-                                <th>Description</th>
-                                <th>Current Stage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{Number(Items[ItemID].id)}</td>
-                                <td>{Items[ItemID].name}</td>
-                                <td>{Items[ItemID].categories}</td>
-                                <td>{Items[ItemID].brand}</td>
-                                <td>{Items[ItemID].origin}</td>
-                                <td>{Items[ItemID].nutritionInfo}</td>
-                                <td>{ItemPhase[ItemID]}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div className="main-section">
+                    <div className="chronology-manufacturer-section-title">Track Information</div>
+                    <div className="chronology-manufacturer-content">
+                        <div className="chronology-manufacturer-section">
+                            <table className="table-container" border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Categories</th>
+                                        <th>Brand</th>
+                                        <th>Based In</th>
+                                        <th>Description</th>
+                                        <th>Current Stage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{Number(Items[ItemID].id)}</td>
+                                        <td>{Items[ItemID].name}</td>
+                                        <td>{Items[ItemID].categories}</td>
+                                        <td>{Items[ItemID].brand}</td>
+                                        <td>{Items[ItemID].origin}</td>
+                                        <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{ItemPhase[ItemID]}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="supplychain-manufacturer-section">
+                            {supplychainsmanufacturer.map((supplychain, index) => (
+                                <motion.div className="supplychain-manufacturer-item" 
+                                    key={index}>
+                                    <motion.img src={supplychain.image} alt={supplychain.name} id={supplychain.name}
+                                        whileHover={{ scale: 1.1 }} 
+                                        whileTap={{ scale: 0.95 }} />
+
+                            
+                                    {supplychain.name && (
+                                        <motion.div className="supplychain-manufacturer-track-section">
+                                            <h2>{supplychain.name} Information</h2>
+                                                <table className="table-container" border="1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Name</th>
+                                                            <th>Based In</th>
+                                                        </tr>
+                                                    </thead>
+                                                    {chronologyTableManufacturer(supplychain.name)}
+                                                </table>
+                                        </motion.div>
+                                    )}
+                            
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="chronology-manufacturer-back-button-container">
+                        <motion.div variants={itemVariants} className="chronology-manufacturer-back-button">
+                                <motion.button
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={() => displayTrackTillManufacture(false)}
+                                >
+                                    Track Another Item
+                                </motion.button>
+
+                                <motion.button
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={redirect_to_project}
+                                >
+                                    Back To Project Overview
+                                </motion.button>
+                        </motion.div>
+                    </div>
                 </div>
             </div>
-
-            <div className="supplychain-manufacturer-section">
-
-                {supplychainsmanufacturer.map((supplychain, index) => (
-                    <motion.div className="supplychain-manufacturer-item" 
-                        key={index}>
-                        <motion.img src={supplychain.image} alt={supplychain.name} 
-                            whileHover={{ scale: 1.1 }} 
-                            whileTap={{ scale: 0.95 }} />
-
-                      
-
-
-                        {supplychain.name && (
-                            <motion.div className="supplychain-manufacturer-track-section">
-                                <h2>{supplychain.name} Information</h2>
-                                    <table className="table-container" border="1">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Based In</th>
-                                            </tr>
-                                        </thead>
-                                        {chronologyTableManufacturer(supplychain.name)}
-                                    </table>
-                            </motion.div>
-                        )}
-                  
-                    </motion.div>
-                ))}
-                   
-             </div>
-
-            <motion.div variants={itemVariants} className="back-button">
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => displayTrackTillManufacture(false)}
-                        >
-                            Track Another Item
-                        </motion.button>
-
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={redirect_to_project}
-                        >
-                            Back To Project Overview
-                        </motion.button>
-                </motion.div>
-        </div>
         )
     }
 
@@ -614,90 +618,90 @@ const Track = () => {
     if (TrackTillDistribute) {
         return (
             <div className="chronology-distributor-main-container">
-            <h2 className="chronology-distributor-section-title">Information</h2>
-            <div className="chronology-distributor-section">
-                <h2>Item Information</h2>
+                <div className="menu-bar">
+                    <ProjectSideBar />
+                </div> 
+                <div className="main-section">
+                    <div className="chronology-distributor-section-title">Track Information</div>
+                    <div className="chronology-distributor-content">
+                        <div className="chronology-distributor-section">
+                            <table className="table-container" border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Categories</th>
+                                        <th>Brand</th>
+                                        <th>Based In</th>
+                                        <th>Description</th>
+                                        <th>Current Stage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{Number(Items[ItemID].id)}</td>
+                                        <td>{Items[ItemID].name}</td>
+                                        <td>{Items[ItemID].categories}</td>
+                                        <td>{Items[ItemID].brand}</td>
+                                        <td>{Items[ItemID].origin}</td>
+                                        <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{ItemPhase[ItemID]}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                <div className="table-container">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Categories</th>
-                                <th>Brand</th>
-                                <th>Based In</th>
-                                <th>Description</th>
-                                <th>Current Stage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{Number(Items[ItemID].id)}</td>
-                                <td>{Items[ItemID].name}</td>
-                                <td>{Items[ItemID].categories}</td>
-                                <td>{Items[ItemID].brand}</td>
-                                <td>{Items[ItemID].origin}</td>
-                                <td>{Items[ItemID].nutritionInfo}</td>
-                                <td>{ItemPhase[ItemID]}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <div className="supplychain-distributor-section">
+                            {supplychainsdistributor.map((supplychain, index) => (
+                                <motion.div className="supplychain-distributor-item" 
+                                    key={index}>
+                                    <motion.img src={supplychain.image} alt={supplychain.name} id={supplychain.name}
+                                        whileHover={{ scale: 1.1 }} 
+                                        whileTap={{ scale: 0.95 }} />
+                                    
+
+                                    {supplychain.name && (
+                                    <motion.div className="supplychain-distributor-track-section">
+                                        <h2>{supplychain.name} Information</h2>
+                                            <table className="table-container" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Based In</th>
+                                                    </tr>
+                                                </thead>
+                                                {chronologyTableDistributor(supplychain.name)}
+                                            </table>
+                                    </motion.div>
+                                    )}
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="chronology-distributor-back-button-container">
+                        <motion.div variants={itemVariants} className="chronology-distributor-back-button">
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => displayTrackTillDistribute(false)}
+                            >
+                                Track Another Item
+                            </motion.button>
+
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={redirect_to_project}
+                            >
+                                Back To Project Overview
+                            </motion.button>
+                        </motion.div>
+                    </div>                          
                 </div>
             </div>
-
-            <div className="supplychain-distributor-section">
-
-                {supplychainsdistributor.map((supplychain, index) => (
-                    <motion.div className="supplychain-distributor-item" 
-                        key={index}>
-                   
-                        <motion.img src={supplychain.image} alt={supplychain.name} 
-                            whileHover={{ scale: 1.1 }} 
-                            whileTap={{ scale: 0.95 }} />
-                        
-
-                        {supplychain.name && (
-                        <motion.div className="supplychain-distributor-track-section">
-                            <h2>{supplychain.name} Information</h2>
-                                <table className="table-container" border="1">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Based In</th>
-                                        </tr>
-                                    </thead>
-                                    {chronologyTableDistributor(supplychain.name)}
-                                </table>
-                        </motion.div>
-                        )}
-                
-                    </motion.div>
-                ))}
-                   
-             </div>
-
-            <motion.div variants={itemVariants} className="back-button">
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => displayTrackTillDistribute(false)}
-                        >
-                            Track Another Item
-                        </motion.button>
-
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={redirect_to_project}
-                        >
-                            Back To Project Overview
-                        </motion.button>
-                </motion.div>
-        </div>
         )
     }
 
@@ -706,90 +710,92 @@ const Track = () => {
     if (TrackTillRetail) {
         return (
         <div className="chronology-retailer-main-container">
-            <h2 className="chronology-retailer-section-title">Information</h2>
-            <div className="chronology-retailer-section">
-                <h2>Item Information</h2>
+            <div className="menu-bar">
+                    <ProjectSideBar />
+            </div> 
+            <div className="main-section">
+                <div className="chronology-retailer-section-title">Track Information</div>
+                <div className="chronology-retailer-content">
+                    <div className="chronology-retailer-section">
+                        <table className="table-container" border="1">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Categories</th>
+                                    <th>Brand</th>
+                                    <th>Based In</th>
+                                    <th>Description</th>
+                                    <th>Current Stage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{Number(Items[ItemID].id)}</td>
+                                    <td>{Items[ItemID].name}</td>
+                                    <td>{Items[ItemID].categories}</td>
+                                    <td>{Items[ItemID].brand}</td>
+                                    <td>{Items[ItemID].origin}</td>
+                                    <td>{Items[ItemID].nutritionInfo}</td>
+                                    <td>{ItemPhase[ItemID]}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <div className="table-container">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Categories</th>
-                                <th>Brand</th>
-                                <th>Based In</th>
-                                <th>Description</th>
-                                <th>Current Stage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{Number(Items[ItemID].id)}</td>
-                                <td>{Items[ItemID].name}</td>
-                                <td>{Items[ItemID].categories}</td>
-                                <td>{Items[ItemID].brand}</td>
-                                <td>{Items[ItemID].origin}</td>
-                                <td>{Items[ItemID].nutritionInfo}</td>
-                                <td>{ItemPhase[ItemID]}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div className="supplychain-retailer-section">
-
-                {supplychainsretailer.map((supplychain, index) => (
-                    <motion.div className="supplychain-retailer-item" 
-                        key={index}>
-                  
-                            
-                        <motion.img src={supplychain.image} alt={supplychain.name} 
-                            whileHover={{ scale: 1.1 }} 
-                            whileTap={{ scale: 0.95 }} />
-
+                    <div className="supplychain-retailer-section">
+                        {supplychainsretailer.map((supplychain, index) => (
+                            <motion.div className="supplychain-retailer-item" 
+                                key={index}>
                         
-                        {supplychain.name && (
-                            <motion.div className="supplychain-retailer-track-section">
-                                <h2>{supplychain.name} Information</h2>
-                                    <table className="table-container" border="1">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Based In</th>
-                                            </tr>
-                                        </thead>
-                                        {chronologyTableRetail(supplychain.name)}
-                                    </table>
+                                <motion.img src={supplychain.image} alt={supplychain.name} id={supplychain.name}
+                                    whileHover={{ scale: 1.1 }} 
+                                    whileTap={{ scale: 0.95 }} />
+
+                                
+                                {supplychain.name && (
+                                    <motion.div className="supplychain-retailer-track-section">
+                                        <h2>{supplychain.name} Information</h2>
+                                            <table className="table-container" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Based In</th>
+                                                    </tr>
+                                                </thead>
+                                                {chronologyTableRetail(supplychain.name)}
+                                            </table>
+                                    </motion.div>
+                                )}
+                            
                             </motion.div>
-                        )}
-                    
-                    </motion.div>
-                ))}
+                        ))}
                    
+                    </div>
+                </div>
+                <div className="chronology-retailer-back-button-container">
+                    <motion.div variants={itemVariants} className="chronology-retailer-back-button">
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => displayTrackTillRetail(false)}
+                            >
+                                Track Another Item
+                            </motion.button>
+
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={redirect_to_project}
+                            >
+                                Back To Project Overview
+                            </motion.button>
+                    </motion.div>
+                </div>             
             </div>
-
-            <motion.div variants={itemVariants} className="back-button">
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => displayTrackTillRetail(false)}
-                        >
-                            Track Another Item
-                        </motion.button>
-
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={redirect_to_project}
-                        >
-                            Back To Project Overview
-                        </motion.button>
-            </motion.div>
         </div>
         )
     }
@@ -800,92 +806,94 @@ const Track = () => {
     if (TrackTillSold) {
         return (
             <div className="chronology-sold-main-container">
-            <h2 className="chronology-sold-section-title">Information</h2>
-            <div className="chronology-sold-section">
-                <h2>Item Information</h2>
+                <div className="menu-bar">
+                    <ProjectSideBar />
+                </div> 
+                <div className="main-section">
+                    <div className="chronology-sold-section-title">Track Information</div>
+                    <div className="chronology-sold-content">
+                        <div className="chronology-sold-section">
+                            <table className="table-container" border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Categories</th>
+                                        <th>Brand</th>
+                                        <th>Based In</th>
+                                        <th>Description</th>
+                                        <th>Current Stage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{Number(Items[ItemID].id)}</td>
+                                        <td>{Items[ItemID].name}</td>
+                                        <td>{Items[ItemID].categories}</td>
+                                        <td>{Items[ItemID].brand}</td>
+                                        <td>{Items[ItemID].origin}</td>
+                                        <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{ItemPhase[ItemID]}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                <div className="table-container">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Categories</th>
-                                <th>Brand</th>
-                                <th>Based In</th>
-                                <th>Description</th>
-                                <th>Current Stage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{Number(Items[ItemID].id)}</td>
-                                <td>{Items[ItemID].name}</td>
-                                <td>{Items[ItemID].categories}</td>
-                                <td>{Items[ItemID].brand}</td>
-                                <td>{Items[ItemID].origin}</td>
-                                <td>{Items[ItemID].nutritionInfo}</td>
-                                <td>{ItemPhase[ItemID]}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <div className="supplychain-sold-section">
+                            {supplychainssold.map((supplychain, index) => (
+                                <motion.div className="supplychain-sold-item" key={index} id={supplychain.name}>
+                            
+                                        
+                                    <motion.img src={supplychain.image} alt={supplychain.name} 
+                                        whileHover={{ scale: 1.1 }} 
+                                        whileTap={{ scale: 0.95 }} />
+
+                                    
+                                    {supplychain.name && (
+                                        <motion.div className="supplychain-sold-track-section" >
+                                            <h2>{supplychain.name} Information</h2>
+                                                <table className="table-container" border="1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Name</th>
+                                                            <th>Based In</th>
+                                                        </tr>
+                                                    </thead>
+                                                    {chronologyTableRetail(supplychain.name)}
+                                                </table>
+                                        </motion.div>
+                                    )}
+
+                                </motion.div>
+                            ))}  
+                        </div>
+                    </div>
+                    <h2 className="sold-info">Your Item is <b>Sold</b> already</h2>
+                
+                    <div className="chronology-sold-back-button-container">
+                        <motion.div variants={itemVariants} className="chronology-sold-back-button">
+                                <motion.button
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={() => displayTrackTillSold(false)}
+                                >
+                                    Track Another Item
+                                </motion.button>
+
+                                <motion.button
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={redirect_to_project}
+                                >
+                                    Back To Project Overview
+                                </motion.button>
+                        </motion.div>
+                    </div>
                 </div>
             </div>
-
-            <div className="supplychain-sold-section">
-
-                {supplychainssold.map((supplychain, index) => (
-                    <motion.div className="supplychain-sold-item" key={index}>
-                  
-                            
-                        <motion.img src={supplychain.image} alt={supplychain.name} 
-                            whileHover={{ scale: 1.1 }} 
-                            whileTap={{ scale: 0.95 }} />
-
-                        
-                        {supplychain.name && (
-                            <motion.div className="supplychain-sold-track-section">
-                                <h2>{supplychain.name} Information</h2>
-                                    <table className="table-container" border="1">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Based In</th>
-                                            </tr>
-                                        </thead>
-                                        {chronologyTableRetail(supplychain.name)}
-                                    </table>
-                            </motion.div>
-                        )}
-
-                    </motion.div>
-                    
-                ))}  
-                 
-            </div>
-            
-            <h2>Your Item is Sold already</h2>
-            <motion.div variants={itemVariants} className="back-button">
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => displayTrackTillSold(false)}
-                        >
-                            Track Another Item
-                        </motion.button>
-
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={redirect_to_project}
-                        >
-                            Back To Project Overview
-                        </motion.button>
-            </motion.div>
-        </div>
         )
     }
 
@@ -927,56 +935,50 @@ const Track = () => {
     return (
 
         <div className="track-main-container">
-
             <div className="menu-bar">
                 <ProjectSideBar />
             </div> 
 
             <div className="main-section">
                 <div className="track-section-title">Tracking</div>
-
                 <div className="track-content">
                     <div className="track-section">
-
-                        <div className="table-container">
-                            <table border="1">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Categories</th>
-                                        <th>Brand</th>
-                                        <th>Based In</th>
-                                        <th>Description</th>
-                                        <th>Current Stage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {Object.keys(Items).map(function (key) {
+                        <table className="track-table-container" border="1">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Categories</th>
+                                    <th>Brand</th>
+                                    <th>Based In</th>
+                                    <th>Description</th>
+                                    <th>Current Stage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {Object.keys(Items).map(function (key) {
                                 
-                                    return (
-                                        <tr key={key}>
-                                                <td>{Number(Items[key].id)}</td>
-                                                <td>{Items[key].name}</td>
-                                                <td>{Items[key].categories}</td>
-                                                <td>{Items[key].brand}</td>
-                                                <td>{Items[key].origin}</td>
-                                                <td>{Items[key].nutritionInfo}</td>
-                                            <td>
-                                                {
-                                                    ItemPhase[key]
-                                                }
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <motion.div className="input-container" variants={variants}>
-                            <form onSubmit={adminRegister}>
-
+                                return (
+                                    <tr key={key}>
+                                            <td>{Number(Items[key].id)}</td>
+                                            <td>{Items[key].name}</td>
+                                            <td>{Items[key].categories}</td>
+                                            <td>{Items[key].brand}</td>
+                                            <td>{Items[key].origin}</td>
+                                            <td>{Items[key].nutritionInfo}</td>
+                                        <td>
+                                            {
+                                                 ItemPhase[key]
+                                            }
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                            </tbody>
+                        </table>
+                    </div>
+                    <motion.div className="input-container" variants={variants}>
+                        <form onSubmit={adminRegister}>
                             <motion.div variants={itemVariants}>
                                 <input type="text" onChange ={adminID} placeholder="Enter ID" required/><br />
                             </motion.div>
@@ -991,11 +993,8 @@ const Track = () => {
                                     Track
                                 </motion.button>
                             </motion.div>
-                            </form>
-                        </motion.div>
-
-                        
-                    </div>
+                        </form>
+                    </motion.div>
                 </div>
                 <div className="track-back-button-container">
                     <motion.div variants={itemVariants} className="track-back-button">
@@ -1009,6 +1008,7 @@ const Track = () => {
                                 </motion.button>
                     </motion.div>
                 </div>
+                
             </div>
         </div>
     );
