@@ -5,23 +5,6 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
 
 
-
-const Variants = {
-  initial: {
-    x: -500,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-
 const ProjectHero = () => {
   const navigate = useNavigate()
 
@@ -31,7 +14,7 @@ const ProjectHero = () => {
 
     
   const supplychains = [
-    { name: "Farmer"      , image: "/farmer.svg"      },
+    { name: "Farmer"      , image: "/farmer.svg"},
     { image: "/arrow1.png"},
 
     { name: "Slaughterhouse", image: "/chicken.png"},
@@ -46,11 +29,11 @@ const ProjectHero = () => {
     { name: "Distributor" , image: "/distributor.svg"},
     { image: "/arrow1.png"},
 
-    { name: "Retailer"    , image: "/retailer.svg"   },
+    { name: "Retailer"    , image: "/retailer.svg"},
   ];
 
   return (
-    <div className="supplychain-main-container">
+    <div className="supplychain-main-container" >
 
         <div className="menu-bar">
           <ProjectSideBar />
@@ -58,11 +41,7 @@ const ProjectHero = () => {
 
 
         <div className="content">
-              <motion.div className="supplychain"
-                    variants={Variants} 
-                    initial="initial"
-                    animate="animate" >
-
+              <div className="supplychain">
                   <h2 className="section-title">Supply Chain Flow</h2>
                   <div className="supplychain-list">
                       {supplychains.map((supplychain, index) => (
@@ -91,7 +70,7 @@ const ProjectHero = () => {
                       ))}
                   </div>
 
-              </motion.div>
+              </div>
 
               <p className="project-description">
                   <b>Only </b> 
