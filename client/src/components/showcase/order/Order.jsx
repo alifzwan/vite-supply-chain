@@ -2,6 +2,8 @@
 import './order.scss';
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
+import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
+
 import React, { useState, useEffect } from 'react'
 import Web3 from "web3";
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
@@ -97,7 +99,7 @@ const Order = () => {
     if (loader) {
         return (
             <div>
-                <h1 className="wait">Loading...</h1>
+                
             </div>
         )
 
@@ -146,113 +148,120 @@ const Order = () => {
 
     return (
         <div className="ord-main-container">
-            <h2 className="ord-section-title">Product Registration</h2>
-            <div className="current-address">
-                    <label htmlFor="currentAddress">Current Address: </label>
-                    <span>{currentaccount}</span>
-            </div>
 
-           
-            <div className="ord-section">
-                <h2>Product Registration</h2>
-                <motion.form onSubmit={regItem} className="input-container" variants={variants}>
+            <div className="menu-bar">
+                <ProjectSideBar />
+            </div>  
 
-                        <motion.div variants={itemVariants}>
-                            <label>Name:</label><br />
-                            <input type="text" onChange={regItemName} placeholder="Name" required/><br />
-                        </motion.div>
 
-                        <motion.div variants={itemVariants}>
-                            <label>Categories:</label><br />
-                            <input type="text" onChange={regItemCategories} placeholder="Categories" required/><br />
-                        </motion.div>
+            <div className="main-section">
 
-                        <motion.div variants={itemVariants}>
-                            <label>Brand:</label><br />
-                            <input type="text" onChange={regItemBrand} placeholder="Brand" required/><br />
-                        </motion.div>
+                <div className="ord-section-title">Product Registration</div>
 
-                        <motion.div variants={itemVariants}>
-                            <label>Based In:</label><br />
-                            <input type="text" onChange={regItemOrigin} placeholder="Based In" required/><br />
-                        </motion.div>
+                <div className="order-content">
+                    <div className="ord-section">
+                        <motion.form onSubmit={regItem} className="input-container" variants={variants}>
 
-                        <motion.div variants={itemVariants}>
-                            <label>Description</label><br />
-                            <input type="text" onChange={regItemDescription} placeholder="Description" required/><br />
-                        </motion.div>
+                                <motion.div variants={itemVariants}>
+                                    <label>Name:</label><br />
+                                    <input type="text" onChange={regItemName} placeholder="Name" required/><br />
+                                </motion.div>
 
-                        <motion.div variants={itemVariants}>
-                            <label>Finished Product: 
-                                <select>
-                                    <option value=""> How would you like the item to be done?</option>
-                                    <option value=""> Chicken Nugget</option>
-                                    <option value=""> Fresh Chicken</option>
-                                </select>
-                                
-                            </label><br />
-                        </motion.div>
+                                <motion.div variants={itemVariants}>
+                                    <label>Categories:</label><br />
+                                    <input type="text" onChange={regItemCategories} placeholder="Categories" required/><br />
+                                </motion.div>
 
-                        <motion.div variants={itemVariants} className="order-button">
+                                <motion.div variants={itemVariants}>
+                                    <label>Brand:</label><br />
+                                    <input type="text" onChange={regItemBrand} placeholder="Brand" required/><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants}>
+                                    <label>Based In:</label><br />
+                                    <input type="text" onChange={regItemOrigin} placeholder="Based In" required/><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants}>
+                                    <label>Description</label><br />
+                                    <input type="text" onChange={regItemDescription} placeholder="Description" required/><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants}>
+                                    <label>Finished Product: 
+                                        <select>
+                                            <option value=""> How would you like the item to be done?</option>
+                                            <option value=""> Chicken Nugget</option>
+                                            <option value=""> Fresh Chicken</option>
+                                        </select>
+                                        
+                                    </label><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants} className="order-button">
+                                    <motion.button
+                                        variants={itemVariants}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onSubmit={regItem}
+                                    >
+                                        Order
+                                    </motion.button>
+                                </motion.div>
+                        </motion.form>
+                    
+
+                        <div className="table-container">
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Categories</th>
+                                        <th>Brand</th>
+                                        <th>Based In</th>
+                                        <th>Description</th>
+                                        <th>Current Stage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Object.keys(Items).map(function (key) {
+                                        return (
+                                            <tr key={key}>
+                                                <td>{Number(Items[key].id)}</td>
+                                                <td>{Items[key].name}</td>
+                                                <td>{Items[key].categories}</td>
+                                                <td>{Items[key].brand}</td>
+                                                <td>{Items[key].origin}</td>
+                                                <td>{Items[key].nutritionInfo}</td>
+                                                <td>
+                                                    {
+                                                        ItemPhase[key]
+                                                    }
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div className="order-back-button-container">
+                        <motion.div variants={itemVariants} className="order-back-button">
                             <motion.button
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
-                                onSubmit={regItem}
+                                onClick={redirect_to_project}
                             >
-                                Order
+                                Back to Project Overview
                             </motion.button>
                         </motion.div>
-                </motion.form>
-                
-
-                <div className="table-container">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Categories</th>
-                                <th>Brand</th>
-                                <th>Based In</th>
-                                <th>Description</th>
-                                <th>Current Stage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {Object.keys(Items).map(function (key) {
-                                return (
-                                    <tr key={key}>
-                                        <td>{Number(Items[key].id)}</td>
-                                        <td>{Items[key].name}</td>
-                                        <td>{Items[key].categories}</td>
-                                        <td>{Items[key].brand}</td>
-                                        <td>{Items[key].origin}</td>
-                                        <td>{Items[key].nutritionInfo}</td>
-                                        <td>
-                                            {
-                                                ItemPhase[key]
-                                            }
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>
+                    </div>
+                    
                 </div>
+
             </div>
-
-            <motion.div variants={itemVariants} className="back-button">
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={redirect_to_project}
-                        >
-                            Back to Project Overview
-                        </motion.button>
-            </motion.div>
-
         </div>
     );
 }

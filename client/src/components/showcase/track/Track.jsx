@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
 import React, { useState, useEffect } from 'react'
 import Web3 from "web3";
+import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
+
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
 
 
@@ -923,83 +925,91 @@ const Track = () => {
     }
 
     return (
+
         <div className="track-main-container">
-            <h2 className="track-section-title">Tracking</h2>
-             <div className="current-address">
-                    <label htmlFor="currentAddress">Current Address: </label>
-                    <span>{currentaccount}</span>
-            </div>
 
-           
-            <div className="track-section">
-                <h2>Tracking</h2>
+            <div className="menu-bar">
+                <ProjectSideBar />
+            </div> 
 
-                <div className="table-container">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Categories</th>
-                                <th>Brand</th>
-                                <th>Based In</th>
-                                <th>Description</th>
-                                <th>Current Stage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {Object.keys(Items).map(function (key) {
-                          
-                            return (
-                                <tr key={key}>
-                                        <td>{Number(Items[key].id)}</td>
-                                        <td>{Items[key].name}</td>
-                                        <td>{Items[key].categories}</td>
-                                        <td>{Items[key].brand}</td>
-                                        <td>{Items[key].origin}</td>
-                                        <td>{Items[key].nutritionInfo}</td>
-                                    <td>
-                                        {
-                                            ItemPhase[key]
-                                        }
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                        </tbody>
-                    </table>
+            <div className="main-section">
+                <div className="track-section-title">Tracking</div>
+
+                <div className="track-content">
+                    <div className="track-section">
+
+                        <div className="table-container">
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Categories</th>
+                                        <th>Brand</th>
+                                        <th>Based In</th>
+                                        <th>Description</th>
+                                        <th>Current Stage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {Object.keys(Items).map(function (key) {
+                                
+                                    return (
+                                        <tr key={key}>
+                                                <td>{Number(Items[key].id)}</td>
+                                                <td>{Items[key].name}</td>
+                                                <td>{Items[key].categories}</td>
+                                                <td>{Items[key].brand}</td>
+                                                <td>{Items[key].origin}</td>
+                                                <td>{Items[key].nutritionInfo}</td>
+                                            <td>
+                                                {
+                                                    ItemPhase[key]
+                                                }
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <motion.div className="input-container" variants={variants}>
+                            <form onSubmit={adminRegister}>
+
+                            <motion.div variants={itemVariants}>
+                                <input type="text" onChange ={adminID} placeholder="Enter ID" required/><br />
+                            </motion.div>
+
+                            <motion.div variants={itemVariants} className="track-button">
+                                <motion.button
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onSubmit={adminRegister}
+                                >
+                                    Track
+                                </motion.button>
+                            </motion.div>
+                            </form>
+                        </motion.div>
+
+                        
+                    </div>
                 </div>
-
-                <motion.div className="input-container" variants={variants}>
-                    <form onSubmit={adminRegister}>
-
-                    <motion.div variants={itemVariants}>
-                        <input type="text" onChange ={adminID} placeholder="Enter ID" required/><br />
+                <div className="track-back-button-container">
+                    <motion.div variants={itemVariants} className="track-back-button">
+                                <motion.button
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={redirect_to_project}
+                                >
+                                Back to Project Overview
+                                </motion.button>
                     </motion.div>
-
-                    <motion.div variants={itemVariants} className="track-button">
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onSubmit={adminRegister}
-                        >
-                            Track
-                        </motion.button>
-                    </motion.div>
-                    </form>
-                </motion.div>
+                </div>
             </div>
-            <motion.div variants={itemVariants} className="back-button">
-                        <motion.button
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={redirect_to_project}
-                        >
-                            Back to Project Overview
-                        </motion.button>
-            </motion.div>
         </div>
     );
 }

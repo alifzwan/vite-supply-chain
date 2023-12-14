@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
 import React, { useState, useEffect } from 'react'
 import Web3 from "web3";
+import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
+
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
 
 
@@ -182,183 +184,199 @@ const Admin = () => {
 
     return(
     <div className="admin-main-container">
-            <h2 className="admin-section-title">Administer</h2>
-                <div className="current-address">
-                        <label htmlFor="currentAddress">Current Address: </label>
-                        <span>{currentaccount}</span>
-                </div>
+
+        <div className="menu-bar">
+            <ProjectSideBar />
+        </div> 
+
+        <div className="main-section">
+            <div className="admin-section-title">Administer</div>
+                <div className="admin-content">
+                    <table className="table-container" border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Categories</th>
+                                <th>Brand</th>
+                                <th>Based In</th>
+                                <th>Description</th>
+                                <th>Current Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Object.keys(Items).map(function (key) {
+                                return (
+                                    <tr key={key}>
+                                        <td>{Number(Items[key].id)}</td>
+                                        <td>{Items[key].name}</td>
+                                        <td>{Items[key].categories}</td>
+                                        <td>{Items[key].brand}</td>
+                                        <td>{Items[key].origin}</td>
+                                        <td>{Items[key].nutritionInfo}</td>
+                                        <td>
+                                            {
+                                                ItemPhase[key]
+                                            }
+                                        </td>
+                                    </tr>
+                            )
+                        })}
+                        </tbody>
+                    </table>
+
+                    <div className="admin-grid">
+                        <div className="admin-section">
+                            <h2>Farmer</h2>
+                                <form onSubmit={adminFarmer}>
+                                    <motion.div className="input-container" variants={variants}>
+
+                                        <motion.div variants={itemVariants}>
+                                            <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                        </motion.div>
+
+                                    <motion.div variants={itemVariants} className="admin-button">
+                                        <motion.button
+                                            variants={itemVariants}
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onSubmit={adminFarmer}
+                                        >
+                                            Plug In
+                                        </motion.button>
+                                    </motion.div>
+                                
+                                    </motion.div>
+                                </form>
+                        </div>
+
+                        <div className="admin-section">
+                            <h2>Manufacturer</h2>
+                                <form onSubmit={adminManufacture}>
+
+                                    <motion.div className="input-container" variants={variants}>
+                                        <motion.div variants={itemVariants}>
+                                            <input type="text"  onChange={adminID} placeholder="Enter ID" required/><br />
+                                        </motion.div>
+
+                                    <motion.div variants={itemVariants} className="admin-button">
+                                        <motion.button
+                                            variants={itemVariants}
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onSubmit={adminManufacture}
+                                        >
+                                            Plug In
+                                        </motion.button>
+                                    </motion.div>
+                                
+                                    </motion.div>
+                                </form>
+                            
+                        </div>
+                        
+
+                        <div className="admin-section">
+                            <h2>Distributor</h2>
+                                <form onSubmit={adminDistribute}>
+                                    <motion.div className="input-container" variants={variants}>
+                                    <motion.div variants={itemVariants}>
+                                        <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                    </motion.div>
+
+                                    <motion.div variants={itemVariants} className="admin-button">
+                                        <motion.button
+                                            variants={itemVariants}
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onSubmit={adminDistribute}
+                                        >
+                                            Plug In
+                                        </motion.button>
+                                    </motion.div>
+                                
+                                </motion.div>
+                                </form>
+                                
+                        </div>
+
+                        <div className="admin-section">
+                            <h2>Retailer</h2>
+                                <form onSubmit={adminRetail}>
+                                    <motion.div className="input-container" variants={variants}>
+                                    <motion.div variants={itemVariants}>
+                                        <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                    </motion.div>
+
+                                    <motion.div variants={itemVariants} className="admin-button">
+                                        <motion.button
+                                            variants={itemVariants}
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onSubmit={adminRetail}
+                                        >
+                                            Plug In
+                                        </motion.button>
+                                    </motion.div>
+                                
+                                </motion.div>
+                                </form>
+                        </div>
+                    </div>
+
+                    <div className="admin-sold-section">
+                        <h2>Sold</h2>
+                            <form onSubmit={adminSold}>
+                                <motion.div className="input-container" variants={variants}>
+                                    <motion.div variants={itemVariants}>
+                                        <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                    </motion.div>
+
+                                    <motion.div variants={itemVariants} className="admin-button">
+                                        <motion.button
+                                            variants={itemVariants}
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onSubmit={adminSold}
+                                        >
+                                            Plug In
+                                        </motion.button>
+                                    </motion.div>
+                            
+                                </motion.div>
+                            </form>
+                        
+                    </div>
+
+
+
+
+                    <div className="admin-back-button-container">
+                        <motion.div variants={itemVariants} className="admin-back-button">
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={redirect_to_project}
+                            >
+                                Back to Project 
+                            </motion.button>
+                        </motion.div>
+                    </div>
+            </div>
+        </div>
+
+           
+               
                 
-                <table className="table-container" border="1">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Categories</th>
-                            <th>Brand</th>
-                            <th>Based In</th>
-                            <th>Description</th>
-                            <th>Current Stage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {Object.keys(Items).map(function (key) {
-                            return (
-                                <tr key={key}>
-                                    <td>{Number(Items[key].id)}</td>
-                                    <td>{Items[key].name}</td>
-                                    <td>{Items[key].categories}</td>
-                                    <td>{Items[key].brand}</td>
-                                    <td>{Items[key].origin}</td>
-                                    <td>{Items[key].nutritionInfo}</td>
-                                    <td>
-                                        {
-                                            ItemPhase[key]
-                                        }
-                                    </td>
-                                </tr>
-                        )
-                    })}
-                    </tbody>
-                </table>
+                
                 
 
             
-            <div className="admin-grid">
-                <div className="admin-section">
-                    <h2>Farmer</h2>
-                        <form onSubmit={adminFarmer}>
-                            <motion.div className="input-container" variants={variants}>
-
-                                <motion.div variants={itemVariants}>
-                                    <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
-                                </motion.div>
-
-                            <motion.div variants={itemVariants} className="admin-button">
-                                <motion.button
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onSubmit={adminFarmer}
-                                >
-                                    Plug In
-                                </motion.button>
-                            </motion.div>
-                        
-                            </motion.div>
-                        </form>
-                </div>
-
-                <div className="admin-section">
-                    <h2>Manufacturer</h2>
-                        <form onSubmit={adminManufacture}>
-
-                            <motion.div className="input-container" variants={variants}>
-                                <motion.div variants={itemVariants}>
-                                    <input type="text"  onChange={adminID} placeholder="Enter ID" required/><br />
-                                </motion.div>
-
-                            <motion.div variants={itemVariants} className="admin-button">
-                                <motion.button
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onSubmit={adminManufacture}
-                                >
-                                    Plug In
-                                </motion.button>
-                            </motion.div>
-                        
-                            </motion.div>
-                        </form>
-                    
-                </div>
-                
-
-                <div className="admin-section">
-                    <h2>Distributor</h2>
-                        <form onSubmit={adminDistribute}>
-                            <motion.div className="input-container" variants={variants}>
-                            <motion.div variants={itemVariants}>
-                                <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
-                            </motion.div>
-
-                            <motion.div variants={itemVariants} className="admin-button">
-                                <motion.button
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onSubmit={adminDistribute}
-                                >
-                                    Plug In
-                                </motion.button>
-                            </motion.div>
-                        
-                        </motion.div>
-                        </form>
-                        
-                </div>
-
-                <div className="admin-section">
-                    <h2>Retailer</h2>
-                        <form onSubmit={adminRetail}>
-                            <motion.div className="input-container" variants={variants}>
-                            <motion.div variants={itemVariants}>
-                                <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
-                            </motion.div>
-
-                            <motion.div variants={itemVariants} className="admin-button">
-                                <motion.button
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onSubmit={adminRetail}
-                                >
-                                    Plug In
-                                </motion.button>
-                            </motion.div>
-                        
-                        </motion.div>
-                        </form>
-                </div>
-
-                <div className="admin-sold-section">
-                    <h2>Sold</h2>
-                    <form onSubmit={adminSold}>
-                    <motion.div className="input-container" variants={variants}>
-                            <motion.div variants={itemVariants}>
-                                <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
-                            </motion.div>
-
-                            <motion.div variants={itemVariants} className="admin-button">
-                                <motion.button
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onSubmit={adminSold}
-                                >
-                                    Plug In
-                                </motion.button>
-                            </motion.div>
-                    
-                        </motion.div>
-                    </form>
-                
-                </div>
-            </div>
+            
 
 
-            <div className="admin-back-button-container">
-                <motion.div variants={itemVariants} className="admin-back-button">
-                    <motion.button
-                        variants={itemVariants}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={redirect_to_project}
-                    >
-                        Back to Project 
-                    </motion.button>
-                 </motion.div>
-            </div>
+           
                 
     </div>       
     )

@@ -1,44 +1,30 @@
 .admin-main-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Divide into two columns */
-    gap: 20px;
-    width: 80%; /* Increase the width to make it larger */
-    margin: 0px auto; /* Center the grid with some margin from the top */
-    box-sizing: border-box;
-    align-items: center;
+    display: flex;
 
 }
-.admin-section-title {
-    font-size: 40px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: left;
-    color: rebeccapurple;
-  }
 
-  .current-address {
-    grid-column: span 2; /* Span across both columns */
-    margin-bottom: 20px;
-    label {
+.main-section {
+    flex: 1;
+    padding: 20px; /* Add padding as needed */
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+
+    .admin-section-title {
+        font-size: 30px;
         font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center;
+        color: rebeccapurple;
     }
-}
 
-.admin-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
-    grid-column: span 2;
-    align-items: center;
-    margin: 0 auto; /* Center the grid */
-    
-}
+    .admin-content {
 
-  table {
+        table {
             border-collapse: collapse;
             border: 1px solid white;
             border-radius: 10px;
-            width: 200%;
+            width: 100%;
             margin: auto; 
             font-size: 14px;
             max-height: 375px;
@@ -84,179 +70,207 @@
             &::-webkit-scrollbar-thumb:hover {
                 background-color: #555;
             }
-    }
+        }
 
-.admin-section {
-    border: 2px solid rebeccapurple;
-    border-radius: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    max-height: auto; /* Make sure all sections have the same height */
-    overflow-y: auto;
-    margin-top: 10px;
-    width: 400px;
 
-    h2 {
-        text-align: left;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            grid-column: span 2;
+            align-items: center;
+            margin: 0 auto; /* Center the grid */
 
-    .input-container {
-        display: flex; 
-        align-items: center;
-        input {
-            width: 100%;
-            box-sizing: border-box;
+            .admin-section {
+                border: 2px solid rebeccapurple;
+                border-radius: 10px;
+                padding: 10px;
+                box-sizing: border-box;
+                max-height: auto; /* Make sure all sections have the same height */
+                overflow-y: auto;
+                margin-top: 10px;
+                width: 400px;
+            
+                h2 {
+                    text-align: left;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+            
+                .input-container {
+                    display: flex; 
+                    align-items: center;
+                    input {
+                        width: 100%;
+                        box-sizing: border-box;
+                        
+                    }
+                }
+            
+                .admin-button {
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+                    button {
+                      padding: 0px 10px;
+                      height: 25px;
+                      border: 1px solid green;
+                      border-radius: 10px;
+                      background-color: transparent;
+                      color: green;
+                      margin-top: 20px;
+                      margin-left: 20px;
+                      margin-bottom: 20px;
+                      cursor: pointer;
+                      font-weight: bold;
+                      text-align: center;
+                      
+                    }
+                    button:hover { 
+                        color: white;
+                        border-color: white;
+                    }
+                }
+            
+                &::-webkit-scrollbar {
+                    width: 10px;
+                }
+            
+                &::-webkit-scrollbar-track {
+                    background: #f1f1f1;
+                    border-radius: 6px;
+                }
+            
+                &::-webkit-scrollbar-thumb {
+                    background-color: #888;
+                    border-radius: 6px;
+                    border: 3px solid #f1f1f1;
+                }
+            
+                &::-webkit-scrollbar-thumb:hover {
+                    background-color: #555;
+                }
+            }
+
+            
+            
             
         }
-    }
 
-    .admin-button {
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        button {
-          padding: 0px 10px;
-          height: 25px;
-          border: 1px solid green;
-          border-radius: 10px;
-          background-color: transparent;
-          color: green;
-          margin-top: 20px;
-          margin-left: 20px;
-          margin-bottom: 20px;
-          cursor: pointer;
-          font-weight: bold;
-          text-align: center;
-          
-        }
-        button:hover { 
-            color: white;
-            border-color: white;
-        }
-    }
-
-    &::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: #888;
-        border-radius: 6px;
-        border: 3px solid #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background-color: #555;
-    }
-}
-
-
-
-.admin-sold-section {
-    border: 2px solid rebeccapurple;
-    border-radius: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    max-height: auto; /* Make sure all sections have the same height */
-    width: 400px;
-    justify-content: center;
-    margin: 0 auto; /* Center the section */
-
-    h2 {
-        text-align: left;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    .input-container {
-        display: flex; 
-        align-items: center;
-        input {
-            width: 100%;
+        .admin-sold-section {
+            border: 2px solid rebeccapurple;
+            border-radius: 10px;
+            padding: 10px;
             box-sizing: border-box;
+            width: 400px;
+            margin: 0 auto; /* Center the section */
+            margin-top: 60px;
+        
+            h2 {
+                text-align: left;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+        
+            .input-container {
+                display: flex; 
+                align-items: center;
+                input {
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+            }
+        
+            .admin-button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                button {
+                    padding: 0px 10px;
+                    height: 25px;
+                    border: 1px solid green;
+                    border-radius: 10px;
+                    background-color: transparent;
+                    color: green;
+                    margin-top: 20px;
+                    margin-left: 20px;
+                    margin-bottom: 20px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    text-align: center;
+                }
+                button:hover { 
+                    color: white;
+                    border-color: white;
+                }
+            }
+        
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
+        
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 6px;
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                background-color: #888;
+                border-radius: 6px;
+                border: 3px solid #f1f1f1;
+            }
+        
+            &::-webkit-scrollbar-thumb:hover {
+                background-color: #555;
+            }
         }
-    }
 
-    .admin-button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        button {
-            padding: 0px 10px;
-            height: 25px;
-            border: 1px solid green;
-            border-radius: 10px;
-            background-color: transparent;
-            color: green;
-            margin-top: 20px;
-            margin-left: 20px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            text-align: center;
-        }
-        button:hover { 
-            color: white;
-            border-color: white;
-        }
-    }
 
-    &::-webkit-scrollbar {
-        width: 10px;
-    }
 
-    &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: #888;
-        border-radius: 6px;
-        border: 3px solid #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background-color: #555;
+        .admin-back-button-container{
+            transform: translateY(50%);
+            display: flex;
+            .admin-back-button{
+                max-width: 1366px;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                button {
+                    padding: 0px 10px;
+                    height: 35px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    background-color: transparent;
+                    color: white;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-top: 5px;
+                    text-align: center;
+                  }
+                button:hover { 
+                    color: rebeccapurple;
+                    border-color: rebeccapurple;
+                }
+            }
+        }  
     }
 }
 
 
-.admin-back-button-container{
-    transform: translateX(50%);
-    display: flex;
-    .admin-back-button{
-        max-width: 1366px;
-        margin: auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 100%;
-        button {
-            padding: 0px 10px;
-            height: 35px;
-            border: 1px solid white;
-            border-radius: 10px;
-            background-color: transparent;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 5px;
-            text-align: center;
-          }
-        button:hover { 
-            color: rebeccapurple;
-            border-color: rebeccapurple;
-        }
-    }
-}
+ 
+
+
+
+  
+
+
+
+
+
+
+
 
 
 
