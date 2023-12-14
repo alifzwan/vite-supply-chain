@@ -1,7 +1,6 @@
 import {Menu} from "antd"
 import "./projectlinks.scss"
 import Web3 from 'web3'; 
-import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom'
 
 
@@ -10,8 +9,8 @@ import React, { useEffect, useState } from 'react';
 import {
     HomeOutlined, 
     AppstoreOutlined, 
-    AreaChartOutlined, 
-    PayCircleOutlined, 
+    // AreaChartOutlined, 
+    // PayCircleOutlined, 
     SettingOutlined, 
     BarsOutlined, 
     ApiTwoTone, 
@@ -19,25 +18,6 @@ import {
     UserOutlined} from "@ant-design/icons"
 
 const ProjectLinks = ({darkTheme}) => {
-    const navigate = useNavigate()
-
-    const redirect_to_home = () => {
-        navigate('/')
-    }
-    const redirect_to_project = () => {
-        navigate('/project')
-    }
-    
-    const redirect_to_admin = () => {
-        navigate('/admin')
-    }
-    const redirect_to_track = () => {
-        navigate('/track')
-    }
-    const redirect_to_info = () => {
-        navigate('/info')
-    }
-    
     
     useEffect(() => {
         loadWeb3();
@@ -103,7 +83,7 @@ const ProjectLinks = ({darkTheme}) => {
         <Menu className="menu-bar" theme={darkTheme ? 'dark' : 'light'} mode="inline">
             
             <Menu.Item className="account" icon={<UserOutlined />}>
-                <Menu.Item onCopy= {copyAccount}> {currentaccount}</Menu.Item>
+                <Menu.Item onCopy= {copyAccount} className="account-show">{currentaccount}</Menu.Item>
             </Menu.Item>
 
             <Menu.Item className="balance" icon={<DollarTwoTone />}>
@@ -115,9 +95,9 @@ const ProjectLinks = ({darkTheme}) => {
                 Disconnect 
             </Menu.Item>
 
-        
-            <Menu.Item onClick= {redirect_to_project} icon ={<HomeOutlined />}>
-                Home
+            
+            <Menu.Item id="home" icon ={<HomeOutlined />}>
+                <Link to="/project">Home</Link>
             </Menu.Item>
 
             <Menu.Item icon ={<AppstoreOutlined />}>
@@ -129,20 +109,26 @@ const ProjectLinks = ({darkTheme}) => {
 
             <Menu.SubMenu icon={<BarsOutlined />} title ="Tasks">
                 <Menu.Item>
-                    <Link to="/register">Stakeholder Registration</Link>
+                    <Link to="/register">Punch In</Link>
                 </Menu.Item>
 
 
-                <Menu.Item>Slaughter Process</Menu.Item>
+                <Menu.Item>Slaughter</Menu.Item>
                 <Menu.Item>Halal Verification</Menu.Item>
 
                 <Menu.Item>
-                    <Link to="/order">Product Registration</Link>
+                    <Link to="/order">Registration</Link>
                 </Menu.Item>
 
-                <Menu.Item onClick={redirect_to_admin} >Product Administer</Menu.Item>
-                <Menu.Item onClick={redirect_to_track} >Track Product</Menu.Item>
-                <Menu.Item onClick={redirect_to_info} >Product Info</Menu.Item>
+                <Menu.Item>
+                    <Link to="/admin"><p>Administration</p></Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to="/track">Track Product</Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to="/info">Product Info</Link>
+                </Menu.Item>
                
             </Menu.SubMenu>
 
@@ -159,8 +145,8 @@ const ProjectLinks = ({darkTheme}) => {
                 Setting
             </Menu.Item>
 
-            <Menu.Item onClick= {redirect_to_home} icon ={<HomeOutlined />}>
-                Front Page
+            <Menu.Item icon ={<HomeOutlined />}>
+                <Link to="/">Front Page</Link>
             </Menu.Item>
         </Menu>
         
