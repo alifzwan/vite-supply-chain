@@ -87,7 +87,7 @@ const ProjectLinks = ({darkTheme}) => {
             </Menu.Item>
 
             <Menu.Item className="balance" icon={<DollarTwoTone />}>
-                {currentbalance.toFixed(2)}
+                {currentbalance.toFixed(2)} ETH
             </Menu.Item>
            
         
