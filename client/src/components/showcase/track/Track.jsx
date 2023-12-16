@@ -55,7 +55,7 @@ const Track = () => {
     const supplychainsmanufacturer = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
-        { image: "/arrow1.png"},
+        { image: "/arrow.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"}
     ];
@@ -63,10 +63,10 @@ const Track = () => {
     const supplychainsdistributor = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
-        { image: "/arrow1.png"},
+        { image: "/arrow.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"},
-        { image: "/arrow1.png"},
+        { image: "/arrow.png"},
     
         { name: "Distributor" , image: "/distributor.svg" }
     ];
@@ -74,13 +74,13 @@ const Track = () => {
     const supplychainsretailer = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
-        { image: "/arrow1.png"},
+        { image: "/arrow.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"},
-        { image: "/arrow1.png"},
+        { image: "/arrow.png"},
     
         { name: "Distributor" , image: "/distributor.svg" },
-        { image: "/arrow1.png"},
+        { image: "/arrow.png"},
     
         { name: "Retailer"    , image: "/retailer.svg"    },
     ];
@@ -88,13 +88,13 @@ const Track = () => {
     const supplychainssold = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
-        {image: "/arrow1.png"},
+        {image: "/arrow.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"},
-        { image: "/arrow1.png"},
+        { image: "/arrow.png"},
     
         { name: "Distributor" , image: "/distributor.svg" },
-        { image: "/arrow1.png"},
+        { image: "/arrow.png"},
     
         { name: "Retailer"    , image: "/retailer.svg"    },
     ];

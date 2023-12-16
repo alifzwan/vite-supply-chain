@@ -15,19 +15,19 @@ const ProjectHero = () => {
     
   const supplychains = [
     { name: "Farmer"      , image: "/farmer.svg"},
-    { image: "/arrow1.png"},
+    { image: "/arrow.png"},
 
     { name: "Slaughterhouse", image: "/chicken.png"},
-    { image: "/arrow1.png"},
+    { image: "/arrow.png"},
 
     { name: "Halal Verify", image: "/halal.png"},
-    { image: "/arrow1.png"},
+    { image: "/arrow.png"},
 
     { name: "Manufacturer", image: "/manufacturer.svg"},
-    { image: "/arrow1.png"},
+    { image: "/arrow.png"},
 
     { name: "Distributor" , image: "/distributor.svg"},
-    { image: "/arrow1.png"},
+    { image: "/arrow.png"},
 
     { name: "Retailer"    , image: "/retailer.svg"},
   ];
