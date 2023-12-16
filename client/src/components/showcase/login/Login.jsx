@@ -74,16 +74,25 @@ const Login = () => {
                 <div className="login">
                     <h2 className="login-title">Login</h2>
                     <div className="login-icon">
-                        <img width="60" height="60" src={"/metamask.png"} alt="" />
+                        <img className="icon" width="60" height="60" src={"/metamask.png"} alt="" />
                         <p>- - - - - - -</p>
-                        <img width="60" height="60" src={"/app.png"} alt="" />
+                        <img className="icon" width="60" height="60" src={"/app.png"} alt="" />
                     </div>
                     <p className="login-message">Login with Metamask</p>
                     <div className="flex-login-container">
-                        <button onClick={handleConnect}>Connect Metamask</button>
-                        <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">
+                        <motion.button onClick={handleConnect}
+                         whileHover={{ scale: 1.05}}
+                         whileTap={{ scale: 0.95 }}
+                        >
+                        Connect Metamask</motion.button>
+                        <motion.a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn" 
+                         target="_blank" 
+                         rel="noopener noreferrer"
+                         whileHover={{ scale: 1.05}}
+                         whileTap={{ scale: 0.95 }}
+                        >
                         Add Metamask To Chrome
-                    </a>
+                        </motion.a>
                     </div>
                 </div>
             </div>
@@ -91,7 +100,7 @@ const Login = () => {
             <motion.div variants={itemVariants} className="back-button">
                         <motion.button
                             variants={itemVariants}
-                            whileHover={{ scale: 1.1 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={redirect_to_home}
                         >
