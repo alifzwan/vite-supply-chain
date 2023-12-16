@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
 import React, { useState, useEffect } from 'react'
 import Web3 from "web3";
+import "ldrs/cardio"; 
 import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
-
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
 
 
@@ -39,10 +39,18 @@ const Admin = () => {
 
     const navigate = useNavigate()
 
+
     useEffect(() => {
         loadWeb3();
-        loadBlockchaindata();
     }, [])
+
+    useEffect(() =>{
+        const delay = 2000;
+        const timeoutId = setTimeout(() => {
+            loadBlockchaindata();
+        }, delay);
+         return () => clearTimeout(timeoutId);
+    }, []);
 
     const [currentaccount, setCurrentaccount] = useState("");
     const [loader        , setloader]         = useState(true);
@@ -55,7 +63,7 @@ const Admin = () => {
     const loadWeb3 = async () => {
         if (window.ethereum) {
             window.web3 = new Web3(window.ethereum);
-            await window.ethereum.enable();
+            await window.ethereum.eth_requestAccounts;
         } else if (window.web3) {
             window.web3 = new Web3(window.web3.currentProvider);
         } else {
@@ -94,14 +102,13 @@ const Admin = () => {
     }
 
 
-    
     if (loader) {
         return (
-            <div>
-                <h1 className="wait">Loading...</h1>
+            <div className="loader" style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.8' }}>
+                <h1>Food Supply Chain System</h1>
+                <l-cardio color="white" size="50" stroke="4" speed="2"></l-cardio>   
             </div>
         )
-
     }
 
     const redirect_to_project = () => {
@@ -117,7 +124,7 @@ const Admin = () => {
         try {
             var receipt = await SupplyChain.methods.Farmering(ItemID).send({ from: currentaccount });
             if (receipt) {
-                loadBlockchaindata();
+                await loadBlockchaindata();
             }
         }
         catch (err) {
@@ -131,7 +138,7 @@ const Admin = () => {
         try {
             var receipt = await SupplyChain.methods.Manufacturing(ItemID).send({ from: currentaccount });
             if (receipt) {
-                loadBlockchaindata();
+                await loadBlockchaindata();
             }
         }
         catch (err) {
@@ -145,7 +152,7 @@ const Admin = () => {
         try {
             var receipt = await SupplyChain.methods.Distributing(ItemID).send({ from: currentaccount });
             if (receipt) {
-                loadBlockchaindata();
+                await loadBlockchaindata();
             }
         }
         catch (err) {
@@ -159,7 +166,7 @@ const Admin = () => {
         try {
             var receipt = await SupplyChain.methods.Retailing(ItemID).send({ from: currentaccount });
             if (receipt) {
-                loadBlockchaindata();
+                await loadBlockchaindata();
             }
         }
         catch (err) {
@@ -173,7 +180,7 @@ const Admin = () => {
         try {
             var receipt = await SupplyChain.methods.sold(ItemID).send({ from: currentaccount });
             if (receipt) {
-                loadBlockchaindata();
+                await loadBlockchaindata();
             }
         }
         catch (err) {
@@ -220,8 +227,8 @@ const Admin = () => {
                                             }
                                         </td>
                                     </tr>
-                            )
-                        })}
+                                )
+                            })}
                         </tbody>
                     </table>
 
@@ -347,9 +354,6 @@ const Admin = () => {
                             </form>
                         
                     </div>
-
-
-
 
                     <div className="admin-back-button-container">
                         <motion.div variants={itemVariants} className="admin-back-button">

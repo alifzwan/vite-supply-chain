@@ -3,7 +3,7 @@ import './order.scss';
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
 import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
-
+import "ldrs/cardio"; 
 import React, { useState, useEffect } from 'react'
 import Web3 from "web3";
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
@@ -38,7 +38,16 @@ const Order = () => {
 
     useEffect(() => {
         loadWeb3();
-        loadBlockchaindata();
+    }, [])
+
+
+    useEffect (() => {
+        const delay = 2000;
+        const timeoutId = setTimeout(() => {
+            loadBlockchaindata();
+        }, delay);
+        return () => clearTimeout(timeoutId);
+
     }, [])
 
     const [currentaccount , setCurrentaccount ]  = useState("");
@@ -65,7 +74,6 @@ const Order = () => {
         }
     };
 
-
     const loadBlockchaindata = async () => {
         setloader(true);
         const web3 = window.web3;
@@ -75,7 +83,7 @@ const Order = () => {
         
         const networkId = await web3.eth.net.getId();
         const networkData = SupplyChainABI.networks[networkId];
-        
+    
         if (networkData) {
             const supplychain = new web3.eth.Contract(SupplyChainABI.abi, networkData.address);
             setSupplyChain(supplychain);
@@ -96,10 +104,12 @@ const Order = () => {
         }
     }
 
+
     if (loader) {
         return (
-            <div>
-                
+            <div className="loader" style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.8' }}>
+                <h1>Food Supply Chain System</h1>
+                <l-cardio color="white" size="50" stroke="4" speed="2"></l-cardio>   
             </div>
         )
 
@@ -138,7 +148,7 @@ const Order = () => {
                 ItemDescription).send({ from: currentaccount });
                 
             if (receipt) {
-                loadBlockchaindata();
+                await loadBlockchaindata();
             }
         }
         catch (err) {

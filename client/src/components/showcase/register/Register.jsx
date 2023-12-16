@@ -1,12 +1,79 @@
 import './register.scss';
 import { motion } from "framer-motion";
 import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
-import GitHubIcon from '@mui/icons-material/GitHub';
-
+import "ldrs/cardio"; 
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import Web3 from "web3";
+
+/* React Hook
+
+    - React Hooks are functions that let you use state and other React features in functional components.
+
+    Most Common Hook:
+
+      useEffect 
+      useState 
+
+
+    --> useState
+
+      - a Hook that allows you to add state to your functional components. 
+
+      It takes an initial state as an argument and returns an array with two elements: 
+       - current state value  
+       - a function that lets you update it.  
+
+
+       For example:
+
+        import React, { useState } from 'react';
+
+        const Counter = () => {
+
+            // Declare a state variable named "count" with an initial value of 0
+            const [count, setCount] = useState(0);
+
+            return (
+                <div>
+                    <p>You clicked {count} times</p>
+                    <button onClick={() => setCount(count + 1)}>
+                        Click me
+                    </button>
+                </div>
+            );
+        };
+
+    --> useEffect
+        
+        - Hook that performs side effects in your components.
+
+        For example:
+
+        import React, { useState, useEffect } from 'react';
+
+        const ExampleComponent = () => {
+            const [data, setData] = useState(null);
+
+            useEffect(() => {
+                // This code will run after the component mounts
+                // and whenever 'data' changes
+
+                // Example: Fetch data from an API
+
+                fetch('https://api.example.com/data')
+                .then(response => response.json())
+                .then(data => setData(data));
+
+                // Cleanup function (runs before the component unmounts or before the effect runs again)
+                return () => {
+                    
+                // Cleanup logic here
+                };
+            }, [data]);  // Dependency array: this effect will run whenever 'data' changes
+        };
+*/ 
 
 
 
@@ -37,10 +104,18 @@ const itemVariants = {
 const Register = () => {
 
     const navigate = useNavigate()
+
     useEffect(() => {
         loadWeb3();
-        loadBlockchaindata();
     }, [])
+
+    useEffect(() => {
+        const delay = 2000;
+        const timeoutId = setTimeout(() => {
+            loadBlockchaindata();
+        }, delay);
+            return () => clearTimeout(timeoutId);
+    },[])
 
     
     const [currentaccount     , setCurrentaccount     ]   = useState("");
@@ -80,7 +155,6 @@ const Register = () => {
             );
         }
     };
-
 
     const loadBlockchaindata = async () => {
         setloader(true);
@@ -138,13 +212,14 @@ const Register = () => {
         }
     }
 
+    
     if (loader) {
         return (
-            <div>
-               
+            <div className="loader" style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.8' }}>
+                <h1>Food Supply Chain System</h1>
+                <l-cardio color="white" size="50" stroke="4" speed="2"></l-cardio>   
             </div>
         )
-
     }
 
     const redirect_to_project = () => {
@@ -194,18 +269,16 @@ const Register = () => {
     }
 
 
-
-
-
     const adminRegFarmer = async (event) => {
         event.preventDefault();
         try {
             var receipt = await SupplyChain.methods.regFarmer(FarmerAddress, FarmerName, FarmerOrigin).send({ from: currentaccount });
             if (receipt) {
-                loadBlockchaindata();
+                await loadBlockchaindata();
             }
         }
         catch (err) {
+            console.error("Error during registration: ", err)
             alert("An error occured!!!")
         }
     }
@@ -215,7 +288,7 @@ const Register = () => {
         try {
             var receipt = await SupplyChain.methods.regManufacturer(ManufacturerAddress, ManufacturerName, ManufacturerOrigin).send({ from: currentaccount });
             if (receipt) {
-                loadBlockchaindata();
+                await loadBlockchaindata();
             }
         }
         catch (err) {
@@ -228,7 +301,7 @@ const Register = () => {
         try {
             var receipt = await SupplyChain.methods.regDistributor(DistributorAddress, DistributorName, DistributorOrigin).send({ from: currentaccount });
             if (receipt) {
-                loadBlockchaindata();
+                await loadBlockchaindata();
             }
         }
         catch (err) {
@@ -241,7 +314,7 @@ const Register = () => {
         try {
             var receipt = await SupplyChain.methods.regRetailer(RetailerAddress, RetailerName, RetailerOrigin).send({ from: currentaccount });
             if (receipt) {
-                loadBlockchaindata();
+                await loadBlockchaindata();
             }
         }
         catch (err) {
@@ -302,8 +375,7 @@ const Register = () => {
                             </form>
                             
                             <table className="reg-table-container" border="1" >
-
-                                        <thead>
+                                    <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>

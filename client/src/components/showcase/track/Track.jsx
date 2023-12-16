@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
 import React, { useState, useEffect } from 'react'
 import Web3 from "web3";
+import "ldrs/cardio"; 
 import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
-
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
 
 
@@ -44,6 +44,17 @@ const Track = () => {
     const redirect_to_project = () => {
         navigate('/project')
     }
+
+    useEffect(() => {
+        
+        const delay = 2000;
+        const timeoutId = setTimeout(() => {
+            loadBlockchaindata();
+        },delay);
+        return () => clearTimeout(timeoutId);
+        
+    },[]);
+    
 
     const supplychainsfarmer = [
 
@@ -229,7 +240,6 @@ const Track = () => {
 
     useEffect(() => {
         loadWeb3();
-        loadBlockchaindata();
     }, [])
 
 
@@ -269,7 +279,6 @@ const Track = () => {
             );
         }
     };
-
 
     const loadBlockchaindata = async () => {
         setloader(true);
@@ -331,18 +340,20 @@ const Track = () => {
             setRetailer(retailer);
             setloader(false);
 
-
-
         }
         else {
             window.alert('The smart contract is not deployed to current network')
         }
     }
 
+
+    
+
     if (loader) {
         return (
-            <div>
-                <h1 className="wait">Loading...</h1>
+            <div className="loader" style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.8' }}>
+                <h1>Food Supply Chain System</h1>
+                <l-cardio color="white" size="50" stroke="4" speed="2"></l-cardio>   
             </div>
         )
 
