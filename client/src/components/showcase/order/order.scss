@@ -94,8 +94,7 @@
                 font-size: 14px;
                 margin-bottom: 20px;
                 margin-right: 5px;
-                
-                
+            
         
                 th, td {
                     color: white;
@@ -125,7 +124,7 @@
             }
         }
         .order-back-button-container {
-            transform: translateY(200%);
+            // transform: translateY(200%);
             display: flex;
             .order-back-button{
                 max-width: 1366px;
