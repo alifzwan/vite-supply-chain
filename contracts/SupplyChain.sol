@@ -434,7 +434,7 @@ contract SupplyChain {
 
      Farmer ==> Manufacturer ==> Distributor ==> Retailer 
 
-     - 1) Item Ordered                     (Plugin)
+     - 1) Item Ordered                     (Punch In)
      - 2) Item are collected by Farmer     (Farmer)
      - 3) Item are being manufactured      (Manufacturer)
      - 4) Item are being Distribute        (Distribution)
@@ -579,6 +579,41 @@ contract SupplyChain {
         require(_id == ItemsInfo[_itemID].retailerId); //Only correct retailer can mark medicine as sold
         require(ItemsInfo[_itemID].chronology == PHASE.Retail);
         ItemsInfo[_itemID].chronology = PHASE.Sold;
+    }
+
+
+    /* ----------------Item Information--------------------
+        - This section is to see the product information
+    */ 
+
+    // To view the product information
+    function info(uint256 _itemID) public view returns (
+    uint256 id,
+    string memory name,
+    string memory categories,
+    string memory brand,
+    string memory origin,
+    string memory nutritionInfo,
+    uint256 farmerId,
+    uint256 manufacturerId,
+    uint256 distributorId,
+    uint256 retailerId,
+    PHASE chronology
+    ) {
+    require(_itemID > 0 && _itemID <= itemsCount);
+
+    // Retrieve information from the specified item
+    id = ItemsInfo[_itemID].id;
+    name = ItemsInfo[_itemID].name;
+    categories = ItemsInfo[_itemID].categories;
+    brand = ItemsInfo[_itemID].brand;
+    origin = ItemsInfo[_itemID].origin;
+    nutritionInfo = ItemsInfo[_itemID].nutritionInfo;
+    farmerId = ItemsInfo[_itemID].farmerId;
+    manufacturerId = ItemsInfo[_itemID].manufacturerId;
+    distributorId = ItemsInfo[_itemID].distributorId;
+    retailerId = ItemsInfo[_itemID].retailerId;
+    chronology = ItemsInfo[_itemID].chronology;
     }
 
 }
