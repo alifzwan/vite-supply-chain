@@ -1,0 +1,86 @@
+.blockchain-main-container {
+    display: flex;
+    
+  
+  }
+  
+  .blockchain-main-section {
+      flex: 1;
+      padding: 20px;
+      align-items: flex-start;
+      display:flex;
+      flex-direction: column;
+      margin: auto;
+      .blockchain-section-title {
+          padding: 150px 150px 5px 160px;
+          font-size: 46px;
+          font-weight: bold;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          text-align: left !important;
+          color: white;
+          margin: 0;
+      }
+  
+      .blockchain-content {
+          padding: 20px 150px 150px 160px;
+  
+          .blockchain-section {
+              box-sizing: border-box;
+              max-width: 57vw;
+  
+              .description {
+                font-size: 18px;
+                b {
+                  color: rebeccapurple;
+                }
+              }
+          }
+  
+          .blockchain-back-button-container {
+              display: flex;
+              .blockchain-back-button{
+                  max-width: 1366px;
+                  margin-top: 70px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  height: 100%;
+                  gap: 20px;
+                  .started {
+                      padding: 0px 10px;
+                      height: 35px;
+                      border: 1px solid white;
+                      border-radius: 10px;
+                      background-color: white;
+                      color: black;
+                      cursor: pointer;
+                      font-weight: bold;
+                      margin-top: 5px;
+                      text-align: center;
+  
+                  }
+                  .learn {
+                    padding: 0px 10px;
+                    height: 35px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    background-color: #001529 ;
+                    color: white;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-top: 5px;
+                    text-align: center;
+  
+                  }
+                  .started:hover { 
+                      background-color: #ccc;
+                      border-color: rebeccapurple;
+                  }
+                  .learn:hover { 
+                    background-color: hsl(0,0%,12%);
+                    border-color: rebeccapurple;
+                }
+              }
+          }
+      }
+  }
