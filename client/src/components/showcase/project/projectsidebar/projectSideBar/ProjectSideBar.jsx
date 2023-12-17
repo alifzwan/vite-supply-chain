@@ -31,7 +31,7 @@ function ProjectSideBar() {
         theme={darkTheme ? "dark" : "light"}
         className="project-navbar"
       >
-        <Logo />
+        <Logo darkTheme={darkTheme}/>
         <ProjectLinks darkTheme={darkTheme}/>
         <ProjectToggleButton darkTheme={darkTheme} toggleTheme={toggleTheme} />
       </Sider>
@@ -51,12 +51,7 @@ function ProjectSideBar() {
             }
           />
         </Header>
-
-        
       </Layout>
-
-      
-
     </Layout>
   );
 }
