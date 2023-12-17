@@ -73,17 +73,14 @@ const ProjectLinks = ({darkTheme}) => {
 
    
 
-    const copyAccount =() => {
-        navigator.clipboard.writeText(this.state.textToCopy)
-        
-    };
+   
 
     return (
         
-        <Menu className="menu-bar" theme={darkTheme ? 'dark' : 'light'} mode="inline">
+        <Menu className="project-menu-bar" theme={darkTheme ? 'dark' : 'light'} mode="inline">
             
             <Menu.Item className="account" icon={<UserOutlined />}>
-                <Menu.Item onCopy= {copyAccount} className="account-show">{currentaccount}</Menu.Item>
+                {currentaccount}
             </Menu.Item>
 
             <Menu.Item className="balance" icon={<DollarTwoTone />}>
@@ -114,7 +111,10 @@ const ProjectLinks = ({darkTheme}) => {
 
 
                 <Menu.Item>Slaughter</Menu.Item>
-                <Menu.Item>Halal Verification</Menu.Item>
+                
+                <Menu.Item>
+                    <Link to="/verify">Halal Verification</Link>
+                </Menu.Item>
 
                 <Menu.Item>
                     <Link to="/order">Registration</Link>

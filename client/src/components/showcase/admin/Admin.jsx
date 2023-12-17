@@ -131,6 +131,19 @@ const Admin = () => {
             alert("An error occured!!!")
         }
     }
+
+    const adminVerifier = async (event) => {
+        event.preventDefault();
+        try {
+            var receipt = await SupplyChain.methods.Verifying(ItemID).send({ from: currentaccount });
+            if (receipt) {
+                await loadBlockchaindata();
+            }
+        }
+        catch (err) {
+            alert("An error occured!!!")
+        }
+    }
     
     
     const adminManufacture = async (event) => {
@@ -248,6 +261,54 @@ const Admin = () => {
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.95 }}
                                             onSubmit={adminFarmer}
+                                        >
+                                            Punch In
+                                        </motion.button>
+                                    </motion.div>
+                                
+                                    </motion.div>
+                                </form>
+                        </div>
+
+                        <div className="admin-section">
+                            <h2>Verifier</h2>
+                                <form onSubmit={adminVerifier}>
+                                    <motion.div className="input-container" variants={variants}>
+
+                                        <motion.div variants={itemVariants}>
+                                            <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                        </motion.div>
+
+                                    <motion.div variants={itemVariants} className="admin-button">
+                                        <motion.button
+                                            variants={itemVariants}
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onSubmit={adminVerifier}
+                                        >
+                                            Punch In
+                                        </motion.button>
+                                    </motion.div>
+                                
+                                    </motion.div>
+                                </form>
+                        </div>
+
+                        <div className="admin-section">
+                            <h2>Slaughterhouse</h2>
+                                <form >
+                                    <motion.div className="input-container" variants={variants}>
+
+                                        <motion.div variants={itemVariants}>
+                                            <input type="text"  placeholder="Enter ID" /><br />
+                                        </motion.div>
+
+                                    <motion.div variants={itemVariants} className="admin-button">
+                                        <motion.button
+                                            variants={itemVariants}
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            
                                         >
                                             Punch In
                                         </motion.button>

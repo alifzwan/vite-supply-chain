@@ -63,9 +63,20 @@ const Track = () => {
        
     ];
 
+    const supplychainsverifier = [
+
+        { name: "Farmer"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+    
+        { name: "Verifier", image: "/halal.png"}
+    ];
+
     const supplychainsmanufacturer = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Verifier", image: "/halal.png"},
         { image: "/arrow.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"}
@@ -74,6 +85,9 @@ const Track = () => {
     const supplychainsdistributor = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Verifier", image: "/halal.png"},
         { image: "/arrow.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"},
@@ -85,6 +99,9 @@ const Track = () => {
     const supplychainsretailer = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Verifier", image: "/halal.png"},
         { image: "/arrow.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"},
@@ -100,6 +117,9 @@ const Track = () => {
 
         { name: "Farmer"      , image: "/farmer.svg"      },
         {image: "/arrow.png"},
+
+        { name: "Verifier", image: "/halal.png"},
+        { image: "/arrow.png"},
     
         { name: "Manufacturer", image: "/manufacturer.svg"},
         { image: "/arrow.png"},
@@ -112,7 +132,7 @@ const Track = () => {
 
     const chronologyTableFarmer = (name) => {
         switch (name) {
-          case "Farmer":
+            case "Farmer":
             return (
               <tbody>
                 <tr>
@@ -126,10 +146,10 @@ const Track = () => {
             return null;
         }
     };
-    
-    const chronologyTableManufacturer = (name) => {
+
+    const chronologyTableVerifier = (name) => {
         switch (name) {
-          case "Farmer":
+            case "Farmer":
             return (
               <tbody>
                 <tr>
@@ -139,7 +159,44 @@ const Track = () => {
                 </tr>
               </tbody>
             );
-          case "Manufacturer":
+            case "Verifier":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Verifier[Number(Items[ItemID].verifierId)].id)}</td>
+                  <td>{Verifier[Number(Items[ItemID].verifierId)].name}</td>
+                  <td>{Verifier[Number(Items[ItemID].verifierId)].location}</td>
+                </tr>
+              </tbody>
+            );
+          default:
+            return null;
+        }
+    };
+    
+    const chronologyTableManufacturer = (name) => {
+        switch (name) {
+            case "Farmer":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].name}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+            case "Verifier":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Verifier[Number(Items[ItemID].verifierId)].id)}</td>
+                  <td>{Verifier[Number(Items[ItemID].verifierId)].name}</td>
+                  <td>{Verifier[Number(Items[ItemID].verifierId)].location}</td>
+                </tr>
+              </tbody>
+            );
+            case "Manufacturer":
             return (
               <tbody>
                 <tr>
@@ -156,7 +213,7 @@ const Track = () => {
 
     const chronologyTableDistributor = (name) => {
         switch (name) {
-          case "Farmer":
+            case "Farmer":
             return (
               <tbody>
                 <tr>
@@ -166,7 +223,17 @@ const Track = () => {
                 </tr>
               </tbody>
             );
-          case "Manufacturer":
+            case "Verifier":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Verifier[Number(Items[ItemID].verifierId)].id)}</td>
+                  <td>{Verifier[Number(Items[ItemID].verifierId)].name}</td>
+                  <td>{Verifier[Number(Items[ItemID].verifierId)].location}</td>
+                </tr>
+              </tbody>
+            );
+            case "Manufacturer":
             return (
               <tbody>
                 <tr>
@@ -193,13 +260,23 @@ const Track = () => {
 
     const chronologyTableRetail = (name) => {
         switch (name) {
-          case "Farmer":
+            case "Farmer":
             return (
               <tbody>
                 <tr>
                   <td>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</td>
                   <td>{Farmer[Number(Items[ItemID].farmerId)].name}</td>
                   <td>{Farmer[Number(Items[ItemID].farmerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+            case "Verifier":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Verifier[Number(Items[ItemID].verifierId)].id)}</td>
+                  <td>{Verifier[Number(Items[ItemID].verifierId)].name}</td>
+                  <td>{Verifier[Number(Items[ItemID].verifierId)].location}</td>
                 </tr>
               </tbody>
             );
@@ -253,16 +330,18 @@ const Track = () => {
 
 
     const [Farmer        , setFarmer        ] = useState();
+    const [Verifier      , setVerifier      ] = useState();
     const [Manufacturer  , setManufacturer  ] = useState();
     const [Distributor   , setDistributor   ] = useState();
     const [Retailer      , setRetailer      ] = useState();
     
     
     const [TrackTillOrdered     , displayTrackTillOrdered    ] = useState(false);
-    const [TrackTillRetail      , displayTrackTillRetail     ] = useState(false);
-    const [TrackTillDistribute  , displayTrackTillDistribute ] = useState(false);
-    const [TrackTillManufacture , displayTrackTillManufacture] = useState(false);
     const [TrackTillFarmer      , displayTrackTillFarmer     ] = useState(false);
+    const [TrackTillVerify      , displayTrackTillVerify     ] = useState(false);
+    const [TrackTillManufacture , displayTrackTillManufacture] = useState(false);
+    const [TrackTillDistribute  , displayTrackTillDistribute ] = useState(false);
+    const [TrackTillRetail      , displayTrackTillRetail     ] = useState(false);
     const [TrackTillSold        , displayTrackTillSold       ] = useState(false);
 
 
@@ -292,10 +371,10 @@ const Track = () => {
             const supplychain = new web3.eth.Contract(SupplyChainABI.abi, networkData.address);
             setSupplyChain(supplychain);
             var i;
-
-
             const itemsCount = await supplychain.methods.itemsCount().call();
             const item = {};
+
+            
             const ItemPhase = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i + 1] = await supplychain.methods.ItemsInfo(i + 1).call();
@@ -312,6 +391,14 @@ const Track = () => {
                 farmer[i + 1] = await supplychain.methods.farmerInfo(i + 1).call();
             }
             setFarmer(farmer);
+
+
+            const verifierCount = await supplychain.methods.verifierCount().call();
+            const verifier = {};
+            for (i = 0; i < verifierCount; i++) {
+                verifier[i + 1] = await supplychain.methods.verifierInfo(i + 1).call();
+            }
+            setVerifier(verifier);
 
 
             const manufacturerCount = await supplychain.methods.manufacturerCount().call();
@@ -509,6 +596,97 @@ const Track = () => {
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => displayTrackTillFarmer(false)}
+                            >
+                            Track Another Item
+                            </motion.button>
+
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={redirect_to_project}
+                            >
+                                Back To Project Overview
+                            </motion.button>
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+// Item Arrived at Verifier
+    if(TrackTillVerify) {
+        return (
+            <div className="chronology-verifier-main-container">
+                <div className="menu-bar">
+                    <ProjectSideBar />
+                </div> 
+
+                <div className="main-section">
+                    <div className="chronology-verifier-section-title">Track Information</div>
+                    <div className="chronology-verifier-content">
+                        <div className="chronology-verifier-section">
+                            <table className="table-container" border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Categories</th>
+                                        <th>Brand</th>
+                                        <th>Based In</th>
+                                        <th>Description</th>
+                                        <th>Current Stage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{Number(Items[ItemID].id)}</td>
+                                        <td>{Items[ItemID].name}</td>
+                                        <td>{Items[ItemID].categories}</td>
+                                        <td>{Items[ItemID].brand}</td>
+                                        <td>{Items[ItemID].origin}</td>
+                                        <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{ItemPhase[ItemID]}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="supplychain-verifier-section">
+                            {supplychainsverifier.map((supplychain, index) => (
+                                <motion.div className="supplychain-verifier-item" 
+                                key={index}>
+                            
+                                    <motion.img src={supplychain.image} alt={supplychain.name} id={supplychain.name}
+                                        whileHover={{ scale: 1.1 }} 
+                                        whileTap={{ scale: 0.95 }} />
+
+                                    {supplychain.name && (
+                                    <motion.div className="supplychain-verifier-track-section">
+                                        <h2>{supplychain.name} Information</h2>
+                                            <table className="table-container" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Based In</th>
+                                                    </tr>
+                                                </thead>
+                                                {chronologyTableVerifier(supplychain.name)}
+                                            </table>
+                                    </motion.div>
+                                    )}
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="chronology-verifier-back-button-container">
+                        <motion.div variants={itemVariants} className="chronology-verifier-back-button">
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => displayTrackTillVerify(false)}
                             >
                             Track Another Item
                             </motion.button>
@@ -923,17 +1101,20 @@ const Track = () => {
             alert("Please enter valid ID");
         else {
            
-            if (Items[ItemID].chronology == 5)
+            if (Items[ItemID].chronology == 6)
                 displayTrackTillSold(true);
           
-            else if (Items[ItemID].chronology == 4)
+            else if (Items[ItemID].chronology == 5)
                 displayTrackTillRetail(true);
           
-            else if (Items[ItemID].chronology == 3)
+            else if (Items[ItemID].chronology == 4)
                 displayTrackTillDistribute(true);
             
-            else if (Items[ItemID].chronology == 2)
+            else if (Items[ItemID].chronology == 3)
                 displayTrackTillManufacture(true);
+
+            else if (Items[ItemID].chronology == 2)
+                displayTrackTillVerify(true);
            
             else if (Items[ItemID].chronology == 1)
                 displayTrackTillFarmer(true);

@@ -124,24 +124,28 @@ const Register = () => {
 
     
     const [FarmerName         , setFarmerName         ]   = useState();
+    const [VerifierName       , setVerifierName         ]   = useState();
     const [ManufacturerName   , setManufacturerName   ]   = useState();
     const [DistributorName    , setDistributorName    ]   = useState();
     const [RetailerName       , setRetailerName       ]   = useState();
 
 
     const [FarmerOrigin       , setFarmerOrigin       ]   = useState();
+    const [VerifierOrigin , setVerifierOrigin ]   = useState();
     const [ManufacturerOrigin , setManufacturerOrigin ]   = useState();
     const [DistributorOrigin  , setDistributorOrigin  ]   = useState();
     const [RetailerOrigin     , setRetailerOrigin     ]   = useState();
 
 
     const [FarmerAddress      , setFarmerAddress      ]   = useState();
+    const [VerifierAddress      , setVerifierAddress      ]   = useState();
     const [ManufacturerAddress, setManufacturerAddress]   = useState();
     const [DistributorAddress , setDistributorAddress ]   = useState();
     const [RetailerAddress    , setRetailerAddress    ]   = useState();
 
 
     const [Farmer             , setFarmer             ]   = useState();
+    const [Verifier           , setVerifier           ]   = useState();
     const [Manufacturer       , setManufacturer       ]   = useState();
     const [Distributor        , setDistributor        ]   = useState();
     const [Retailer           , setRetailer           ]   = useState();
@@ -178,6 +182,14 @@ const Register = () => {
                 farmer[i] = await supplychain.methods.farmerInfo(i + 1).call();
             }
             setFarmer(farmer);
+
+
+            const verifierCount = await supplychain.methods.verifierCount().call();  
+            const verifier = {}; 
+            for (i = 0; i < verifierCount; i++) {  
+                verifier[i] = await supplychain.methods.verifierInfo(i + 1).call();
+            }
+            setVerifier(verifier);
 
 
             const manufacturerCount = await supplychain.methods.manufacturerCount().call();
@@ -237,6 +249,17 @@ const Register = () => {
     }
 
 
+    const adminAddressVerifier = (event) => {
+        setVerifierAddress(event.target.value);
+    }
+    const adminOriginVerifier = (event) => {
+        setVerifierOrigin(event.target.value);
+    }
+    const adminNameVerifier = (event) => {
+        setVerifierName(event.target.value);
+    }
+
+
     const adminAddressManufacturer = (event) => {
         setManufacturerAddress(event.target.value);
     }
@@ -273,6 +296,20 @@ const Register = () => {
         event.preventDefault();
         try {
             var receipt = await SupplyChain.methods.regFarmer(FarmerAddress, FarmerName, FarmerOrigin).send({ from: currentaccount });
+            if (receipt) {
+                await loadBlockchaindata();
+            }
+        }
+        catch (err) {
+            console.error("Error during registration: ", err)
+            alert("An error occured!!!")
+        }
+    }
+
+    const adminRegVerifier = async (event) => {
+        event.preventDefault();
+        try {
+            var receipt = await SupplyChain.methods.regVerifier(VerifierAddress, VerifierName, VerifierOrigin).send({ from: currentaccount });
             if (receipt) {
                 await loadBlockchaindata();
             }
@@ -335,12 +372,9 @@ const Register = () => {
 
                 <div className="main-section">
                    
-                    
                     <div className="reg-section-title">Registration</div>
 
                     <div className="register-content">
-
-
                         <div className="stakeholder-section">
                             <h2>Farmer</h2>
                             <form onSubmit={adminRegFarmer}>
@@ -398,7 +432,65 @@ const Register = () => {
                                     </tbody>
 
                             </table>
+                        </div>
 
+                        <div className="stakeholder-section">
+                            <h2>Verifier</h2>
+                            <form onSubmit={adminRegVerifier}>
+                            <motion.div className="input-container" variants={variants}>
+                                <motion.div variants={itemVariants}>
+                                    <label >Ethereum Address:</label><br />
+                                    <input type="text" onChange={adminAddressVerifier} placeholder="Ethereum Address" required/><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants}>
+                                    <label>Verifier Name:</label><br />
+                                    <input type="text" onChange={adminNameVerifier} placeholder="Verifier Name" required/><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants}>
+                                    <label>Based In:</label><br />
+                                    <input type="text" onChange={adminOriginVerifier} placeholder="Based In" required/><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants} className="register-button">
+                                    <motion.button
+                                        variants={itemVariants}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onSubmit={adminRegFarmer}
+                                    >
+                                        Register
+                                    </motion.button>
+                                </motion.div>
+                            </motion.div>
+
+                            </form>
+                            
+                            <table className="reg-table-container" border="1" >
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Based In</th>
+                                            <th>Contract Address</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {Object.keys(Verifier).map(function (key) {
+                                            return (
+                                                <tr key={key}>
+                                                    <td>{Number(Verifier[key].id)}</td>
+                                                    <td>{Verifier[key].name}</td>
+                                                    <td>{Verifier[key].location}</td>
+                                                    <td>{Verifier[key].addr}</td>
+                                                </tr>
+                                            )
+                                        })}
+                                    </tbody>
+
+                            </table>
                         </div>
 
 
@@ -436,8 +528,7 @@ const Register = () => {
                             
 
                             <table className="reg-table-container" border="1" >
-
-                                        <thead>
+                                    <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
@@ -458,9 +549,7 @@ const Register = () => {
                                             )
                                         })}
                                     </tbody>
-
                             </table>
-
                         </div>
 
 
@@ -549,6 +638,65 @@ const Register = () => {
                                         whileHover={{ scale: 1.1 }}
                                         whileTap={{ scale: 0.95 }}
                                         onSubmit={adminRegRetailer}
+                                    >
+                                        Register
+                                    </motion.button>
+                                </motion.div>
+                            </motion.div>
+                            </form>
+                            
+
+                        
+                            <table className="reg-table-container" border="1" >
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Based In</th>
+                                        <th>Contract Address</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {Object.keys(Retailer).map(function (key) {
+                                        return (
+                                            <tr key={key}>
+                                                <td>{Number(Retailer[key].id)}</td>
+                                                <td>{Retailer[key].name}</td>
+                                                <td>{Retailer[key].location}</td>
+                                                <td>{Retailer[key].addr}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="stakeholder-section">
+                            <h2>Slaughterhouse</h2>
+                            <form >
+                                <motion.div className="input-container" variants={variants}>
+                                <motion.div variants={itemVariants}>
+                                    <label>Ethereum Address:</label><br />
+                                    <input type="text"  placeholder="Ethereum Address" /><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants}>
+                                    <label>Slaughterhouse Name:</label><br />
+                                    <input type="text"  placeholder="Retailer Name" /><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants}>
+                                    <label>Based In:</label><br />
+                                    <input type="text"  placeholder="Based In" /><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants} className="register-button">
+                                    <motion.button
+                                        variants={itemVariants}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        
                                     >
                                         Register
                                     </motion.button>
