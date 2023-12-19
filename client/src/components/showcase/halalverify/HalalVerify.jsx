@@ -59,6 +59,15 @@ const HalalVerify = () => {
         loadWeb3();
     }, [])
 
+    const [checklist, setChecklist] = useState({
+        RawMaterialsHalalCompliant: false,
+        SupplierHasHalalCertification: false,
+        EquipmentFreeFromContamination: false,
+        CorrectSlaughteringMethods: false,
+        LabelingAndPackagingMeetsHalalStandards: false,
+        StaffProperlyTrainedInHalalProcedures: false,
+    });
+
 
     const [currentaccount, setCurrentaccount] = useState("");
     const [loader        , setloader        ] = useState(true);
@@ -142,20 +151,44 @@ const HalalVerify = () => {
         fetchItemInfo(itemId);
     };
 
+    const handleCheckboxChange = (checkboxName) => {
+        setChecklist((prevChecklist) => ({
+            ...prevChecklist,
+            [checkboxName]: !prevChecklist[checkboxName],
+        }));
+    };
+
     const handleChecklistSubmit = async () => {
-        // Assuming there is a function halalVerify in SupplyChain contract
         try {
-          // Replace the second argument with the actual item ID you want to verify
-          await SupplyChain.methods.halalVerify(ItemID).send({ from: currentaccount });
+
+            // const verificationStatus = halalVerify(checklist);
+            if (Object.values(checklist).every((item) => item === true)) {
+                // If verification succeeds, send the transaction
+                await SupplyChain.methods
+                    .tickChecklistItem(
+                        ItemID,
+                        checklist.RawMaterialsHalalCompliant,
+                        checklist.SupplierHasHalalCertification,
+                        checklist.EquipmentFreeFromContamination,
+                        checklist.CorrectSlaughteringMethods,
+                        checklist.LabelingAndPackagingMeetsHalalStandards,
+                        checklist.StaffProperlyTrainedInHalalProcedures
+                    )
+                    .send({ from: currentaccount });
     
-          // After successful verification, you can update the UI or perform other actions
-          // For example, you might want to display a success message
-          alert('Halal verification successful!');
+                // After successful verification and transaction, you can update the UI or perform other actions
+                // For example, you might want to display a success message
+                alert('Halal verification successful!');
+            } else {
+                // Handle the case where verification fails
+                alert('Please make sure you tick all the checklist');
+            }
         } catch (error) {
-          // Handle the error, display a message, or perform other actions
-          alert('Please make sure you tick all the checklist');
+            // Handle the error, display a message, or perform other actions
+            console.log(error)
+            alert('Please make sure you tick all the checklist');
         }
-      };
+    };
 
 
     if (loader) {
@@ -222,32 +255,62 @@ const HalalVerify = () => {
 
                             <div className="check-box">
                                 <label>
-                                    <input className="verify-checkbox" type="checkbox" required/>
+                                    <input 
+                                    className="verify-checkbox" 
+                                    type="checkbox" 
+                                    checked={checklist.RawMaterialsHalalCompliant}
+                                    onChange={() => handleCheckboxChange('RawMaterialsHalalCompliant')}
+                                    required/>
                                     Does all raw materials used are halal compliant ?
                                 </label>
 
                                 <label>
-                                    <input className="verify-checkbox" type="checkbox" required/>
+                                    <input 
+                                    className="verify-checkbox" 
+                                    type="checkbox" 
+                                    checked={checklist.SupplierHasHalalCertification}
+                                    onChange={() => handleCheckboxChange('SupplierHasHalalCertification')}
+                                    required/>
                                     Does the supplier have halal certification ?
                                 </label>
 
                                 <label>
-                                    <input className="verify-checkbox" type="checkbox" required/>
+                                    <input 
+                                    className="verify-checkbox" 
+                                    type="checkbox" 
+                                    checked={checklist.EquipmentFreeFromContamination}
+                                    onChange={() => handleCheckboxChange('EquipmentFreeFromContamination')}
+                                    required/>
                                     Does all equipment used in production is free from contamination 
                                 </label>
 
                                 <label>
-                                    <input className="verify-checkbox" type="checkbox" required/>
+                                    <input 
+                                    className="verify-checkbox" 
+                                    type="checkbox" 
+                                    checked={checklist.CorrectSlaughteringMethods}
+                                    onChange={() => handleCheckboxChange('CorrectSlaughteringMethods')}
+                                    required/>
                                     Does the product does the correct slaughtering methods?
                                 </label>
 
                                 <label>
-                                    <input className="verify-checkbox" type="checkbox" required/>
+                                    <input 
+                                    className="verify-checkbox" 
+                                    type="checkbox" 
+                                    checked={checklist.LabelingAndPackagingMeetsHalalStandards}
+                                    onChange={() => handleCheckboxChange('LabelingAndPackagingMeetsHalalStandards')}
+                                    required/>
                                     Does the labeling and packaging of products to ensure they meet halal standards?
                                 </label>
 
                                 <label>
-                                    <input className="verify-checkbox" type="checkbox" required/>
+                                    <input 
+                                    className="verify-checkbox" 
+                                    type="checkbox" 
+                                    checked={checklist.StaffProperlyTrainedInHalalProcedures}
+                                    onChange={() => handleCheckboxChange('StaffProperlyTrainedInHalalProcedures')}
+                                    required/>
                                     Does all staff involved are properly trained in halal procedures ?
                                 </label>
                             </div>
