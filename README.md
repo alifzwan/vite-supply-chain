@@ -22,7 +22,9 @@
   Innovating Food Supply Chain Management: Smart Contract and Consensus Algorithm in Blockchain
 </h1> 
 
-<img src = "https://github.com/alifzwan/React-Supply-Chain/assets/63784108/0ac0efc0-d8fa-4a64-8f05-f40a71bd18ba" width="1306">
+<img src = "https://github.com/alifzwan/React-Supply-Chain/assets/63784108/d0757b80-ce95-42ff-8d25-81e11d8a0306" width="1306">
+
+
 
 ## 🚀 Requirements
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
