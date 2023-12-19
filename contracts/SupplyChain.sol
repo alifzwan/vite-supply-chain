@@ -67,9 +67,11 @@ contract SupplyChain {
     // Establish count for each flow 
     uint256 public itemsCount = 0;
     uint256 public farmerCount = 0;
+    uint256 public verifierCount = 0;
     uint256 public manufacturerCount = 0;
     uint256 public distributorCount = 0;
     uint256 public retailerCount = 0;
+  
 
 
     
@@ -136,11 +138,25 @@ contract SupplyChain {
     enum PHASE {   
         Plugin,
         Farmer,
+        Verifier,
         Manufacturer,
         Distribution,
         Retail,
         Sold
+        
     }
+
+    // Enum to represent the checklist items
+    enum ChecklistItem {
+        RawMaterialsHalalCompliant,
+        SupplierHasHalalCertification,
+        EquipmentFreeFromContamination,
+        CorrectSlaughteringMethods,
+        LabelingAndPackagingMeetsHalalStandards,
+        StaffProperlyTrainedInHalalProcedures,
+        OverallVerification
+    }
+    
 
     
     /* STRUCT 
@@ -181,9 +197,11 @@ contract SupplyChain {
 
         // Id of the Admin that going to process the items
         uint256 farmerId;  
+        uint256 verifierId;
         uint256 manufacturerId;
         uint256 distributorId;
         uint256 retailerId;
+        
 
         
         PHASE chronology; // The item chronology
@@ -202,9 +220,11 @@ contract SupplyChain {
         if (ItemsInfo[_itemID].chronology == PHASE.Plugin)
             return "Your item is already Ordered. Please wait for further processes.";
         else if (ItemsInfo[_itemID].chronology == PHASE.Farmer)
-            return "Your item is being collected by the farmers. Please wait for further processes.";     
+            return "Your item is being collected by the farmers. Please wait for further processes."; 
+        else if (ItemsInfo[_itemID].chronology == PHASE.Verifier)
+            return "Your item is being verify the halal status. Please wait for further processes.";     
         else if (ItemsInfo[_itemID].chronology == PHASE.Manufacturer)
-            return "Your item is being manufactured. Please wait for further processes.";  
+            return "Your item is being manufactured. Please wait for further processes."; 
         else if (ItemsInfo[_itemID].chronology == PHASE.Distribution)
             return "Your item is being distributed. Please wait for further processes.";  
         else if (ItemsInfo[_itemID].chronology == PHASE.Retail)
@@ -241,6 +261,14 @@ contract SupplyChain {
 
     mapping(uint256 => farmer) public farmerInfo;  // You can call this variable and it'll show all the admin's attributes
 
+    struct verifier{
+        address addr;
+        uint256 id; 
+        string name; 
+        string location; 
+    }
+
+    mapping(uint256 => verifier) public verifierInfo;
 
     struct manufacturer {
         address addr;
@@ -271,6 +299,8 @@ contract SupplyChain {
 
     mapping(uint256 => retailer) public retailerInfo;
 
+
+   
 
 
     /*-----------------Register Each Flow----------------------
@@ -330,6 +360,15 @@ contract SupplyChain {
         farmerInfo[farmerCount] = farmer(_address, farmerCount, _name, _location);  // All this attributes will be stored in farmerInfo
     }
 
+    function regVerifier(
+        address _address,
+        string memory _name,
+        string memory _location
+    ) public onlyCreator {
+        verifierCount++;
+        verifierInfo[verifierCount] = verifier(_address, verifierCount, _name, _location);  // All this attributes will be stored in manufacturerInfo
+    }
+
 
     function regManufacturer(
         address _address,
@@ -340,8 +379,6 @@ contract SupplyChain {
         manufacturerInfo[manufacturerCount] = manufacturer(_address, manufacturerCount, _name, _location);  // All this attributes will be stored in manufacturerInfo
     }
     
-
-
     function regDistributor(
         address _address,
         string memory _name,
@@ -413,9 +450,9 @@ contract SupplyChain {
         string memory _nutritionInfo
 
     ) public onlyCreator {
-        require((farmerCount > 0) && (manufacturerCount > 0) && (distributorCount > 0) && (retailerCount > 0));   // Before order, Creator have to register all the admin
+        require((farmerCount > 0) && (verifierCount > 0) && (manufacturerCount > 0) && (distributorCount > 0) && (retailerCount > 0));   // Before order, Creator have to register all the admin
         itemsCount++;
-        ItemsInfo[itemsCount] = items(itemsCount, _name, _categories, _brand, _origin, _nutritionInfo, 0, 0, 0, 0, PHASE.Plugin); // All this attributes will be stored in ItemsInfo
+        ItemsInfo[itemsCount] = items(itemsCount, _name, _categories, _brand, _origin, _nutritionInfo, 0, 0, 0, 0, 0, PHASE.Plugin); // All this attributes will be stored in ItemsInfo
     }  
 
 
@@ -508,12 +545,35 @@ contract SupplyChain {
 
     }
 
-    // To change the flow from Farmer ==> Manufacturer
+    //To change the flow from Farmer ==> Verifier
+     function Verifying(uint256 _itemID) public {
+        require(_itemID > 0 && _itemID <= itemsCount);           
+        uint256 _id = trackVerifier(msg.sender);                
+        require(_id > 0);                                       
+        require(ItemsInfo[_itemID].chronology == PHASE.Farmer); 
+        ItemsInfo[_itemID].verifierId = _id;                     
+        ItemsInfo[_itemID].chronology = PHASE.Verifier;         
+    }
+
+    // To verify 
+    function trackVerifier(address _address) private view returns (uint256) {
+        require(verifierCount > 0);                                       
+
+        for (uint256 i = 1; i <= verifierCount; i++) {
+            if (verifierInfo[i].addr == _address)   
+            return verifierInfo[i].id;              
+        }
+        return 0;
+
+    }
+
+
+    // To change the flow from Verifier ==> Manufacturer
     function Manufacturing(uint256 _itemID) public {
         require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackManufacture(msg.sender);
         require(_id > 0);
-        require(ItemsInfo[_itemID].chronology == PHASE.Farmer);
+        require(halalVerify(_itemID));
         ItemsInfo[_itemID].manufacturerId = _id;
         ItemsInfo[_itemID].chronology = PHASE.Manufacturer;
     }
@@ -584,7 +644,7 @@ contract SupplyChain {
 
     /* ----------------Item Information--------------------
         - This section is to see the product information
-    */ 
+        */ 
 
     // To view the product information
     function info(uint256 _itemID) public view returns (
@@ -595,6 +655,7 @@ contract SupplyChain {
     string memory origin,
     string memory nutritionInfo,
     uint256 farmerId,
+    uint256 verifierId,
     uint256 manufacturerId,
     uint256 distributorId,
     uint256 retailerId,
@@ -610,10 +671,62 @@ contract SupplyChain {
     origin = ItemsInfo[_itemID].origin;
     nutritionInfo = ItemsInfo[_itemID].nutritionInfo;
     farmerId = ItemsInfo[_itemID].farmerId;
+    verifierId = ItemsInfo[_itemID].verifierId;
     manufacturerId = ItemsInfo[_itemID].manufacturerId;
     distributorId = ItemsInfo[_itemID].distributorId;
     retailerId = ItemsInfo[_itemID].retailerId;
     chronology = ItemsInfo[_itemID].chronology;
     }
 
+  
+
+
+
+    // Modifier to ensure only the assigned verifier can tick checklist items
+    modifier onlyVerifier(uint256 _itemID) {
+        // Check if the item is in the verification phase
+        require(ItemsInfo[_itemID].chronology == PHASE.Verifier, "Item is not in verification phase");
+        // Ensure the verifier is the one who initiated the verification
+        require(ItemsInfo[_itemID].verifierId == trackVerifier(msg.sender), "Only the assigned verifier can tick checklist items");
+        _;
+    }
+
+    // Function for the verifier to tick off checklist items
+    function tickChecklistItem(ChecklistItem _checklistItem) public {
+        // Get the itemID associated with the calling user
+        uint256 _itemID = getCallerItemID();
+
+        // Ensure the caller is the assigned verifier for the item
+        require(_itemID > 0 && _itemID <= itemsCount, "Invalid item ID");
+        require(ItemsInfo[_itemID].chronology == PHASE.Verifier, "Item is not in verification phase");
+        require(ItemsInfo[_itemID].verifierId == trackVerifier(msg.sender), "Only the assigned verifier can tick checklist items");
+
+    }
+
+
+
+    // Function to get the itemID associated with the calling user
+    function getCallerItemID() private view returns (uint256) {
+        // Iterate through items and find the one associated with the caller
+        for (uint256 i = 1; i <= itemsCount; i++) {
+            if (ItemsInfo[i].verifierId == trackVerifier(msg.sender) && ItemsInfo[i].chronology == PHASE.Verifier) {
+                return i;
+            }
+        }
+        revert("Caller is not associated with any item in verification phase");
+    }
+
+
+
+    // Function to perform overall halal verification
+    function halalVerify(uint256 _itemID) private returns (bool) {
+    // Check if the item is in the verification phase
+    if (ItemsInfo[_itemID].chronology != PHASE.Verifier) {
+        // Log or emit an event indicating the verification phase requirement is not met
+        return false;
+    }
+
+    return true;
+
+}
 }
