@@ -70,8 +70,11 @@ const Info = () => {
         const networkId = await web3.eth.net.getId();
         const networkData = SupplyChainABI.networks[networkId];
         if (networkData) {
+            
             const supplychain = new web3.eth.Contract(SupplyChainABI.abi, networkData.address);
             setSupplyChain(supplychain);
+
+
             var i;
             const itemsCount = await supplychain.methods.itemsCount().call();
             const item = {};

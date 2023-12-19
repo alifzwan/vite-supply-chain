@@ -149,12 +149,14 @@ const Admin = () => {
     const adminManufacture = async (event) => {
         event.preventDefault();
         try {
+            console.log("ItemID:", ItemID);
             var receipt = await SupplyChain.methods.Manufacturing(ItemID).send({ from: currentaccount });
             if (receipt) {
                 await loadBlockchaindata();
             }
         }
         catch (err) {
+            console.log(err)
             alert("An error occured!!!")
         }
     }
