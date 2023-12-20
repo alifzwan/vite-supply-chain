@@ -42,10 +42,14 @@ const Info = () => {
     const [currentaccount, setCurrentaccount] = useState("");
     const [loader        , setloader]         = useState(true);
     const [SupplyChain   , setSupplyChain]    = useState();
+
     const [Items         , setItems]          = useState();
-    const [ItemPhase     , setItemPhase]      = useState();
-    const [ItemStatus    , setItemStatus]      = useState();
     const [ItemID        , setItemID]         = useState();
+
+    const [ItemPhase     , setItemPhase]      = useState();
+    const [SlaughterStatus, setSlaughterStatus] = useState();
+    const [VerifyStatus   , setVerifyStatus]     = useState();
+  
 
 
     const loadWeb3 = async () => {
@@ -80,15 +84,18 @@ const Info = () => {
             const itemsCount = await supplychain.methods.itemsCount().call();
             const item = {};
             const ItemPhase = [];
-            const ItemStatus = [];
+            const SlaughterStatus = [];
+            const VerifyStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
-                ItemStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
+                SlaughterStatus[i] = await supplychain.methods.SlaughterStatus(i + 1).call();
+                VerifyStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
-            setItemStatus(ItemStatus);
+            setSlaughterStatus(SlaughterStatus);
+            setVerifyStatus(VerifyStatus);
             setloader(false);
         }
         else {
@@ -143,11 +150,10 @@ const Info = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Categories</th>
-                                    <th>Brand</th>
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
                             </thead>
@@ -156,13 +162,12 @@ const Info = () => {
                                     return (
                                         <tr key={key} onClick={() => handleRowClick(Number(Items[key].id))}>
                                             <td>{Number(Items[key].id)}</td>
-                                            <td>{Items[key].name}</td>
-                                            <td>{Items[key].categories}</td>
-                                            <td>{Items[key].brand}</td>
+                                            <td>{Items[key].name}</td> 
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
                                             <td>{ItemPhase[key]}</td>
-                                            <td>{ItemStatus[key]}</td>
+                                            <td>{SlaughterStatus[key]}</td>
+                                            <td>{VerifyStatus[key]}</td>
                                         </tr>
                                     )
                                 })}

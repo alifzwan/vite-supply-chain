@@ -1,4 +1,4 @@
-import './halalverify.scss';
+import './slaughterverify.scss';
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
 import React, { useState, useEffect } from 'react'
@@ -35,7 +35,7 @@ const itemVariants = {
 
 
 
-const HalalVerify = () => {
+const SlaughterVerify = () => {
 
     const navigate = useNavigate()
 
@@ -59,13 +59,13 @@ const HalalVerify = () => {
         loadWeb3();
     }, [])
 
-    const [checklistVerifier, setChecklistVerifier] = useState({
-        RawMaterialsHalalCompliant: false,
-        SupplierHasHalalCertification: false,
-        EquipmentFreeFromContamination: false,
-        CorrectSlaughteringMethods: false,
-        LabelingAndPackagingMeetsHalalStandards: false,
-        StaffProperlyTrainedInHalalProcedures: false,
+    const [checklistSlaughter, setChecklistSlaughter] = useState({
+        isPracticingMuslim: false,
+        isInvocationCorrect: false,
+        isCorrectSlaughterMethod: false,
+        isBloodDrained: false,
+        isPreventionOfContamination: false,
+        hasHalalCertification: false,
     });
 
 
@@ -73,16 +73,18 @@ const HalalVerify = () => {
     const [loader            , setloader               ] = useState(true);
     const [SupplyChain       , setSupplyChain          ] = useState();
 
-    const [HalalVerification , displayHalalVerification] = useState(false);
-    const [Verified          , displayVerified         ] = useState(false);
+    const [SlaughterVerification , displaySlaughterVerification] = useState(false);
+    const [Slaughtered          , displaySlaughtered         ] = useState(false);
    
 
 
     const [Items             , setItems                ] = useState();
     const [ItemID            , setItemID               ] = useState();
     const [ItemPhase         , setItemPhase            ] = useState();
-    const [SlaughterStatus   , setSlaughterStatus      ] = useState();
-    const [VerifyStatus      , setVerifyStatus         ] = useState();
+    const [SlaughterStatus        , setSlaughterStatus           ] = useState();
+    const [VerifyStatus        , setVerifyStatus           ] = useState();
+
+
 
 
 
@@ -119,15 +121,17 @@ const HalalVerify = () => {
             const ItemPhase = [];
             const SlaughterStatus = [];
             const VerifyStatus = [];
+
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
                 SlaughterStatus[i] = await supplychain.methods.SlaughterStatus(i + 1).call();
                 VerifyStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
+
             }
             setItems(item);
             setItemPhase(ItemPhase);
-            setSlaughterStatus(SlaughterStatus);
+            setSlaughterStatus(SlaughterStatus); 
             setVerifyStatus(VerifyStatus); 
             setloader(false);
         }
@@ -154,7 +158,7 @@ const HalalVerify = () => {
     };
 
     const handleCheckboxChange = (checkboxName) => {
-        setChecklistVerifier((prevChecklist) => ({
+        setChecklistSlaughter((prevChecklist) => ({
             ...prevChecklist,
             [checkboxName]: !prevChecklist[checkboxName],
         }));
@@ -163,36 +167,37 @@ const HalalVerify = () => {
     const handleChecklistSubmit = async () => {
         try {
 
-            if (Object.values(checklistVerifier).every((item) => item === true)) {
+            // const verificationStatus = halalVerify(checklist);
+            if (Object.values(checklistSlaughter).every((item) => item === true)) {
                 // If verification succeeds, send the transaction
                 await SupplyChain.methods
-                    .verifyTickChecklistItem(
+                    .slaughterTickChecklistItem(
                         ItemID,
-                        checklistVerifier.RawMaterialsHalalCompliant,
-                        checklistVerifier.SupplierHasHalalCertification,
-                        checklistVerifier.EquipmentFreeFromContamination,
-                        checklistVerifier.CorrectSlaughteringMethods,
-                        checklistVerifier.LabelingAndPackagingMeetsHalalStandards,
-                        checklistVerifier.StaffProperlyTrainedInHalalProcedures
+                        checklistSlaughter.isPracticingMuslim,
+                        checklistSlaughter.isInvocationCorrect,
+                        checklistSlaughter.isCorrectSlaughterMethod,
+                        checklistSlaughter.isBloodDrained,
+                        checklistSlaughter.isPreventionOfContamination,
+                        checklistSlaughter.hasHalalCertification
                     )
                     .send({ from: currentaccount });
                 console.log("Transaction successful"); 
 
                 console.log("Items before:", Items);
                 console.log("ItemPhase before:", ItemPhase);
-                console.log("VerifyStatus before:", VerifyStatus);
+                console.log("SlaughterStatus before:", SlaughterStatus);
 
                 await loadBlockchaindata()
                 
                     // Log the current status after the transaction
-                const updatedStatus = await SupplyChain.methods.HalalStatus(ItemID).call();
+                const updatedStatus = await SupplyChain.methods.SlaughterStatus(ItemID).call();
 
                 console.log("Updated Status:", updatedStatus);
                 console.log("Items after:", Items);
                 console.log("ItemPhase after:", ItemPhase);
-                console.log("VerifyStatus after:", VerifyStatus);
+                console.log("SlaughterStatus after:", SlaughterStatus);
 
-                displayVerified(true);
+                displaySlaughtered(true);
                 // After successful verification and transaction, you can update the UI or perform other actions
                 // For example, you might want to display a success message
 
@@ -220,17 +225,17 @@ const HalalVerify = () => {
         )
     }
 
-    if (Verified) {
+    if (Slaughtered) {
         return (
-            <div className="verified-main-container">
+            <div className="slaughtered-main-container">
                 <div className="menu-bar">
                     <ProjectSideBar />
                 </div> 
 
                 <div className="main-section">
-                    <div className="verified-section-title">Halal Verification</div>
-                    <div className="verified-content">
-                        <div className="verified-section">
+                    <div className="slaughtered-section-title">Slaughter Verification</div>
+                    <div className="slaughtered-content">
+                        <div className="slaughtered-section">
                             <table className="table-container" border="1">
                                 <thead>
                                     <tr>
@@ -251,9 +256,21 @@ const HalalVerify = () => {
                                                 <td>{Items[key].name}</td>
                                                 <td>{Items[key].origin}</td>
                                                 <td>{Items[key].nutritionInfo}</td>
-                                                <td>{ItemPhase[key]}</td>
-                                                <td>{SlaughterStatus[key]}</td>
-                                                <td>{VerifyStatus[key]}</td>
+                                                <td>
+                                                    {
+                                                        ItemPhase[key]
+                                                    }
+                                                </td>
+                                                <td>
+                                                    {
+                                                        SlaughterStatus[key]
+                                                    }
+                                                </td>
+                                                <td>
+                                                    {
+                                                        VerifyStatus[key]
+                                                    }
+                                                </td>
                                             </tr>
                                         )
                                     })}
@@ -262,14 +279,14 @@ const HalalVerify = () => {
                         </div>
                     </div>
 
-                    <h2 className='verified-description'>Your Item is already <b>halal verified</b></h2>
-                    <div className="halal-back-button-container">
-                        <motion.div variants={itemVariants} className="halal-back-button">
+                    <h2 className='slaughtered-description'>Your Item is already <b>slaughtered</b></h2>
+                    <div className="Slaughter-back-button-container">
+                        <motion.div variants={itemVariants} className="Slaughter-back-button">
                                 <motion.button
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    onClick={() => {displayVerified(false); displayHalalVerification(false);}}
+                                    onClick={() => {displaySlaughtered(false); displaySlaughterVerification(false);}}
                                 >
                                     Verify Another Item
                                 </motion.button>
@@ -293,17 +310,17 @@ const HalalVerify = () => {
 
 
     // Item Ordered
-    if (HalalVerification) {
+    if (SlaughterVerification) {
         return (
-        <div className="halal-main-container">
+        <div className="Slaughter-main-container">
             <div className="menu-bar">
                 <ProjectSideBar />
             </div> 
 
             <div className="main-section">
-                <div className="halal-section-title">Halal Verification</div>
-                <div className="halal-content">
-                    <div className="halal-section">
+                <div className="Slaughter-section-title">Slaughterhouse Verification</div>
+                <div className="Slaughter-content">
+                    <div className="Slaughter-section">
                         <table className="table-container" border="1">
                             <thead>
                                 <tr>
@@ -324,7 +341,7 @@ const HalalVerify = () => {
                                             <td>{Items[key].name}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
-                                            <td>{ItemPhase[key]}</td>
+                                            <td>{ItemPhase[key]} </td>
                                             <td>{SlaughterStatus[key]}</td>
                                             <td>{VerifyStatus[key]}</td>
                                         </tr>
@@ -333,10 +350,10 @@ const HalalVerify = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className="halal-checklist">
-                        <div className="halal-checklist-section">
+                    <div className="Slaughter-checklist">
+                        <div className="Slaughter-checklist-section">
 
-                            <h3 className='halal-checklist-title'>Halal Checklist</h3>
+                            <h3 className='Slaughter-checklist-title'>Slaughterhouse Checklist</h3>
 
                             <p>Please Tick</p>
 
@@ -345,64 +362,64 @@ const HalalVerify = () => {
                                     <input 
                                     className="verify-checkbox" 
                                     type="checkbox" 
-                                    checked={checklistVerifier.RawMaterialsHalalCompliant}
-                                    onChange={() => handleCheckboxChange('RawMaterialsHalalCompliant')}
+                                    checked={checklistSlaughter.isPracticingMuslim}
+                                    onChange={() => handleCheckboxChange('isPracticingMuslim')}
                                     required/>
-                                    Does all raw materials used are halal compliant ?
+                                    Is the slaughterer a practicing Muslim of sound mind?
                                 </label>
 
                                 <label>
                                     <input 
                                     className="verify-checkbox" 
                                     type="checkbox" 
-                                    checked={checklistVerifier.SupplierHasHalalCertification}
-                                    onChange={() => handleCheckboxChange('SupplierHasHalalCertification')}
+                                    checked={checklistSlaughter.isInvocationCorrect}
+                                    onChange={() => handleCheckboxChange('isInvocationCorrect')}
                                     required/>
-                                    Does the supplier have halal certification ?
+                                    Was Allah's name invoked (Bismillah and Allahu Akbar) during the slaughter?
                                 </label>
 
                                 <label>
                                     <input 
                                     className="verify-checkbox" 
                                     type="checkbox" 
-                                    checked={checklistVerifier.EquipmentFreeFromContamination}
-                                    onChange={() => handleCheckboxChange('EquipmentFreeFromContamination')}
+                                    checked={checklistSlaughter.isCorrectSlaughterMethod}
+                                    onChange={() => handleCheckboxChange('isCorrectSlaughterMethod')}
                                     required/>
-                                    Does all equipment used in production is free from contamination 
+                                    Was the correct method of slaughter followed, cutting the throat and blood vessels without severing the spinal cord? 
                                 </label>
 
                                 <label>
                                     <input 
                                     className="verify-checkbox" 
                                     type="checkbox" 
-                                    checked={checklistVerifier.CorrectSlaughteringMethods}
-                                    onChange={() => handleCheckboxChange('CorrectSlaughteringMethods')}
+                                    checked={checklistSlaughter.isBloodDrained}
+                                    onChange={() => handleCheckboxChange('isBloodDrained')}
                                     required/>
-                                    Does the product does the correct slaughtering methods?
+                                    Was the blood thoroughly drained from the carcass after slaughter?
                                 </label>
 
                                 <label>
                                     <input 
                                     className="verify-checkbox" 
                                     type="checkbox" 
-                                    checked={checklistVerifier.LabelingAndPackagingMeetsHalalStandards}
-                                    onChange={() => handleCheckboxChange('LabelingAndPackagingMeetsHalalStandards')}
+                                    checked={checklistSlaughter.isPreventionOfContamination}
+                                    onChange={() => handleCheckboxChange('isPreventionOfContamination')}
                                     required/>
-                                    Does the labeling and packaging of products to ensure they meet halal standards?
+                                    Are strict measures in place to prevent cross-contamination between halal and non-halal products?
                                 </label>
 
                                 <label>
                                     <input 
                                     className="verify-checkbox" 
                                     type="checkbox" 
-                                    checked={checklistVerifier.StaffProperlyTrainedInHalalProcedures}
-                                    onChange={() => handleCheckboxChange('StaffProperlyTrainedInHalalProcedures')}
+                                    checked={checklistSlaughter.hasHalalCertification}
+                                    onChange={() => handleCheckboxChange('hasHalalCertification')}
                                     required/>
-                                    Does all staff involved are properly trained in halal procedures ?
+                                    Is there a valid halal certification from a recognized authority displayed, and is it regularly renewed?
                                 </label>
                             </div>
 
-                            <div className="halal-submit">
+                            <div className="Slaughter-submit">
                                 <button type="submit" className="submit-button" onClick={handleChecklistSubmit}>
                                  Submit
                                 </button>
@@ -412,13 +429,13 @@ const HalalVerify = () => {
                 </div>
 
                 
-                <div className="halal-back-button-container">
-                    <motion.div variants={itemVariants} className="halal-back-button">
+                <div className="Slaughter-back-button-container">
+                    <motion.div variants={itemVariants} className="Slaughter-back-button">
                             <motion.button
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={() => displayHalalVerification(false)}
+                                onClick={() => displaySlaughterVerification(false)}
                             >
                                 Verify Another Item
                             </motion.button>
@@ -445,13 +462,13 @@ const HalalVerify = () => {
     const adminRegister = async (event) => {
         event.preventDefault();
         var count = await SupplyChain.methods.itemsCount().call();
-        const verifierCount = await SupplyChain.methods.verifierCount().call();
+        const slaughterhouseCount = await SupplyChain.methods.slaughterhouseCount().call();
 
         if (!((ItemID > 0) && (ItemID <= count)))
             alert("Please enter valid ID");
         else {
-            if ((verifierCount > 0) && (verifierCount <= count))
-                displayHalalVerification(true);
+            if ((slaughterhouseCount > 0) && (slaughterhouseCount <= count))
+                displaySlaughterVerification(true);
             else
                 return "There's no Verifier registered"
         }
@@ -459,17 +476,21 @@ const HalalVerify = () => {
     }
 
 
+    
+
+
+    
     return (
-        <div className="verify-main-container">
+        <div className="slaughterhouse-main-container">
             <div className="menu-bar">
                 <ProjectSideBar />
             </div> 
 
             <div className="main-section">
-                <div className="verify-section-title">Halal Verification</div>
-                <div className="verify-content">
-                    <div className="verify-section">
-                        <table className="verify-table-container" border="1">
+                <div className="slaughterhouse-section-title">Slaughter Verification</div>
+                <div className="slaughterhouse-content">
+                    <div className="slaughterhouse-section">
+                        <table className="slaughterhouse-table-container" border="1">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -490,9 +511,21 @@ const HalalVerify = () => {
                                             <td>{Items[key].name}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
-                                            <td>{ItemPhase[key]}</td>
-                                            <td>{ SlaughterStatus[key]}</td>
-                                            <td>{VerifyStatus[key]}</td>
+                                            <td>
+                                                {
+                                                    ItemPhase[key]
+                                                }
+                                            </td>
+                                            <td>
+                                                {
+                                                    SlaughterStatus[key]
+                                                }
+                                            </td>
+                                            <td>
+                                                {
+                                                    VerifyStatus[key]
+                                                }
+                                            </td>
                                     </tr>
                                 )
                             })}
@@ -505,7 +538,7 @@ const HalalVerify = () => {
                                 <input type="text" onChange ={adminID} placeholder="Enter ID" required/><br />
                             </motion.div>
 
-                            <motion.div variants={itemVariants} className="verify-button">
+                            <motion.div variants={itemVariants} className="slaughterhouse-button">
                                 <motion.button
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.1 }}
@@ -518,8 +551,8 @@ const HalalVerify = () => {
                         </form>
                     </motion.div>
                 </div>
-                <div className="verify-back-button-container">
-                    <motion.div variants={itemVariants} className="verify-back-button">
+                <div className="slaughterhouse-back-button-container">
+                    <motion.div variants={itemVariants} className="slaughterhouse-back-button">
                                 <motion.button
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.1 }}
@@ -535,4 +568,4 @@ const HalalVerify = () => {
     )
 }
 
-export default HalalVerify
+export default SlaughterVerify

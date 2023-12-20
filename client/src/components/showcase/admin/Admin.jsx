@@ -55,10 +55,15 @@ const Admin = () => {
     const [currentaccount, setCurrentaccount] = useState("");
     const [loader        , setloader]         = useState(true);
     const [SupplyChain   , setSupplyChain]    = useState();
+
     const [Items         , setItems]          = useState();
-    const [ItemPhase     , setItemPhase]      = useState();
-    const [ItemStatus    , setItemStatus]      = useState();
     const [ItemID        , setItemID]         = useState();
+
+    
+    const [ItemPhase     , setItemPhase]      = useState();
+    const [SlaughterStatus, setSlaughterStatus] = useState();
+    const [VerifyStatus    , setVerifyStatus]      = useState();
+    
 
 
     const loadWeb3 = async () => {
@@ -89,15 +94,18 @@ const Admin = () => {
             const itemsCount = await supplychain.methods.itemsCount().call();
             const item = {};
             const ItemPhase = [];
-            const ItemStatus = [];
+            const SlaughterStatus = [];
+            const VerifyStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
-                ItemStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
+                SlaughterStatus[i] = await supplychain.methods.SlaughterStatus(i + 1).call();
+                VerifyStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
-            setItemStatus(ItemStatus);
+            setSlaughterStatus(SlaughterStatus);
+            setVerifyStatus(VerifyStatus);
             setloader(false);
         }
         else {
@@ -135,6 +143,20 @@ const Admin = () => {
             alert("An error occured!!!")
         }
     }
+
+    const adminSlaughterhouse = async (event) => {
+        event.preventDefault();
+        try {
+            var receipt = await SupplyChain.methods.Slaughtering(ItemID).send({ from: currentaccount });
+            if (receipt) {
+                await loadBlockchaindata();
+            }
+        }
+        catch (err) {
+            alert("An error occured!!!")
+        }
+    }
+
 
     const adminVerifier = async (event) => {
         event.preventDefault();
@@ -223,11 +245,10 @@ const Admin = () => {
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Categories</th>
-                                <th>Brand</th>
                                 <th>Based In</th>
                                 <th>Description</th>
                                 <th>Current Stage</th>
+                                <th>Slaughter Status</th>
                                 <th>Halal Status</th>
                             </tr>
                         </thead>
@@ -237,20 +258,11 @@ const Admin = () => {
                                     <tr key={key}>
                                         <td>{Number(Items[key].id)}</td>
                                         <td>{Items[key].name}</td>
-                                        <td>{Items[key].categories}</td>
-                                        <td>{Items[key].brand}</td>
                                         <td>{Items[key].origin}</td>
                                         <td>{Items[key].nutritionInfo}</td>
-                                        <td>
-                                            {
-                                                ItemPhase[key]
-                                            }
-                                        </td>
-                                        <td>
-                                            {
-                                                ItemStatus[key]
-                                            }
-                                        </td>
+                                        <td>{ItemPhase[key]}</td>
+                                        <td>{SlaughterStatus[key]}</td>
+                                        <td>{VerifyStatus[key]}</td>
                                     </tr>
                                 )
                             })}
@@ -273,6 +285,31 @@ const Admin = () => {
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.95 }}
                                             onSubmit={adminFarmer}
+                                        >
+                                            Punch In
+                                        </motion.button>
+                                    </motion.div>
+                                
+                                    </motion.div>
+                                </form>
+                        </div>
+
+                        <div className="admin-section">
+                            <h2>Slaughterhouse</h2>
+                                <form onSubmit={adminSlaughterhouse}>
+                                    <motion.div className="input-container" variants={variants}>
+
+                                        <motion.div variants={itemVariants}>
+                                            <input type="text"  onChange={adminID} placeholder="Enter ID" /><br />
+                                        </motion.div>
+
+                                    <motion.div variants={itemVariants} className="admin-button">
+                                        <motion.button
+                                            variants={itemVariants}
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onSubmit={adminSlaughterhouse}
+                                            
                                         >
                                             Punch In
                                         </motion.button>
@@ -306,29 +343,6 @@ const Admin = () => {
                                 </form>
                         </div>
 
-                        <div className="admin-section">
-                            <h2>Slaughterhouse</h2>
-                                <form >
-                                    <motion.div className="input-container" variants={variants}>
-
-                                        <motion.div variants={itemVariants}>
-                                            <input type="text"  placeholder="Enter ID" /><br />
-                                        </motion.div>
-
-                                    <motion.div variants={itemVariants} className="admin-button">
-                                        <motion.button
-                                            variants={itemVariants}
-                                            whileHover={{ scale: 1.1 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            
-                                        >
-                                            Punch In
-                                        </motion.button>
-                                    </motion.div>
-                                
-                                    </motion.div>
-                                </form>
-                        </div>
 
                         <div className="admin-section">
                             <h2>Manufacturer</h2>

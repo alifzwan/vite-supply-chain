@@ -145,7 +145,6 @@ contract SupplyChain {
         Distribution,
         Retail,
         Sold
-        
     }
 
     enum STATUS {
@@ -172,7 +171,6 @@ contract SupplyChain {
      mapping(uint256 => SLAUGHTER) public ItemsSlaughter;
 
 
-
     // Enum to represent the checklist items for SLAUGHTERHOUSE
     enum ChecklistSlaughter {
         isPracticingMuslim,             // Verify that the slaughterer is a practicing Muslim of sound mind.
@@ -182,8 +180,6 @@ contract SupplyChain {
         isPreventionOfContamination,    // Implement strict measures to prevent cross-contamination.
         hasHalalCertification           // Display and regularly renew a valid halal certification.
     }
-    
-
     
     /* STRUCT 
 
@@ -216,12 +212,14 @@ contract SupplyChain {
         string name;
         string origin;
         string nutritionInfo;
+
         uint256 farmerId;
         uint256 slaughterhouseId;  
         uint256 verifierId;
         uint256 manufacturerId;
         uint256 distributorId;
         uint256 retailerId;
+
         PHASE chronology; 
     }
 
@@ -292,6 +290,7 @@ contract SupplyChain {
     }
 
     mapping(uint256 => slaughterhouse) public slaughterhouseInfo;
+
 
     struct verifier{
         address addr;
@@ -394,12 +393,12 @@ contract SupplyChain {
 
 
     function regSlaughterhouse(
-        address _address,  // This is wallet address 
-        string memory _name,  // Name of the farmer
-        string memory _location  // Where's the farmer based in?
-    ) public onlyCreator {  // Only creator/owner can register all the admin
+        address _address,  
+        string memory _name, 
+        string memory _location  
+    ) public onlyCreator {  
         slaughterhouseCount++;
-        slaughterhouseInfo[slaughterhouseCount] = slaughterhouse(_address, slaughterhouseCount, _name, _location);  // All this attributes will be stored in farmerInfo
+        slaughterhouseInfo[slaughterhouseCount] = slaughterhouse(_address, slaughterhouseCount, _name, _location);  // All this attributes will be stored in slaughterhouseInfo
     }
 
 
@@ -409,7 +408,7 @@ contract SupplyChain {
         string memory _location
     ) public onlyCreator {
         verifierCount++;
-        verifierInfo[verifierCount] = verifier(_address, verifierCount, _name, _location);  // All this attributes will be stored in manufacturerInfo
+        verifierInfo[verifierCount] = verifier(_address, verifierCount, _name, _location);  // All this attributes will be stored in verifierInfo
     }
 
 

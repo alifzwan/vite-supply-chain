@@ -109,8 +109,9 @@ const ProjectLinks = ({darkTheme}) => {
                     <Link to="/register">Punch In</Link>
                 </Menu.Item>
 
-
-                <Menu.Item>Slaughter</Menu.Item>
+                <Menu.Item>
+                    <Link to="/slaughterhouse">Slaughter Verification</Link>
+                </Menu.Item>
                 
                 <Menu.Item>
                     <Link to="/verify">Halal Verification</Link>
@@ -121,11 +122,13 @@ const ProjectLinks = ({darkTheme}) => {
                 </Menu.Item>
 
                 <Menu.Item>
-                    <Link to="/admin"><p>Administration</p></Link>
+                    <Link to="/admin">Administration</Link>
                 </Menu.Item>
+
                 <Menu.Item>
                     <Link to="/track">Track Product</Link>
                 </Menu.Item>
+                
                 <Menu.Item>
                     <Link to="/info">Product Info</Link>
                 </Menu.Item>

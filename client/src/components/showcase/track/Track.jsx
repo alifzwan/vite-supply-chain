@@ -63,9 +63,22 @@ const Track = () => {
        
     ];
 
+    const supplychainsslaughterhouse = [
+
+        { name: "Farmer"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Slaughterhouse", image: "/chicken.png"}
+       
+       
+    ];
+
     const supplychainsverifier = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Slaughterhouse", image: "/chicken.png"},
         { image: "/arrow.png"},
     
         { name: "Verifier", image: "/halal.png"}
@@ -76,10 +89,13 @@ const Track = () => {
         { name: "Farmer"      , image: "/farmer.svg"      },
         { image: "/arrow.png"},
 
-        { name: "Verifier", image: "/halal.png"},
+        { name: "Slaughterhouse", image: "/chicken.png"},
         { image: "/arrow.png"},
     
-        { name: "Manufacturer", image: "/manufacturer.svg"}
+        { name: "Verifier", image: "/halal.png"},
+        { image: "/arrow.png"},
+
+        { name: "Manufacturer", image: "/manufacturer.svg"},
     ];
 
     const supplychainsdistributor = [
@@ -87,13 +103,17 @@ const Track = () => {
         { name: "Farmer"      , image: "/farmer.svg"      },
         { image: "/arrow.png"},
 
+        { name: "Slaughterhouse", image: "/chicken.png"},
+        { image: "/arrow.png"},
+    
         { name: "Verifier", image: "/halal.png"},
         { image: "/arrow.png"},
-    
+
         { name: "Manufacturer", image: "/manufacturer.svg"},
         { image: "/arrow.png"},
-    
+
         { name: "Distributor" , image: "/distributor.svg" }
+
     ];
 
     const supplychainsretailer = [
@@ -101,32 +121,38 @@ const Track = () => {
         { name: "Farmer"      , image: "/farmer.svg"      },
         { image: "/arrow.png"},
 
+        { name: "Slaughterhouse", image: "/chicken.png"},
+        { image: "/arrow.png"},
+    
         { name: "Verifier", image: "/halal.png"},
         { image: "/arrow.png"},
-    
+
         { name: "Manufacturer", image: "/manufacturer.svg"},
         { image: "/arrow.png"},
-    
+
         { name: "Distributor" , image: "/distributor.svg" },
         { image: "/arrow.png"},
-    
+
         { name: "Retailer"    , image: "/retailer.svg"    },
     ];
 
     const supplychainssold = [
 
         { name: "Farmer"      , image: "/farmer.svg"      },
-        {image: "/arrow.png"},
+        { image: "/arrow.png"},
 
+        { name: "Slaughterhouse", image: "/chicken.png"},
+        { image: "/arrow.png"},
+    
         { name: "Verifier", image: "/halal.png"},
         { image: "/arrow.png"},
-    
+
         { name: "Manufacturer", image: "/manufacturer.svg"},
         { image: "/arrow.png"},
-    
+
         { name: "Distributor" , image: "/distributor.svg" },
         { image: "/arrow.png"},
-    
+
         { name: "Retailer"    , image: "/retailer.svg"    },
     ];
 
@@ -147,6 +173,33 @@ const Track = () => {
         }
     };
 
+    const chronologyTableSlaughterhouse = (name) => {
+        switch (name) {
+            case "Farmer":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].name}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+            case "Slaughterhouse":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].id)}</td>
+                  <td>{Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].name}</td>
+                  <td>{Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].location}</td>
+                </tr>
+              </tbody>
+            );
+          default:
+            return null;
+        }
+    };
+
     const chronologyTableVerifier = (name) => {
         switch (name) {
             case "Farmer":
@@ -159,6 +212,16 @@ const Track = () => {
                 </tr>
               </tbody>
             );
+            case "Slaughterhouse":
+                return (
+                  <tbody>
+                    <tr>
+                      <td>{Number(Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].id)}</td>
+                      <td>{Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].name}</td>
+                      <td>{Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].location}</td>
+                    </tr>
+                  </tbody>
+                );
             case "Verifier":
             return (
               <tbody>
@@ -186,6 +249,16 @@ const Track = () => {
                 </tr>
               </tbody>
             );
+            case "Slaughterhouse":
+                return (
+                  <tbody>
+                    <tr>
+                      <td>{Number(Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].id)}</td>
+                      <td>{Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].name}</td>
+                      <td>{Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].location}</td>
+                    </tr>
+                  </tbody>
+                );
             case "Verifier":
             return (
               <tbody>
@@ -223,6 +296,16 @@ const Track = () => {
                 </tr>
               </tbody>
             );
+            case "Slaughterhouse":
+                return (
+                  <tbody>
+                    <tr>
+                      <td>{Number(Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].id)}</td>
+                      <td>{Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].name}</td>
+                      <td>{Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].location}</td>
+                    </tr>
+                  </tbody>
+                );
             case "Verifier":
             return (
               <tbody>
@@ -270,6 +353,16 @@ const Track = () => {
                 </tr>
               </tbody>
             );
+            case "Slaughterhouse":
+                return (
+                  <tbody>
+                    <tr>
+                      <td>{Number(Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].id)}</td>
+                      <td>{Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].name}</td>
+                      <td>{Slaughterhouse[Number(Items[ItemID].slaughterhouseId)].location}</td>
+                    </tr>
+                  </tbody>
+                );
             case "Verifier":
             return (
               <tbody>
@@ -327,23 +420,26 @@ const Track = () => {
     const [Items         , setItems         ] = useState();
     const [ItemID        , setItemID        ] = useState();
     const [ItemPhase     , setItemPhase     ] = useState();
-    const [ItemStatus    , setItemStatus     ] = useState();
+    const [SlaughterStatus, setSlaughterStatus] = useState();
+    const [VerifyStatus    , setVerifyStatus  ] = useState();
 
 
     const [Farmer        , setFarmer        ] = useState();
+    const [Slaughterhouse, setSlaughterhouse] = useState();
     const [Verifier      , setVerifier      ] = useState();
     const [Manufacturer  , setManufacturer  ] = useState();
     const [Distributor   , setDistributor   ] = useState();
     const [Retailer      , setRetailer      ] = useState();
     
     
-    const [TrackTillOrdered     , displayTrackTillOrdered    ] = useState(false);
-    const [TrackTillFarmer      , displayTrackTillFarmer     ] = useState(false);
-    const [TrackTillVerify      , displayTrackTillVerify     ] = useState(false);
-    const [TrackTillManufacture , displayTrackTillManufacture] = useState(false);
-    const [TrackTillDistribute  , displayTrackTillDistribute ] = useState(false);
-    const [TrackTillRetail      , displayTrackTillRetail     ] = useState(false);
-    const [TrackTillSold        , displayTrackTillSold       ] = useState(false);
+    const [TrackTillOrdered       , displayTrackTillOrdered       ] = useState(false);
+    const [TrackTillFarmer        , displayTrackTillFarmer        ] = useState(false);
+    const [TrackTillSlaughterhouse, displayTrackTillSlaughterhouse] = useState(false);
+    const [TrackTillVerify        , displayTrackTillVerify        ] = useState(false);
+    const [TrackTillManufacture   , displayTrackTillManufacture   ] = useState(false);
+    const [TrackTillDistribute    , displayTrackTillDistribute    ] = useState(false);
+    const [TrackTillRetail        , displayTrackTillRetail        ] = useState(false);
+    const [TrackTillSold          , displayTrackTillSold          ] = useState(false);
 
 
 
@@ -377,15 +473,18 @@ const Track = () => {
 
             
             const ItemPhase = [];
-            const ItemStatus = [];
+            const SlaughterStatus = [];
+            const VerifyStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i + 1] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i + 1] = await supplychain.methods.Chronology(i + 1).call();
-                ItemStatus[i + 1] = await supplychain.methods.HalalStatus(i + 1).call();
+                SlaughterStatus[i + 1] = await supplychain.methods.SlaughterStatus(i + 1).call();
+                VerifyStatus[i + 1] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
-            setItemStatus(ItemStatus);
+            setSlaughterStatus(SlaughterStatus);
+            setVerifyStatus(VerifyStatus);
 
 
 
@@ -395,6 +494,14 @@ const Track = () => {
                 farmer[i + 1] = await supplychain.methods.farmerInfo(i + 1).call();
             }
             setFarmer(farmer);
+
+
+            const slaughterhouseCount = await supplychain.methods.slaughterhouseCount().call();
+            const slaughterhouse = {};
+            for (i = 0; i < slaughterhouseCount; i++) {
+                slaughterhouse[i + 1] = await supplychain.methods.slaughterhouseInfo(i + 1).call();
+            }
+            setSlaughterhouse(slaughterhouse);
 
 
             const verifierCount = await supplychain.methods.verifierCount().call();
@@ -477,11 +584,10 @@ const Track = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Categories</th>
-                                    <th>Brand</th>
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
                             </thead>
@@ -489,12 +595,11 @@ const Track = () => {
                                 <tr>
                                     <td>{Number(Items[ItemID].id)}</td>
                                     <td>{Items[ItemID].name}</td>
-                                    <td>{Items[ItemID].categories}</td>
-                                    <td>{Items[ItemID].brand}</td>
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
                                     <td>{ItemPhase[ItemID]}</td>
-                                    <td>{ItemStatus[ItemID]}</td>
+                                    <td>{SlaughterStatus[ItemID]}</td>
+                                    <td>{VerifyStatus[ItemID]}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -547,11 +652,10 @@ const Track = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Categories</th>
-                                        <th>Brand</th>
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
                                 </thead>
@@ -559,12 +663,11 @@ const Track = () => {
                                     <tr>
                                         <td>{Number(Items[ItemID].id)}</td>
                                         <td>{Items[ItemID].name}</td>
-                                        <td>{Items[ItemID].categories}</td>
-                                        <td>{Items[ItemID].brand}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
-                                        <td>{ItemStatus[ItemID]}</td>
+                                        <td>{SlaughterStatus[ItemID]}</td>
+                                        <td>{VerifyStatus[ItemID]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -623,6 +726,99 @@ const Track = () => {
         )
     }
 
+
+// Item Arrived at Farmer
+if (TrackTillSlaughterhouse) {
+    return (
+        <div className="chronology-slaughterhouse-main-container">
+            <div className="menu-bar">
+                <ProjectSideBar />
+            </div> 
+
+            <div className="main-section">
+                <div className="chronology-slaughterhouse-section-title">Track Information</div>
+                <div className="chronology-slaughterhouse-content">
+                    <div className="chronology-slaughterhouse-section">
+                        <table className="table-container" border="1">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Based In</th>
+                                    <th>Description</th>
+                                    <th>Current Stage</th>
+                                    <th>Slaughter Status</th>
+                                    <th>Halal Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{Number(Items[ItemID].id)}</td>
+                                    <td>{Items[ItemID].name}</td>
+                                    <td>{Items[ItemID].origin}</td>
+                                    <td>{Items[ItemID].nutritionInfo}</td>
+                                    <td>{ItemPhase[ItemID]}</td>
+                                    <td>{SlaughterStatus[ItemID]}</td>
+                                    <td>{VerifyStatus[ItemID]}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="supplychain-slaughterhouse-section">
+                        {supplychainsslaughterhouse.map((supplychain, index) => (
+                            <motion.div className="supplychain-slaughterhouse-item" 
+                            key={index}>
+                        
+                                <motion.img src={supplychain.image} alt={supplychain.name} id={supplychain.name}
+                                    whileHover={{ scale: 1.1 }} 
+                                    whileTap={{ scale: 0.95 }} />
+
+                                {supplychain.name && (
+                                <motion.div className="supplychain-slaughterhouse-track-section">
+                                    <h2>{supplychain.name} Information</h2>
+                                        <table className="table-container" border="1">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Based In</th>
+                                                </tr>
+                                            </thead>
+                                            {chronologyTableSlaughterhouse(supplychain.name)}
+                                        </table>
+                                </motion.div>
+                                )}
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+                <div className="chronology-slaughterhouse-back-button-container">
+                    <motion.div variants={itemVariants} className="chronology-slaughterhouse-back-button">
+                        <motion.button
+                            variants={itemVariants}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => displayTrackTillSlaughterhouse(false)}
+                        >
+                        Track Another Item
+                        </motion.button>
+
+                        <motion.button
+                            variants={itemVariants}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={redirect_to_project}
+                        >
+                            Back To Project Overview
+                        </motion.button>
+                    </motion.div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
 // Item Arrived at Verifier
     if(TrackTillVerify) {
         return (
@@ -640,11 +836,10 @@ const Track = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Categories</th>
-                                        <th>Brand</th>
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
                                 </thead>
@@ -652,12 +847,11 @@ const Track = () => {
                                     <tr>
                                         <td>{Number(Items[ItemID].id)}</td>
                                         <td>{Items[ItemID].name}</td>
-                                        <td>{Items[ItemID].categories}</td>
-                                        <td>{Items[ItemID].brand}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
-                                        <td>{ItemStatus[ItemID]}</td>
+                                        <td>{SlaughterStatus[ItemID]}</td>
+                                        <td>{VerifyStatus[ItemID]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -736,11 +930,10 @@ const Track = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Categories</th>
-                                        <th>Brand</th>
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
                                 </thead>
@@ -748,12 +941,11 @@ const Track = () => {
                                     <tr>
                                         <td>{Number(Items[ItemID].id)}</td>
                                         <td>{Items[ItemID].name}</td>
-                                        <td>{Items[ItemID].categories}</td>
-                                        <td>{Items[ItemID].brand}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
-                                        <td>{ItemStatus[ItemID]}</td>
+                                        <td>{SlaughterStatus[ItemID]}</td>
+                                        <td>{VerifyStatus[ItemID]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -831,11 +1023,10 @@ const Track = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Categories</th>
-                                        <th>Brand</th>
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
                                 </thead>
@@ -843,12 +1034,11 @@ const Track = () => {
                                     <tr>
                                         <td>{Number(Items[ItemID].id)}</td>
                                         <td>{Items[ItemID].name}</td>
-                                        <td>{Items[ItemID].categories}</td>
-                                        <td>{Items[ItemID].brand}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
-                                        <td>{ItemStatus[ItemID]}</td>
+                                        <td>{SlaughterStatus[ItemID]}</td>
+                                        <td>{VerifyStatus[ItemID]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -925,11 +1115,10 @@ const Track = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Categories</th>
-                                    <th>Brand</th>
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
                             </thead>
@@ -937,12 +1126,11 @@ const Track = () => {
                                 <tr>
                                     <td>{Number(Items[ItemID].id)}</td>
                                     <td>{Items[ItemID].name}</td>
-                                    <td>{Items[ItemID].categories}</td>
-                                    <td>{Items[ItemID].brand}</td>
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
                                     <td>{ItemPhase[ItemID]}</td>
-                                    <td>{ItemStatus[ItemID]}</td>
+                                    <td>{SlaughterStatus[ItemID]}</td>
+                                    <td>{VerifyStatus[ItemID]}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1023,11 +1211,10 @@ const Track = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Categories</th>
-                                        <th>Brand</th>
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
                                 </thead>
@@ -1035,12 +1222,11 @@ const Track = () => {
                                     <tr>
                                         <td>{Number(Items[ItemID].id)}</td>
                                         <td>{Items[ItemID].name}</td>
-                                        <td>{Items[ItemID].categories}</td>
-                                        <td>{Items[ItemID].brand}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
-                                        <td>{ItemStatus[ItemID]}</td>
+                                        <td>{SlaughterStatus[ItemID]}</td>
+                                        <td>{VerifyStatus[ItemID]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1119,23 +1305,27 @@ const Track = () => {
             alert("Please enter valid ID");
         else {
            
-            if (Items[ItemID].chronology == 6)
+            if (Items[ItemID].chronology == 7)
                 displayTrackTillSold(true);
           
-            else if (Items[ItemID].chronology == 5)
+            else if (Items[ItemID].chronology == 6)
                 displayTrackTillRetail(true);
           
-            else if (Items[ItemID].chronology == 4)
+            else if (Items[ItemID].chronology == 5)
                 displayTrackTillDistribute(true);
             
-            else if (Items[ItemID].chronology == 3)
+            else if (Items[ItemID].chronology == 4)
                 displayTrackTillManufacture(true);
 
-            else if (Items[ItemID].chronology == 2)
+            else if (Items[ItemID].chronology == 3)
                 displayTrackTillVerify(true);
+            
+            else if (Items[ItemID].chronology == 2)
+                displayTrackTillSlaughterhouse(true);
            
             else if (Items[ItemID].chronology == 1)
                 displayTrackTillFarmer(true);
+
             else
                 displayTrackTillOrdered(true);
 
@@ -1158,11 +1348,10 @@ const Track = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Categories</th>
-                                    <th>Brand</th>
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
                             </thead>
@@ -1173,20 +1362,11 @@ const Track = () => {
                                     <tr key={key}>
                                             <td>{Number(Items[key].id)}</td>
                                             <td>{Items[key].name}</td>
-                                            <td>{Items[key].categories}</td>
-                                            <td>{Items[key].brand}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
-                                            <td>
-                                                {
-                                                    ItemPhase[key]
-                                                }
-                                            </td>
-                                            <td>
-                                                {
-                                                    ItemStatus[key]
-                                                }
-                                            </td>
+                                            <td>{ItemPhase[key]}</td>
+                                            <td>{SlaughterStatus[key]}</td>
+                                            <td>{VerifyStatus[key]}</td>
                                     </tr>
                                 )
                             })}

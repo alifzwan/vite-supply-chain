@@ -53,14 +53,17 @@ const Order = () => {
     const [currentaccount , setCurrentaccount ]  = useState("");
     const [loader         , setloader         ]  = useState(true);
     const [SupplyChain    , setSupplyChain    ]  = useState();
+
+
     const [Items          , setItems          ]  = useState();
     const [ItemName       , setItemName       ]  = useState();
-    const [ItemCategories , setItemCategories ]  = useState();
-    const [ItemBrand      , setItemBrand      ]  = useState();
     const [ItemOrigin     , setItemOrigin     ]  = useState();
     const [ItemDescription, setItemDescription]  = useState();
+    
+
     const [ItemPhase      , setItemPhase      ]  = useState();
-    const [ItemStatus     , setItemStatus     ]  = useState();
+    const [SlaughterStatus, setSlaughterStatus] = useState();
+    const [VerifyStatus   , setVerifyStatus   ]  = useState();
     
     const loadWeb3 = async () => {
         if (window.ethereum) {
@@ -92,15 +95,18 @@ const Order = () => {
             const itemsCount = await supplychain.methods.itemsCount().call();
             const item = {};
             const ItemPhase = [];
-            const ItemStatus = [];
+            const SlaughterStatus = [];
+            const VerifyStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
-                ItemStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
+                SlaughterStatus[i] = await supplychain.methods.SlaughterStatus(i + 1).call();
+                VerifyStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
-            setItemStatus(ItemStatus);
+            setSlaughterStatus(SlaughterStatus);
+            setVerifyStatus(VerifyStatus);
             setloader(false);
         }
         else {
@@ -127,12 +133,6 @@ const Order = () => {
     const regItemName       = (event) => {
         setItemName      (event.target.value);
     }
-    const regItemCategories = (event) => {
-        setItemCategories(event.target.value);
-    }
-    const regItemBrand      = (event) => {
-        setItemBrand     (event.target.value);
-    }
     const regItemOrigin     = (event) => {
         setItemOrigin    (event.target.value);
     }
@@ -146,8 +146,6 @@ const Order = () => {
         try {
             var receipt = await SupplyChain.methods.orderItems(
                 ItemName, 
-                ItemCategories, 
-                ItemBrand, 
                 ItemOrigin, 
                 ItemDescription).send({ from: currentaccount });
                 
@@ -179,16 +177,6 @@ const Order = () => {
                                 <motion.div variants={itemVariants}>
                                     <label>Name:</label><br />
                                     <input type="text" onChange={regItemName} placeholder="Name" required/><br />
-                                </motion.div>
-
-                                <motion.div variants={itemVariants}>
-                                    <label>Categories:</label><br />
-                                    <input type="text" onChange={regItemCategories} placeholder="Categories" required/><br />
-                                </motion.div>
-
-                                <motion.div variants={itemVariants}>
-                                    <label>Brand:</label><br />
-                                    <input type="text" onChange={regItemBrand} placeholder="Brand" required/><br />
                                 </motion.div>
 
                                 <motion.div variants={itemVariants}>
@@ -231,11 +219,10 @@ const Order = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Categories</th>
-                                        <th>Brand</th>
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
                                 </thead>
@@ -245,20 +232,11 @@ const Order = () => {
                                             <tr key={key}>
                                                 <td>{Number(Items[key].id)}</td>
                                                 <td>{Items[key].name}</td>
-                                                <td>{Items[key].categories}</td>
-                                                <td>{Items[key].brand}</td>
                                                 <td>{Items[key].origin}</td>
                                                 <td>{Items[key].nutritionInfo}</td>
-                                                <td>
-                                                    {
-                                                        ItemPhase[key]
-                                                    }
-                                                </td>
-                                                <td>
-                                                    {
-                                                        ItemStatus[key]
-                                                    }
-                                                </td>
+                                                <td>{ItemPhase[key]}</td>
+                                                <td>{SlaughterStatus[key]}</td>
+                                                <td>{VerifyStatus[key]}</td>
                                             </tr>
                                         )
                                     })}

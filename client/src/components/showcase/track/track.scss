@@ -430,6 +430,175 @@
     }
 
 
+
+//Track Till Slaughterhouse
+.chronology-slaughterhouse-main-container{
+    display: flex;
+}
+    .main-section {
+        flex: 1;
+        padding: 20px; /* Add padding as needed */
+        align-items: center;
+        display:flex;
+        flex-direction: column;
+
+        .chronology-slaughterhouse-section-title {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            color: rebeccapurple;
+        }
+
+        .chronology-slaughterhouse-content {
+            display: flex;
+            flex-direction: column;
+
+            .chronology-slaughterhouse-section{
+                border: 2px solid rebeccapurple;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                padding: 10px;
+                box-sizing: border-box;
+                max-height: auto; /* Make sure all sections have the same height */
+                overflow-y: auto;
+        
+                h2 {
+                    text-align: center;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+        
+                table {  // Item table
+                    border-collapse: collapse;
+                    border: 1px solid white;
+                    border-radius: 20px;
+                    width: 100%;
+                    height:30px;
+                    font-size: 14px;
+                
+        
+                    th, td {
+                        color: white;
+                        padding: 10px;
+                        text-align: center;
+                    }
+        
+                    th {
+                        background-color: transparent;
+                   
+                   
+                    }
+        
+                    tr:nth-child(even) {
+                        background-color: transparent;
+                    
+                    }
+                    td:last-child {
+                        color: green;
+                    }
+        
+                    tr:hover {
+                        background-color: transparent;
+                    }
+                }
+            }    
+            // Flow Information
+            .supplychain-slaughterhouse-section{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 100px;
+                margin-bottom: 20px;
+                
+                .supplychain-slaughterhouse-item {  
+                    text-align: center;
+                    max-width: 800px;
+                    
+                    img {
+                        max-width: 1000px;
+                        max-height: 100px;
+                    
+                    }
+                    p {
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin-top: 10px;
+                    }
+                }
+
+                .supplychain-slaughterhouse-track-section{
+                    h2{
+                        margin-bottom: 10px;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        border: 1px solid white;
+                        border-radius: 20px;
+                        width: 100%;
+                        height:30px;
+                        font-size: 14px;
+                        
+                        
+                
+                        th, td {
+                            color: white;
+                            padding: 10px;
+                            text-align: center;
+                        }
+                
+                        th {
+                            background-color: transparent;
+                        }
+                
+                        tr:nth-child(even) {
+                            background-color: transparent;
+                        }
+                        td:last-child {
+                            color: green;
+                        }
+                
+                        tr:hover {
+                            background-color: transparent;
+                        }
+                
+                        
+                    }
+                }
+            }
+
+        }
+        .chronology-slaughterhouse-back-button-container {
+            display: flex;
+            .chronology-slaughterhouse-back-button{
+                gap: 20px;
+                max-width: 1366px;
+                margin: auto;
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                button {
+                    padding: 0px 10px;
+                    height: 35px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    background-color: transparent;
+                    color: white;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-top: 5px;
+                    text-align: center;
+                }
+                button:hover { 
+                    color: rebeccapurple;
+                    border-color: rebeccapurple;
+                }
+            }
+        }
+    }
+
 //Track till Verifier
    
 .chronology-verifier-main-container{
@@ -506,7 +675,11 @@
             }    
             // Flow Information
             .supplychain-verifier-section{
-                display: flex;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 50px;
                 justify-content: center;
                 align-items: center;
                 gap: 100px;
@@ -681,7 +854,7 @@
                // Flow Information
             .supplychain-manufacturer-section{
                 display: grid;
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(7, 1fr);
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 50px;
@@ -846,7 +1019,7 @@
                     // Flow Information
             .supplychain-distributor-section{
                 display: grid;
-                grid-template-columns: repeat(7, 1fr);
+                grid-template-columns: repeat(9, 1fr);
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 50px;
@@ -1016,7 +1189,7 @@
                     // Flow Information
             .supplychain-retailer-section{
                 display: grid;
-                grid-template-columns: repeat(9, 1fr);
+                grid-template-columns: repeat(11, 1fr);
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 50px;

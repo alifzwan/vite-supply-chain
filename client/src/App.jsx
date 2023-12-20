@@ -9,6 +9,7 @@ import ProjectHero from "./components/showcase/project/projectHero/ProjectHero";
 import Register from "./components/showcase/register/Register";
 import Order from "./components/showcase/order/Order";
 import HalalVerify from "./components/showcase/halalverify/HalalVerify";
+import SlaughterVerify from "./components/showcase/slaughterverify/SlaughterVerify";
 import Admin from "./components/showcase/admin/Admin";
 import Track from "./components/showcase/track/Track";
 import Info from "./components/showcase/info/Info";
@@ -27,6 +28,7 @@ const App = () => {
           <Route path = '/login' exact  element={<Login />} />
           <Route path = '/register' exact  element={<Register />} />
           <Route path = '/order' exact  element={<Order />} />
+          <Route path = '/slaughterhouse' exact  element={<SlaughterVerify />} />
           <Route path = '/verify' exact  element={<HalalVerify />} />
           <Route path = '/admin' exact  element={<Admin />} />
           <Route path = '/track' exact  element={<Track />} />
