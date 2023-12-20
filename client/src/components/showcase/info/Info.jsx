@@ -44,6 +44,7 @@ const Info = () => {
     const [SupplyChain   , setSupplyChain]    = useState();
     const [Items         , setItems]          = useState();
     const [ItemPhase     , setItemPhase]      = useState();
+    const [ItemStatus    , setItemStatus]      = useState();
     const [ItemID        , setItemID]         = useState();
 
 
@@ -79,12 +80,15 @@ const Info = () => {
             const itemsCount = await supplychain.methods.itemsCount().call();
             const item = {};
             const ItemPhase = [];
+            const ItemStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
+                ItemStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
+            setItemStatus(ItemStatus);
             setloader(false);
         }
         else {
@@ -144,6 +148,7 @@ const Info = () => {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Halal Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -157,6 +162,7 @@ const Info = () => {
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
                                             <td>{ItemPhase[key]}</td>
+                                            <td>{ItemStatus[key]}</td>
                                         </tr>
                                     )
                                 })}

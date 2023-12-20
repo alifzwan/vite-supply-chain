@@ -327,6 +327,7 @@ const Track = () => {
     const [Items         , setItems         ] = useState();
     const [ItemID        , setItemID        ] = useState();
     const [ItemPhase     , setItemPhase     ] = useState();
+    const [ItemStatus    , setItemStatus     ] = useState();
 
 
     const [Farmer        , setFarmer        ] = useState();
@@ -376,12 +377,15 @@ const Track = () => {
 
             
             const ItemPhase = [];
+            const ItemStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i + 1] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i + 1] = await supplychain.methods.Chronology(i + 1).call();
+                ItemStatus[i + 1] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
+            setItemStatus(ItemStatus);
 
 
 
@@ -478,6 +482,7 @@ const Track = () => {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Halal Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -489,6 +494,7 @@ const Track = () => {
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
                                     <td>{ItemPhase[ItemID]}</td>
+                                    <td>{ItemStatus[ItemID]}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -546,6 +552,7 @@ const Track = () => {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Halal Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -557,6 +564,7 @@ const Track = () => {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
+                                        <td>{ItemStatus[ItemID]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -637,6 +645,7 @@ const Track = () => {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Halal Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -648,6 +657,7 @@ const Track = () => {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
+                                        <td>{ItemStatus[ItemID]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -731,6 +741,7 @@ const Track = () => {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Halal Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -742,6 +753,7 @@ const Track = () => {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
+                                        <td>{ItemStatus[ItemID]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -824,6 +836,7 @@ const Track = () => {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Halal Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -835,6 +848,7 @@ const Track = () => {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
+                                        <td>{ItemStatus[ItemID]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -916,6 +930,7 @@ const Track = () => {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Halal Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -927,6 +942,7 @@ const Track = () => {
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
                                     <td>{ItemPhase[ItemID]}</td>
+                                    <td>{ItemStatus[ItemID]}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1012,6 +1028,7 @@ const Track = () => {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Halal Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1023,6 +1040,7 @@ const Track = () => {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
+                                        <td>{ItemStatus[ItemID]}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1040,7 +1058,7 @@ const Track = () => {
                                     
                                     {supplychain.name && (
                                         <motion.div className="supplychain-sold-track-section" >
-                                            <h2>{supplychain.name} Information</h2>
+                                            <p>{supplychain.name} Information</p>
                                                 <table className="table-container" border="1">
                                                     <thead>
                                                         <tr>
@@ -1145,6 +1163,7 @@ const Track = () => {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Halal Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1158,11 +1177,16 @@ const Track = () => {
                                             <td>{Items[key].brand}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
-                                        <td>
-                                            {
-                                                 ItemPhase[key]
-                                            }
-                                        </td>
+                                            <td>
+                                                {
+                                                    ItemPhase[key]
+                                                }
+                                            </td>
+                                            <td>
+                                                {
+                                                    ItemStatus[key]
+                                                }
+                                            </td>
                                     </tr>
                                 )
                             })}

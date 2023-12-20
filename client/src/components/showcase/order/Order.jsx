@@ -60,6 +60,7 @@ const Order = () => {
     const [ItemOrigin     , setItemOrigin     ]  = useState();
     const [ItemDescription, setItemDescription]  = useState();
     const [ItemPhase      , setItemPhase      ]  = useState();
+    const [ItemStatus     , setItemStatus     ]  = useState();
     
     const loadWeb3 = async () => {
         if (window.ethereum) {
@@ -91,12 +92,15 @@ const Order = () => {
             const itemsCount = await supplychain.methods.itemsCount().call();
             const item = {};
             const ItemPhase = [];
+            const ItemStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
+                ItemStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
+            setItemStatus(ItemStatus);
             setloader(false);
         }
         else {
@@ -232,6 +236,7 @@ const Order = () => {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Halal Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -247,6 +252,11 @@ const Order = () => {
                                                 <td>
                                                     {
                                                         ItemPhase[key]
+                                                    }
+                                                </td>
+                                                <td>
+                                                    {
+                                                        ItemStatus[key]
                                                     }
                                                 </td>
                                             </tr>
