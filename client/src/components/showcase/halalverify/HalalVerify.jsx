@@ -69,16 +69,19 @@ const HalalVerify = () => {
     });
 
 
-    const [currentaccount, setCurrentaccount] = useState("");
-    const [loader        , setloader        ] = useState(true);
-    const [SupplyChain   , setSupplyChain   ] = useState();
+    const [currentaccount    , setCurrentaccount       ] = useState("");
+    const [loader            , setloader               ] = useState(true);
+    const [SupplyChain       , setSupplyChain          ] = useState();
 
-    const [Verifier      , setVerifier      ] = useState();
-    const [TrackTillVerify , displayTrackTillVerify     ] = useState(false);
+    const [HalalVerification , displayHalalVerification] = useState(false);
+    const [Verified          , displayVerified         ] = useState(false);
+   
 
-    const [Items         , setItems         ] = useState();
-    const [ItemID        , setItemID        ] = useState();
-    const [ItemPhase     , setItemPhase     ] = useState();
+
+    const [Items             , setItems                ] = useState();
+    const [ItemID            , setItemID               ] = useState();
+    const [ItemPhase         , setItemPhase            ] = useState();
+    const [ItemStatus        , setItemStatus           ] = useState();
 
 
 
@@ -113,20 +116,15 @@ const HalalVerify = () => {
 
 
             const ItemPhase = [];
+            const ItemStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
+                ItemStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
-
-
-            const verifierCount = await supplychain.methods.verifierCount().call();
-            const verifier = {};
-            for (i = 0; i < verifierCount; i++) {
-                verifier[i + 1] = await supplychain.methods.verifierInfo(i + 1).call();
-            }
-            setVerifier(verifier);
+            setItemStatus(ItemStatus); 
             setloader(false);
         }
         else {
@@ -175,16 +173,35 @@ const HalalVerify = () => {
                         checklist.StaffProperlyTrainedInHalalProcedures
                     )
                     .send({ from: currentaccount });
-    
+                console.log("Transaction successful"); 
+
+                console.log("Items before:", Items);
+                console.log("ItemPhase before:", ItemPhase);
+                console.log("ItemStatus before:", ItemStatus);
+
+                await loadBlockchaindata()
+                
+                    // Log the current status after the transaction
+                const updatedStatus = await SupplyChain.methods.HalalStatus(ItemID).call();
+
+                console.log("Updated Status:", updatedStatus);
+                console.log("Items after:", Items);
+                console.log("ItemPhase after:", ItemPhase);
+                console.log("ItemStatus after:", ItemStatus);
+
+                displayVerified(true);
                 // After successful verification and transaction, you can update the UI or perform other actions
                 // For example, you might want to display a success message
-                alert('Halal verification successful!');
+
+                
+                
             } else {
                 // Handle the case where verification fails
                 alert('Please make sure you tick all the checklist');
             }
         } catch (error) {
             // Handle the error, display a message, or perform other actions
+            
             console.log(error)
             alert('Please make sure you tick all the checklist');
         }
@@ -200,9 +217,90 @@ const HalalVerify = () => {
         )
     }
 
+    if (Verified) {
+        return (
+            <div className="verified-main-container">
+                <div className="menu-bar">
+                    <ProjectSideBar />
+                </div> 
+
+                <div className="main-section">
+                    <div className="verified-section-title">Halal Verification</div>
+                    <div className="verified-content">
+                        <div className="verified-section">
+                            <table className="table-container" border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Categories</th>
+                                        <th>Brand</th>
+                                        <th>Based In</th>
+                                        <th>Description</th>
+                                        <th>Current Stage</th>
+                                        <th>Halal Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Object.keys(Items).map(function (key) {
+                                        return (
+                                            <tr key={key}>
+                                                <td>{Number(Items[key].id)}</td>
+                                                <td>{Items[key].name}</td>
+                                                <td>{Items[key].categories}</td>
+                                                <td>{Items[key].brand}</td>
+                                                <td>{Items[key].origin}</td>
+                                                <td>{Items[key].nutritionInfo}</td>
+                                                <td>
+                                                    {
+                                                        ItemPhase[key]
+                                                    }
+                                                </td>
+                                                <td>
+                                                    {
+                                                        ItemStatus[key]
+                                                    }
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2 className='verified-description'>Your Item is already <b>halal verified</b></h2>
+                    <div className="halal-back-button-container">
+                        <motion.div variants={itemVariants} className="halal-back-button">
+                                <motion.button
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={() => {displayVerified(false); displayHalalVerification(false);}}
+                                >
+                                    Verify Another Item
+                                </motion.button>
+
+                                <motion.button
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={redirect_to_project}
+                                >
+                                    Back To Project 
+                                </motion.button>
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+
+
 
     // Item Ordered
-    if (TrackTillVerify) {
+    if (HalalVerification) {
         return (
         <div className="halal-main-container">
             <div className="menu-bar">
@@ -223,6 +321,7 @@ const HalalVerify = () => {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Halal Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -238,6 +337,11 @@ const HalalVerify = () => {
                                             <td>
                                                 {
                                                     ItemPhase[key]
+                                                }
+                                            </td>
+                                            <td>
+                                                {
+                                                    ItemStatus[key]
                                                 }
                                             </td>
                                         </tr>
@@ -331,7 +435,7 @@ const HalalVerify = () => {
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={() => displayTrackTillVerify(false)}
+                                onClick={() => displayHalalVerification(false)}
                             >
                                 Verify Another Item
                             </motion.button>
@@ -364,13 +468,18 @@ const HalalVerify = () => {
             alert("Please enter valid ID");
         else {
             if ((verifierCount > 0) && (verifierCount <= count))
-                displayTrackTillVerify(true);
+                displayHalalVerification(true);
             else
                 return "There's no Verifier registered"
         }
+        
     }
+
+
     
 
+
+    
     return (
         <div className="verify-main-container">
             <div className="menu-bar">
@@ -391,6 +500,7 @@ const HalalVerify = () => {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Halal Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -404,11 +514,16 @@ const HalalVerify = () => {
                                             <td>{Items[key].brand}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
-                                        <td>
-                                            {
-                                                ItemPhase[key]
-                                            }
-                                        </td>
+                                            <td>
+                                                {
+                                                    ItemPhase[key]
+                                                }
+                                            </td>
+                                            <td>
+                                                {
+                                                    ItemStatus[key]
+                                                }
+                                            </td>
                                     </tr>
                                 )
                             })}
