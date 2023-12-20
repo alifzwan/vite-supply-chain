@@ -94,7 +94,7 @@ const ProjectLinks = ({darkTheme}) => {
 
             
             <Menu.Item id="home" icon ={<HomeOutlined />}>
-                <Link to="/project">Home</Link>
+                <Link to="/project">Front Page</Link>
             </Menu.Item>
 
             <Menu.Item icon ={<AppstoreOutlined />}>
@@ -146,7 +146,7 @@ const ProjectLinks = ({darkTheme}) => {
             </Menu.Item>
 
             <Menu.Item icon ={<HomeOutlined />}>
-                <Link to="/">Front Page</Link>
+                <Link to="/">Home</Link>
             </Menu.Item>
         </Menu>
         
