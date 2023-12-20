@@ -144,6 +144,128 @@
 
 
 
+
+.verified-main-container {
+    display: flex;
+}
+
+.main-section {
+    flex: 1;
+    padding: 20px; 
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+
+    .verified-section-title {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: left;
+        color: rebeccapurple;
+    }
+
+
+    .verified-content {
+        display: flex;
+        flex-direction: column;
+
+        .verified-section {
+            border: 2px solid rebeccapurple;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        
+            h2 {
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+        
+            table {  // Item table
+                border-collapse: collapse;
+                border: 1px solid white;
+                border-radius: 20px;
+                width: 100%;
+                height:30px;
+                font-size: 14px;
+                   
+                
+        
+                th, td {
+                    color: white;
+                    padding: 10px;
+                    text-align: center;
+                }
+        
+                th {
+                    background-color: transparent;
+                }
+        
+                tr:nth-child(even) {
+                    background-color: transparent;
+                }
+                td:last-child {
+                    color: green;
+                }
+                tr:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+
+
+    .verified-description {
+        margin-bottom: 10px;
+        justify-content: center;
+        b {
+            color: green;
+        }
+    }
+
+
+
+
+    .verified-back-button-container {
+        display: flex;
+        .verified-back-button{
+            gap: 20px;
+            max-width: 1366px;
+            margin: auto;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            button {
+                padding: 0px 10px;
+                height: 35px;
+                border: 1px solid white;
+                border-radius: 10px;
+                background-color: transparent;
+                color: white;
+                cursor: pointer;
+                font-weight: bold;
+                margin-top: 5px;
+                text-align: center;
+            }
+            button:hover { 
+                color: rebeccapurple;
+                border-color: rebeccapurple;
+            }
+        }
+    }
+
+
+
+}
+
+
+
+
+
 .halal-main-container {
     display: flex;
 }

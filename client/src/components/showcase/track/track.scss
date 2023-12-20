@@ -251,11 +251,12 @@
         .ordered-info {
             margin-bottom: 10px;
             justify-content: center;
+            b {
+                color: rebeccapurple;
+            }
         }
 
-        b {
-            color: rebeccapurple;
-        }
+        
     }
 
 
@@ -680,7 +681,7 @@
                // Flow Information
             .supplychain-manufacturer-section{
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(5, 1fr);
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 50px;
@@ -845,7 +846,7 @@
                     // Flow Information
             .supplychain-distributor-section{
                 display: grid;
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(7, 1fr);
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 50px;
@@ -1015,7 +1016,7 @@
                     // Flow Information
             .supplychain-retailer-section{
                 display: grid;
-                grid-template-columns: repeat(7, 1fr);
+                grid-template-columns: repeat(9, 1fr);
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 50px;
@@ -1188,7 +1189,7 @@
             // Flow Information
             .supplychain-sold-section{
                 display: grid;
-                grid-template-columns: repeat(7, 1fr);
+                grid-template-columns: repeat(9, 1fr);
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 50px;
@@ -1201,7 +1202,7 @@
                      
                     img {
                         max-width: 1000px;
-                        max-height: 100px;
+                        max-height: 70px;
                         
                     }
                     p {
@@ -1213,8 +1214,9 @@
                 }
             
                 .supplychain-sold-track-section{
-                    h2{
+                    p{
                         margin-bottom: 10px;
+                        font-size: 21px;
                     }
                     table {
                         border-collapse: collapse;
