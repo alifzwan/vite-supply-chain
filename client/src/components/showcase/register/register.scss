@@ -1,5 +1,6 @@
 .reg-main-container {
     display: flex;
+    height: 160vh;
     h1 {
         grid-column: span 2; /* Span across both columns */
         text-align: center;
@@ -39,7 +40,7 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         width: 90%;
-        height: 88vh;
+        height: 150vh;
         margin: 0 auto;
         box-sizing: border-box;
         

@@ -12,7 +12,7 @@ const BlockchainLinks = ({darkTheme}) => {
 
     return (
         
-        <Menu className="menu-bar" theme={darkTheme ? 'dark' : 'light'} mode="inline">
+        <Menu className="blockchain-menu-bar" theme={darkTheme ? 'dark' : 'light'} mode="inline">
             
             <Menu.Item id="home" icon ={<HomeOutlined />}>
                 <Link to="/project">Home</Link>

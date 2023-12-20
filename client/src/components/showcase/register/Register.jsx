@@ -404,7 +404,7 @@ const Register = () => {
     return (
         <div className="reg-main-container">
 
-                <div className="menu-bar">
+                <div className="project-menu-bar">
                     <ProjectSideBar />
                 </div>  
 
