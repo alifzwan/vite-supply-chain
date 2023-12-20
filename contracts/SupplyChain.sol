@@ -146,6 +146,12 @@ contract SupplyChain {
         
     }
 
+    enum STATUS {
+        NonVerified,
+        Verified
+    }
+    mapping(uint256 => STATUS) public ItemsStatus;
+
     // Enum to represent the checklist items
     enum ChecklistItem {
         RawMaterialsHalalCompliant,
@@ -153,8 +159,7 @@ contract SupplyChain {
         EquipmentFreeFromContamination,
         CorrectSlaughteringMethods,
         LabelingAndPackagingMeetsHalalStandards,
-        StaffProperlyTrainedInHalalProcedures,
-        OverallVerification
+        StaffProperlyTrainedInHalalProcedures
     }
     
 
@@ -202,12 +207,12 @@ contract SupplyChain {
         uint256 distributorId;
         uint256 retailerId;
         
-
-        
         PHASE chronology; // The item chronology
     }
 
     mapping(uint256 => items) public ItemsInfo;   //mapping is like you stuff everything into 1 variable.
+
+    
 
 
     function Chronology(
@@ -328,7 +333,7 @@ contract SupplyChain {
 
 
 
-     */
+     
 
     /* Data Location
 
@@ -453,6 +458,7 @@ contract SupplyChain {
         require((farmerCount > 0) && (verifierCount > 0) && (manufacturerCount > 0) && (distributorCount > 0) && (retailerCount > 0));   // Before order, Creator have to register all the admin
         itemsCount++;
         ItemsInfo[itemsCount] = items(itemsCount, _name, _categories, _brand, _origin, _nutritionInfo, 0, 0, 0, 0, 0, PHASE.Plugin); // All this attributes will be stored in ItemsInfo
+        ItemsStatus[itemsCount] = STATUS.NonVerified;
     }  
 
 
@@ -531,6 +537,7 @@ contract SupplyChain {
         require(ItemsInfo[_itemID].chronology == PHASE.Plugin); // Ensure the item is in the Plugin phase
         ItemsInfo[_itemID].farmerId = _id;                      // Assign the farmer ID to the item
         ItemsInfo[_itemID].chronology = PHASE.Farmer;           // Update the item's chronology to Farmer
+        
     }
 
     // To track 
@@ -660,6 +667,7 @@ contract SupplyChain {
     uint256 distributorId,
     uint256 retailerId,
     PHASE chronology
+     
     ) {
     require(_itemID > 0 && _itemID <= itemsCount);
 
@@ -676,19 +684,7 @@ contract SupplyChain {
     distributorId = ItemsInfo[_itemID].distributorId;
     retailerId = ItemsInfo[_itemID].retailerId;
     chronology = ItemsInfo[_itemID].chronology;
-    }
-
-  
-
-
-
-    // Modifier to ensure only the assigned verifier can tick checklist items
-    modifier onlyVerifier(uint256 _itemID) {
-        // Check if the item is in the verification phase
-        require(ItemsInfo[_itemID].chronology == PHASE.Verifier, "Item is not in verification phase");
-        // Ensure the verifier is the one who initiated the verification
-        require(ItemsInfo[_itemID].verifierId == trackVerifier(msg.sender), "Only the assigned verifier can tick checklist items");
-        _;
+   
     }
 
     // Function for the verifier to tick off checklist items
@@ -697,13 +693,13 @@ contract SupplyChain {
         uint256 _itemID = getCallerItemID();
 
         // Ensure the caller is the assigned verifier for the item
-        require(_itemID > 0 && _itemID <= itemsCount, "Invalid item ID");
         require(ItemsInfo[_itemID].chronology == PHASE.Verifier, "Item is not in verification phase");
         require(ItemsInfo[_itemID].verifierId == trackVerifier(msg.sender), "Only the assigned verifier can tick checklist items");
 
+        ItemsStatus[_itemID] = STATUS.Verified;
+        
+
     }
-
-
 
     // Function to get the itemID associated with the calling user
     function getCallerItemID() private view returns (uint256) {
@@ -717,6 +713,24 @@ contract SupplyChain {
     }
 
 
+    function HalalStatus(
+        uint256 _itemID
+    ) public view returns (string memory) {
+        require(_itemID > 0);
+
+        // Retrieve halal status from the specified item
+        STATUS status = ItemsStatus[_itemID];
+
+        // Check the halal status and return the corresponding message
+        if (status == STATUS.NonVerified) {
+            return "Your Item is not halal verified yet";
+        } else if (status == STATUS.Verified) {
+            return "Your Item is Halal Verified";
+        }
+        return "Unknown halal status";
+    }
+
+
 
     // Function to perform overall halal verification
     function halalVerify(uint256 _itemID) private returns (bool) {
@@ -725,8 +739,7 @@ contract SupplyChain {
         // Log or emit an event indicating the verification phase requirement is not met
         return false;
     }
-
     return true;
 
-}
+    }
 }
