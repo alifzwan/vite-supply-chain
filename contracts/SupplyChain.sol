@@ -67,6 +67,7 @@ contract SupplyChain {
     // Establish count for each flow 
     uint256 public itemsCount = 0;
     uint256 public farmerCount = 0;
+    uint256 public slaughterhouseCount = 0;
     uint256 public verifierCount = 0;
     uint256 public manufacturerCount = 0;
     uint256 public distributorCount = 0;
@@ -138,6 +139,7 @@ contract SupplyChain {
     enum PHASE {   
         Plugin,
         Farmer,
+        Slaughterhouse,
         Verifier,
         Manufacturer,
         Distribution,
@@ -152,14 +154,33 @@ contract SupplyChain {
     }
     mapping(uint256 => STATUS) public ItemsStatus;
 
-    // Enum to represent the checklist items
-    enum ChecklistItem {
+    // Enum to represent the checklist items for HALAL VERIFICATION
+    enum ChecklistVerifier {
         RawMaterialsHalalCompliant,
         SupplierHasHalalCertification,
         EquipmentFreeFromContamination,
         CorrectSlaughteringMethods,
         LabelingAndPackagingMeetsHalalStandards,
         StaffProperlyTrainedInHalalProcedures
+    }
+
+
+    enum SLAUGHTER {
+        NonSlaughter,
+        Slaughter
+    }
+     mapping(uint256 => SLAUGHTER) public ItemsSlaughter;
+
+
+
+    // Enum to represent the checklist items for SLAUGHTERHOUSE
+    enum ChecklistSlaughter {
+        isPracticingMuslim,             // Verify that the slaughterer is a practicing Muslim of sound mind.
+        isInvocationCorrect,            // Confirm the correct invocation of Allah's name during slaughter.
+        isCorrectSlaughterMethod,       // Ensure the correct method of slaughter was followed.
+        isBloodDrained,                 // Verify that the blood was thoroughly drained from the carcass after slaughter.
+        isPreventionOfContamination,    // Implement strict measures to prevent cross-contamination.
+        hasHalalCertification           // Display and regularly renew a valid halal certification.
     }
     
 
@@ -191,23 +212,17 @@ contract SupplyChain {
      */
 
     struct items {
-
-        // Items Attributes
         uint256 id;
         string name;
-        string categories;
-        string brand;
         string origin;
         string nutritionInfo;
-
-        // Id of the Admin that going to process the items
-        uint256 farmerId;  
+        uint256 farmerId;
+        uint256 slaughterhouseId;  
         uint256 verifierId;
         uint256 manufacturerId;
         uint256 distributorId;
         uint256 retailerId;
-        
-        PHASE chronology; // The item chronology
+        PHASE chronology; 
     }
 
     mapping(uint256 => items) public ItemsInfo;   //mapping is like you stuff everything into 1 variable.
@@ -226,6 +241,8 @@ contract SupplyChain {
             return "Your item is already Ordered. Please wait for further processes.";
         else if (ItemsInfo[_itemID].chronology == PHASE.Farmer)
             return "Your item is being collected by the farmers. Please wait for further processes."; 
+        else if (ItemsInfo[_itemID].chronology == PHASE.Slaughterhouse)
+            return "Your item is being slaughter. Please wait for further processes."; 
         else if (ItemsInfo[_itemID].chronology == PHASE.Verifier)
             return "Your item is being verify the halal status. Please wait for further processes.";     
         else if (ItemsInfo[_itemID].chronology == PHASE.Manufacturer)
@@ -265,6 +282,16 @@ contract SupplyChain {
     }
 
     mapping(uint256 => farmer) public farmerInfo;  // You can call this variable and it'll show all the admin's attributes
+
+
+    struct slaughterhouse{
+        address addr;
+        uint256 id; 
+        string name; 
+        string location; 
+    }
+
+    mapping(uint256 => slaughterhouse) public slaughterhouseInfo;
 
     struct verifier{
         address addr;
@@ -365,6 +392,17 @@ contract SupplyChain {
         farmerInfo[farmerCount] = farmer(_address, farmerCount, _name, _location);  // All this attributes will be stored in farmerInfo
     }
 
+
+    function regSlaughterhouse(
+        address _address,  // This is wallet address 
+        string memory _name,  // Name of the farmer
+        string memory _location  // Where's the farmer based in?
+    ) public onlyCreator {  // Only creator/owner can register all the admin
+        slaughterhouseCount++;
+        slaughterhouseInfo[slaughterhouseCount] = slaughterhouse(_address, slaughterhouseCount, _name, _location);  // All this attributes will be stored in farmerInfo
+    }
+
+
     function regVerifier(
         address _address,
         string memory _name,
@@ -411,15 +449,11 @@ contract SupplyChain {
         => Origin - Where this items come from
         => Nutrition Information - net weight, how many carbs, fat, sodium , and etc
         => Name - Mister Potato
-        => Brand - Mamee
-        => Categories - Snacks 
         => As well as the id of each flow since we going to track the
            progress of food items through the supply chain.
 
      function orderItems{
         string name
-        string categories
-        string brand
         string origin 
         string nutritionInfo
     
@@ -434,8 +468,6 @@ contract SupplyChain {
      struct items{
          uint256 Id;
          string name;
-         string categories;
-         string brand;
          string origin;
          string nutritionInfo;
         
@@ -449,17 +481,18 @@ contract SupplyChain {
 
     function orderItems(
         string memory _name,
-        string memory _categories,
-        string memory _brand,
         string memory _origin,
         string memory _nutritionInfo
 
     ) public onlyCreator {
-        require((farmerCount > 0) && (verifierCount > 0) && (manufacturerCount > 0) && (distributorCount > 0) && (retailerCount > 0));   // Before order, Creator have to register all the admin
+        require((farmerCount > 0) && (slaughterhouseCount > 0) && (verifierCount > 0) && (manufacturerCount > 0) && (distributorCount > 0) && (retailerCount > 0));   // Before order, Creator have to register all the admin
         itemsCount++;
-        ItemsInfo[itemsCount] = items(itemsCount, _name, _categories, _brand, _origin, _nutritionInfo, 0, 0, 0, 0, 0, PHASE.Plugin); // All this attributes will be stored in ItemsInfo
+        ItemsInfo[itemsCount] = items(itemsCount, _name, _origin, _nutritionInfo, 0, 0, 0, 0, 0, 0, PHASE.Plugin); // All this attributes will be stored in ItemsInfo
+        ItemsSlaughter[itemsCount] = SLAUGHTER.NonSlaughter;
         ItemsStatus[itemsCount] = STATUS.NonVerified;
     }  
+
+
 
 
 
@@ -507,8 +540,6 @@ contract SupplyChain {
      struct items{
         uint256 Id;
         string name;
-        string categories;
-        string brand;
         string origin;
         string nutritionInfo;
 
@@ -552,12 +583,36 @@ contract SupplyChain {
 
     }
 
-    //To change the flow from Farmer ==> Verifier
+    // To change the flow from Farmer ==> Slaughterhouse
+    function Slaughtering(uint256 _itemID) public {
+        require(_itemID > 0 && _itemID <= itemsCount);          
+        uint256 _id = trackSlaughterhouse(msg.sender);                  
+        require(_id > 0);                                      
+        require(ItemsInfo[_itemID].chronology == PHASE.Farmer); 
+        ItemsInfo[_itemID].slaughterhouseId = _id;                      
+        ItemsInfo[_itemID].chronology = PHASE.Slaughterhouse;           
+        
+    }
+
+    // To track 
+    function trackSlaughterhouse(address _address) private view returns (uint256) {
+        require(slaughterhouseCount > 0);                                       
+
+        for (uint256 i = 1; i <= slaughterhouseCount; i++) {
+            if (slaughterhouseInfo[i].addr == _address)   
+            return slaughterhouseInfo[i].id;             
+        }
+        return 0;
+
+    }
+
+
+    //To change the flow from Slaughterhouse ==> Verifier
      function Verifying(uint256 _itemID) public {
         require(_itemID > 0 && _itemID <= itemsCount);           
         uint256 _id = trackVerifier(msg.sender);                
-        require(_id > 0);                                       
-        require(ItemsInfo[_itemID].chronology == PHASE.Farmer); 
+        require(_id > 0);       
+        require(slaughterVerify(_itemID));
         ItemsInfo[_itemID].verifierId = _id;                     
         ItemsInfo[_itemID].chronology = PHASE.Verifier;         
     }
@@ -657,11 +712,10 @@ contract SupplyChain {
     function info(uint256 _itemID) public view returns (
     uint256 id,
     string memory name,
-    string memory categories,
-    string memory brand,
     string memory origin,
     string memory nutritionInfo,
     uint256 farmerId,
+    uint256 slaughterhouseId,
     uint256 verifierId,
     uint256 manufacturerId,
     uint256 distributorId,
@@ -674,23 +728,29 @@ contract SupplyChain {
     // Retrieve information from the specified item
     id = ItemsInfo[_itemID].id;
     name = ItemsInfo[_itemID].name;
-    categories = ItemsInfo[_itemID].categories;
-    brand = ItemsInfo[_itemID].brand;
     origin = ItemsInfo[_itemID].origin;
     nutritionInfo = ItemsInfo[_itemID].nutritionInfo;
+
+
+
     farmerId = ItemsInfo[_itemID].farmerId;
+    slaughterhouseId = ItemsInfo[_itemID].slaughterhouseId;
     verifierId = ItemsInfo[_itemID].verifierId;
     manufacturerId = ItemsInfo[_itemID].manufacturerId;
     distributorId = ItemsInfo[_itemID].distributorId;
     retailerId = ItemsInfo[_itemID].retailerId;
+
+
     chronology = ItemsInfo[_itemID].chronology;
-   
     }
 
-    // Function for the verifier to tick off checklist items
-    function tickChecklistItem(ChecklistItem _checklistItem) public {
+    //-------------HALAL VERIFICATION PROCESS---------------------
+
+
+         // Function for the verifier to tick off checklist items
+    function verifyTickChecklistItem(ChecklistVerifier _checklistVerifier) public {
         // Get the itemID associated with the calling user
-        uint256 _itemID = getCallerItemID();
+        uint256 _itemID = getVerifierItemID();
 
         // Ensure the caller is the assigned verifier for the item
         require(ItemsInfo[_itemID].chronology == PHASE.Verifier, "Item is not in verification phase");
@@ -702,7 +762,7 @@ contract SupplyChain {
     }
 
     // Function to get the itemID associated with the calling user
-    function getCallerItemID() private view returns (uint256) {
+    function getVerifierItemID() private view returns (uint256) {
         // Iterate through items and find the one associated with the caller
         for (uint256 i = 1; i <= itemsCount; i++) {
             if (ItemsInfo[i].verifierId == trackVerifier(msg.sender) && ItemsInfo[i].chronology == PHASE.Verifier) {
@@ -735,9 +795,62 @@ contract SupplyChain {
     // Function to perform overall halal verification
     function halalVerify(uint256 _itemID) private returns (bool) {
     // Check if the item is in the verification phase
-    if (ItemsInfo[_itemID].chronology != PHASE.Verifier) {
-        // Log or emit an event indicating the verification phase requirement is not met
-        return false;
+    for (uint8 i = 0; i < uint8(ChecklistVerifier.LabelingAndPackagingMeetsHalalStandards); i++) {
+        if (ItemsStatus[_itemID] != STATUS.Verified) {
+            return false;
+        }
+    }
+    return true;
+
+    }
+
+
+
+
+
+    //-------------SLAUGHTERING VERIFICATION PROCESS---------------------
+
+     function slaughterTickChecklistItem(ChecklistSlaughter _checklistSlaughter) public {
+        uint256 _itemID = getSlaughterhouseItemID();
+
+        require(ItemsInfo[_itemID].chronology == PHASE.Slaughterhouse, "Item is not in slaughterhouse phase");
+        require(ItemsInfo[_itemID].slaughterhouseId == trackSlaughterhouse(msg.sender), "Only the assigned slaughterhouse can tick checklist items");
+
+        ItemsSlaughter[_itemID] = SLAUGHTER.Slaughter;
+        
+
+    } 
+    function getSlaughterhouseItemID() private view returns (uint256) {
+        for (uint256 i = 1; i <= itemsCount; i++) {
+            if (ItemsInfo[i].slaughterhouseId == trackSlaughterhouse(msg.sender) && ItemsInfo[i].chronology == PHASE.Slaughterhouse) {
+                return i;
+            }
+        }
+        revert("Caller is not associated with any item in Slaughterhouse phase");
+    }
+
+    function SlaughterStatus(
+        uint256 _itemID
+    ) public view returns (string memory) {
+        require(_itemID > 0);
+
+        SLAUGHTER slaughter = ItemsSlaughter[_itemID];
+
+        if (slaughter == SLAUGHTER.NonSlaughter) {
+            return "Your Item is not slaughter yet";
+        } else if (slaughter == SLAUGHTER.Slaughter) {
+            return "Your Item is Slaughtered";
+        }
+        return "Unknown slaughter status";
+    }
+
+
+
+    function slaughterVerify(uint256 _itemID) private returns (bool) {
+    for (uint8 i = 0; i < uint8(ChecklistSlaughter.isPreventionOfContamination); i++) {
+        if (ItemsSlaughter[_itemID] != SLAUGHTER.Slaughter) {
+            return false;
+        }
     }
     return true;
 
