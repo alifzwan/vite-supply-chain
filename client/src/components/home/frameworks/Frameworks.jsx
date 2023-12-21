@@ -18,8 +18,8 @@ const Variants = {
   },
 };
 
-
 const Frameworks = () => {
+
   const frameworks = [
     { name: "Truffle"      , logo: "/truffle.svg"      , link: "https://trufflesuite.com/docs/truffle/"},
     { name: "Ganache"      , logo: "/ganache.svg"      , link: "https://trufflesuite.com/docs/ganache/"},

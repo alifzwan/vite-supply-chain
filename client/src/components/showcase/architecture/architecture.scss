@@ -1,86 +1,247 @@
 .architecture-main-container {
-    display: flex;
-    
-  
+  display: flex;
+}
+
+.architecture-main-section {
+    flex: 1;
+    padding: 20px; /* Add padding as needed */
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+
+    .architecture-section-title{ 
+      font-size: 40px;
+      font-weight: bold;
+      margin: 50px 0 100px 0;
+      text-align: center;
+      color: rebeccapurple;
   }
-  
-  .architecture-main-section {
-      flex: 1;
-      padding: 20px;
-      align-items: flex-start;
-      display:flex;
-      flex-direction: column;
-      margin: auto;
-      .architecture-section-title {
-          padding: 150px 150px 5px 160px;
-          font-size: 46px;
-          font-weight: bold;
-          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-          text-align: left !important;
-          color: white;
-          margin: 0;
-      }
-  
-      .architecture-content {
-          padding: 20px 150px 150px 160px;
-  
-          .architecture-section {
-              box-sizing: border-box;
-              max-width: 57vw;
-  
-              .description {
-                font-size: 18px;
-                b {
-                  color: rebeccapurple;
-                }
+
+  .architecture-content {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        height: 40vh;
+        width: 85vw;
+        margin: 0 auto;
+        box-sizing: border-box;
+
+        .contract-section {
+            border: 3px solid black;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            max-height: 195px; 
+            width: 400px;
+
+            .contract-container {
+              padding: auto;
+              p {
+                font-size: 20px;
+                text-align: center;
+                color: black;
+                font-weight: bold;
+                margin-bottom: 30px;
               }
-          }
+              .contract-grid-image {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+                justify-items: center;
+                height: 100px;
   
-          .architecture-back-button-container {
-              display: flex;
-              .architecture-back-button{
-                  max-width: 1366px;
-                  margin-top: 70px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: space-between;
-                  height: 100%;
-                  gap: 20px;
-                  .started {
-                      padding: 0px 10px;
-                      height: 35px;
-                      border: 1px solid white;
-                      border-radius: 10px;
-                      background-color: white;
-                      color: black;
-                      cursor: pointer;
-                      font-weight: bold;
-                      margin-top: 5px;
-                      text-align: center;
-  
+                .contract-item {
+                  text-align: center;
+                  max-width: 800px;
+                  img {
+                    max-width: 500px;
+                    max-height: 70px;
                   }
-                  .learn {
-                    padding: 0px 10px;
-                    height: 35px;
-                    border: 1px solid white;
-                    border-radius: 10px;
-                    background-color: #001529 ;
-                    color: white;
-                    cursor: pointer;
+                  
+                  p {
+                    font-size: 18px;
                     font-weight: bold;
-                    margin-top: 5px;
-                    text-align: center;
-  
+                    margin: 10px 0 0 0;
                   }
-                  .started:hover { 
-                      background-color: #ccc;
-                      border-color: rebeccapurple;
-                  }
-                  .learn:hover { 
-                    background-color: hsl(0,0%,12%);
-                    border-color: rebeccapurple;
                 }
               }
+            }
+        }
+
+        .metamask-section {
+          padding: 10px;
+          box-sizing: border-box;
+          max-height: 195px; 
+          width: 200px;
+          .metamask-container {
+            padding: auto;
+           
+            .metamask-grid-image {
+              display: grid;
+              grid-template-columns: repeat(1, 2fr);
+              gap: 20px;
+              justify-items: center;
+              height: 100px;
+  
+              .metamask-item {
+                text-align: center;
+                max-width: 800px;
+                img {
+                  max-width: 500px;
+                  max-height: 50px;
+                }
+                p {
+                  font-family: sans-serif;
+                  font-size: 18px;
+                  text-align: center;
+                  color: white;
+                  font-weight: bold;
+                }
+              }
+            }
+          }  
+        }
+
+        .ethereum-section {
+          border: 3px solid black;
+          background-color: white;
+          border-radius: 10px;
+          padding: 10px;
+          box-sizing: border-box;
+          max-height: 195px; 
+          width: 200px;
+          .ethereum-container {
+            padding: auto;
+            p {
+              font-size: 20px;
+              text-align: center;
+              color: black;
+              font-weight: bold;
+              margin-bottom: 15px;
+            }
+            .ethereum-grid-image {
+              justify-items: center;
+              height: 100px;
+  
+              .ethereum-item {
+                text-align: center;
+                max-width: 800px;
+                img {
+                  max-width: 500px;
+                  max-height: 70px;
+                }
+                
+                p {
+                  font-size: 20px;
+                  font-weight: bold;
+                  // margin: 5px 0 0 0;
+                }
+  
+              }
+            }
+          }
+          
+        }
+
+        .web3-section {
+          padding: 10px;
+          box-sizing: border-box;
+          max-height: 195px; 
+          width: 200px;
+          .web3-container {
+            padding: auto;
+           
+            .web3-grid-image {
+              display: grid;
+              grid-template-columns: repeat(1, 2fr);
+              gap: 20px;
+              justify-items: center;
+              height: 100px;
+  
+              .web3-item {
+                text-align: center;
+                max-width: 800px;
+                img {
+                  max-width: 500px;
+                  max-height: 50px;
+                }
+                p {
+                  font-family: sans-serif;
+                  font-size: 18px;
+                  text-align: center;
+                  color: white;
+                  font-weight: bold;
+                }
+              }
+            }
+          }  
+        }
+
+
+      .website-section {
+          border: 3px solid black;
+          background-color: white;
+          border-radius: 10px;
+          padding: 10px;
+          box-sizing: border-box;
+          max-height: 195px; 
+          width: 400px;
+
+          .website-container {
+            padding: auto;
+            p {
+              font-size: 20px;
+              text-align: center;
+              color: black;
+              font-weight: bold;
+              margin-bottom: 30px;
+            }
+            .website-grid-image {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 20px;
+              justify-items: center;
+              height: 100px;
+  
+              .website-item {
+                text-align: center;
+                max-width: 800px;
+                img {
+                  max-width: 500px;
+                  max-height: 70px;
+                }
+                
+                p {
+                  font-size: 17px;
+                  font-weight: bold;
+                  margin: 10px 0 0 0;
+                }
+  
+              }
+            }
           }
       }
   }
+  .architecture-back-button{
+    max-width: 1366px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    button {
+        padding: 0px 10px;
+        height: 35px;
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: transparent;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 5px;
+        text-align: center;
+      }
+      button:hover { 
+          color: rebeccapurple;
+          border-color: rebeccapurple;
+      }
+  }
+}
