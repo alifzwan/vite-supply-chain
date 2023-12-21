@@ -227,14 +227,20 @@ const Order = () => {
                             <tbody>
                                 {Object.keys(Items).map(function (key) {
                                     return (
-                                        <tr key={key}>
+                                        <tr key={key} >
                                             <td>{Number(Items[key].id)}</td>
                                             <td>{Items[key].name}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
                                             <td>{ItemPhase[key]}</td>
-                                            <td>{SlaughterStatus[key]}</td>
-                                            <td>{VerifyStatus[key]}</td>
+
+                                            <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                                {SlaughterStatus[key]}
+                                            </td>
+
+                                            <td className={VerifyStatus[key] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                                {VerifyStatus[key]}
+                                            </td>
                                         </tr>
                                     )
                                 })}

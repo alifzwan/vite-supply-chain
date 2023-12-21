@@ -80,12 +80,11 @@
                     color: green;
                     
                 }
-                td:nth-child(6) {
-                    color: green;
-                    
+                .red-text {
+                    color: red; 
                 }
-                td:last-child {
-                    color: green;
+                .green-text {
+                    color: green; 
                 }
         
                 tr:hover {

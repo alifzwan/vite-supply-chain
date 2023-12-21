@@ -468,8 +468,6 @@ const SlaughterVerify = () => {
        
         if (slaughterStatus === "Your Item is Slaughtered"){
             displaySlaughtered(true)
-        }else {
-            alert("Unknown slaughter status");
         }
         
     }
@@ -506,8 +504,13 @@ const SlaughterVerify = () => {
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
                                             <td>{ItemPhase[key]}</td>
-                                            <td>{SlaughterStatus[key]} </td>
-                                            <td>{VerifyStatus[key]}</td>
+                                            <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                                {SlaughterStatus[key]}
+                                            </td>
+
+                                            <td className={VerifyStatus[key] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                                {VerifyStatus[key]}
+                                            </td>
                                     </tr>
                                 )
                             })}

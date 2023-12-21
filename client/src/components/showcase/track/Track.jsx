@@ -598,8 +598,12 @@ const Track = () => {
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
                                     <td>{ItemPhase[ItemID]}</td>
-                                    <td>{SlaughterStatus[ItemID]}</td>
-                                    <td>{VerifyStatus[ItemID]}</td>
+                                    <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                            {SlaughterStatus[ItemID]}
+                                    </td>
+                                    <td className={VerifyStatus[ItemID] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                            {VerifyStatus[ItemID]}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -666,8 +670,12 @@ const Track = () => {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
-                                        <td>{SlaughterStatus[ItemID]}</td>
-                                        <td>{VerifyStatus[ItemID]}</td>
+                                        <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                            {SlaughterStatus[ItemID]}
+                                        </td>
+                                        <td className={VerifyStatus[ItemID] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                            {VerifyStatus[ItemID]}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -758,8 +766,12 @@ if (TrackTillSlaughterhouse) {
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
                                     <td>{ItemPhase[ItemID]}</td>
-                                    <td>{SlaughterStatus[ItemID]}</td>
-                                    <td>{VerifyStatus[ItemID]}</td>
+                                    <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                        {SlaughterStatus[ItemID]}
+                                    </td>
+                                    <td className={VerifyStatus[ItemID] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                        {VerifyStatus[ItemID]}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -850,8 +862,12 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
-                                        <td>{SlaughterStatus[ItemID]}</td>
-                                        <td>{VerifyStatus[ItemID]}</td>
+                                        <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                            {SlaughterStatus[ItemID]}
+                                        </td>
+                                        <td className={VerifyStatus[ItemID] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                            {VerifyStatus[ItemID]}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -944,8 +960,12 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
-                                        <td>{SlaughterStatus[ItemID]}</td>
-                                        <td>{VerifyStatus[ItemID]}</td>
+                                        <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                            {SlaughterStatus[ItemID]}
+                                        </td>
+                                        <td className={VerifyStatus[ItemID] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                            {VerifyStatus[ItemID]}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1037,8 +1057,12 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
-                                        <td>{SlaughterStatus[ItemID]}</td>
-                                        <td>{VerifyStatus[ItemID]}</td>
+                                        <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                            {SlaughterStatus[ItemID]}
+                                        </td>
+                                        <td className={VerifyStatus[ItemID] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                            {VerifyStatus[ItemID]}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1129,8 +1153,12 @@ if (TrackTillSlaughterhouse) {
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
                                     <td>{ItemPhase[ItemID]}</td>
-                                    <td>{SlaughterStatus[ItemID]}</td>
-                                    <td>{VerifyStatus[ItemID]}</td>
+                                    <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                        {SlaughterStatus[ItemID]}
+                                    </td>
+                                    <td className={VerifyStatus[ItemID] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                        {VerifyStatus[ItemID]}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1223,8 +1251,12 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
-                                        <td>{SlaughterStatus[ItemID]}</td>
-                                        <td>{VerifyStatus[ItemID]}</td>
+                                        <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                                {SlaughterStatus[ItemID]}
+                                        </td>
+                                        <td className={VerifyStatus[ItemID] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                                {VerifyStatus[ItemID]}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1363,8 +1395,13 @@ if (TrackTillSlaughterhouse) {
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
                                             <td>{ItemPhase[key]}</td>
-                                            <td>{SlaughterStatus[key]}</td>
-                                            <td>{VerifyStatus[key]}</td>
+                                            <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                                {SlaughterStatus[key]}
+                                            </td>
+
+                                            <td className={VerifyStatus[key] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                                    {VerifyStatus[key]}
+                                            </td>
                                     </tr>
                                 )
                             })}
