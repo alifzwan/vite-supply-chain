@@ -236,21 +236,21 @@ contract SupplyChain {
 
         // Check the current phase of the item using its ID
         if (ItemsInfo[_itemID].chronology == PHASE.Plugin)
-            return "Your item is already Ordered. Please wait for further processes.";
+            return "Item Ordered, awaiting processing.";
         else if (ItemsInfo[_itemID].chronology == PHASE.Farmer)
-            return "Your item is being collected by the farmers. Please wait for further processes."; 
+            return "Item collected by farmers, awaiting processing."; 
         else if (ItemsInfo[_itemID].chronology == PHASE.Slaughterhouse)
-            return "Your item is being slaughter. Please wait for further processes."; 
+            return "Item is being slaughter, please wait."; 
         else if (ItemsInfo[_itemID].chronology == PHASE.Verifier)
-            return "Your item is being verify the halal status. Please wait for further processes.";     
+            return "Item being verify the halal status, please wait.";     
         else if (ItemsInfo[_itemID].chronology == PHASE.Manufacturer)
-            return "Your item is being manufactured. Please wait for further processes."; 
+            return "Item being manufactured, awaiting processing."; 
         else if (ItemsInfo[_itemID].chronology == PHASE.Distribution)
-            return "Your item is being distributed. Please wait for further processes.";  
+            return "Item being distributed, awaiting processing.";  
         else if (ItemsInfo[_itemID].chronology == PHASE.Retail)
-            return "Your item is safely at the store.";  
+            return "Item safely at the store.";  
         else if (ItemsInfo[_itemID].chronology == PHASE.Sold)
-            return "Your item is already sold.";  
+            return "Item already sold.";  
 
         return "Unknown item chronology";
     }
@@ -782,7 +782,7 @@ contract SupplyChain {
 
         // Check the halal status and return the corresponding message
         if (status == STATUS.NonVerified) {
-            return "Your Item is not halal verified yet";
+            return "Your Item is not Halal Verified yet";
         } else if (status == STATUS.Verified) {
             return "Your Item is Halal Verified";
         }
