@@ -45,28 +45,16 @@ const ProjectHero = () => {
                   <h2 className="section-title">Supply Chain Flow</h2>
                   <div className="supplychain-list">
                       {supplychains.map((supplychain, index) => (
-
-                        <motion.div className="supplychain-item" 
+                        <div className="supplychain-item" 
                               key={index}>
-
                               <motion.img src={supplychain.image} alt={supplychain.name} 
                               whileHover={{ scale: 1.1}}
                               whileTap={{ scale: 0.95 }}/>
 
-                    
-                        
                               {supplychain.name && (
-                                <motion.p 
-                                    whileHover={{ scale: 1.1 }} 
-                                    whileTap={{ scale: 0.95 }}>
-
-                                    <p className="name">{supplychain.name}</p >
-                                </motion.p>
-
+                              <p className="name">{supplychain.name}</p >
                               )}
-
-                        </motion.div>
-                  
+                        </div>
                       ))}
                   </div>
 

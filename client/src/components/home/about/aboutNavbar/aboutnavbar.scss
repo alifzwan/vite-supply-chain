@@ -20,6 +20,7 @@
 
     .social {
       display: flex;
+      flex-direction: row;
       gap: 20px;
 
       img {
@@ -37,6 +38,12 @@
         font-weight: bold;
         margin-top: 5px;
         text-align: center;
+        p:hover {
+          color: white;
+        }
+      }
+      a:hover {
+        color: white;
       }
     }
   }

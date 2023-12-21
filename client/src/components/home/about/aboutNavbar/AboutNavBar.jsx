@@ -51,9 +51,9 @@ const AboutNavbar = () => {
           <a href="https://github.com/alifzwan" target="_blank" rel="noopener noreferrer">
             <GitHubIcon style={{fontSize: 30}}></GitHubIcon>
           </a>
-          <a href="https://open.spotify.com/user/alifzwan?si=b4ddb3a5803e4954" target="_blank" rel="noopener noreferrer">
+          {/* <a href="https://open.spotify.com/user/alifzwan?si=b4ddb3a5803e4954" target="_blank" rel="noopener noreferrer">
             <img src="/spotify.svg" alt="" />
-          </a>
+          </a> */}
           <a href="https://mail.google.com/mail/u/1/#inbox?compose=DmwnWrRmTNmrvgjlGHhNSPWcSzqXSTrDZMzcXRCFrKHNbWPVLPBSGXdGXhnxTgvZfHVgwBfldHtl" target="_blank" rel="noopener noreferrer">
             <EmailRoundedIcon style={{fontSize: 30}}></EmailRoundedIcon>
           </a>
@@ -67,7 +67,7 @@ const AboutNavbar = () => {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            Download CV
+                            <p>Download CV</p>
                         </motion.button>
           </motion.a>
         </div>
