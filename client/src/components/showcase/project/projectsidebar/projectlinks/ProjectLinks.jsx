@@ -8,11 +8,10 @@ import React, { useEffect, useState } from 'react';
 
 import {
     HomeOutlined, 
-    AppstoreOutlined, 
-    // AreaChartOutlined, 
-    // PayCircleOutlined, 
+    AppstoreOutlined,
     SettingOutlined, 
     BarsOutlined, 
+    DeploymentUnitOutlined, 
     ApiTwoTone, 
     DollarTwoTone,
     UserOutlined} from "@ant-design/icons"
@@ -94,8 +93,18 @@ const ProjectLinks = ({darkTheme}) => {
 
             
             <Menu.Item id="home" icon ={<HomeOutlined />}>
-                <Link to="/project">Front Page</Link>
+                <Link to="/project">
+                    Front Page
+                </Link>
             </Menu.Item>
+
+
+            <Menu.Item icon ={<DeploymentUnitOutlined />}>
+                <Link to="/architecture">
+                    Architecture
+                </Link>
+            </Menu.Item>
+
 
             <Menu.Item icon ={<AppstoreOutlined />}>
                 <Link to="/projecthero">
@@ -136,15 +145,6 @@ const ProjectLinks = ({darkTheme}) => {
                
             </Menu.SubMenu>
 
-        
-            {/* <Menu.Item icon ={<AreaChartOutlined />}>
-                Progress
-            </Menu.Item>
-
-            <Menu.Item icon ={<PayCircleOutlined />}>
-                Payment
-            </Menu.Item> */}
-
             <Menu.Item icon ={<SettingOutlined />}>
                 Setting
             </Menu.Item>
@@ -153,11 +153,7 @@ const ProjectLinks = ({darkTheme}) => {
                 <Link to="/">Home</Link>
             </Menu.Item>
         </Menu>
-        
-
-        
-        
-        
+    
     )
 }
 
