@@ -43,7 +43,7 @@
             border-radius: 10px;
             padding: 10px;
             box-sizing: border-box;
-            width: 100%;
+            width: 60vw;
             overflow-y: auto;
         
             h2 {
@@ -93,14 +93,12 @@
                 }
             }
             
-        
             
-        
-            table {
+            .order-table-container{
                 border-collapse: collapse;
                 border: 1px solid white;
                 border-radius: 20px;
-                width: 100%;
+                width: 99.4%;
                 height:30px;
                 font-size: 14px;
                 margin-bottom: 20px;
@@ -123,6 +121,14 @@
         
                 tr:nth-child(even) {
                     background-color: transparent;
+                    
+                }
+                td:nth-child(5) {
+                    color: green;
+                    
+                }
+                td:nth-child(6) {
+                    color: green;
                     
                 }
                 td:last-child {

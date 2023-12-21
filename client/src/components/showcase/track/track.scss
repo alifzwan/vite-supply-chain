@@ -66,6 +66,14 @@
                     background-color: transparent;
                     
                 }
+                td:nth-child(5) {
+                    color: green;
+                    
+                }
+                td:nth-child(6) {
+                    color: green;
+                    
+                }
                 td:last-child {
                     color: green;
                 }
@@ -206,6 +214,14 @@
                         background-color: transparent;
                     
                     }
+                    td:nth-child(5) {
+                        color: green;
+                        
+                    }
+                    td:nth-child(6) {
+                        color: green;
+                        
+                    }
                     td:last-child {
                         color: green;
                     }
@@ -324,6 +340,14 @@
                         background-color: transparent;
                     
                     }
+                    td:nth-child(5) {
+                        color: green;
+                        
+                    }
+                    td:nth-child(6) {
+                        color: green;
+                        
+                    }
                     td:last-child {
                         color: green;
                     }
@@ -339,7 +363,7 @@
                 justify-content: center;
                 align-items: center;
                 gap: 100px;
-                margin-bottom: 20px;
+                margin: 60px 0 100px 0; 
                 
                 .supplychain-farmer-item {  
                     text-align: center;
@@ -358,8 +382,9 @@
                 }
 
                 .supplychain-farmer-track-section{
-                    h2{
-                        margin-bottom: 10px;
+                    p {
+                        margin: 20px 0 20px 0;
+                        font-size: 20px;
                     }
                     table {
                         border-collapse: collapse;
@@ -383,6 +408,14 @@
                 
                         tr:nth-child(even) {
                             background-color: transparent;
+                        }
+                        td:nth-child(5) {
+                            color: green;
+                            
+                        }
+                        td:nth-child(6) {
+                            color: green;
+                            
                         }
                         td:last-child {
                             color: green;
@@ -494,6 +527,14 @@
                         background-color: transparent;
                     
                     }
+                    td:nth-child(5) {
+                        color: green;
+                        
+                    }
+                    td:nth-child(6) {
+                        color: green;
+                        
+                    }
                     td:last-child {
                         color: green;
                     }
@@ -509,7 +550,7 @@
                 justify-content: center;
                 align-items: center;
                 gap: 100px;
-                margin-bottom: 20px;
+                margin: 60px 0 100px 0; 
                 
                 .supplychain-slaughterhouse-item {  
                     text-align: center;
@@ -528,8 +569,9 @@
                 }
 
                 .supplychain-slaughterhouse-track-section{
-                    h2{
-                        margin-bottom: 10px;
+                    p{
+                        margin: 20px 0 20px 0;
+                        font-size: 20px;
                     }
                     table {
                         border-collapse: collapse;
@@ -553,6 +595,14 @@
                 
                         tr:nth-child(even) {
                             background-color: transparent;
+                        }
+                        td:nth-child(5) {
+                            color: green;
+                            
+                        }
+                        td:nth-child(6) {
+                            color: green;
+                            
                         }
                         td:last-child {
                             color: green;
@@ -664,6 +714,14 @@
                         background-color: transparent;
                     
                     }
+                    td:nth-child(5) {
+                        color: green;
+                        
+                    }
+                    td:nth-child(6) {
+                        color: green;
+                        
+                    }
                     td:last-child {
                         color: green;
                     }
@@ -682,8 +740,7 @@
                 margin-bottom: 50px;
                 justify-content: center;
                 align-items: center;
-                gap: 100px;
-                margin-bottom: 20px;
+                margin: 80px 0 100px 0; 
                 
                 .supplychain-verifier-item {  
                     text-align: center;
@@ -691,7 +748,7 @@
                     
                     img {
                         max-width: 1000px;
-                        max-height: 100px;
+                        max-height: 70px;
                     
                     }
                     p {
@@ -702,8 +759,9 @@
                 }
 
                 .supplychain-verifier-track-section{
-                    h2{
-                        margin-bottom: 10px;
+                    p{
+                        margin: 20px 0 20px 0;
+                        font-size: 20px;
                     }
                     table {
                         border-collapse: collapse;
@@ -727,6 +785,14 @@
                 
                         tr:nth-child(even) {
                             background-color: transparent;
+                        }
+                        td:nth-child(5) {
+                            color: green;
+                            
+                        }
+                        td:nth-child(6) {
+                            color: green;
+                            
                         }
                         td:last-child {
                             color: green;
@@ -809,7 +875,6 @@
                 margin-bottom: 20px;
                 padding: 10px;
                 box-sizing: border-box;
-                max-height: auto; /* Make sure all sections have the same height */
                 overflow-y: auto;
             
                 h2 {
@@ -841,6 +906,14 @@
                         background-color: transparent;
                         
                     }
+                    td:nth-child(5) {
+                        color: green;
+                        
+                    }
+                    td:nth-child(6) {
+                        color: green;
+                        
+                    }
                     td:last-child {
                         color: green;
                     }
@@ -857,7 +930,7 @@
                 grid-template-columns: repeat(7, 1fr);
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 50px;
+                margin: 60px 0 100px 0; 
                     
                 .supplychain-manufacturer-item {  
                     text-align: center;
@@ -865,7 +938,7 @@
                         
                     img {
                         max-width: 1000px;
-                        max-height: 100px;
+                        max-height: 60px;
                         
                     }
                     p {
@@ -876,8 +949,9 @@
                 }
             
                 .supplychain-manufacturer-track-section{
-                    h2{
-                        margin-bottom: 10px;
+                    p{
+                        margin: 20px 0 20px 0;
+                        font-size: 20px;
                     }
                     table {
                         border-collapse: collapse;
@@ -901,6 +975,14 @@
                     
                         tr:nth-child(even) {
                             background-color: transparent;
+                        }
+                        td:nth-child(5) {
+                            color: green;
+                            
+                        }
+                        td:nth-child(6) {
+                            color: green;
+                            
                         }
                         td:last-child {
                             color: green;
@@ -974,7 +1056,6 @@
                 margin-bottom: 20px;
                 padding: 10px;
                 box-sizing: border-box;
-                max-height: auto; /* Make sure all sections have the same height */
                 overflow-y: auto;
             
                 h2 {
@@ -1006,6 +1087,14 @@
                         background-color: transparent;
                         
                     }
+                    td:nth-child(5) {
+                        color: green;
+                        
+                    }
+                    td:nth-child(6) {
+                        color: green;
+                        
+                    }
                     td:last-child {
                         color: green;
                     }
@@ -1022,7 +1111,7 @@
                 grid-template-columns: repeat(9, 1fr);
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 50px;
+                margin: 60px 0 100px 0; 
                     
                 .supplychain-distributor-item {  
                     text-align: center;
@@ -1030,7 +1119,7 @@
                         
                     img {
                         max-width: 1000px;
-                        max-height: 100px;
+                        max-height: 60px;
                         
                     }
                     p {
@@ -1041,8 +1130,9 @@
                 }
             
                 .supplychain-distributor-track-section{
-                    h2{
-                        margin-bottom: 10px;
+                    p{
+                        margin: 20px 0 20px 0;
+                        font-size: 20px;
                     }
                     table {
                         border-collapse: collapse;
@@ -1066,6 +1156,14 @@
                     
                         tr:nth-child(even) {
                             background-color: transparent;
+                        }
+                        td:nth-child(5) {
+                            color: green;
+                            
+                        }
+                        td:nth-child(6) {
+                            color: green;
+                            
                         }
                         td:last-child {
                             color: green;
@@ -1115,9 +1213,6 @@
     
     
      
-
-
-
 //Track Till Retailer
 .chronology-retailer-main-container{
     display: flex;
@@ -1138,13 +1233,13 @@
         .chronology-retailer-content {
             display: flex;
             flex-direction: column;
+            max-width: 80vw;
             .chronology-retailer-section{
                 border: 2px solid rebeccapurple;
                 border-radius: 10px;
                 margin-bottom: 20px;
                 padding: 10px;
                 box-sizing: border-box;
-                max-height: auto; /* Make sure all sections have the same height */
                 overflow-y: auto;
             
                 h2 {
@@ -1176,6 +1271,14 @@
                         background-color: transparent;
                         
                     }
+                    td:nth-child(5) {
+                        color: green;
+                        
+                    }
+                    td:nth-child(6) {
+                        color: green;
+                        
+                    }
                     td:last-child {
                         color: green;
                     }
@@ -1192,8 +1295,9 @@
                 grid-template-columns: repeat(11, 1fr);
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 50px;
-                max-width: 2000px;
+                box-sizing: border-box;
+
+                margin: 60px 0 100px 0; 
                     
                 .supplychain-retailer-item {  
                     text-align: center;
@@ -1201,8 +1305,7 @@
                         
                     img {
                         max-width: 1000px;
-                        max-height: 100px;
-
+                        max-height: 50px;
                     }
                     p {
                         font-size: 18px;
@@ -1212,8 +1315,9 @@
                 }
             
                 .supplychain-retailer-track-section{
-                    h2{
-                        margin-bottom: 10px;
+                    p{
+                        margin: 20px 0 20px 0;
+                        font-size: 20px;
                     }
                     table {
                         border-collapse: collapse;
@@ -1221,6 +1325,8 @@
                         border-radius: 20px;
                         width: 100%;
                         height:30px;
+                        overflow-x: auto;
+
                         font-size: 14px;
                             
                             
@@ -1237,6 +1343,14 @@
                     
                         tr:nth-child(even) {
                             background-color: transparent;
+                        }
+                        td:nth-child(5) {
+                            color: green;
+                            
+                        }
+                        td:nth-child(6) {
+                            color: green;
+                            
                         }
                         td:last-child {
                             color: green;
@@ -1281,13 +1395,6 @@
     }
     
     
-    
-    
-    
-    
-     
-
-
 
 
 // Track Till Sold
@@ -1301,16 +1408,18 @@
         display:flex;
         flex-direction: column;
         .chronology-sold-section-title {
-            font-size: 40px;
+            font-size: 30px;
             font-weight: bold;
             margin-bottom: 10px;
-            text-align: left;
+            text-align: center;
             color: rebeccapurple;
         }
 
         .chronology-sold-content {
             display: flex;
             flex-direction: column;
+            max-width: 90vw;
+
             .chronology-sold-section{
                 border: 2px solid rebeccapurple;
                 border-radius: 10px;
@@ -1349,6 +1458,14 @@
                         background-color: transparent;
                         
                     }
+                    td:nth-child(5) {
+                        color: green;
+                        
+                    }
+                    td:nth-child(6) {
+                        color: green;
+                        
+                    }
                     td:last-child {
                         color: green;
                     }
@@ -1362,11 +1479,10 @@
             // Flow Information
             .supplychain-sold-section{
                 display: grid;
-                grid-template-columns: repeat(9, 1fr);
+                grid-template-columns: repeat(11, 1fr);
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 50px;
-                max-width: 2000px;
+                margin: 60px 0 100px 0;
 
             
                 .supplychain-sold-item {  
@@ -1375,12 +1491,12 @@
                      
                     img {
                         max-width: 1000px;
-                        max-height: 70px;
+                        max-height: 50px;
                         
                     }
                     p {
 
-                        font-size: 18px;
+                        font-size: 20px;
                         font-weight: bold;
                         margin-top: 10px;
                     }
@@ -1388,8 +1504,8 @@
             
                 .supplychain-sold-track-section{
                     p{
-                        margin-bottom: 10px;
-                        font-size: 21px;
+                        margin: 20px 0 20px 0;
+                        font-size: 20px;
                     }
                     table {
                         border-collapse: collapse;
@@ -1397,7 +1513,7 @@
                         border-radius: 20px;
                         width: 100%;
                         height:30px;
-                        font-size: 14px;
+                        font-size: 15px;
                             
                             
                     
@@ -1413,6 +1529,14 @@
                     
                         tr:nth-child(even) {
                             background-color: transparent;
+                        }
+                        td:nth-child(5) {
+                            color: green;
+                            
+                        }
+                        td:nth-child(6) {
+                            color: green;
+                            
                         }
                         td:last-child {
                             color: green;
@@ -1457,8 +1581,7 @@
             }
         }
         .sold-info {
-            margin-bottom: 10px;
-            justify-content: center;
+            margin-bottom: 5px;
         }
 
         b {
@@ -1466,23 +1589,3 @@
         }
     }
     
-    
-
-    
-
-
-
-   
-
-
-
-
-
-
-
-
-   
-    
-    
-    
-

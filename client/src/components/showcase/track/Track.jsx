@@ -1193,8 +1193,6 @@ if (TrackTillSlaughterhouse) {
         )
     }
 
-
-
     // Item is Sold
     if (TrackTillSold) {
         return (
