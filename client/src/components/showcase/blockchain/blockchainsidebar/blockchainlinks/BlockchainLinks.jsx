@@ -6,6 +6,7 @@ import {HomeOutlined,
         AreaChartOutlined, 
         PayCircleOutlined, 
         SettingOutlined, 
+        BarsOutlined
         } from "@ant-design/icons"
 
 const BlockchainLinks = ({darkTheme}) => {
@@ -17,7 +18,7 @@ const BlockchainLinks = ({darkTheme}) => {
             <Menu.Item id="home" icon ={<HomeOutlined />}>
                 <Link to="/project">Home</Link>
             </Menu.Item>
-
+            
              <Menu.Item icon ={<AreaChartOutlined />}>
                 Progress
             </Menu.Item>

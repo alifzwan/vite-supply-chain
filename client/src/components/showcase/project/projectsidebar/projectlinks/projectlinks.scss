@@ -2,11 +2,10 @@
     height: 92.6vh;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
     font-size: 1rem;
     position: relative;
-    
-
+  
     .account {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -36,7 +35,4 @@
       font-weight: bold;
       margin-bottom: 20px;
     }
-
-
-  
   }
