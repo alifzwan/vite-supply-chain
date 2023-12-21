@@ -41,13 +41,13 @@ const About = () => {
     const tech_stack = [
       "Javascript ES6+",
       "Typescript",
-      "Next.js",
-      "React.js",
-      "Vite",
+      "React JS",
+      "Next JS",
       "HTML & CSS",
-      "Node.js",
+      "Vite",
+      "Node JS",
       "Tailwind",
-      "Vue.js",
+      "Sass",
     ];
 
     const tech_items = tech_stack.map(stack => <li>{stack}</li>);
