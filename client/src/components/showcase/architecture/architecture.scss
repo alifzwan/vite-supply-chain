@@ -10,7 +10,7 @@
     flex-direction: column;
 
     .architecture-section-title{ 
-      font-size: 40px;
+      font-size: 50px;
       font-weight: bold;
       margin: 50px 0 100px 0;
       text-align: center;
@@ -222,26 +222,33 @@
           }
       }
   }
-  .architecture-back-button{
-    max-width: 1366px;
+  .architecture-back-button-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    button {
-        padding: 0px 10px;
-        height: 35px;
-        border: 1px solid white;
-        border-radius: 10px;
-        background-color: transparent;
-        color: white;
-        cursor: pointer;
-        font-weight: bold;
-        margin-top: 5px;
-        text-align: center;
-      }
-      button:hover { 
-          color: rebeccapurple;
-          border-color: rebeccapurple;
-      }
+    .architecture-back-button{
+      max-width: 1366px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      justify-content: space-evenly;
+      button {
+          padding: 0px 10px;
+          height: 35px;
+          border: 1px solid white;
+          border-radius: 10px;
+          background-color: transparent;
+          color: white;
+          cursor: pointer;
+          font-weight: bold;
+          margin-top: 5px;
+          text-align: center;
+        }
+        button:hover { 
+            color: rebeccapurple;
+            border-color: rebeccapurple;
+        }
+    }
+
   }
+ 
 }

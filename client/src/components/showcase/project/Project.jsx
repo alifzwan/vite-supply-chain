@@ -19,8 +19,8 @@ const Project = () => {
 
   const navigate = useNavigate()
 
-  const redirect_to_projecthero = () => {
-      navigate('/projecthero')
+  const redirect_to_architecture = () => {
+      navigate('/architecture')
   }
   const redirect_to_blockchain = () => {
     navigate('/blockchain')
@@ -50,7 +50,7 @@ const Project = () => {
                                 <motion.button className="started"
                                     variants={itemVariants}
                                    
-                                    onClick={redirect_to_projecthero}
+                                    onClick={redirect_to_architecture}
                                 >
                                     Get Started
                                 </motion.button>

@@ -22,6 +22,9 @@ const Architecture = () => {
   const redirect_to_project = () => {
       navigate('/project')
   }
+  const redirect_to_projecthero = () => {
+    navigate('/projecthero')
+}
 
 
   const contractframeworks = [
@@ -167,16 +170,25 @@ const Architecture = () => {
                     </div>
                 </div>
             </div>
-            <motion.div className="architecture-back-button">
-                    <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={redirect_to_project}
-                    >
-                    Back to Project
-                    </motion.button>
-          
-              </motion.div>
+            <div className="architecture-back-button-container">
+                <motion.div className="architecture-back-button">
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                             onClick={redirect_to_projecthero}
+                        >
+                        Project Overview
+                        </motion.button>
+                
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={redirect_to_project}
+                        >
+                        Back to Project
+                        </motion.button>
+                </motion.div>
+            </div>
         </div>
     </div>
   );
