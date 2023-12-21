@@ -14,7 +14,7 @@
 }
 .main-section {
     flex: 1;
-    padding: 20px; /* Add padding as needed */
+    padding: 10px; /* Add padding as needed */
     align-items: center;
     display:flex;
     flex-direction: column;
@@ -88,7 +88,7 @@
             }
         }
         .info-back-button-container {
-            transform: translateY(450%);
+            transform: translateY(40%);
             display: flex;
             .info-back-button{
                 max-width: 1366px;

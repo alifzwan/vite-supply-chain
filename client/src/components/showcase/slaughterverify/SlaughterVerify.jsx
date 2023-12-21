@@ -228,7 +228,7 @@ const SlaughterVerify = () => {
     if (Slaughtered) {
         return (
             <div className="slaughtered-main-container">
-                <div className="menu-bar">
+                <div className="project-menu-bar">
                     <ProjectSideBar />
                 </div> 
 
@@ -313,7 +313,7 @@ const SlaughterVerify = () => {
     if (SlaughterVerification) {
         return (
         <div className="Slaughter-main-container">
-            <div className="menu-bar">
+            <div className="project-menu-bar">
                 <ProjectSideBar />
             </div> 
 
@@ -482,7 +482,7 @@ const SlaughterVerify = () => {
     
     return (
         <div className="slaughterhouse-main-container">
-            <div className="menu-bar">
+            <div className="project-menu-bar">
                 <ProjectSideBar />
             </div> 
 

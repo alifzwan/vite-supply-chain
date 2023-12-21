@@ -571,7 +571,7 @@ const Track = () => {
     if (TrackTillOrdered) {
         return (
         <div className="chronology-ordered-main-container">
-            <div className="menu-bar">
+            <div className="project-menu-bar">
                 <ProjectSideBar />
             </div> 
 
@@ -639,7 +639,7 @@ const Track = () => {
     if (TrackTillFarmer) {
         return (
             <div className="chronology-farmer-main-container">
-                <div className="menu-bar">
+                <div className="project-menu-bar">
                     <ProjectSideBar />
                 </div> 
 
@@ -683,7 +683,7 @@ const Track = () => {
 
                                     {supplychain.name && (
                                     <motion.div className="supplychain-farmer-track-section">
-                                        <h2>{supplychain.name} Information</h2>
+                                        <p>{supplychain.name} Information</p>
                                             <table className="table-container" border="1">
                                                 <thead>
                                                     <tr>
@@ -731,7 +731,7 @@ const Track = () => {
 if (TrackTillSlaughterhouse) {
     return (
         <div className="chronology-slaughterhouse-main-container">
-            <div className="menu-bar">
+            <div className="project-menu-bar">
                 <ProjectSideBar />
             </div> 
 
@@ -775,7 +775,7 @@ if (TrackTillSlaughterhouse) {
 
                                 {supplychain.name && (
                                 <motion.div className="supplychain-slaughterhouse-track-section">
-                                    <h2>{supplychain.name} Information</h2>
+                                    <p>{supplychain.name} Information</p>
                                         <table className="table-container" border="1">
                                             <thead>
                                                 <tr>
@@ -823,7 +823,7 @@ if (TrackTillSlaughterhouse) {
     if(TrackTillVerify) {
         return (
             <div className="chronology-verifier-main-container">
-                <div className="menu-bar">
+                <div className="project-menu-bar">
                     <ProjectSideBar />
                 </div> 
 
@@ -867,7 +867,7 @@ if (TrackTillSlaughterhouse) {
 
                                     {supplychain.name && (
                                     <motion.div className="supplychain-verifier-track-section">
-                                        <h2>{supplychain.name} Information</h2>
+                                        <p>{supplychain.name} Information</p>
                                             <table className="table-container" border="1">
                                                 <thead>
                                                     <tr>
@@ -917,7 +917,7 @@ if (TrackTillSlaughterhouse) {
     if (TrackTillManufacture) {
         return (
             <div className="chronology-manufacturer-main-container">
-                 <div className="menu-bar">
+                 <div className="project-menu-bar">
                     <ProjectSideBar />
                 </div> 
 
@@ -961,7 +961,7 @@ if (TrackTillSlaughterhouse) {
                             
                                     {supplychain.name && (
                                         <motion.div className="supplychain-manufacturer-track-section">
-                                            <h2>{supplychain.name} Information</h2>
+                                            <p>{supplychain.name} Information</p>
                                                 <table className="table-container" border="1">
                                                     <thead>
                                                         <tr>
@@ -1011,7 +1011,7 @@ if (TrackTillSlaughterhouse) {
     if (TrackTillDistribute) {
         return (
             <div className="chronology-distributor-main-container">
-                <div className="menu-bar">
+                <div className="project-menu-bar">
                     <ProjectSideBar />
                 </div> 
                 <div className="main-section">
@@ -1055,7 +1055,7 @@ if (TrackTillSlaughterhouse) {
 
                                     {supplychain.name && (
                                     <motion.div className="supplychain-distributor-track-section">
-                                        <h2>{supplychain.name} Information</h2>
+                                        <p>{supplychain.name} Information</p>
                                             <table className="table-container" border="1">
                                                 <thead>
                                                     <tr>
@@ -1103,7 +1103,7 @@ if (TrackTillSlaughterhouse) {
     if (TrackTillRetail) {
         return (
         <div className="chronology-retailer-main-container">
-            <div className="menu-bar">
+            <div className="project-menu-bar">
                     <ProjectSideBar />
             </div> 
             <div className="main-section">
@@ -1148,7 +1148,7 @@ if (TrackTillSlaughterhouse) {
                                 
                                 {supplychain.name && (
                                     <motion.div className="supplychain-retailer-track-section">
-                                        <h2>{supplychain.name} Information</h2>
+                                        <p>{supplychain.name} Information</p>
                                             <table className="table-container" border="1">
                                                 <thead>
                                                     <tr>
@@ -1199,7 +1199,7 @@ if (TrackTillSlaughterhouse) {
     if (TrackTillSold) {
         return (
             <div className="chronology-sold-main-container">
-                <div className="menu-bar">
+                <div className="project-menu-bar">
                     <ProjectSideBar />
                 </div> 
                 <div className="main-section">
@@ -1335,7 +1335,7 @@ if (TrackTillSlaughterhouse) {
     return (
 
         <div className="track-main-container">
-            <div className="menu-bar">
+            <div className="project-menu-bar">
                 <ProjectSideBar />
             </div> 
 

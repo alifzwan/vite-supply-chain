@@ -137,7 +137,7 @@ const Info = () => {
 
     return (
         <div className="info-main-container">
-            <div className="menu-bar">
+            <div className="project-menu-bar">
                 <ProjectSideBar />
             </div> 
 

@@ -29,7 +29,7 @@ const Project = () => {
 
   return (
     <div className="project-main-container">
-        <div className="menu-bar">
+        <div className="project-menu-bar">
           <ProjectSideBar />
         </div> 
 

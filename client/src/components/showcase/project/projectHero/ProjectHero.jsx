@@ -35,7 +35,7 @@ const ProjectHero = () => {
   return (
     <div className="supplychain-main-container" >
 
-        <div className="menu-bar">
+        <div className="project-menu-bar">
           <ProjectSideBar />
         </div>   
 

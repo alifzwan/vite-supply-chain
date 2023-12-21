@@ -1,6 +1,8 @@
 import './register.scss';
 import { motion } from "framer-motion";
 import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
+
+
 import "ldrs/cardio"; 
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
 import React, { useState, useEffect } from 'react';
@@ -404,7 +406,7 @@ const Register = () => {
     return (
         <div className="reg-main-container">
 
-                <div className="project-menu-bar">
+                <div className="register-menu-bar">
                     <ProjectSideBar />
                 </div>  
 

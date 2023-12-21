@@ -161,7 +161,7 @@ const Order = () => {
     return (
         <div className="ord-main-container">
 
-            <div className="menu-bar">
+            <div className="project-menu-bar">
                 <ProjectSideBar />
             </div>  
 

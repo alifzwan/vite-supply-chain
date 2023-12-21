@@ -7,6 +7,15 @@
         font-weight: bold;
         width: 100%;
     }
+    .register-menu-bar {
+        height: 92vh;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        font-size: 1rem;
+        position: relative;
+
+    }
 }
 
 .loader {
@@ -39,8 +48,8 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
-        width: 90%;
-        height: 150vh;
+        width: 100%;
+        height: 160vh;
         margin: 0 auto;
         box-sizing: border-box;
         
@@ -88,7 +97,7 @@
             }
             
             
-            table {
+            .reg-table-container {
                 border-collapse: collapse;
                 border: 1px solid white;
                 border-radius: 20px;
@@ -153,6 +162,7 @@
             button {
                 padding: 0px 10px;
                 height: 35px;
+                margin: 5px 0 15px 0;
                 border: 1px solid white;
                 border-radius: 10px;
                 background-color: transparent;

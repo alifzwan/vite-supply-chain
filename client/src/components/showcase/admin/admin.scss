@@ -15,7 +15,7 @@
 
 .main-section {
     flex: 1;
-    padding: 20px; /* Add padding as needed */
+    padding: 10px; /* Add padding as needed */
     align-items: center;
     display:flex;
     flex-direction: column;
@@ -86,7 +86,7 @@
         .admin-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
+            gap: 30px;
             align-items: center;
             margin-top: 20px;
 
@@ -175,7 +175,7 @@
             box-sizing: border-box;
             width: 300px;
             margin: 0 auto; /* Center the section */
-            margin-top: 60px;
+            margin-top: 30px;
         
             h2 {
                 text-align: left;
@@ -237,7 +237,7 @@
         }
 
         .admin-back-button-container{
-            transform: translateY(450%);
+            transform: translateY(200%);
             display: flex;
             justify-content: flex-end;
             .admin-back-button{

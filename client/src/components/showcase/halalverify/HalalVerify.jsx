@@ -223,7 +223,7 @@ const HalalVerify = () => {
     if (Verified) {
         return (
             <div className="verified-main-container">
-                <div className="menu-bar">
+                <div className="project-menu-bar">
                     <ProjectSideBar />
                 </div> 
 
@@ -296,7 +296,7 @@ const HalalVerify = () => {
     if (HalalVerification) {
         return (
         <div className="halal-main-container">
-            <div className="menu-bar">
+            <div className="project-menu-bar">
                 <ProjectSideBar />
             </div> 
 
@@ -461,7 +461,7 @@ const HalalVerify = () => {
 
     return (
         <div className="verify-main-container">
-            <div className="menu-bar">
+            <div className="project-menu-bar">
                 <ProjectSideBar />
             </div> 
 
