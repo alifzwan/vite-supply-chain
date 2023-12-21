@@ -66,6 +66,14 @@
                     background-color: transparent;
                     
                 }
+                td:nth-child(5) {
+                    color: green;
+                    
+                }
+                td:nth-child(6) {
+                    color: green;
+                    
+                }
                 td:last-child {
                     color: green;
                 }
@@ -206,6 +214,14 @@
                 tr:nth-child(even) {
                     background-color: transparent;
                 }
+                td:nth-child(5) {
+                    color: green;
+                    
+                }
+                td:nth-child(6) {
+                    color: green;
+                    
+                }
                 td:last-child {
                     color: green;
                 }
@@ -326,6 +342,14 @@
         
                 tr:nth-child(even) {
                     background-color: transparent;
+                }
+                td:nth-child(5) {
+                    color: green;
+                    
+                }
+                td:nth-child(6) {
+                    color: green;
+                    
                 }
                 td:last-child {
                     color: green;

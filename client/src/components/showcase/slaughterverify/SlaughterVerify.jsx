@@ -44,7 +44,6 @@ const SlaughterVerify = () => {
     }
 
     
-
     useEffect(() => {
         
         const delay = 2000;
@@ -69,22 +68,20 @@ const SlaughterVerify = () => {
     });
 
 
-    const [currentaccount    , setCurrentaccount       ] = useState("");
-    const [loader            , setloader               ] = useState(true);
-    const [SupplyChain       , setSupplyChain          ] = useState();
-
-    const [SlaughterVerification , displaySlaughterVerification] = useState(false);
-    const [Slaughtered          , displaySlaughtered         ] = useState(false);
-   
+    const [currentaccount, setCurrentaccount] = useState("");
+    const [loader        , setloader        ] = useState(true);
+    const [SupplyChain   , setSupplyChain   ] = useState();
 
 
-    const [Items             , setItems                ] = useState();
-    const [ItemID            , setItemID               ] = useState();
-    const [ItemPhase         , setItemPhase            ] = useState();
-    const [SlaughterStatus        , setSlaughterStatus           ] = useState();
-    const [VerifyStatus        , setVerifyStatus           ] = useState();
+    const [Items             , setItems          ] = useState();
+    const [ItemID            , setItemID         ] = useState();
+    const [ItemPhase         , setItemPhase      ] = useState();
+    const [SlaughterStatus   , setSlaughterStatus] = useState();
+    const [VerifyStatus      , setVerifyStatus   ] = useState();
 
 
+    const [SlaughterVerification, displaySlaughterVerification] = useState(false);
+    const [Slaughtered          , displaySlaughtered          ] = useState(false);
 
 
 
@@ -181,28 +178,23 @@ const SlaughterVerify = () => {
                         checklistSlaughter.hasHalalCertification
                     )
                     .send({ from: currentaccount });
-                console.log("Transaction successful"); 
-
-                console.log("Items before:", Items);
-                console.log("ItemPhase before:", ItemPhase);
-                console.log("SlaughterStatus before:", SlaughterStatus);
+                // console.log("Transaction successful"); 
+                // console.log("Items before:", Items);
+                // console.log("ItemPhase before:", ItemPhase);
+                // console.log("SlaughterStatus before:", SlaughterStatus);
 
                 await loadBlockchaindata()
                 
-                    // Log the current status after the transaction
-                const updatedStatus = await SupplyChain.methods.SlaughterStatus(ItemID).call();
+                // Log the current status after the transaction
+                // const updatedStatus = await SupplyChain.methods.SlaughterStatus(ItemID).call();
 
-                console.log("Updated Status:", updatedStatus);
-                console.log("Items after:", Items);
-                console.log("ItemPhase after:", ItemPhase);
-                console.log("SlaughterStatus after:", SlaughterStatus);
+                // console.log("Updated Status:", updatedStatus);
+                // console.log("Items after:", Items);
+                // console.log("ItemPhase after:", ItemPhase);
+                // console.log("SlaughterStatus after:", SlaughterStatus);
 
                 displaySlaughtered(true);
-                // After successful verification and transaction, you can update the UI or perform other actions
-                // For example, you might want to display a success message
-
-                
-                
+            
             } else {
                 // Handle the case where verification fails
                 alert('Please make sure you tick all the checklist');
@@ -305,8 +297,6 @@ const SlaughterVerify = () => {
             </div>
         )
     }
-
-
 
 
     // Item Ordered
@@ -459,27 +449,31 @@ const SlaughterVerify = () => {
         setItemID(event.target.value);
     }
 
-    const adminRegister = async (event) => {
+    const adminSlaughter = async (event) => {
         event.preventDefault();
+
         var count = await SupplyChain.methods.itemsCount().call();
         const slaughterhouseCount = await SupplyChain.methods.slaughterhouseCount().call();
+        const slaughterStatus = await SupplyChain.methods.SlaughterStatus(ItemID).call();
 
-        if (!((ItemID > 0) && (ItemID <= count)))
-            alert("Please enter valid ID");
-        else {
-            if ((slaughterhouseCount > 0) && (slaughterhouseCount <= count))
-                displaySlaughterVerification(true);
-            else
-                return "There's no Verifier registered"
+        if (!((ItemID > 0) && (ItemID <= count))){
+            alert("Please enter valid Item ID");
+            return;
+        }
+
+        if ((slaughterhouseCount > 0) && (slaughterhouseCount <= count)){
+            displaySlaughterVerification(true);
+        }else
+            return "There's no Verifier registered"
+       
+        if (slaughterStatus === "Your Item is Slaughtered"){
+            displaySlaughtered(true)
+        }else {
+            alert("Unknown slaughter status");
         }
         
     }
 
-
-    
-
-
-    
     return (
         <div className="slaughterhouse-main-container">
             <div className="project-menu-bar">
@@ -511,21 +505,9 @@ const SlaughterVerify = () => {
                                             <td>{Items[key].name}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
-                                            <td>
-                                                {
-                                                    ItemPhase[key]
-                                                }
-                                            </td>
-                                            <td>
-                                                {
-                                                    SlaughterStatus[key]
-                                                }
-                                            </td>
-                                            <td>
-                                                {
-                                                    VerifyStatus[key]
-                                                }
-                                            </td>
+                                            <td>{ItemPhase[key]}</td>
+                                            <td>{SlaughterStatus[key]} </td>
+                                            <td>{VerifyStatus[key]}</td>
                                     </tr>
                                 )
                             })}
@@ -533,7 +515,7 @@ const SlaughterVerify = () => {
                         </table>
                     </div>
                     <motion.div className="input-container" variants={variants}>
-                        <form onSubmit={adminRegister}>
+                        <form onSubmit={adminSlaughter}>
                             <motion.div variants={itemVariants}>
                                 <input type="text" onChange ={adminID} placeholder="Enter ID" required/><br />
                             </motion.div>
@@ -543,7 +525,7 @@ const SlaughterVerify = () => {
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    onSubmit={adminRegister}
+                                    onSubmit={adminSlaughter}
                                 >
                                     Verify
                                 </motion.button>

@@ -66,6 +66,14 @@
                     background-color: transparent;
                     
                 }
+                td:nth-child(5) {
+                    color: green;
+                    
+                }
+                td:nth-child(6) {
+                    color: green;
+                    
+                }
                 td:last-child {
                     color: green;
                 }
@@ -206,6 +214,14 @@
                 tr:nth-child(even) {
                     background-color: transparent;
                 }
+                td:nth-child(5) {
+                    color: green;
+                    
+                }
+                td:nth-child(6) {
+                    color: green;
+                    
+                }
                 td:last-child {
                     color: green;
                 }
@@ -312,8 +328,6 @@
                 height:30px;
                 font-size: 14px;
                    
-                
-        
                 th, td {
                     color: white;
                     padding: 10px;
@@ -326,6 +340,14 @@
         
                 tr:nth-child(even) {
                     background-color: transparent;
+                }
+                td:nth-child(5) {
+                    color: green;
+                    
+                }
+                td:nth-child(6) {
+                    color: green;
+                    
                 }
                 td:last-child {
                     color: green;

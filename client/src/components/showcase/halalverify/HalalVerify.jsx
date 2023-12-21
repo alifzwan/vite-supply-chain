@@ -32,9 +32,6 @@ const itemVariants = {
     },
 };
 
-
-
-
 const HalalVerify = () => {
 
     const navigate = useNavigate()
@@ -184,14 +181,13 @@ const HalalVerify = () => {
 
                 await loadBlockchaindata()
                 
-                    // Log the current status after the transaction
-                const updatedStatus = await SupplyChain.methods.HalalStatus(ItemID).call();
-
-                console.log("Updated Status:", updatedStatus);
-                console.log("Items after:", Items);
-                console.log("ItemPhase after:", ItemPhase);
-                console.log("VerifyStatus after:", VerifyStatus);
-
+                /*  Log the current status after the transaction
+                    const updatedStatus = await SupplyChain.methods.HalalStatus(ItemID).call();
+                    console.log("Updated Status:", updatedStatus);
+                    console.log("Items after:", Items);
+                    console.log("ItemPhase after:", ItemPhase);
+                    console.log("VerifyStatus after:", VerifyStatus);
+                */
                 displayVerified(true);
                 // After successful verification and transaction, you can update the UI or perform other actions
                 // For example, you might want to display a success message
@@ -442,18 +438,28 @@ const HalalVerify = () => {
         setItemID(event.target.value);
     }
 
-    const adminRegister = async (event) => {
+    const adminVerify = async (event) => {
         event.preventDefault();
         var count = await SupplyChain.methods.itemsCount().call();
         const verifierCount = await SupplyChain.methods.verifierCount().call();
+        const halalStatus = await SupplyChain.methods.HalalStatus(ItemID).call();
 
-        if (!((ItemID > 0) && (ItemID <= count)))
+        if (!((ItemID > 0) && (ItemID <= count)))  {
             alert("Please enter valid ID");
-        else {
-            if ((verifierCount > 0) && (verifierCount <= count))
-                displayHalalVerification(true);
-            else
-                return "There's no Verifier registered"
+            return;
+        }
+
+        if (verifierCount > 0 && verifierCount <= count) {
+            displayHalalVerification(true);
+        } else {
+            alert("There's no Verifier registered");
+            return;
+        }
+
+        if (halalStatus === "Your Item is Halal Verified") {
+            displayVerified(true);
+        } else {
+            alert("Unknown halal status");
         }
         
     }
@@ -500,7 +506,7 @@ const HalalVerify = () => {
                         </table>
                     </div>
                     <motion.div className="input-container" variants={variants}>
-                        <form onSubmit={adminRegister}>
+                        <form onSubmit={adminVerify}>
                             <motion.div variants={itemVariants}>
                                 <input type="text" onChange ={adminID} placeholder="Enter ID" required/><br />
                             </motion.div>
@@ -510,7 +516,7 @@ const HalalVerify = () => {
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    onSubmit={adminRegister}
+                                    onSubmit={adminVerify}
                                 >
                                     Verify
                                 </motion.button>
