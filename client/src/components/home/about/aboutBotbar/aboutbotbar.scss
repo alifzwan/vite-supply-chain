@@ -8,8 +8,9 @@
     margin: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     height: 100%;
+    gap: 20px;
+    .project-work-button{
       button {
         padding: 0px 20px;
         height: 50px;
@@ -27,6 +28,30 @@
         color: rebeccapurple;
         border-color: rebeccapurple;
       }
+    }
+
+    .framework-work-button{
+      button {
+        padding: 0px 20px;
+        height: 50px;
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: transparent;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 5px;
+        text-align: center;
+       
+      }
+      button:hover { 
+        color: rebeccapurple;
+        border-color: rebeccapurple;
+      }
+    }
+      
+
+      
     
   }
 }
