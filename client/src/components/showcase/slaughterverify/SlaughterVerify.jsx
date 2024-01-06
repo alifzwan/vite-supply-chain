@@ -64,7 +64,6 @@ const SlaughterVerify = () => {
         isCorrectSlaughterMethod: false,
         isBloodDrained: false,
         isPreventionOfContamination: false,
-        hasHalalCertification: false,
     });
 
 
@@ -175,7 +174,6 @@ const SlaughterVerify = () => {
                         checklistSlaughter.isCorrectSlaughterMethod,
                         checklistSlaughter.isBloodDrained,
                         checklistSlaughter.isPreventionOfContamination,
-                        checklistSlaughter.hasHalalCertification
                     )
                     .send({ from: currentaccount });
                 // console.log("Transaction successful"); 
@@ -392,16 +390,6 @@ const SlaughterVerify = () => {
                                     onChange={() => handleCheckboxChange('isPreventionOfContamination')}
                                     required/>
                                     Are strict measures in place to prevent cross-contamination between halal and non-halal products?
-                                </label>
-
-                                <label>
-                                    <input 
-                                    className="verify-checkbox" 
-                                    type="checkbox" 
-                                    checked={checklistSlaughter.hasHalalCertification}
-                                    onChange={() => handleCheckboxChange('hasHalalCertification')}
-                                    required/>
-                                    Is there a valid halal certification from a recognized authority displayed, and is it regularly renewed?
                                 </label>
                             </div>
 
