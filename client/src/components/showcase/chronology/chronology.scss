@@ -1,0 +1,88 @@
+.flow-main-container {
+    display: flex;
+}
+  
+  .flow-main-section {
+      flex: 1;
+      padding: 20px; /* Add padding as needed */
+      align-items: center;
+      display:flex;
+      flex-direction: column;
+  
+      .flow-section-title{ 
+        font-size: 50px;
+        font-weight: bold;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+        margin: 25px 0 25px 0;
+        text-align: center;
+        color: white;
+    }
+  
+    .flow-content {
+      margin: auto;
+      .tasklist {
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: repeat(1, minmax(70vw, 100px));
+        gap: 40px;
+        a {
+          li {
+            font-size: 20px;
+            // font-weight: bold;
+            color: green;
+            p {
+              color: white;
+            }
+            ::hover {
+              color: white;
+            }
+          }
+          li::before {
+            content: "▹    ";
+            color: white;
+            left: 0;
+          }
+          :hover{
+            color: white;
+          }
+        }
+        
+        
+        
+        
+      }
+      
+    }
+
+    
+    
+    .flow-back-button-container {
+      display: flex;
+      .flow-back-button{
+        max-width: 1366px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        justify-content: space-evenly;
+        button {
+            padding: 0px 10px;
+            height: 35px;
+            border: 1px solid white;
+            border-radius: 10px;
+            background-color: transparent;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 5px;
+            text-align: center;
+          }
+          button:hover { 
+              color: rebeccapurple;
+              border-color: rebeccapurple;
+          }
+      }
+  
+    }
+   
+  }

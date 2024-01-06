@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home"
 import Project from "./components/showcase/project/Project";
 import Architecture from "./components/showcase/architecture/Architecture";
+import Chronology from "./components/showcase/chronology/Chronology";
 import Blockchain from "./components/showcase/blockchain/Blockchain";
 import BlockchainWork from "./components/showcase/blockchain/blockchainwork/BlockchainWork";
 import BlockchainDecentralization from "./components/showcase/blockchain/blockchaindecentralization/BlockchainDecentralization";
 import BlockchainTransparency from "./components/showcase/blockchain/blockchaintransparency/BlockchainTransparency";
 import BlockchainSecure from "./components/showcase/blockchain/blockchainsecure/BlockchainSecure";
-
 
 
 
@@ -33,6 +33,7 @@ const App = () => {
           <Route path = '/' exact element={<Home />}/>
           <Route path = '/project' exact element={<Project />} />
           <Route path = '/architecture' exact element={<Architecture />} />
+          <Route path = '/chronology' exact element={<Chronology />} />
           <Route path = '/blockchain' exact element={<Blockchain />} />
           <Route path = '/blockchainwork' exact element={<BlockchainWork />} />
           <Route path = '/blockchaindecentralization' exact element={<BlockchainDecentralization />} />

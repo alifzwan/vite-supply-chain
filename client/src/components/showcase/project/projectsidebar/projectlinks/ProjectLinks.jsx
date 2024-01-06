@@ -14,6 +14,7 @@ import {
     DeploymentUnitOutlined, 
     ApiTwoTone, 
     DollarTwoTone,
+    ContainerOutlined,
     UserOutlined} from "@ant-design/icons"
 
 const ProjectLinks = ({darkTheme}) => {
@@ -145,8 +146,8 @@ const ProjectLinks = ({darkTheme}) => {
                
             </Menu.SubMenu>
 
-            <Menu.Item icon ={<SettingOutlined />}>
-                Setting
+            <Menu.Item icon ={<ContainerOutlined />}>
+                <Link to="/chronology">Description</Link>
             </Menu.Item>
 
             <Menu.Item icon ={<HomeOutlined />}>
