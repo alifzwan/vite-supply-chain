@@ -34,16 +34,20 @@ contract SupplyChain {
 
     /* Supply Chain Flow
 
-            Farmer ---> Manufacturer ---> Distributor --> Retailer
+            Poultry ==> Slaughterhouse ==> Verifier ==> Manufacturer ==> Distributor ==> Retailer ==> Sold 
 
 
-        Farmer       - This is where the Manufacturer get their raw material 
+        Farmer         - This is where the Manufacturer get their raw material 
 
-        Manufacturer - Several manufacture will process the raw material 
+        Slaughterhouse - This is where the item being slaughtered before verifying the halal status
 
-        Distributor  - This is where we distribute the processed item to numerous store
+        Verifier       - This is where the item being verified the halal status 
 
-        Supermarket  - Jaya Grocer for example will receive the processed item from the distributor and will be sold
+        Manufacturer   - Several manufacture will process the raw material 
+
+        Distributor    - This is where we distribute the processed item to numerous store
+
+        Supermarket    - Jaya Grocer for example will receive the processed item from the distributor and will be sold
                        in the store 
 
 
@@ -177,8 +181,7 @@ contract SupplyChain {
         isInvocationCorrect,            // Confirm the correct invocation of Allah's name during slaughter.
         isCorrectSlaughterMethod,       // Ensure the correct method of slaughter was followed.
         isBloodDrained,                 // Verify that the blood was thoroughly drained from the carcass after slaughter.
-        isPreventionOfContamination,    // Implement strict measures to prevent cross-contamination.
-        hasHalalCertification           // Display and regularly renew a valid halal certification.
+        isPreventionOfContamination     // Implement strict measures to prevent cross-contamination.
     }
     
     /* STRUCT 
@@ -238,7 +241,7 @@ contract SupplyChain {
         if (ItemsInfo[_itemID].chronology == PHASE.Plugin)
             return "Item Ordered, awaiting processing.";
         else if (ItemsInfo[_itemID].chronology == PHASE.Farmer)
-            return "Item collected by farmers, awaiting processing."; 
+            return "Item collected by Poultry, awaiting processing."; 
         else if (ItemsInfo[_itemID].chronology == PHASE.Slaughterhouse)
             return "Item is being slaughter, please wait."; 
         else if (ItemsInfo[_itemID].chronology == PHASE.Verifier)
@@ -334,18 +337,23 @@ contract SupplyChain {
    
 
 
-    /*-----------------Register Each Flow----------------------
-     Farmer ---> Manufacturer ---> Distributor --> Retailer
+    /*-----------------STAKEHOLDER REGISTRATION----------------------
+
+     Poultry ==> Slaughterhouse ==> Verifier ==> Manufacturer ==> Distributor ==> Retailer ==> Sold 
 
 
-        Farmer       - This is where the Manufacturer get their raw material 
+        Poultry         - This is where the Manufacturer get their raw material 
+        
+        Slaughterhouse - This is where the item being slaughtered before verifying the halal status
 
-        Manufacturer - Several manufacture will process the raw material 
+        Verifier       - This is where the item being verified the halal status 
 
-        Distributor  - This is where we distribute the processed item to numerous store
+        Manufacturer   - Several manufacture will process the raw material 
 
-        Supermarket  - Jaya Grocer for example will receive the processed item from the distributor and will be sold
-                       in the store 
+        Distributor    - This is where we distribute the processed item to numerous store
+
+        Supermarket    - Jaya Grocer for example will receive the processed item from the distributor and will be sold
+                         in the store 
 
 
 
@@ -383,10 +391,10 @@ contract SupplyChain {
 
 
     function regFarmer(
-        address _address,  // This is wallet address 
-        string memory _name,  // Name of the farmer
-        string memory _location  // Where's the farmer based in?
-    ) public onlyCreator {  // Only creator/owner can register all the admin
+        address _address,         // This is wallet address 
+        string memory _name,      // Name of the Poultry
+        string memory _location   // Where's the Poultry based in?
+    ) public onlyCreator {        // Only creator/owner can register all the stakeholder
         farmerCount++;
         farmerInfo[farmerCount] = farmer(_address, farmerCount, _name, _location);  // All this attributes will be stored in farmerInfo
     }
@@ -442,12 +450,12 @@ contract SupplyChain {
 
 
 
-    /*-----------------Ordering----------------------
+    /*-----------------PRODUCT REGISTRATION----------------------
       
      So the function will going to consists with approximately 3 attributes (Well for now):
         => Origin - Where this items come from
         => Nutrition Information - net weight, how many carbs, fat, sodium , and etc
-        => Name - Mister Potato
+        => Name - Chicken
         => As well as the id of each flow since we going to track the
            progress of food items through the supply chain.
 
@@ -458,6 +466,8 @@ contract SupplyChain {
     
         uint256 id
         uint256 farmerId
+        uint256 slaughterhouseId
+        uint256 verifierId
         uint256 manufacturerId
         uint256 distributorId
         uint256 retailerId
@@ -471,6 +481,8 @@ contract SupplyChain {
          string nutritionInfo;
         
          uint256 farmerId;
+         uint256 slaughterhouseId
+         uint256 verifierId
          uint256 manufacturerId;
          uint256 distributorId;
          uint256 retailerId;
@@ -502,19 +514,21 @@ contract SupplyChain {
      Alright let's give an example:
 
      - Let's say we already ordered an item. It PHASE would be "Ordered"
-     - So to change the PHASE from Ordered-to-Farmer, The farmer have to established the status of the item
-     - So Farmer will establish the item as their responsibility
+     - So to change the PHASE from Ordered-to-Poultry, The poultry have to established the status of the item
+     - So Poultry will establish the item as their responsibility
 
      The Flow is going to be like this:-
 
-     Farmer ==> Manufacturer ==> Distributor ==> Retailer 
+     Poultry ==> Slaughterhouse ==> Verifier ==> Manufacturer ==> Distributor ==> Retailer ==> Sold 
 
-     - 1) Item Ordered                     (Punch In)
-     - 2) Item are collected by Farmer     (Farmer)
-     - 3) Item are being manufactured      (Manufacturer)
-     - 4) Item are being Distribute        (Distribution)
-     - 5) Item are safely arrived at store (Retail)
-     - 6) Item sold                        (Sold)
+     - 1) Item Ordered                                 (Punch In)
+     - 2) Item are being slaughter                     (Slaughterhouse)
+     - 3) Item are being verified the halal status     (Verifier)
+     - 4) Item are collected by Poultry                (Poultry)
+     - 5) Item are being manufactured                  (Manufacturer)
+     - 6) Item are being Distribute                    (Distribution)
+     - 7) Item are safely arrived at store             (Retail)
+     - 8) Item sold                                    (Sold)
 
 
      */
@@ -526,11 +540,13 @@ contract SupplyChain {
       
      The Flow is going to be like this:-
 
-     Farmer ==> Manufacturer ==> Distributor ==> Retailer 
+     Poultry ==> Slaughterhouse ==> Verifier ==> Manufacturer ==> Distributor ==> Retailer ==> Sold
     
      We going to track the items through Supply Chain
 
      uint256 public farmerCount = 0;
+     uint256 public slaughterhouseCount = 0;
+     uint256 public verifierCount = 0;
      uint256 public manufacturerCount = 0;
      uint256 public distributorCount = 0;
      uint256 public retailerCount = 0;
@@ -543,6 +559,8 @@ contract SupplyChain {
         string nutritionInfo;
 
         uint256 farmerId;
+        uint256 slaughterhouseId;
+        uint256 verifierId;
         uint256 manufacturerId;
         uint256 distributorId;
         uint256 retailerId;
@@ -552,6 +570,8 @@ contract SupplyChain {
      enum PHASE{
         Plugin,  
         Farmer,
+        Slaughterhouse,
+        Verifier,
         Manufacturer,
         Distribution,
         Retail,
@@ -704,11 +724,13 @@ contract SupplyChain {
 
 
     /* ----------------Item Information--------------------
-        - This section is to see the product information
+        - This section is to see all of the product information
+        - The user will key in the itemID to retrieve the info
         */ 
 
     // To view the product information
     function info(uint256 _itemID) public view returns (
+
     uint256 id,
     string memory name,
     string memory origin,
@@ -743,13 +765,19 @@ contract SupplyChain {
     chronology = ItemsInfo[_itemID].chronology;
     }
 
+    ////////////////////////////////////////////////////////////////
+
+    
+
+
+    
+
     //-------------HALAL VERIFICATION PROCESS---------------------
 
 
-         // Function for the verifier to tick off checklist items
+    // Function for the verifier to tick off checklist items
     function verifyTickChecklistItem(ChecklistVerifier _checklistVerifier) public {
-        // Get the itemID associated with the calling user
-        uint256 _itemID = getVerifierItemID();
+        uint256 _itemID = getVerifierItemID(); // Get the itemID associated with the calling user
 
         // Ensure the caller is the assigned verifier for the item
         require(ItemsInfo[_itemID].chronology == PHASE.Verifier, "Item is not in verification phase");
@@ -757,7 +785,6 @@ contract SupplyChain {
 
         ItemsStatus[_itemID] = STATUS.Verified;
         
-
     }
 
     // Function to get the itemID associated with the calling user
@@ -772,13 +799,9 @@ contract SupplyChain {
     }
 
 
-    function HalalStatus(
-        uint256 _itemID
-    ) public view returns (string memory) {
+    function HalalStatus(uint256 _itemID) public view returns (string memory) {
         require(_itemID > 0);
-
-        // Retrieve halal status from the specified item
-        STATUS status = ItemsStatus[_itemID];
+        STATUS status = ItemsStatus[_itemID]; // Retrieve halal status from the specified item
 
         // Check the halal status and return the corresponding message
         if (status == STATUS.NonVerified) {
@@ -792,7 +815,7 @@ contract SupplyChain {
 
 
     // Function to perform overall halal verification
-    function halalVerify(uint256 _itemID) private returns (bool) {
+    function halalVerify(uint256 _itemID) private view returns (bool) {
     // Check if the item is in the verification phase
     for (uint8 i = 0; i < uint8(ChecklistVerifier.LabelingAndPackagingMeetsHalalStandards); i++) {
         if (ItemsStatus[_itemID] != STATUS.Verified) {
@@ -802,8 +825,6 @@ contract SupplyChain {
     return true;
 
     }
-
-
 
 
 
@@ -828,11 +849,8 @@ contract SupplyChain {
         revert("Caller is not associated with any item in Slaughterhouse phase");
     }
 
-    function SlaughterStatus(
-        uint256 _itemID
-    ) public view returns (string memory) {
+    function SlaughterStatus(uint256 _itemID) public view returns (string memory) {
         require(_itemID > 0);
-
         SLAUGHTER slaughter = ItemsSlaughter[_itemID];
 
         if (slaughter == SLAUGHTER.NonSlaughter) {
@@ -845,8 +863,8 @@ contract SupplyChain {
 
 
 
-    function slaughterVerify(uint256 _itemID) private returns (bool) {
-    for (uint8 i = 0; i < uint8(ChecklistSlaughter.isPreventionOfContamination); i++) {
+    function slaughterVerify(uint256 _itemID) private view returns (bool) {
+    for (uint8 i = 0; i < uint8(ChecklistSlaughter.isBloodDrained); i++) {
         if (ItemsSlaughter[_itemID] != SLAUGHTER.Slaughter) {
             return false;
         }
@@ -854,4 +872,71 @@ contract SupplyChain {
     return true;
 
     }
-}
+
+
+    //-------------------------DAUS's PART---------------------------------------
+
+    //----------------RETRIEVE PARTICULAR INFORMATION-----------------------------
+
+
+    // Retrieve Name from the specific item
+    function itemName(uint256 _itemID) public view returns (uint256 id, string memory name) {  
+    require(_itemID > 0 && _itemID <= itemsCount);
+    
+    id = ItemsInfo[_itemID].id;
+    name = ItemsInfo[_itemID].name;
+   
+    }
+
+    // Retrieve Origin from the specific item
+    function itemOrigin(uint256 _itemID) public view returns (uint256 id, string memory origin) {
+    require(_itemID > 0 && _itemID <= itemsCount);
+    
+    id = ItemsInfo[_itemID].id;
+    origin = ItemsInfo[_itemID].origin;
+    }
+
+    // Retrieve Nutrition from the specific item
+    function itemNutrition(uint256 _itemID) public view returns (uint256 id, string memory nutritionInfo) {
+    require(_itemID > 0 && _itemID <= itemsCount);
+   
+    id = ItemsInfo[_itemID].id;
+    nutritionInfo = ItemsInfo[_itemID].nutritionInfo;
+    }
+
+    // Retrieve Phase from the specific item
+    function itemPhase(uint256 _itemID) public view returns (uint256 id, PHASE chronology) {
+    require(_itemID > 0 && _itemID <= itemsCount);
+   
+    id = ItemsInfo[_itemID].id;
+    chronology = ItemsInfo[_itemID].chronology;
+    }
+
+     /*function SlaughterStatus(uint256 _itemID) public view returns (string memory) {
+        require(_itemID > 0);
+        SLAUGHTER slaughter = ItemsSlaughter[_itemID];
+
+        if (slaughter == SLAUGHTER.NonSlaughter) {
+            return "Your Item is not slaughter yet";
+        } else if (slaughter == SLAUGHTER.Slaughter) {
+            return "Your Item is Slaughtered";
+        }
+        return "Unknown slaughter status";
+    }
+
+    function HalalStatus( uint256 _itemID) public view returns (string memory) {
+        require(_itemID > 0);
+        STATUS status = ItemsStatus[_itemID];  
+
+        if (status == STATUS.NonVerified) {
+            return "Your Item is not Halal Verified yet";
+        } else if (status == STATUS.Verified) {
+            return "Your Item is Halal Verified";
+        }
+        return "Unknown halal status";
+    }
+    */
+
+    
+
+} 
