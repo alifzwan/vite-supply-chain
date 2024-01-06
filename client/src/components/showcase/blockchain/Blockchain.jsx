@@ -22,6 +22,9 @@ const Blockchain = () => {
   const redirect_to_project = () => {
       navigate('/project')
   }
+  const redirect_to_blockchainwork = () => {
+    navigate('/blockchainwork')
+}
 
 
   return (
@@ -43,9 +46,9 @@ const Blockchain = () => {
                                 <motion.button className="started"
                                     variants={itemVariants}
                                    
-                                    onClick={redirect_to_project}
+                                    onClick={redirect_to_blockchainwork}
                                 >
-                                    Get Started
+                                    How it works?
                                 </motion.button>
 
                                 <motion.button className="learn"
@@ -53,7 +56,7 @@ const Blockchain = () => {
                                     
                                     onClick={redirect_to_project}
                                 >
-                                    Learn Blockchain
+                                    Back to Home
                                 </motion.button>
                         </motion.div>
                     </div>

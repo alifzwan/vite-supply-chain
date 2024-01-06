@@ -1,0 +1,84 @@
+.transparency-main-container {
+    display: flex;
+}
+
+
+.main-section {
+    flex: 1;
+    padding: 10px; /* Add padding as needed */
+    display:flex;
+    flex-direction: column;
+    .transparency-section-title {
+        display: flex;
+        flex-direction: row;
+        text-align: left !important;
+        font-size: 30px;
+        font-weight: bold;
+        margin: 20px 0 20px 0;
+        color: white;
+    }
+
+    .transparency-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .transparency-section {
+            
+            border: transparent;
+            width: 1000px;
+           
+            .description {
+                text-align:justify;
+                text-indent: 50px;
+                line-height: 2.2;
+                margin: 50px 0 60px 0;
+                font-size: 20px;
+                a {
+                    font-weight: bold;
+                    color: rebeccapurple;
+                }
+                a:hover {
+                    color: white;
+                }
+               
+            }
+
+        }
+
+        .transparency-back-button-container {
+            transform: translateY(40%);
+            display: flex;
+            .transparency-back-button{
+                max-width: 1366px;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                button {
+                    padding: 0px 10px;
+                    height: 35px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    background-color: transparent;
+                    color: white;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-top: 5px;
+                    text-align: center;
+                }
+                button:hover { 
+                    color: rebeccapurple;
+                    border-color: rebeccapurple;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
