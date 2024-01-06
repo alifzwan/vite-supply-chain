@@ -276,7 +276,7 @@ const Admin = () => {
 
                     <div className="admin-grid">
                         <div className="admin-section">
-                            <h2>Farmer</h2>
+                            <h2>Poultry</h2>
                                 <form onSubmit={adminFarmer}>
                                     <motion.div className="input-container" variants={variants}>
 

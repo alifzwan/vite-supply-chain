@@ -58,14 +58,14 @@ const Track = () => {
 
     const supplychainsfarmer = [
 
-        { name: "Farmer"      , image: "/farmer.svg"      },
+        { name: "Poultry"      , image: "/farmer.svg"      },
        
        
     ];
 
     const supplychainsslaughterhouse = [
 
-        { name: "Farmer"      , image: "/farmer.svg"      },
+        { name: "Poultry"      , image: "/farmer.svg"      },
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"}
@@ -75,7 +75,7 @@ const Track = () => {
 
     const supplychainsverifier = [
 
-        { name: "Farmer"      , image: "/farmer.svg"      },
+        { name: "Poultry"      , image: "/farmer.svg"      },
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"},
@@ -86,7 +86,7 @@ const Track = () => {
 
     const supplychainsmanufacturer = [
 
-        { name: "Farmer"      , image: "/farmer.svg"      },
+        { name: "Poultry"      , image: "/farmer.svg"      },
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"},
@@ -100,7 +100,7 @@ const Track = () => {
 
     const supplychainsdistributor = [
 
-        { name: "Farmer"      , image: "/farmer.svg"      },
+        { name: "Poultry"      , image: "/farmer.svg"      },
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"},
@@ -118,7 +118,7 @@ const Track = () => {
 
     const supplychainsretailer = [
 
-        { name: "Farmer"      , image: "/farmer.svg"      },
+        { name: "Poultry"      , image: "/farmer.svg"      },
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"},
@@ -138,7 +138,7 @@ const Track = () => {
 
     const supplychainssold = [
 
-        { name: "Farmer"      , image: "/farmer.svg"      },
+        { name: "Poultry"      , image: "/farmer.svg"      },
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"},
@@ -158,7 +158,7 @@ const Track = () => {
 
     const chronologyTableFarmer = (name) => {
         switch (name) {
-            case "Farmer":
+            case "Poultry":
             return (
               <tbody>
                 <tr>
@@ -175,7 +175,7 @@ const Track = () => {
 
     const chronologyTableSlaughterhouse = (name) => {
         switch (name) {
-            case "Farmer":
+            case "Poultry":
             return (
               <tbody>
                 <tr>
@@ -202,7 +202,7 @@ const Track = () => {
 
     const chronologyTableVerifier = (name) => {
         switch (name) {
-            case "Farmer":
+            case "Poultry":
             return (
               <tbody>
                 <tr>
@@ -239,7 +239,7 @@ const Track = () => {
     
     const chronologyTableManufacturer = (name) => {
         switch (name) {
-            case "Farmer":
+            case "Poultry":
             return (
               <tbody>
                 <tr>
@@ -286,7 +286,7 @@ const Track = () => {
 
     const chronologyTableDistributor = (name) => {
         switch (name) {
-            case "Farmer":
+            case "Poultry":
             return (
               <tbody>
                 <tr>
@@ -343,7 +343,7 @@ const Track = () => {
 
     const chronologyTableRetail = (name) => {
         switch (name) {
-            case "Farmer":
+            case "Poultry":
             return (
               <tbody>
                 <tr>

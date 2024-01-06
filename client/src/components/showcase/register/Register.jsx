@@ -414,7 +414,7 @@ const Register = () => {
 
                     <div className="register-content">
                         <div className="stakeholder-section">
-                            <h2>Farmer</h2>
+                            <h2>Poultry</h2>
                             <form onSubmit={adminRegFarmer}>
                             <motion.div className="input-container" variants={variants}>
                                 <motion.div variants={itemVariants}>
@@ -424,7 +424,7 @@ const Register = () => {
 
                                 <motion.div variants={itemVariants}>
                                     <label>Farmer Name:</label><br />
-                                    <input type="text" onChange={adminNameFarmer} placeholder="Farmer Name" required/><br />
+                                    <input type="text" onChange={adminNameFarmer} placeholder="Poultry Name" required/><br />
                                 </motion.div>
 
                                 <motion.div variants={itemVariants}>

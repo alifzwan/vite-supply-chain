@@ -14,13 +14,13 @@ const ProjectHero = () => {
 
     
   const supplychains = [
-    { name: "Farmer"      , image: "/farmer.svg"},
+    { name: "Poultry"     , image: "/farmer.svg"},
     { image: "/arrow.png"},
 
     { name: "Slaughterhouse", image: "/chicken.png"},
     { image: "/arrow.png"},
 
-    { name: "Halal Verify", image: "/halal.png"},
+    { name: "Halal Verification (JAKIM)", image: "/halal.png"},
     { image: "/arrow.png"},
 
     { name: "Manufacturer", image: "/manufacturer.svg"},
@@ -42,7 +42,7 @@ const ProjectHero = () => {
 
         <div className="content">
               <div className="supplychain">
-                  <h2 className="section-title">Supply Chain Flow</h2>
+                  <h2 className="section-title">Food Supply Chain Flow <b>(Stakeholders)</b></h2>
                   <div className="supplychain-list">
                       {supplychains.map((supplychain, index) => (
                         <div className="supplychain-item" 
@@ -63,9 +63,9 @@ const ProjectHero = () => {
               <p className="project-description">
                   <b>Only </b> 
                   <a href="https://coinsbench.com/understanding-contract-ownership-in-solidity-and-access-control-patterns-1a04116042ce#:~:text=Contract%20ownership%20refers%20to%20the,transferred%20dynamically%20using%20specific%20functions." target="_blank" rel="noopener noreferrer"> 
-                    Owner 
+                    Creator/Owner 
                   </a> 
-                  <b> can register the supply chain. Owner is the the person who deployed the smart contract on the blockchain</b>
+                  <b> can register the supply chain. Creator/Owner is the person who deployed the smart contract on the blockchain</b>
               </p>
 
 

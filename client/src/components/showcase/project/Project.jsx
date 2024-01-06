@@ -39,7 +39,7 @@ const Project = () => {
             <div className="project-content">
                 <div className="project-section">
                     <p className="description">
-                        <b>Food supply</b> chain is the process that all food products go through, 
+                        <b>Food supply chain</b> is the process that all food products go through, 
                         from production all the way through to consumption. The food supply chain is, thus,
                         a hugely important step in how you safely consume and understand the food you eat. 
                     </p>

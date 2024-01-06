@@ -189,16 +189,6 @@ const Order = () => {
                                 <input type="text" onChange={regItemDescription} placeholder="Description" required/><br />
                             </motion.div>
 
-                            <motion.div variants={itemVariants}>
-                                <label>Finished Product: 
-                                    <select>
-                                        <option value=""> How would you like the item to be done?</option>
-                                        <option value=""> Chicken Nugget</option>
-                                        <option value=""> Fresh Chicken</option>
-                                    </select>   
-                                </label><br />
-                            </motion.div>
-
                             <motion.div variants={itemVariants} className="order-button">
                                 <motion.button
                                     variants={itemVariants}

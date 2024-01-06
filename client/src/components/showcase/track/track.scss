@@ -266,7 +266,7 @@
             margin-bottom: 10px;
             justify-content: center;
             b {
-                color: rebeccapurple;
+                color: green;
             }
         }
 
@@ -1472,6 +1472,7 @@
                 display: grid;
                 grid-template-columns: repeat(11, 1fr);
                 justify-content: center;
+                gap: 15px;
                 align-items: center;
                 margin: 60px 0 100px 0;
 
@@ -1576,7 +1577,7 @@
         }
 
         b {
-            color: rebeccapurple;
+            color: green;
         }
     }
     
