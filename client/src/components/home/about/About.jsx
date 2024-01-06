@@ -54,48 +54,41 @@ const About = () => {
 
     return (
 
-      <div id="about">
+      <div className="about">
 
           <div className="about-content">
-            <motion.div 
-            className="about-description" 
-            variants={Variants}
-            initial="initial"
-            animate="animate">
+            <motion.div className="about-description" 
+                variants={Variants}
+                initial="initial"
+                animate="animate">
 
-            <h2 className="section-title">Muhammad Alif Zakwan Bin Mohd As'ad</h2>
+                <h2 className="section-title">
+                  Muhammad Alif Zakwan Bin Mohd As'ad
+                </h2>
 
-              {[one]}
+                {[one]}
 
-              <p>Here are some technologies I am interested with:</p>
-            
-
-              <ul className="tech-stack">
-                {tech_stack.map(function (tech_item, i) {
-
-                  return (
-                   
-                      <li>{tech_item}</li>
-                  
-                  );
-                })}
-
-              </ul>
-
-              {[two]}
-
+                <p>Here are some technologies I am interested with:</p>
+        
+                <ul className="tech-stack">
+                    {tech_stack.map(function (tech_item, i) {
+                      return (
+                          <li>{tech_item}</li>
+                      );
+                    })}
+                </ul>
+                {[two]}
             </motion.div>
 
 
             <motion.div className="about-image" 
-            variants={Variants} 
-            initial="initial"
-            animate="animate"
-            whileHover={{ scale: 1.1}}
-            whileTap={{ scale: 0.95 }}
-           >
-        
-              <img src = "/me.jpg"/>
+                variants={Variants} 
+                initial="initial"
+                animate="animate"
+                whileHover={{ scale: 1.1}}
+                whileTap={{ scale: 0.95 }}>
+          
+                <img src = "/me.jpg"/>
             </motion.div>
 
           </div>
