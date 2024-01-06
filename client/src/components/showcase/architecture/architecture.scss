@@ -32,7 +32,7 @@
             border-radius: 10px;
             padding: 10px;
             box-sizing: border-box;
-            max-height: 330px; 
+            max-height: 360px; 
             width: 400px;
 
             .contract-container {
@@ -193,7 +193,7 @@
           border-radius: 10px;
           padding: 10px;
           box-sizing: border-box;
-          max-height: 330px; 
+          max-height: 360px; 
           width: 400px;
 
           .website-container {
@@ -241,6 +241,7 @@
   }
   .architecture-back-button-container {
     display: flex;
+    transform: translateY(250%);
     .architecture-back-button{
       max-width: 1366px;
       display: flex;

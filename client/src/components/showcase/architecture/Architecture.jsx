@@ -68,7 +68,7 @@ const Architecture = () => {
 
                 <div className="contract-section">
                     <div className="contract-container">
-                        <p>Smart Contract Development</p>
+                        <p>Smart Contract Development (Backend)</p>
                         <img src="/contract.svg" className="contract-image"/>
                         <div className="contract-grid-image">
                             {contractframeworks.map((contractframeworks, index) => (
@@ -152,7 +152,7 @@ const Architecture = () => {
 
                 <div className="website-section">
                     <div className="website-container">
-                        <p>Website Development</p>
+                        <p>Web Application Development (Frontend)</p>
                         <img src="/app.png" className="website-image"/>
                         <div className="website-grid-image">
                             {websiteframeworks.map((websiteframeworks, index) => (
