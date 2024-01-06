@@ -28,6 +28,7 @@ const Architecture = () => {
 
 
   const contractframeworks = [
+  
     { name: "Solidity"     , logo: "/solidity.svg"     , link: "https://docs.soliditylang.org/en/v0.8.22/"},
     { name: "Remix"        , logo: "/remix.png"        , link: "https://remix.ethereum.org/"},
     { name: "Truffle"      , logo: "/truffle.svg"      , link: "https://trufflesuite.com/docs/truffle/"},
@@ -67,7 +68,8 @@ const Architecture = () => {
 
                 <div className="contract-section">
                     <div className="contract-container">
-                        <p>Contract Development</p>
+                        <p>Smart Contract Development</p>
+                        <img src="/contract.svg" className="contract-image"/>
                         <div className="contract-grid-image">
                             {contractframeworks.map((contractframeworks, index) => (
                                 <div className="contract-item" key={index}>
@@ -151,6 +153,7 @@ const Architecture = () => {
                 <div className="website-section">
                     <div className="website-container">
                         <p>Website Development</p>
+                        <img src="/app.png" className="website-image"/>
                         <div className="website-grid-image">
                             {websiteframeworks.map((websiteframeworks, index) => (
                                 <div className="website-item" key={index}>
