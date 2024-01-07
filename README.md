@@ -114,7 +114,7 @@ truffle init
   
 
 # 🔥Truffle Operation
-## Compile
+## ➡️ Compile
 
 This command will compile all of your smart contract in `contracts` folder.
 
@@ -131,7 +131,7 @@ truffle compile
 
 - `contract.json` also known as **artifacts** like in **Hardhat**
 
-## Deploy
+## ➡️ Deploy
 
 - To deploy our smart contract, we need a **migration scripts**
 
