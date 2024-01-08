@@ -11,7 +11,8 @@ import BlockchainWork from "./components/showcase/blockchain/blockchainwork/Bloc
 import BlockchainDecentralization from "./components/showcase/blockchain/blockchaindecentralization/BlockchainDecentralization";
 import BlockchainTransparency from "./components/showcase/blockchain/blockchaintransparency/BlockchainTransparency";
 import BlockchainSecure from "./components/showcase/blockchain/blockchainsecure/BlockchainSecure";
-
+import Backend from "./components/showcase/tools/Backend";
+import Frontend from "./components/showcase/tools/Frontend";
 
 
 import ProjectHero from "./components/showcase/project/projectHero/ProjectHero";
@@ -34,11 +35,17 @@ const App = () => {
           <Route path = '/project' exact element={<Project />} />
           <Route path = '/architecture' exact element={<Architecture />} />
           <Route path = '/chronology' exact element={<Chronology />} />
+          <Route path = '/backend' exact element={<Backend />} />
+          <Route path = '/frontend' exact element={<Frontend />} />
+
+
           <Route path = '/blockchain' exact element={<Blockchain />} />
           <Route path = '/blockchainwork' exact element={<BlockchainWork />} />
           <Route path = '/blockchaindecentralization' exact element={<BlockchainDecentralization />} />
           <Route path = '/blockchaintransparency' exact element={<BlockchainTransparency />} />
           <Route path = '/blockchainsecure' exact element={<BlockchainSecure />} />
+
+
           <Route path = '/projecthero' exact element={<ProjectHero />} />
           <Route path = '/login' exact element={<Login />} />
           <Route path = '/register' exact element={<Register />} />
