@@ -144,7 +144,7 @@ truffle compile
 
 - Deployment on **Ganache** :
   ```
-  truffle migrate --reset
+  truffle migrate --network ganache --reset
   ```
 - If you don't select which account you want to deploy your smart contract, by default it will choose account 1
 
