@@ -77,8 +77,10 @@ const SlaughterVerify = () => {
     const [ItemPhase         , setItemPhase      ] = useState();
     const [SlaughterStatus   , setSlaughterStatus] = useState();
     const [VerifyStatus      , setVerifyStatus   ] = useState();
+    const [MardiStatus       , setMardiStatus   ] = useState();
 
 
+    const [SlaughterComply      , displayComply] = useState(false);
     const [SlaughterVerification, displaySlaughterVerification] = useState(false);
     const [Slaughtered          , displaySlaughtered          ] = useState(false);
 
@@ -115,18 +117,21 @@ const SlaughterVerify = () => {
 
 
             const ItemPhase = [];
+            const MardiStatus = [];
             const SlaughterStatus = [];
             const VerifyStatus = [];
 
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
+                MardiStatus[i] = await supplychain.methods.MardiStatus(i + 1).call();
                 SlaughterStatus[i] = await supplychain.methods.SlaughterStatus(i + 1).call();
                 VerifyStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
 
             }
             setItems(item);
             setItemPhase(ItemPhase);
+            setMardiStatus(MardiStatus); 
             setSlaughterStatus(SlaughterStatus); 
             setVerifyStatus(VerifyStatus); 
             setloader(false);
@@ -160,52 +165,38 @@ const SlaughterVerify = () => {
         }));
     };
 
+    const areAllChecklistItemsTicked = () => {
+        return (
+            checklistSlaughter.isPracticingMuslim &&
+            checklistSlaughter.isInvocationCorrect &&
+            checklistSlaughter.isCorrectSlaughterMethod &&
+            checklistSlaughter.isBloodDrained &&
+            checklistSlaughter.isPreventionOfContamination
+        );
+    };
+    
+
     const handleChecklistSubmit = async () => {
-        try {
-
-            // const verificationStatus = halalVerify(checklist);
-            if (Object.values(checklistSlaughter).every((item) => item === true)) {
-                // If verification succeeds, send the transaction
-                await SupplyChain.methods
-                    .slaughterTickChecklistItem(
-                        ItemID,
-                        checklistSlaughter.isPracticingMuslim,
-                        checklistSlaughter.isInvocationCorrect,
-                        checklistSlaughter.isCorrectSlaughterMethod,
-                        checklistSlaughter.isBloodDrained,
-                        checklistSlaughter.isPreventionOfContamination,
-                    )
-                    .send({ from: currentaccount });
-                // console.log("Transaction successful"); 
-                // console.log("Items before:", Items);
-                // console.log("ItemPhase before:", ItemPhase);
-                // console.log("SlaughterStatus before:", SlaughterStatus);
-
-                await loadBlockchaindata()
-                
-                // Log the current status after the transaction
-                // const updatedStatus = await SupplyChain.methods.SlaughterStatus(ItemID).call();
-
-                // console.log("Updated Status:", updatedStatus);
-                // console.log("Items after:", Items);
-                // console.log("ItemPhase after:", ItemPhase);
-                // console.log("SlaughterStatus after:", SlaughterStatus);
-
-                displaySlaughtered(true);
-            
-            } else {
-                // Handle the case where verification fails
-                alert('Please make sure you tick all the checklist');
-            }
-        } catch (error) {
-            // Handle the error, display a message, or perform other actions
-            
-            console.log(error)
-            alert('Please make sure you tick all the checklist');
+        
+        await SupplyChain.methods.slaughterTickChecklistItem(
+                ItemID,
+                checklistSlaughter.isPracticingMuslim,
+                checklistSlaughter.isInvocationCorrect,
+                checklistSlaughter.isCorrectSlaughterMethod,
+                checklistSlaughter.isBloodDrained,
+                checklistSlaughter.isPreventionOfContamination,
+        ).send({ from: currentaccount });
+    
+        await loadBlockchaindata();
+    
+        if (areAllChecklistItemsTicked()) {
+            displaySlaughtered(true);
+        } else {
+            displayComply(true);
+            await SupplyChain.methods.setHalalStatus(ItemID, "Your item is not fully halal complied").send({ from: currentaccount });
         }
     };
-
-
+    
     if (loader) {
         return (
             <div className="loader" style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.8' }}>
@@ -234,6 +225,7 @@ const SlaughterVerify = () => {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
@@ -247,6 +239,9 @@ const SlaughterVerify = () => {
                                                 <td>{Items[key].origin}</td>
                                                 <td>{Items[key].nutritionInfo}</td>
                                                 <td>{ItemPhase[key]}</td>
+                                                <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[key]}
+                                                </td>
                                                 <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                                     {SlaughterStatus[key]}
                                                 </td>
@@ -288,6 +283,83 @@ const SlaughterVerify = () => {
         )
     }
 
+    if (SlaughterComply) {
+        return (
+            <div className="comply-main-container">
+                <div className="project-menu-bar">
+                    <ProjectSideBar />
+                </div> 
+
+                <div className="main-section">
+                    <div className="comply-section-title">Slaughter Verification</div>
+                    <div className="comply-content">
+                        <div className="comply-section">
+                            <table className="table-container" border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Based In</th>
+                                        <th>Description</th>
+                                        <th>Current Stage</th>
+                                        <th>Mardi Status</th>
+                                        <th>Slaughter Status</th>
+                                        <th>Halal Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Object.keys(Items).map(function (key) {
+                                        return (
+                                            <tr key={key}>
+                                                <td>{Number(Items[key].id)}</td>
+                                                <td>{Items[key].name}</td>
+                                                <td>{Items[key].origin}</td>
+                                                <td>{Items[key].nutritionInfo}</td>
+                                                <td>{ItemPhase[key]}</td>
+                                                <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[key]}
+                                                </td>
+                                                <td className={SlaughterStatus[key] === "Your item is not fully Slaughter Complied	" ? "green-text" : "red-text"}>
+                                                    {SlaughterStatus[key]}
+                                                </td>
+                                                <td className={VerifyStatus[key] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                                    {VerifyStatus[key]}
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2 className='comply-description'>Your Item is<b> not fully slaughter complied</b></h2>
+                    <div className="comply-back-button-container">
+                        <motion.div variants={itemVariants} className="comply-back-button">
+                                <motion.button
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={() => {displayComply(false); displaySlaughterVerification(false);}}
+                                >
+                                    Verify Another Item
+                                </motion.button>
+
+                                <motion.button
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={redirect_to_project}
+                                >
+                                    Back To Project 
+                                </motion.button>
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
 
     // Item Ordered
     if (SlaughterVerification) {
@@ -309,6 +381,7 @@ const SlaughterVerify = () => {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
@@ -322,6 +395,9 @@ const SlaughterVerify = () => {
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
                                             <td>{ItemPhase[key]} </td>
+                                            <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[key]}
+                                            </td>
                                             <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                                 {SlaughterStatus[key]}
                                             </td>
@@ -429,6 +505,10 @@ const SlaughterVerify = () => {
         )
     }
 
+    
+
+
+
     const adminID = (event) => {
         setItemID(event.target.value);
     }
@@ -445,16 +525,18 @@ const SlaughterVerify = () => {
             return;
         }
 
-        if ((slaughterhouseCount > 0) && (slaughterhouseCount <= count)){
+        if ((slaughterhouseCount > 0) && (slaughterhouseCount <= count)) {
             displaySlaughterVerification(true);
-        }else
-            return "There's no Verifier registered"
-       
+        } 
+
         if (slaughterStatus === "Your Item is Slaughtered"){
             displaySlaughtered(true)
+        } else if (slaughterStatus === "Your Item is not fully slaughter complied") {
+            displayComply(true);
         }
-        
     }
+
+    
 
     return (
         <div className="slaughterhouse-main-container">
@@ -474,6 +556,7 @@ const SlaughterVerify = () => {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
@@ -488,6 +571,9 @@ const SlaughterVerify = () => {
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
                                             <td>{ItemPhase[key]}</td>
+                                            <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[key]}
+                                            </td>
                                             <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                                 {SlaughterStatus[key]}
                                             </td>

@@ -129,6 +129,10 @@ const ProjectLinks = ({darkTheme}) => {
                 </Menu.Item>
 
                 <Menu.Item>
+                    <Link to="/mardi">Mardi Verification</Link>
+                </Menu.Item>
+
+                <Menu.Item>
                     <Link to="/slaughterhouse">Slaughter Verification</Link>
                 </Menu.Item>
                 

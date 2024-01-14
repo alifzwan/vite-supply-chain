@@ -17,6 +17,9 @@ const ProjectHero = () => {
     { name: "Poultry"     , image: "/farmer.svg"},
     { image: "/arrow.png"},
 
+    { name: "Mardi", image: "/mardi.svg"},
+    { image: "/arrow.png"},
+
     { name: "Slaughterhouse", image: "/chicken.png"},
     { image: "/arrow.png"},
 

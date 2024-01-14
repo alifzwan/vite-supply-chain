@@ -64,6 +64,7 @@ const Order = () => {
     const [ItemPhase      , setItemPhase      ]  = useState();
     const [SlaughterStatus, setSlaughterStatus] = useState();
     const [VerifyStatus   , setVerifyStatus   ]  = useState();
+    const [MardiStatus    , setMardiStatus   ]  = useState();
     
     const loadWeb3 = async () => {
         if (window.ethereum) {
@@ -95,16 +96,19 @@ const Order = () => {
             const itemsCount = await supplychain.methods.itemsCount().call();
             const item = {};
             const ItemPhase = [];
+            const MardiStatus = [];
             const SlaughterStatus = [];
             const VerifyStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
+                MardiStatus[i] = await supplychain.methods.MardiStatus(i + 1).call();
                 SlaughterStatus[i] = await supplychain.methods.SlaughterStatus(i + 1).call();
                 VerifyStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
+            setMardiStatus(MardiStatus);
             setSlaughterStatus(SlaughterStatus);
             setVerifyStatus(VerifyStatus);
             setloader(false);
@@ -210,6 +214,7 @@ const Order = () => {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
@@ -223,6 +228,9 @@ const Order = () => {
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
                                             <td>{ItemPhase[key]}</td>
+                                            <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[key]}
+                                            </td>
 
                                             <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                                 {SlaughterStatus[key]}

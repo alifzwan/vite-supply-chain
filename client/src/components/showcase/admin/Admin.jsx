@@ -61,6 +61,7 @@ const Admin = () => {
 
     
     const [ItemPhase     , setItemPhase]      = useState();
+    const [MardiStatus    , setMardiStatus]      = useState();
     const [SlaughterStatus, setSlaughterStatus] = useState();
     const [VerifyStatus    , setVerifyStatus]      = useState();
     
@@ -94,16 +95,19 @@ const Admin = () => {
             const itemsCount = await supplychain.methods.itemsCount().call();
             const item = {};
             const ItemPhase = [];
+            const MardiStatus = [];
             const SlaughterStatus = [];
             const VerifyStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
+                MardiStatus[i] = await supplychain.methods.MardiStatus(i + 1).call();
                 SlaughterStatus[i] = await supplychain.methods.SlaughterStatus(i + 1).call();
                 VerifyStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
+            setMardiStatus(MardiStatus);
             setSlaughterStatus(SlaughterStatus);
             setVerifyStatus(VerifyStatus);
             setloader(false);
@@ -135,6 +139,19 @@ const Admin = () => {
         event.preventDefault();
         try {
             var receipt = await SupplyChain.methods.Farmering(ItemID).send({ from: currentaccount });
+            if (receipt) {
+                await loadBlockchaindata();
+            }
+        }
+        catch (err) {
+            alert("An error occured!!!")
+        }
+    }
+
+    const adminMardi = async (event) => {
+        event.preventDefault();
+        try {
+            var receipt = await SupplyChain.methods.Marding(ItemID).send({ from: currentaccount });
             if (receipt) {
                 await loadBlockchaindata();
             }
@@ -248,6 +265,7 @@ const Admin = () => {
                                 <th>Based In</th>
                                 <th>Description</th>
                                 <th>Current Stage</th>
+                                <th>Mardi Status</th>
                                 <th>Slaughter Status</th>
                                 <th>Halal Status</th>
                             </tr>
@@ -261,6 +279,9 @@ const Admin = () => {
                                         <td>{Items[key].origin}</td>
                                         <td>{Items[key].nutritionInfo}</td>
                                         <td>{ItemPhase[key]}</td>
+                                        <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[key]}
+                                        </td>
                                         <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                                 {SlaughterStatus[key]}
                                         </td>
@@ -290,6 +311,30 @@ const Admin = () => {
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.95 }}
                                             onSubmit={adminFarmer}
+                                        >
+                                            Punch In
+                                        </motion.button>
+                                    </motion.div>
+                                
+                                    </motion.div>
+                                </form>
+                        </div>
+
+                        <div className="admin-section">
+                            <h2>Mardi</h2>
+                                <form onSubmit={adminMardi}>
+                                    <motion.div className="input-container" variants={variants}>
+
+                                        <motion.div variants={itemVariants}>
+                                            <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                        </motion.div>
+
+                                    <motion.div variants={itemVariants} className="admin-button">
+                                        <motion.button
+                                            variants={itemVariants}
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onSubmit={adminMardi}
                                         >
                                             Punch In
                                         </motion.button>
@@ -421,9 +466,8 @@ const Admin = () => {
                                 </motion.div>
                                 </form>
                         </div>
-                    </div>
 
-                    <div className="admin-sold-section">
+                        <div className="admin-section">
                         <h2>Sold</h2>
                             <form onSubmit={adminSold}>
                                 <motion.div className="input-container" variants={variants}>
@@ -444,8 +488,10 @@ const Admin = () => {
                             
                                 </motion.div>
                             </form>
-                        
+                        </div>
                     </div>
+
+                    
 
                     <div className="admin-back-button-container">
                         <motion.div variants={itemVariants} className="admin-back-button">

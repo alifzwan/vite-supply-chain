@@ -96,7 +96,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 10px;
 
             .admin-section {
                 display: flex;
@@ -245,7 +245,7 @@
         }
 
         .admin-back-button-container{
-            transform: translateY(200%);
+            transform: translateY(50%);
             display: flex;
             justify-content: flex-end;
             .admin-back-button{

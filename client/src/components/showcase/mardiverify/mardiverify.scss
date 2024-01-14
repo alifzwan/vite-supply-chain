@@ -1,4 +1,4 @@
-.slaughterhouse-main-container {
+.mardiverify-main-container {
     display: flex;
     h1 {
         text-align: center;
@@ -26,7 +26,7 @@
     display:flex;
     flex-direction: column;
 
-    .slaughterhouse-section-title {
+    .mardiverify-section-title {
         font-size: 30px;
         font-weight: bold;
         font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -35,8 +35,8 @@
         color: white;
     }
 
-    .slaughterhouse-content {
-        .slaughterhouse-section {
+    .mardiverify-content {
+        .mardiverify-section {
             border: 2px solid rebeccapurple;
             border-radius: 10px;
             padding: 10px;
@@ -44,7 +44,7 @@
             max-height: auto; /* Make sure all sections have the same height */
             overflow-y: auto;
 
-            .slaughterhouse-table-container {
+            .mardiverify-table-container {
                 border-collapse: collapse;
                 border: 1px solid white;
                 border-radius: 20px;
@@ -95,7 +95,7 @@
                
             }
 
-            .slaughterhouse-button {
+            .mardiverify-button {
                 display: flex;
                 align-items: center;
                 button {
@@ -120,9 +120,9 @@
         }
     }
 
-    .slaughterhouse-back-button-container {
+    .mardiverify-back-button-container {
         display: flex;
-        .slaughterhouse-back-button{
+        .mardiverify-back-button{
             max-width: 1366px;
             margin: auto;
             margin-top: 10px;
@@ -150,10 +150,7 @@
     }
 }
 
-
-
-
-.slaughtered-main-container {
+.mardicomply-main-container {
     display: flex;
 }
 
@@ -164,7 +161,7 @@
     display:flex;
     flex-direction: column;
 
-    .slaughtered-section-title {
+    .mardicomply-section-title {
         font-size: 30px;
         font-weight: bold;
         font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -174,134 +171,11 @@
     }
 
 
-    .slaughtered-content {
+    .mardicomply-content {
         display: flex;
         flex-direction: column;
 
-        .slaughtered-section {
-            border: 2px solid rebeccapurple;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            padding: 10px;
-            box-sizing: border-box;
-            overflow-y: auto;
-        
-            h2 {
-                text-align: center;
-                font-weight: bold;
-                margin-bottom: 10px;
-            }
-        
-            table {  // Item table
-                border-collapse: collapse;
-                border: 1px solid white;
-                border-radius: 20px;
-                width: 100%;
-                height:30px;
-                font-size: 14px;
-                   
-                
-        
-                th, td {
-                    color: white;
-                    padding: 10px;
-                    text-align: center;
-                }
-        
-                th {
-                    background-color: transparent;
-                }
-        
-                tr:nth-child(even) {
-                    background-color: transparent;
-                }
-                td:nth-child(5) {
-                    color: green;
-                    
-                }
-                .red-text {
-                    color: red; 
-                }
-                .green-text {
-                    color: green; 
-                }
-                tr:hover {
-                    background-color: transparent;
-                }
-            }
-        }
-    }
-
-
-    .slaughtered-description {
-        margin-bottom: 10px;
-        justify-content: center;
-        b {
-            color: green;
-        }
-    }
-
-
-
-
-    .slaughtered-back-button-container {
-        display: flex;
-        .slaughtered-back-button{
-            gap: 20px;
-            max-width: 1366px;
-            margin: auto;
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-            button {
-                padding: 0px 10px;
-                height: 35px;
-                border: 1px solid white;
-                border-radius: 10px;
-                background-color: transparent;
-                color: white;
-                cursor: pointer;
-                font-weight: bold;
-                margin-top: 5px;
-                text-align: center;
-            }
-            button:hover { 
-                color: rebeccapurple;
-                border-color: rebeccapurple;
-            }
-        }
-    }
-}
-
-
-.comply-main-container {
-    display: flex;
-}
-
-.main-section {
-    flex: 1;
-    padding: 20px; 
-    align-items: center;
-    display:flex;
-    flex-direction: column;
-
-    .comply-section-title {
-        font-size: 30px;
-        font-weight: bold;
-        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-        margin-bottom: 10px;
-        text-align: left;
-        color: white;
-    }
-
-
-    .comply-content {
-        display: flex;
-        flex-direction: column;
-
-        .comply-section {
+        .mardicomply-section {
             border: 2px solid rebeccapurple;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -359,25 +233,21 @@
     }
 
 
-    .comply-description {
+    .mardicomply-description {
         margin-bottom: 10px;
         justify-content: center;
         b {
             color: red;
         }
     }
-    .reason {
-        b {
-            color: red;
-        }
-    }
+    
 
 
 
 
-    .comply-back-button-container {
+    .mardicomply-back-button-container {
         display: flex;
-        .comply-back-button{
+        .mardicomply-back-button{
             gap: 20px;
             max-width: 1366px;
             margin: auto;
@@ -409,11 +279,9 @@
 
 
 
-
-.Slaughter-main-container {
+.mardiverified-main-container {
     display: flex;
 }
-
 
 .main-section {
     flex: 1;
@@ -422,7 +290,7 @@
     display:flex;
     flex-direction: column;
 
-    .Slaughter-section-title {
+    .mardiverified-section-title {
         font-size: 30px;
         font-weight: bold;
         font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -431,11 +299,12 @@
         color: white;
     }
 
-    .Slaughter-content {
+
+    .mardiverified-content {
         display: flex;
         flex-direction: column;
 
-        .Slaughter-section {
+        .mardiverified-section {
             border: 2px solid rebeccapurple;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -487,8 +356,135 @@
                 }
             }
         }
-        .Slaughter-checklist {
-            .Slaughter-checklist-section {
+    }
+
+
+    .mardiverified-description {
+        margin-bottom: 10px;
+        justify-content: center;
+        b {
+            color: green;
+        }
+    }
+
+
+
+
+    .mardiverified-back-button-container {
+        display: flex;
+        .mardiverified-back-button{
+            gap: 20px;
+            max-width: 1366px;
+            margin: auto;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            button {
+                padding: 0px 10px;
+                height: 35px;
+                border: 1px solid white;
+                border-radius: 10px;
+                background-color: transparent;
+                color: white;
+                cursor: pointer;
+                font-weight: bold;
+                margin-top: 5px;
+                text-align: center;
+            }
+            button:hover { 
+                color: rebeccapurple;
+                border-color: rebeccapurple;
+            }
+        }
+    }
+
+
+
+}
+
+
+
+
+
+.mardi-main-container {
+    display: flex;
+}
+
+
+.main-section {
+    flex: 1;
+    padding: 20px; 
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+
+    .mardi-section-title {
+        font-size: 30px;
+        font-weight: bold;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+        margin-bottom: 10px;
+        text-align: left;
+        color: white;
+    }
+
+    .mardi-content {
+        display: flex;
+        flex-direction: column;
+
+        .mardi-section {
+            border: 2px solid rebeccapurple;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        
+            h2 {
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+        
+            table {  // Item table
+                border-collapse: collapse;
+                border: 1px solid white;
+                border-radius: 20px;
+                width: 100%;
+                height:30px;
+                font-size: 14px;
+                   
+                th, td {
+                    color: white;
+                    padding: 10px;
+                    text-align: center;
+                }
+        
+                th {
+                    background-color: transparent;
+                }
+        
+                tr:nth-child(even) {
+                    background-color: transparent;
+                }
+                td:nth-child(5) {
+                    color: green;
+                    
+                }
+                .red-text {
+                    color: red; 
+                }
+                .green-text {
+                    color: green; 
+                }
+                tr:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+        .mardi-checklist {
+            .mardi-checklist-section {
                 display: flex;
                 flex-direction: column;
                 border: 2px solid rebeccapurple;
@@ -499,7 +495,7 @@
                 overflow-y: auto;
                 height: 500px;
                 
-                .Slaughter-checklist-title {
+                .mardi-checklist-title {
                     text-align: center;
                 }
                 p {
@@ -527,7 +523,7 @@
                     }
                 }
 
-                .Slaughter-submit {
+                .mardi-submit {
                     margin-top: auto;
                     .submit-button {
                         margin-top: 10px;
@@ -545,9 +541,9 @@
             }  
         }
     }
-    .Slaughter-back-button-container {
+    .mardi-back-button-container {
         display: flex;
-        .Slaughter-back-button{
+        .mardi-back-button{
             transform: translateY(100%);
             gap: 20px;
             max-width: 1366px;

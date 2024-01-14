@@ -63,9 +63,22 @@ const Track = () => {
        
     ];
 
+    const supplychainsmardi = [
+
+        { name: "Poultry"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Mardi", image: "/mardi.svg"}
+       
+       
+    ];
+
     const supplychainsslaughterhouse = [
 
         { name: "Poultry"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Mardi" , image: "/mardi.svg"},
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"}
@@ -73,9 +86,14 @@ const Track = () => {
        
     ];
 
+   
+
     const supplychainsverifier = [
 
         { name: "Poultry"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Mardi" , image: "/mardi.svg"},
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"},
@@ -87,6 +105,9 @@ const Track = () => {
     const supplychainsmanufacturer = [
 
         { name: "Poultry"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Mardi" , image: "/mardi.svg"},
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"},
@@ -101,6 +122,9 @@ const Track = () => {
     const supplychainsdistributor = [
 
         { name: "Poultry"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Mardi" , image: "/mardi.svg"},
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"},
@@ -121,6 +145,9 @@ const Track = () => {
         { name: "Poultry"      , image: "/farmer.svg"      },
         { image: "/arrow.png"},
 
+        { name: "Mardi" , image: "/mardi.svg"},
+        { image: "/arrow.png"},
+
         { name: "Slaughterhouse", image: "/chicken.png"},
         { image: "/arrow.png"},
     
@@ -139,6 +166,9 @@ const Track = () => {
     const supplychainssold = [
 
         { name: "Poultry"      , image: "/farmer.svg"      },
+        { image: "/arrow.png"},
+
+        { name: "Mardi" , image: "/mardi.svg"},
         { image: "/arrow.png"},
 
         { name: "Slaughterhouse", image: "/chicken.png"},
@@ -173,6 +203,33 @@ const Track = () => {
         }
     };
 
+    const chronologyTableMardi = (name) => {
+        switch (name) {
+            case "Poultry":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Farmer[Number(Items[ItemID].farmerId)].id)}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].name}</td>
+                  <td>{Farmer[Number(Items[ItemID].farmerId)].location}</td>
+                </tr>
+              </tbody>
+            );
+            case "Mardi":
+            return (
+              <tbody>
+                <tr>
+                  <td>{Number(Mardi[Number(Items[ItemID].mardiId)].id)}</td>
+                  <td>{Mardi[Number(Items[ItemID].mardiId)].name}</td>
+                  <td>{Mardi[Number(Items[ItemID].mardiId)].location}</td>
+                </tr>
+              </tbody>
+            );
+          default:
+            return null;
+        }
+    };
+
     const chronologyTableSlaughterhouse = (name) => {
         switch (name) {
             case "Poultry":
@@ -185,6 +242,16 @@ const Track = () => {
                 </tr>
               </tbody>
             );
+            case "Mardi":
+                return (
+                  <tbody>
+                    <tr>
+                      <td>{Number(Mardi[Number(Items[ItemID].mardiId)].id)}</td>
+                      <td>{Mardi[Number(Items[ItemID].mardiId)].name}</td>
+                      <td>{Mardi[Number(Items[ItemID].mardiId)].location}</td>
+                    </tr>
+                  </tbody>
+                );
             case "Slaughterhouse":
             return (
               <tbody>
@@ -212,6 +279,16 @@ const Track = () => {
                 </tr>
               </tbody>
             );
+            case "Mardi":
+                return (
+                  <tbody>
+                    <tr>
+                      <td>{Number(Mardi[Number(Items[ItemID].mardiId)].id)}</td>
+                      <td>{Mardi[Number(Items[ItemID].mardiId)].name}</td>
+                      <td>{Mardi[Number(Items[ItemID].mardiId)].location}</td>
+                    </tr>
+                  </tbody>
+                );
             case "Slaughterhouse":
                 return (
                   <tbody>
@@ -249,6 +326,16 @@ const Track = () => {
                 </tr>
               </tbody>
             );
+            case "Mardi":
+                return (
+                  <tbody>
+                    <tr>
+                      <td>{Number(Mardi[Number(Items[ItemID].mardiId)].id)}</td>
+                      <td>{Mardi[Number(Items[ItemID].mardiId)].name}</td>
+                      <td>{Mardi[Number(Items[ItemID].mardiId)].location}</td>
+                    </tr>
+                  </tbody>
+                );
             case "Slaughterhouse":
                 return (
                   <tbody>
@@ -296,6 +383,16 @@ const Track = () => {
                 </tr>
               </tbody>
             );
+            case "Mardi":
+                return (
+                  <tbody>
+                    <tr>
+                      <td>{Number(Mardi[Number(Items[ItemID].mardiId)].id)}</td>
+                      <td>{Mardi[Number(Items[ItemID].mardiId)].name}</td>
+                      <td>{Mardi[Number(Items[ItemID].mardiId)].location}</td>
+                    </tr>
+                  </tbody>
+                );
             case "Slaughterhouse":
                 return (
                   <tbody>
@@ -353,6 +450,16 @@ const Track = () => {
                 </tr>
               </tbody>
             );
+            case "Mardi":
+                return (
+                  <tbody>
+                    <tr>
+                      <td>{Number(Mardi[Number(Items[ItemID].mardiId)].id)}</td>
+                      <td>{Mardi[Number(Items[ItemID].mardiId)].name}</td>
+                      <td>{Mardi[Number(Items[ItemID].mardiId)].location}</td>
+                    </tr>
+                  </tbody>
+                );
             case "Slaughterhouse":
                 return (
                   <tbody>
@@ -413,18 +520,20 @@ const Track = () => {
     }, [])
 
 
-    const [currentaccount, setCurrentaccount] = useState("");
-    const [loader        , setloader        ] = useState(true);
-    const [SupplyChain   , setSupplyChain   ] = useState();
+    const [currentaccount, setCurrentaccount  ] = useState("");
+    const [loader        , setloader          ] = useState(true);
+    const [SupplyChain   , setSupplyChain     ] = useState();
 
-    const [Items         , setItems         ] = useState();
-    const [ItemID        , setItemID        ] = useState();
-    const [ItemPhase     , setItemPhase     ] = useState();
+    const [Items         , setItems           ] = useState();
+    const [ItemID        , setItemID          ] = useState();
+    const [ItemPhase     , setItemPhase       ] = useState();
     const [SlaughterStatus, setSlaughterStatus] = useState();
-    const [VerifyStatus    , setVerifyStatus  ] = useState();
+    const [VerifyStatus   , setVerifyStatus   ] = useState();
+    const [MardiStatus    , setMardiStatus    ] = useState();
 
 
     const [Farmer        , setFarmer        ] = useState();
+    const [Mardi         , setMardi         ] = useState();
     const [Slaughterhouse, setSlaughterhouse] = useState();
     const [Verifier      , setVerifier      ] = useState();
     const [Manufacturer  , setManufacturer  ] = useState();
@@ -434,6 +543,7 @@ const Track = () => {
     
     const [TrackTillOrdered       , displayTrackTillOrdered       ] = useState(false);
     const [TrackTillFarmer        , displayTrackTillFarmer        ] = useState(false);
+    const [TrackTillMardi         , displayTrackTillMardi         ] = useState(false);
     const [TrackTillSlaughterhouse, displayTrackTillSlaughterhouse] = useState(false);
     const [TrackTillVerify        , displayTrackTillVerify        ] = useState(false);
     const [TrackTillManufacture   , displayTrackTillManufacture   ] = useState(false);
@@ -473,16 +583,19 @@ const Track = () => {
 
             
             const ItemPhase = [];
+            const MardiStatus = [];
             const SlaughterStatus = [];
             const VerifyStatus = [];
             for (i = 0; i < itemsCount; i++) {
                 item[i + 1] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i + 1] = await supplychain.methods.Chronology(i + 1).call();
+                MardiStatus[i + 1] = await supplychain.methods.MardiStatus(i + 1).call();
                 SlaughterStatus[i + 1] = await supplychain.methods.SlaughterStatus(i + 1).call();
                 VerifyStatus[i + 1] = await supplychain.methods.HalalStatus(i + 1).call();
             }
             setItems(item);
             setItemPhase(ItemPhase);
+            setMardiStatus(MardiStatus);
             setSlaughterStatus(SlaughterStatus);
             setVerifyStatus(VerifyStatus);
 
@@ -494,6 +607,13 @@ const Track = () => {
                 farmer[i + 1] = await supplychain.methods.farmerInfo(i + 1).call();
             }
             setFarmer(farmer);
+
+            const mardiCount = await supplychain.methods.mardiCount().call();
+            const mardi = {};
+            for (i = 0; i < mardiCount; i++) {
+                mardi[i + 1] = await supplychain.methods.mardiInfo(i + 1).call();
+            }
+            setMardi(mardi);
 
 
             const slaughterhouseCount = await supplychain.methods.slaughterhouseCount().call();
@@ -587,6 +707,7 @@ const Track = () => {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
@@ -598,6 +719,9 @@ const Track = () => {
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
                                     <td>{ItemPhase[ItemID]}</td>
+                                    <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[ItemID]}
+                                    </td>
                                     <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                             {SlaughterStatus[ItemID]}
                                     </td>
@@ -659,6 +783,7 @@ const Track = () => {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
@@ -670,6 +795,9 @@ const Track = () => {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
+                                        <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[ItemID]}
+                                       </td>
                                         <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                             {SlaughterStatus[ItemID]}
                                         </td>
@@ -734,6 +862,105 @@ const Track = () => {
         )
     }
 
+    // Item Arrived at Farmer
+    if (TrackTillMardi) {
+        return (
+            <div className="chronology-mardi-main-container">
+                <div className="project-menu-bar">
+                    <ProjectSideBar />
+                </div> 
+
+                <div className="main-section">
+                    <div className="chronology-mardi-section-title">Track Information</div>
+                    <div className="chronology-mardi-content">
+                        <div className="chronology-mardi-section">
+                            <table className="table-container" border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Based In</th>
+                                        <th>Description</th>
+                                        <th>Current Stage</th>
+                                        <th>Mardi Status</th>
+                                        <th>Slaughter Status</th>
+                                        <th>Halal Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{Number(Items[ItemID].id)}</td>
+                                        <td>{Items[ItemID].name}</td>
+                                        <td>{Items[ItemID].origin}</td>
+                                        <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{ItemPhase[ItemID]}</td>
+                                        <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[ItemID]}
+                                        </td>
+                                        <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
+                                            {SlaughterStatus[ItemID]}
+                                        </td>
+                                        <td className={VerifyStatus[ItemID] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
+                                            {VerifyStatus[ItemID]}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="supplychain-mardi-section">
+                            {supplychainsmardi.map((supplychain, index) => (
+                                <motion.div className="supplychain-mardi-item" 
+                                key={index}>
+                            
+                                    <motion.img src={supplychain.image} alt={supplychain.name} id={supplychain.name}
+                                        whileHover={{ scale: 1.1 }} 
+                                        whileTap={{ scale: 0.95 }} />
+
+                                    {supplychain.name && (
+                                    <motion.div className="supplychain-mardi-track-section">
+                                        <p>{supplychain.name} Information</p>
+                                            <table className="table-container" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Based In</th>
+                                                    </tr>
+                                                </thead>
+                                                {chronologyTableMardi(supplychain.name)}
+                                            </table>
+                                    </motion.div>
+                                    )}
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="chronology-mardi-back-button-container">
+                        <motion.div variants={itemVariants} className="chronology-mardi-back-button">
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => displayTrackTillMardi(false)}
+                            >
+                            Track Another Item
+                            </motion.button>
+
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={redirect_to_project}
+                            >
+                                Back To Project Overview
+                            </motion.button>
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
 
 // Item Arrived at Farmer
 if (TrackTillSlaughterhouse) {
@@ -755,6 +982,7 @@ if (TrackTillSlaughterhouse) {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
@@ -766,6 +994,9 @@ if (TrackTillSlaughterhouse) {
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
                                     <td>{ItemPhase[ItemID]}</td>
+                                    <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[ItemID]}
+                                    </td>
                                     <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                         {SlaughterStatus[ItemID]}
                                     </td>
@@ -851,6 +1082,7 @@ if (TrackTillSlaughterhouse) {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
@@ -862,6 +1094,9 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
+                                        <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[ItemID]}
+                                       </td>
                                         <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                             {SlaughterStatus[ItemID]}
                                         </td>
@@ -949,6 +1184,7 @@ if (TrackTillSlaughterhouse) {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
@@ -960,6 +1196,9 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
+                                        <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[ItemID]}
+                                       </td>
                                         <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                             {SlaughterStatus[ItemID]}
                                         </td>
@@ -1046,6 +1285,7 @@ if (TrackTillSlaughterhouse) {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
@@ -1057,6 +1297,9 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
+                                        <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[ItemID]}
+                                       </td>
                                         <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                             {SlaughterStatus[ItemID]}
                                         </td>
@@ -1142,6 +1385,7 @@ if (TrackTillSlaughterhouse) {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
@@ -1153,6 +1397,9 @@ if (TrackTillSlaughterhouse) {
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
                                     <td>{ItemPhase[ItemID]}</td>
+                                    <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[ItemID]}
+                                    </td>
                                     <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                         {SlaughterStatus[ItemID]}
                                     </td>
@@ -1240,6 +1487,7 @@ if (TrackTillSlaughterhouse) {
                                         <th>Based In</th>
                                         <th>Description</th>
                                         <th>Current Stage</th>
+                                        <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
                                         <th>Halal Status</th>
                                     </tr>
@@ -1251,6 +1499,9 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
                                         <td>{ItemPhase[ItemID]}</td>
+                                        <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[ItemID]}
+                                       </td>
                                         <td className={SlaughterStatus[ItemID] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                                 {SlaughterStatus[ItemID]}
                                         </td>
@@ -1335,23 +1586,26 @@ if (TrackTillSlaughterhouse) {
             alert("Please enter valid ID");
         else {
            
-            if (Items[ItemID].chronology == 7)
+            if (Items[ItemID].chronology == 8)
                 displayTrackTillSold(true);
           
-            else if (Items[ItemID].chronology == 6)
+            else if (Items[ItemID].chronology == 7)
                 displayTrackTillRetail(true);
           
-            else if (Items[ItemID].chronology == 5)
+            else if (Items[ItemID].chronology == 6)
                 displayTrackTillDistribute(true);
             
-            else if (Items[ItemID].chronology == 4)
+            else if (Items[ItemID].chronology == 5)
                 displayTrackTillManufacture(true);
 
-            else if (Items[ItemID].chronology == 3)
+            else if (Items[ItemID].chronology == 4)
                 displayTrackTillVerify(true);
             
-            else if (Items[ItemID].chronology == 2)
+            else if (Items[ItemID].chronology == 3)
                 displayTrackTillSlaughterhouse(true);
+
+            else if (Items[ItemID].chronology == 2)
+                displayTrackTillMardi(true);
            
             else if (Items[ItemID].chronology == 1)
                 displayTrackTillFarmer(true);
@@ -1381,6 +1635,7 @@ if (TrackTillSlaughterhouse) {
                                     <th>Based In</th>
                                     <th>Description</th>
                                     <th>Current Stage</th>
+                                    <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
                                     <th>Halal Status</th>
                                 </tr>
@@ -1395,6 +1650,9 @@ if (TrackTillSlaughterhouse) {
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
                                             <td>{ItemPhase[key]}</td>
+                                            <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
+                                                {MardiStatus[key]}
+                                            </td>
                                             <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                                 {SlaughterStatus[key]}
                                             </td>

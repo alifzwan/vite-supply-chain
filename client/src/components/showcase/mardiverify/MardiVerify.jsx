@@ -1,4 +1,4 @@
-import './halalverify.scss';
+import './mardiverify.scss';
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"
 import React, { useState, useEffect } from 'react'
@@ -32,7 +32,7 @@ const itemVariants = {
     },
 };
 
-const HalalVerify = () => {
+const MardiVerify = () => {
 
     const navigate = useNavigate()
 
@@ -56,13 +56,12 @@ const HalalVerify = () => {
         loadWeb3();
     }, [])
 
-    const [checklistVerifier, setChecklistVerifier] = useState({
-        RawMaterialsHalalCompliant: false,
-        SupplierHasHalalCertification: false,
-        EquipmentFreeFromContamination: false,
-        CorrectSlaughteringMethods: false,
-        LabelingAndPackagingMeetsHalalStandards: false,
-        StaffProperlyTrainedInHalalProcedures: false,
+    const [checklistMardi, setChecklistMardi] = useState({
+        AnimalHealthScreening: false,
+        EquipmentSanitization: false,
+        MeatInspection: false,
+        DocumentationAndRecord: false,
+        DocumentationAndRecord: false,
     });
 
 
@@ -70,18 +69,18 @@ const HalalVerify = () => {
     const [loader            , setloader               ] = useState(true);
     const [SupplyChain       , setSupplyChain          ] = useState();
 
-    const [HalalVerification , displayHalalVerification] = useState(false);
-    const [Verified          , displayVerified         ] = useState(false);
+    const [MardiVerification , displayMardiVerification] = useState(false);
+    const [MardiVerified     , displayMardiVerified    ] = useState(false);
    
 
 
     const [Items             , setItems                ] = useState();
     const [ItemID            , setItemID               ] = useState();
     const [ItemPhase         , setItemPhase            ] = useState();
-    const [HalalComply       , displayComply           ] = useState(false);
-    const [MardiStatus       , setMardiStatus          ] = useState();
+    const [QualityComply     , displayComply           ] = useState(false);
     const [SlaughterStatus   , setSlaughterStatus      ] = useState();
     const [VerifyStatus      , setVerifyStatus         ] = useState();
+    const [MardiStatus       , setMardiStatus          ] = useState();
 
 
 
@@ -107,6 +106,7 @@ const HalalVerify = () => {
         setCurrentaccount(account);
         const networkId = await web3.eth.net.getId();
         const networkData = SupplyChainABI.networks[networkId];
+
         if (networkData) {
             const supplychain = new web3.eth.Contract(SupplyChainABI.abi, networkData.address);
             setSupplyChain(supplychain);
@@ -119,16 +119,18 @@ const HalalVerify = () => {
             const MardiStatus = [];
             const SlaughterStatus = [];
             const VerifyStatus = [];
+           
             for (i = 0; i < itemsCount; i++) {
                 item[i] = await supplychain.methods.ItemsInfo(i + 1).call();
                 ItemPhase[i] = await supplychain.methods.Chronology(i + 1).call();
                 MardiStatus[i] = await supplychain.methods.MardiStatus(i + 1).call();
                 SlaughterStatus[i] = await supplychain.methods.SlaughterStatus(i + 1).call();
                 VerifyStatus[i] = await supplychain.methods.HalalStatus(i + 1).call();
+               
             }
             setItems(item);
             setItemPhase(ItemPhase);
-            setMardiStatus(MardiStatus);
+            setMardiStatus(MardiStatus); 
             setSlaughterStatus(SlaughterStatus);
             setVerifyStatus(VerifyStatus); 
             setloader(false);
@@ -156,7 +158,7 @@ const HalalVerify = () => {
     };
 
     const handleCheckboxChange = (checkboxName) => {
-        setChecklistVerifier((prevChecklist) => ({
+        setChecklistMardi((prevChecklist) => ({
             ...prevChecklist,
             [checkboxName]: !prevChecklist[checkboxName],
         }));
@@ -164,31 +166,29 @@ const HalalVerify = () => {
 
     const areAllChecklistItemsTicked = () => {
         return (
-            checklistVerifier.RawMaterialsHalalCompliant &&
-            checklistVerifier.SupplierHasHalalCertification &&
-            checklistVerifier.EquipmentFreeFromContamination &&
-            checklistVerifier.CorrectSlaughteringMethods &&
-            checklistVerifier.LabelingAndPackagingMeetsHalalStandards &&
-            checklistVerifier.StaffProperlyTrainedInHalalProcedures
+            checklistMardi.AnimalHealthScreening &&
+            checklistMardi.EquipmentSanitization &&
+            checklistMardi.MeatInspection &&
+            checklistMardi.DocumentationAndRecord
+            
         );
     };
 
     const handleChecklistSubmit = async () => {
      
-        await SupplyChain.methods.verifyTickChecklistItem(
+        await SupplyChain.methods.mardiTickChecklistItem(
                 ItemID,
-                checklistVerifier.RawMaterialsHalalCompliant,
-                checklistVerifier.SupplierHasHalalCertification,
-                checklistVerifier.EquipmentFreeFromContamination,
-                checklistVerifier.CorrectSlaughteringMethods,
-                checklistVerifier.LabelingAndPackagingMeetsHalalStandards,
-                checklistVerifier.StaffProperlyTrainedInHalalProcedures
+                checklistMardi.AnimalHealthScreening,
+                checklistMardi.EquipmentSanitization,
+                checklistMardi.MeatInspection,
+                checklistMardi.DocumentationAndRecord
+               
         ).send({ from: currentaccount });
                 
         await loadBlockchaindata()
                
         if (areAllChecklistItemsTicked()) {
-            displayVerified(true);
+            displayMardiVerified(true);
         } else {     
             displayComply(true);
         }
@@ -204,17 +204,17 @@ const HalalVerify = () => {
         )
     }
 
-    if (Verified) {
+    if (MardiVerified) {
         return (
-            <div className="verified-main-container">
+            <div className="mardiverified-main-container">
                 <div className="project-menu-bar">
                     <ProjectSideBar />
                 </div> 
 
                 <div className="main-section">
-                    <div className="verified-section-title">Halal Verification</div>
-                    <div className="verified-content">
-                        <div className="verified-section">
+                    <div className="mardiverified-section-title">Mardi Verification</div>
+                    <div className="mardiverified-content">
+                        <div className="mardiverified-section">
                             <table className="table-container" border="1">
                                 <thead>
                                     <tr>
@@ -238,10 +238,10 @@ const HalalVerify = () => {
                                                 <td>{Items[key].nutritionInfo}</td>
                                                 <td>{ItemPhase[key]}</td>
                                                 <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
-                                                {MardiStatus[key]}
+                                                    {MardiStatus[key]}
                                                 </td>
                                                 <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
-                                                {SlaughterStatus[key]}
+                                                    {SlaughterStatus[key]}
                                                 </td>
 
                                                 <td className={VerifyStatus[key] === "Your Item is Halal Verified" ? "green-text" : "red-text"}>
@@ -255,14 +255,14 @@ const HalalVerify = () => {
                         </div>
                     </div>
 
-                    <h2 className='verified-description'>Your Item is already <b>halal verified</b></h2>
-                    <div className="halal-back-button-container">
-                        <motion.div variants={itemVariants} className="halal-back-button">
+                    <h2 className='mardiverified-description'>Your Item is already <b>quality verified</b></h2>
+                    <div className="mardiverified-back-button-container">
+                        <motion.div variants={itemVariants} className="mardiverified-back-button">
                                 <motion.button
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    onClick={() => {displayVerified(false); displayHalalVerification(false);}}
+                                    onClick={() => {displayMardiVerified(false); displayMardiVerification(false);}}
                                 >
                                     Verify Another Item
                                 </motion.button>
@@ -282,17 +282,17 @@ const HalalVerify = () => {
         )
     }
 
-    if (HalalComply) {
+    if (QualityComply) {
         return (
-            <div className="comply-main-container">
+            <div className="mardicomply-main-container">
                 <div className="project-menu-bar">
                     <ProjectSideBar />
                 </div> 
 
                 <div className="main-section">
-                    <div className="comply-section-title">Halal Verification</div>
-                    <div className="comply-content">
-                        <div className="comply-section">
+                    <div className="mardicomply-section-title">Mardi Verification</div>
+                    <div className="mardicomply-content">
+                        <div className="mardicomply-section">
                             <table className="table-container" border="1">
                                 <thead>
                                     <tr>
@@ -316,7 +316,7 @@ const HalalVerify = () => {
                                                 <td>{Items[key].nutritionInfo}</td>
                                                 <td>{ItemPhase[key]}</td>
                                                 <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
-                                                {MardiStatus[key]}
+                                                    {MardiStatus[key]}
                                                 </td>
                                                 <td className={SlaughterStatus[key] === "Your Item is Slaughtered" ? "green-text" : "red-text"}>
                                                     {SlaughterStatus[key]}
@@ -332,16 +332,15 @@ const HalalVerify = () => {
                         </div>
                     </div>
 
-                    <h2 className='comply-description'>Your Item is<b> Non-Halal</b></h2> <br />
-                    <h3 className='reason'>Reason: Your Item is<b> not fully slaughter complied</b></h3>
+                    <h2 className='mardicomply-description'>Your Item is<b> not fully quality complied</b></h2>
 
-                    <div className="comply-back-button-container">
-                        <motion.div variants={itemVariants} className="comply-back-button">
+                    <div className="mardicomply-back-button-container">
+                        <motion.div variants={itemVariants} className="mardicomply-back-button">
                                 <motion.button
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    onClick={() => {displayComply(false); displayHalalVerification(false);}}
+                                    onClick={() => {displayComply(false); displayMardiVerification(false);}}
                                 >
                                     Verify Another Item
                                 </motion.button>
@@ -365,17 +364,17 @@ const HalalVerify = () => {
 
 
     // Item Ordered
-    if (HalalVerification) {
+    if (MardiVerification) {
         return (
-        <div className="halal-main-container">
+        <div className="mardi-main-container">
             <div className="project-menu-bar">
                 <ProjectSideBar />
             </div> 
 
             <div className="main-section">
-                <div className="halal-section-title">Halal Verification</div>
-                <div className="halal-content">
-                    <div className="halal-section">
+                <div className="mardi-section-title">Mardi Verification</div>
+                <div className="mardi-content">
+                    <div className="mardi-section">
                         <table className="table-container" border="1">
                             <thead>
                                 <tr>
@@ -414,10 +413,10 @@ const HalalVerify = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className="halal-checklist">
-                        <div className="halal-checklist-section">
+                    <div className="mardi-checklist">
+                        <div className="mardi-checklist-section">
 
-                            <h3 className='halal-checklist-title'>Halal Checklist</h3>
+                            <h3 className='mardi-checklist-title'>Mardi Checklist</h3>
 
                             <p>Please Tick</p>
 
@@ -426,64 +425,44 @@ const HalalVerify = () => {
                                     <input 
                                     className="verify-checkbox" 
                                     type="checkbox" 
-                                    checked={checklistVerifier.RawMaterialsHalalCompliant}
-                                    onChange={() => handleCheckboxChange('RawMaterialsHalalCompliant')}
+                                    checked={checklistMardi.AnimalHealthScreening}
+                                    onChange={() => handleCheckboxChange('AnimalHealthScreening')}
                                     required/>
-                                    Does all raw materials used are halal compliant ?
+                                     Have the animals undergone proper health screening?
                                 </label>
 
                                 <label>
                                     <input 
                                     className="verify-checkbox" 
                                     type="checkbox" 
-                                    checked={checklistVerifier.SupplierHasHalalCertification}
-                                    onChange={() => handleCheckboxChange('SupplierHasHalalCertification')}
+                                    checked={checklistMardi.EquipmentSanitization}
+                                    onChange={() => handleCheckboxChange('EquipmentSanitization')}
                                     required/>
-                                    Does the supplier have halal certification ?
+                                    Have all equipment and tools been properly sanitized?
                                 </label>
 
                                 <label>
                                     <input 
                                     className="verify-checkbox" 
                                     type="checkbox" 
-                                    checked={checklistVerifier.EquipmentFreeFromContamination}
-                                    onChange={() => handleCheckboxChange('EquipmentFreeFromContamination')}
+                                    checked={checklistMardi.MeatInspection}
+                                    onChange={() => handleCheckboxChange('MeatInspection')}
                                     required/>
-                                    Does all equipment used in production is free from contamination 
+                                    Is the meat free from any abnormalities or contamination?
                                 </label>
 
                                 <label>
                                     <input 
                                     className="verify-checkbox" 
                                     type="checkbox" 
-                                    checked={checklistVerifier.CorrectSlaughteringMethods}
-                                    onChange={() => handleCheckboxChange('CorrectSlaughteringMethods')}
+                                    checked={checklistMardi.DocumentationAndRecord}
+                                    onChange={() => handleCheckboxChange('DocumentationAndRecord')}
                                     required/>
-                                    Does the product does the correct slaughtering methods?
-                                </label>
-
-                                <label>
-                                    <input 
-                                    className="verify-checkbox" 
-                                    type="checkbox" 
-                                    checked={checklistVerifier.LabelingAndPackagingMeetsHalalStandards}
-                                    onChange={() => handleCheckboxChange('LabelingAndPackagingMeetsHalalStandards')}
-                                    required/>
-                                    Does the labeling and packaging of products to ensure they meet halal standards?
-                                </label>
-
-                                <label>
-                                    <input 
-                                    className="verify-checkbox" 
-                                    type="checkbox" 
-                                    checked={checklistVerifier.StaffProperlyTrainedInHalalProcedures}
-                                    onChange={() => handleCheckboxChange('StaffProperlyTrainedInHalalProcedures')}
-                                    required/>
-                                    Does all staff involved are properly trained in halal procedures ?
+                                    Is there documentation of any deviations from the standard process?
                                 </label>
                             </div>
 
-                            <div className="halal-submit">
+                            <div className="mardi-submit">
                                 <button type="submit" className="submit-button" onClick={handleChecklistSubmit}>
                                  Submit
                                 </button>
@@ -493,13 +472,13 @@ const HalalVerify = () => {
                 </div>
 
                 
-                <div className="halal-back-button-container">
-                    <motion.div variants={itemVariants} className="halal-back-button">
+                <div className="mardi-back-button-container">
+                    <motion.div variants={itemVariants} className="mardi-back-button">
                             <motion.button
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={() => displayHalalVerification(false)}
+                                onClick={() => displayMardiVerification(false)}
                             >
                                 Verify Another Item
                             </motion.button>
@@ -523,24 +502,24 @@ const HalalVerify = () => {
         setItemID(event.target.value);
     }
 
-    const adminVerify = async (event) => {
+    const adminMardi = async (event) => {
         event.preventDefault();
         var count = await SupplyChain.methods.itemsCount().call();
-        const verifierCount = await SupplyChain.methods.verifierCount().call();
-        const halalStatus = await SupplyChain.methods.HalalStatus(ItemID).call();
+        const mardiCount = await SupplyChain.methods.mardiCount().call();
+        const mardiStatus = await SupplyChain.methods.MardiStatus(ItemID).call();
 
         if (!((ItemID > 0) && (ItemID <= count)))  {
             alert("Please enter valid ID");
             return;
         }
 
-        if (verifierCount > 0 && verifierCount <= count) {
-            displayHalalVerification(true);
+        if (mardiCount > 0 && mardiCount <= count) {
+            displayMardiVerification(true);
         } 
 
-        if (halalStatus === "Your Item is Halal Verified") {
-            displayVerified(true);
-        } else if (halalStatus === "Your Item is non-Halal") {
+        if (mardiStatus === "Your Item is Quality Complied") {
+            displayMardiVerified(true);
+        } else if (mardiStatus === "Your Item is not fully quality complied") {
             displayComply(true);
         }
         
@@ -548,16 +527,16 @@ const HalalVerify = () => {
 
 
     return (
-        <div className="verify-main-container">
+        <div className="mardiverify-main-container">
             <div className="project-menu-bar">
                 <ProjectSideBar />
             </div> 
 
             <div className="main-section">
-                <div className="verify-section-title">Halal Verification</div>
-                <div className="verify-content">
-                    <div className="verify-section">
-                        <table className="verify-table-container" border="1">
+                <div className="mardiverify-section-title">Mardi Verification</div>
+                <div className="mardiverify-content">
+                    <div className="mardiverify-section">
+                        <table className="mardiverify-table-container" border="1">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -597,17 +576,17 @@ const HalalVerify = () => {
                         </table>
                     </div>
                     <motion.div className="input-container" variants={variants}>
-                        <form onSubmit={adminVerify}>
+                        <form onSubmit={adminMardi}>
                             <motion.div variants={itemVariants}>
                                 <input type="text" onChange ={adminID} placeholder="Enter ID" required/><br />
                             </motion.div>
 
-                            <motion.div variants={itemVariants} className="verify-button">
+                            <motion.div variants={itemVariants} className="mardiverify-button">
                                 <motion.button
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    onSubmit={adminVerify}
+                                    onSubmit={adminMardi}
                                 >
                                     Verify
                                 </motion.button>
@@ -615,8 +594,8 @@ const HalalVerify = () => {
                         </form>
                     </motion.div>
                 </div>
-                <div className="verify-back-button-container">
-                    <motion.div variants={itemVariants} className="verify-back-button">
+                <div className="mardiverify-back-button-container">
+                    <motion.div variants={itemVariants} className="mardiverify-back-button">
                                 <motion.button
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.1 }}
@@ -632,4 +611,4 @@ const HalalVerify = () => {
     )
 }
 
-export default HalalVerify
+export default MardiVerify

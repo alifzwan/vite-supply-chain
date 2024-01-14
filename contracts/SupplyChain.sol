@@ -71,6 +71,7 @@ contract SupplyChain {
     // Establish count for each flow 
     uint256 public itemsCount = 0;
     uint256 public farmerCount = 0;
+    uint256 public mardiCount = 0;
     uint256 public slaughterhouseCount = 0;
     uint256 public verifierCount = 0;
     uint256 public manufacturerCount = 0;
@@ -143,6 +144,7 @@ contract SupplyChain {
     enum PHASE {   
         Plugin,
         Farmer,
+        Mardi,
         Slaughterhouse,
         Verifier,
         Manufacturer,
@@ -151,11 +153,13 @@ contract SupplyChain {
         Sold
     }
 
-    enum STATUS {
-        NonVerified,
-        Verified
+    enum HALALSTATUS  {
+        NonHalalVerified,
+        HalalVerified,
+        NotFullyHalalComplied
+        
     }
-    mapping(uint256 => STATUS) public ItemsStatus;
+    mapping(uint256 => HALALSTATUS) public ItemsHalalStatus;
 
     // Enum to represent the checklist items for HALAL VERIFICATION
     enum ChecklistVerifier {
@@ -170,7 +174,8 @@ contract SupplyChain {
 
     enum SLAUGHTER {
         NonSlaughter,
-        Slaughter
+        Slaughter,
+        NotFullySlaughterComplied
     }
      mapping(uint256 => SLAUGHTER) public ItemsSlaughter;
 
@@ -183,6 +188,23 @@ contract SupplyChain {
         isBloodDrained,                 // Verify that the blood was thoroughly drained from the carcass after slaughter.
         isPreventionOfContamination     // Implement strict measures to prevent cross-contamination.
     }
+
+    enum MARDI  {
+        NonComplied,
+        Complied,
+        NotFullyComplied
+        
+    }
+    mapping(uint256 => MARDI) public ItemsMardiComplied;
+
+    enum ChecklistMardi {
+        AnimalHealthScreening,
+        EquipmentSanitization,
+        MeatInspection,
+        DocumentationAndRecord
+    }
+    
+
     
     /* STRUCT 
 
@@ -217,6 +239,7 @@ contract SupplyChain {
         string nutritionInfo;
 
         uint256 farmerId;
+        uint256 mardiId;
         uint256 slaughterhouseId;  
         uint256 verifierId;
         uint256 manufacturerId;
@@ -239,9 +262,11 @@ contract SupplyChain {
 
         // Check the current phase of the item using its ID
         if (ItemsInfo[_itemID].chronology == PHASE.Plugin)
-            return "Item Ordered, awaiting processing.";
+            return "Item Registered, awaiting processing.";
         else if (ItemsInfo[_itemID].chronology == PHASE.Farmer)
             return "Item collected by Poultry, awaiting processing."; 
+        else if (ItemsInfo[_itemID].chronology == PHASE.Mardi)
+            return "Item is being quality check, please wait."; 
         else if (ItemsInfo[_itemID].chronology == PHASE.Slaughterhouse)
             return "Item is being slaughter, please wait."; 
         else if (ItemsInfo[_itemID].chronology == PHASE.Verifier)
@@ -284,6 +309,14 @@ contract SupplyChain {
 
     mapping(uint256 => farmer) public farmerInfo;  // You can call this variable and it'll show all the admin's attributes
 
+    struct mardi{
+        address addr;
+        uint256 id; 
+        string name; 
+        string location; 
+    }
+
+    mapping(uint256 => mardi) public mardiInfo;
 
     struct slaughterhouse{
         address addr;
@@ -399,6 +432,15 @@ contract SupplyChain {
         farmerInfo[farmerCount] = farmer(_address, farmerCount, _name, _location);  // All this attributes will be stored in farmerInfo
     }
 
+    function regMardi(
+        address _address,  
+        string memory _name, 
+        string memory _location  
+    ) public onlyCreator {  
+        mardiCount++;
+        mardiInfo[mardiCount] = mardi(_address, mardiCount, _name, _location);  // All this attributes will be stored in slaughterhouseInfo
+    }
+
 
     function regSlaughterhouse(
         address _address,  
@@ -496,11 +538,12 @@ contract SupplyChain {
         string memory _nutritionInfo
 
     ) public onlyCreator {
-        require((farmerCount > 0) && (slaughterhouseCount > 0) && (verifierCount > 0) && (manufacturerCount > 0) && (distributorCount > 0) && (retailerCount > 0));   // Before order, Creator have to register all the admin
+        require((farmerCount > 0) && (mardiCount > 0) && (slaughterhouseCount > 0) && (verifierCount > 0) && (manufacturerCount > 0) && (distributorCount > 0) && (retailerCount > 0));   // Before order, Creator have to register all the admin
         itemsCount++;
-        ItemsInfo[itemsCount] = items(itemsCount, _name, _origin, _nutritionInfo, 0, 0, 0, 0, 0, 0, PHASE.Plugin); // All this attributes will be stored in ItemsInfo
+        ItemsInfo[itemsCount] = items(itemsCount, _name, _origin, _nutritionInfo, 0, 0, 0, 0, 0, 0, 0, PHASE.Plugin); // All this attributes will be stored in ItemsInfo
+        ItemsMardiComplied[itemsCount] = MARDI.NonComplied;
         ItemsSlaughter[itemsCount] = SLAUGHTER.NonSlaughter;
-        ItemsStatus[itemsCount] = STATUS.NonVerified;
+        ItemsHalalStatus[itemsCount] = HALALSTATUS.NonHalalVerified;
     }  
 
 
@@ -602,12 +645,35 @@ contract SupplyChain {
 
     }
 
+    function Marding(uint256 _itemID) public {
+        require(_itemID > 0 && _itemID <= itemsCount);          
+        uint256 _id = trackMardi(msg.sender);                  
+        require(_id > 0);                  
+        require(ItemsInfo[_itemID].chronology == PHASE.Farmer); 
+        ItemsInfo[_itemID].mardiId = _id;                      
+        ItemsInfo[_itemID].chronology = PHASE.Mardi;           
+        
+    }
+
+    // To track 
+    function trackMardi(address _address) private view returns (uint256) {
+        require(mardiCount > 0);                                       
+
+        for (uint256 i = 1; i <= mardiCount; i++) {
+            if (mardiInfo[i].addr == _address)   
+            return mardiInfo[i].id;             
+        }
+        return 0;
+
+    }
+
     // To change the flow from Farmer ==> Slaughterhouse
     function Slaughtering(uint256 _itemID) public {
         require(_itemID > 0 && _itemID <= itemsCount);          
         uint256 _id = trackSlaughterhouse(msg.sender);                  
         require(_id > 0);                                      
-        require(ItemsInfo[_itemID].chronology == PHASE.Farmer); 
+        require(ItemsMardiComplied[_itemID] == MARDI.Complied || ItemsMardiComplied[_itemID] == MARDI.NotFullyComplied); 
+        require(ItemsInfo[_itemID].chronology == PHASE.Mardi); 
         ItemsInfo[_itemID].slaughterhouseId = _id;                      
         ItemsInfo[_itemID].chronology = PHASE.Slaughterhouse;           
         
@@ -628,12 +694,14 @@ contract SupplyChain {
 
     //To change the flow from Slaughterhouse ==> Verifier
      function Verifying(uint256 _itemID) public {
+        uint256 _id = trackVerifier(msg.sender);   
         require(_itemID > 0 && _itemID <= itemsCount);           
-        uint256 _id = trackVerifier(msg.sender);                
         require(_id > 0);       
-        require(slaughterVerify(_itemID));
+        require(ItemsSlaughter[_itemID] == SLAUGHTER.Slaughter || ItemsSlaughter[_itemID] == SLAUGHTER.NotFullySlaughterComplied);     
+        require(ItemsInfo[_itemID].chronology == PHASE.Slaughterhouse);
         ItemsInfo[_itemID].verifierId = _id;                     
-        ItemsInfo[_itemID].chronology = PHASE.Verifier;         
+        ItemsInfo[_itemID].chronology = PHASE.Verifier;    
+         
     }
 
     // To verify 
@@ -651,10 +719,13 @@ contract SupplyChain {
 
     // To change the flow from Verifier ==> Manufacturer
     function Manufacturing(uint256 _itemID) public {
-        require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackManufacture(msg.sender);
+
+        require(_itemID > 0 && _itemID <= itemsCount);
         require(_id > 0);
-        require(halalVerify(_itemID));
+        require(ItemsHalalStatus[_itemID] == HALALSTATUS.HalalVerified || ItemsHalalStatus[_itemID] == HALALSTATUS.NotFullyHalalComplied);     
+        require(ItemsInfo[_itemID].chronology == PHASE.Verifier);
+
         ItemsInfo[_itemID].manufacturerId = _id;
         ItemsInfo[_itemID].chronology = PHASE.Manufacturer;
     }
@@ -673,10 +744,12 @@ contract SupplyChain {
 
     // To change the flow from Manufacturer ==> Distributor
     function Distributing(uint256 _itemID) public {
-        require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackDistribution(msg.sender);
+
+        require(_itemID > 0 && _itemID <= itemsCount);
         require(_id > 0);
         require(ItemsInfo[_itemID].chronology == PHASE.Manufacturer);
+
         ItemsInfo[_itemID].distributorId = _id;
         ItemsInfo[_itemID].chronology = PHASE.Distribution;
     }
@@ -694,10 +767,12 @@ contract SupplyChain {
 
     // To change the flow from Distributor ==> Retail
     function Retailing(uint256 _itemID) public {
+         uint256 _id = trackRetailer(msg.sender);
+
         require(_itemID > 0 && _itemID <= itemsCount);
-        uint256 _id = trackRetailer(msg.sender);
         require(_id > 0);
         require(ItemsInfo[_itemID].chronology == PHASE.Distribution);
+
         ItemsInfo[_itemID].retailerId = _id;
         ItemsInfo[_itemID].chronology = PHASE.Retail;
     }
@@ -714,16 +789,18 @@ contract SupplyChain {
 
     // To change the flow from Retail ==> Sold
     function sold(uint256 _itemID) public {
-        require(_itemID > 0 && _itemID <= itemsCount);
         uint256 _id = trackRetailer(msg.sender);
+
+        require(_itemID > 0 && _itemID <= itemsCount);
         require(_id > 0);
         require(_id == ItemsInfo[_itemID].retailerId); //Only correct retailer can mark medicine as sold
         require(ItemsInfo[_itemID].chronology == PHASE.Retail);
+
         ItemsInfo[_itemID].chronology = PHASE.Sold;
     }
 
 
-    /* ----------------Item Information--------------------
+    /* ----------------ITEM INFORMATION--------------------
         - This section is to see all of the product information
         - The user will key in the itemID to retrieve the info
         */ 
@@ -736,6 +813,7 @@ contract SupplyChain {
     string memory origin,
     string memory nutritionInfo,
     uint256 farmerId,
+    uint256 mardiId,
     uint256 slaughterhouseId,
     uint256 verifierId,
     uint256 manufacturerId,
@@ -755,6 +833,7 @@ contract SupplyChain {
 
 
     farmerId = ItemsInfo[_itemID].farmerId;
+    mardiId = ItemsInfo[_itemID].mardiId;
     slaughterhouseId = ItemsInfo[_itemID].slaughterhouseId;
     verifierId = ItemsInfo[_itemID].verifierId;
     manufacturerId = ItemsInfo[_itemID].manufacturerId;
@@ -775,79 +854,55 @@ contract SupplyChain {
     //-------------HALAL VERIFICATION PROCESS---------------------
 
 
-    // Function for the verifier to tick off checklist items
-    function verifyTickChecklistItem(ChecklistVerifier _checklistVerifier) public {
-        uint256 _itemID = getVerifierItemID(); // Get the itemID associated with the calling user
-
-        // Ensure the caller is the assigned verifier for the item
-        require(ItemsInfo[_itemID].chronology == PHASE.Verifier, "Item is not in verification phase");
-        require(ItemsInfo[_itemID].verifierId == trackVerifier(msg.sender), "Only the assigned verifier can tick checklist items");
-
-        ItemsStatus[_itemID] = STATUS.Verified;
-        
-    }
-
-    // Function to get the itemID associated with the calling user
-    function getVerifierItemID() private view returns (uint256) {
-        // Iterate through items and find the one associated with the caller
-        for (uint256 i = 1; i <= itemsCount; i++) {
-            if (ItemsInfo[i].verifierId == trackVerifier(msg.sender) && ItemsInfo[i].chronology == PHASE.Verifier) {
-                return i;
-            }
-        }
-        revert("Caller is not associated with any item in verification phase");
-    }
-
-
     function HalalStatus(uint256 _itemID) public view returns (string memory) {
-        require(_itemID > 0);
-        STATUS status = ItemsStatus[_itemID]; // Retrieve halal status from the specified item
+            require(_itemID > 0);
+            HALALSTATUS halalstatus = ItemsHalalStatus[_itemID];
 
-        // Check the halal status and return the corresponding message
-        if (status == STATUS.NonVerified) {
-            return "Your Item is not Halal Verified yet";
-        } else if (status == STATUS.Verified) {
-            return "Your Item is Halal Verified";
+            if (halalstatus == HALALSTATUS.NonHalalVerified) {
+                return "Your Item is not Halal Verified yet";
+            } else if (halalstatus == HALALSTATUS.HalalVerified) {
+                return "Your Item is Halal Verified";
+            } else if (halalstatus == HALALSTATUS.NotFullyHalalComplied) {
+                return "Your Item is non-Halal";
+            }
+            return "Unknown halal status";
+    }
+
+
+    // Function for the verifier to tick off checklist items
+    function verifyTickChecklistItem(
+        uint _itemID,
+        bool _RawMaterialsHalalCompliant,
+        bool _SupplierHasHalalCertification,
+        bool _EquipmentFreeFromContamination,
+        bool _CorrectSlaughteringMethods,
+        bool _LabelingAndPackagingMeetsHalalStandards,
+        bool _StaffProperlyTrainedInHalalProcedures
+    ) public {
+        SLAUGHTER slaughter = ItemsSlaughter[_itemID];
+        require(_itemID > 0 && _itemID <= itemsCount);
+        require(ItemsInfo[_itemID].chronology == PHASE.Verifier);
+        require(ItemsInfo[_itemID].verifierId == trackVerifier(msg.sender));
+      
+        // If All the checklist are being ticked, the Halal Status is Verified
+        if (_RawMaterialsHalalCompliant && _SupplierHasHalalCertification && _EquipmentFreeFromContamination && _CorrectSlaughteringMethods && _LabelingAndPackagingMeetsHalalStandards && _StaffProperlyTrainedInHalalProcedures) {
+            require(slaughter == SLAUGHTER.Slaughter);
+            ItemsHalalStatus[_itemID] = HALALSTATUS.HalalVerified;
+
         }
-        return "Unknown halal status";
-    }
-
-
-
-    // Function to perform overall halal verification
-    function halalVerify(uint256 _itemID) private view returns (bool) {
-    // Check if the item is in the verification phase
-    for (uint8 i = 0; i < uint8(ChecklistVerifier.LabelingAndPackagingMeetsHalalStandards); i++) {
-        if (ItemsStatus[_itemID] != STATUS.Verified) {
-            return false;
+        else { //If the checklist is ticked BUT not all of it, the Halal Status is not fully Complied
+            ItemsHalalStatus[_itemID] = HALALSTATUS.NotFullyHalalComplied;
         }
-    }
-    return true;
 
     }
 
+    
+
+    
 
 
     //-------------SLAUGHTERING VERIFICATION PROCESS---------------------
 
-     function slaughterTickChecklistItem(ChecklistSlaughter _checklistSlaughter) public {
-        uint256 _itemID = getSlaughterhouseItemID();
-
-        require(ItemsInfo[_itemID].chronology == PHASE.Slaughterhouse, "Item is not in slaughterhouse phase");
-        require(ItemsInfo[_itemID].slaughterhouseId == trackSlaughterhouse(msg.sender), "Only the assigned slaughterhouse can tick checklist items");
-
-        ItemsSlaughter[_itemID] = SLAUGHTER.Slaughter;
-        
-
-    } 
-    function getSlaughterhouseItemID() private view returns (uint256) {
-        for (uint256 i = 1; i <= itemsCount; i++) {
-            if (ItemsInfo[i].slaughterhouseId == trackSlaughterhouse(msg.sender) && ItemsInfo[i].chronology == PHASE.Slaughterhouse) {
-                return i;
-            }
-        }
-        revert("Caller is not associated with any item in Slaughterhouse phase");
-    }
 
     function SlaughterStatus(uint256 _itemID) public view returns (string memory) {
         require(_itemID > 0);
@@ -857,21 +912,76 @@ contract SupplyChain {
             return "Your Item is not slaughter yet";
         } else if (slaughter == SLAUGHTER.Slaughter) {
             return "Your Item is Slaughtered";
+        } else if (slaughter == SLAUGHTER.NotFullySlaughterComplied) {
+            return "Your Item is not fully slaughter complied";
         }
         return "Unknown slaughter status";
     }
 
 
-
-    function slaughterVerify(uint256 _itemID) private view returns (bool) {
-    for (uint8 i = 0; i < uint8(ChecklistSlaughter.isBloodDrained); i++) {
-        if (ItemsSlaughter[_itemID] != SLAUGHTER.Slaughter) {
-            return false;
+    // Modify the function to update HalalStatus based on the checklist
+    function slaughterTickChecklistItem(
+        uint _itemID,
+        bool _isPracticingMuslim,
+        bool _isInvocationCorrect,
+        bool _isCorrectSlaughterMethod,
+        bool _isBloodDrained,
+        bool _isPreventionOfContamination
+    ) public {
+         require(_itemID > 0 && _itemID <= itemsCount);
+         require(ItemsInfo[_itemID].chronology == PHASE.Slaughterhouse);
+         require (ItemsInfo[_itemID].slaughterhouseId == trackSlaughterhouse(msg.sender));
+        
+    
+        // Update SlaughterStatus based on the checklist
+        if (_isPracticingMuslim && _isInvocationCorrect && _isCorrectSlaughterMethod && _isBloodDrained && _isPreventionOfContamination) {
+            ItemsSlaughter[_itemID] = SLAUGHTER.Slaughter;
+        } else {
+            ItemsSlaughter[_itemID] = SLAUGHTER.NotFullySlaughterComplied;
+            ItemsHalalStatus[_itemID] = HALALSTATUS.NotFullyHalalComplied;
         }
     }
-    return true;
 
+    //-------------MARDI VERIFICATION PROCESS---------------------
+
+    function MardiStatus(uint256 _itemID) public view returns (string memory) {
+        require(_itemID > 0);
+        MARDI quality = ItemsMardiComplied[_itemID];
+
+        if (quality == MARDI.NonComplied) {
+            return "Your Item is not quality check yet";
+        } else if (quality == MARDI.Complied) {
+            return "Your Item is Quality Complied";
+        } else if (quality == MARDI.NotFullyComplied) {
+            return "Your Item is not fully quality complied";
+        }
+        return "Unknown quality status";
     }
+
+    function mardiTickChecklistItem(
+        uint _itemID,
+        bool _AnimalHealthScreening,
+        bool _EquipmentSanitization,
+        bool _MeatInspection,
+        bool _DocumentationAndRecord
+      
+    ) public {
+         require(_itemID > 0 && _itemID <= itemsCount);
+         require(ItemsInfo[_itemID].chronology == PHASE.Mardi);
+         require(ItemsInfo[_itemID].mardiId == trackMardi(msg.sender));
+        
+    
+        // Update SlaughterStatus based on the checklist
+        if (_AnimalHealthScreening && _EquipmentSanitization && _MeatInspection && _DocumentationAndRecord) {
+            ItemsMardiComplied[_itemID] = MARDI.Complied;
+        } else {
+            ItemsMardiComplied[_itemID] = MARDI.NotFullyComplied;
+          
+        }
+    }
+    
+
+
 
 
     //-------------------------DAUS's PART---------------------------------------
@@ -920,23 +1030,40 @@ contract SupplyChain {
             return "Your Item is not slaughter yet";
         } else if (slaughter == SLAUGHTER.Slaughter) {
             return "Your Item is Slaughtered";
+        } else if (slaughter == SLAUGHTER.NotFullySlaughterComplied) {
+            return "Your Item is not fully slaughter complied";
         }
         return "Unknown slaughter status";
     }
 
-    function HalalStatus( uint256 _itemID) public view returns (string memory) {
-        require(_itemID > 0);
-        STATUS status = ItemsStatus[_itemID];  
+    function HalalStatus(uint256 _itemID) public view returns (string memory) {
+            require(_itemID > 0);
+            HALALSTATUS halalstatus = ItemsHalalStatus[_itemID];
 
-        if (status == STATUS.NonVerified) {
-            return "Your Item is not Halal Verified yet";
-        } else if (status == STATUS.Verified) {
-            return "Your Item is Halal Verified";
+            if (halalstatus == HALALSTATUS.NonHalalVerified) {
+                return "Your Item is not Halal Verified yet";
+            } else if (halalstatus == HALALSTATUS.HalalVerified) {
+                return "Your Item is Halal Verified";
+            } else if (halalstatus == HALALSTATUS.NotFullyHalalComplied) {
+                return "Your Item is non-Halal";
+            }
+            return "Unknown halal status";
+    }
+
+    function MardiStatus(uint256 _itemID) public view returns (string memory) {
+        require(_itemID > 0);
+        MARDI quality = ItemsMardiComplied[_itemID];
+
+        if (quality == MARDI.NonComplied) {
+            return "Your Item is not quality check yet";
+        } else if (quality == MARDI.Complied) {
+            return "Your Item is Quality Complied";
+        } else if (quality == MARDI.NotFullyComplied) {
+            return "Your Item is not fully quality complied";
         }
-        return "Unknown halal status";
+        return "Unknown quality status";
     }
     */
 
-    
 
-} 
+}

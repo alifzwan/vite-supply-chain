@@ -18,6 +18,7 @@ import Frontend from "./components/showcase/tools/Frontend";
 import ProjectHero from "./components/showcase/project/projectHero/ProjectHero";
 import Register from "./components/showcase/register/Register";
 import Order from "./components/showcase/order/Order";
+import MardiVerify from "./components/showcase/mardiverify/MardiVerify";
 import HalalVerify from "./components/showcase/halalverify/HalalVerify";
 import SlaughterVerify from "./components/showcase/slaughterverify/SlaughterVerify";
 import Admin from "./components/showcase/admin/Admin";
@@ -50,6 +51,7 @@ const App = () => {
           <Route path = '/login' exact element={<Login />} />
           <Route path = '/register' exact element={<Register />} />
           <Route path = '/order' exact element={<Order />} />
+          <Route path = '/mardi' exact element={<MardiVerify />} />
           <Route path = '/slaughterhouse' exact element={<SlaughterVerify />} />
           <Route path = '/verify' exact element={<HalalVerify />} />
           <Route path = '/admin' exact element={<Admin />} />

@@ -124,6 +124,7 @@ const Register = () => {
 
     
     const [FarmerName         , setFarmerName         ]   = useState();
+    const [MardiName          , setMardiName         ]   = useState();
     const [SlaughterhouseName , setSlaughterhouseName ]   = useState();
     const [VerifierName       , setVerifierName       ]   = useState();
     const [ManufacturerName   , setManufacturerName   ]   = useState();
@@ -132,6 +133,7 @@ const Register = () => {
 
 
     const [FarmerOrigin        , setFarmerOrigin        ]   = useState();
+    const [MardiOrigin         , setMardiOrigin        ]   = useState();
     const [SlaughterhouseOrigin, setSlaughterhouseOrigin]   = useState();
     const [VerifierOrigin      , setVerifierOrigin      ]   = useState();
     const [ManufacturerOrigin  , setManufacturerOrigin  ]   = useState();
@@ -140,6 +142,7 @@ const Register = () => {
 
 
     const [FarmerAddress        , setFarmerAddress        ]   = useState();
+    const [MardiAddress         , setMardiAddress        ]   = useState();
     const [SlaughterhouseAddress, setSlaughterhouseAddress]   = useState();
     const [VerifierAddress      , setVerifierAddress      ]   = useState();
     const [ManufacturerAddress  , setManufacturerAddress  ]   = useState();
@@ -148,6 +151,7 @@ const Register = () => {
 
 
     const [Farmer             , setFarmer             ]   = useState();
+    const [Mardi              , setMardi             ]   = useState();
     const [Slaughterhouse     , setSlaughterhouse     ]   = useState();
     const [Verifier           , setVerifier           ]   = useState();
     const [Manufacturer       , setManufacturer       ]   = useState();
@@ -186,6 +190,13 @@ const Register = () => {
                 farmer[i] = await supplychain.methods.farmerInfo(i + 1).call();
             }
             setFarmer(farmer);
+
+            const mardiCount = await supplychain.methods.mardiCount().call();  
+            const mardi = {}; 
+            for (i = 0; i < mardiCount; i++) {  
+                mardi[i] = await supplychain.methods.mardiInfo(i + 1).call();
+            }
+            setMardi(mardi);
 
 
             const slaughterhouseCount = await supplychain.methods.slaughterhouseCount().call();  
@@ -261,6 +272,17 @@ const Register = () => {
     }
 
 
+    const adminAddressMardi = (event) => {
+        setMardiAddress(event.target.value);
+    }
+    const adminOriginMardi = (event) => {
+        setMardiOrigin(event.target.value);
+    }
+    const adminNameMardi = (event) => {
+        setMardiName(event.target.value);
+    }
+
+
 
     const adminAddressSlaughterhouse = (event) => {
         setSlaughterhouseAddress(event.target.value);
@@ -321,6 +343,20 @@ const Register = () => {
         event.preventDefault();
         try {
             var receipt = await SupplyChain.methods.regFarmer(FarmerAddress, FarmerName, FarmerOrigin).send({ from: currentaccount });
+            if (receipt) {
+                await loadBlockchaindata();
+            }
+        }
+        catch (err) {
+            console.error("Error during registration: ", err)
+            alert("An error occured!!!")
+        }
+    }
+
+    const adminRegMardi = async (event) => {
+        event.preventDefault();
+        try {
+            var receipt = await SupplyChain.methods.regMardi(MardiAddress, MardiName, MardiOrigin).send({ from: currentaccount });
             if (receipt) {
                 await loadBlockchaindata();
             }
@@ -471,6 +507,66 @@ const Register = () => {
 
                             </table>
                         </div>
+
+                        <div className="stakeholder-section">
+                            <h2>Mardi</h2>
+                            <form onSubmit={adminRegMardi}>
+                            <motion.div className="input-container" variants={variants}>
+                                <motion.div variants={itemVariants}>
+                                    <label >Ethereum Address:</label><br />
+                                    <input type="text" onChange={adminAddressMardi} placeholder="Ethereum Address" required/><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants}>
+                                    <label>Mardi Name:</label><br />
+                                    <input type="text" onChange={adminNameMardi} placeholder="Mardi Name" required/><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants}>
+                                    <label>Based In:</label><br />
+                                    <input type="text" onChange={adminOriginMardi} placeholder="Based In" required/><br />
+                                </motion.div>
+
+                                <motion.div variants={itemVariants} className="register-button">
+                                    <motion.button
+                                        variants={itemVariants}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onSubmit={adminRegMardi}
+                                    >
+                                        Register
+                                    </motion.button>
+                                </motion.div>
+                            </motion.div>
+
+                            </form>
+                            
+                            <table className="reg-table-container" border="1" >
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Based In</th>
+                                            <th>Contract Address</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {Object.keys(Mardi).map(function (key) {
+                                            return (
+                                                <tr key={key}>
+                                                    <td>{Number(Mardi[key].id)}</td>
+                                                    <td>{Mardi[key].name}</td>
+                                                    <td>{Mardi[key].location}</td>
+                                                    <td>{Mardi[key].addr}</td>
+                                                </tr>
+                                            )
+                                        })}
+                                    </tbody>
+
+                            </table>
+                        </div>
+
 
                         <div className="stakeholder-section">
                             <h2>Slaughterhouse</h2>
