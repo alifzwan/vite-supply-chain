@@ -148,17 +148,111 @@
                 background-color: #555;
             }
         } 
-    
+    }
+
+    .stakeholder-retailer-section {
+        border: 2px solid rebeccapurple;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 20px 0 20px;
+        margin-top: 20px;
+        width: 584.89px;
+           
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
         
+        .input-container {
+            input {
+                width: calc(100% - 20px);
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
+        }
+        
+        .register-button {
+            button {
+                padding: 0px 10px;
+                height: 25px;
+                border: 1px solid green;
+                border-radius: 10px;
+                background-color: transparent;
+                color: green;
+                cursor: pointer;
+                font-weight: bold;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                text-align: center; 
+            }
+            button:hover { 
+                color: white;
+                border-color: white;
+            }
+        }
+        
+        
+        .reg-table-container {
+            border-collapse: collapse;
+            border: 1px solid white;
+            border-radius: 20px;
+            width: calc(100% - 20px);
+            height:30px;
+            font-size: 14px;
+                
+        
+            th, td {
+                color: white;
+                padding: 10px;
+                text-align: center;
+            }
+        
+            th {
+                background-color: transparent;   
+            }
+        
+            tr:nth-child(even) {
+                background-color: transparent;
+            }
+            td:last-child {
+                color: green;
+            }
+        
+            tr:hover {
+                background-color: transparent;
+            }
+        }
+        
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 6px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 6px;
+            border: 3px solid #f1f1f1;
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+    } 
     .reg-back-button-container{
-        transform: translateX(50%);
         display: flex;
+        align-items: center;
+        justify-content: center;
         .reg-back-button{
             max-width: 1366px;
             margin: auto;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             height: 100%;
             button {
                 padding: 0px 10px;
@@ -178,11 +272,6 @@
             }
         }
     }
-    
-    }
-
-    
-
 }
 
 

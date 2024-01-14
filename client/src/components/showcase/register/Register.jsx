@@ -802,11 +802,10 @@ const Register = () => {
                                     </tbody>
                                 </table>
                         </div>
-
-
-                        <div className="stakeholder-section">
-                            <h2>Retailer</h2>
-                            <form onSubmit={adminRegRetailer}>
+                    </div>
+                    <div className="stakeholder-retailer-section">
+                        <h2>Retailer</h2>
+                        <form onSubmit={adminRegRetailer}>
                                 <motion.div className="input-container" variants={variants}>
                                 <motion.div variants={itemVariants}>
                                     <label>Ethereum Address:</label><br />
@@ -834,19 +833,19 @@ const Register = () => {
                                     </motion.button>
                                 </motion.div>
                             </motion.div>
-                            </form>
+                        </form>
                         
-                            <table className="reg-table-container" border="1" >
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Based In</th>
-                                        <th>Contract Address</th>
-                                    </tr>
-                                </thead>
+                        <table className="reg-table-container" border="1" >
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Based In</th>
+                                    <th>Contract Address</th>
+                                </tr>
+                            </thead>
 
-                                <tbody>
+                            <tbody>
                                     {Object.keys(Retailer).map(function (key) {
                                         return (
                                             <tr key={key}>
@@ -857,26 +856,22 @@ const Register = () => {
                                             </tr>
                                         )
                                     })}
-                                </tbody>
-                            </table>
-                        </div>
-
-        
-                        <div className="reg-back-button-container">
-                                <motion.div variants={itemVariants} className="reg-back-button">
-                                        <motion.button
-                                            variants={itemVariants}
-                                            whileHover={{ scale: 1.1 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            onClick={redirect_to_project}
-                                        >
-                                            Back to Project Overview
-                                        </motion.button>
-                                </motion.div>
-                        </div>
-        
+                            </tbody>
+                        </table>
                     </div>
-                </div>
+                    <div className="reg-back-button-container">
+                            <motion.div variants={itemVariants} className="reg-back-button">
+                                    <motion.button
+                                        variants={itemVariants}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onClick={redirect_to_project}
+                                    >
+                                        Back to Project Overview
+                                    </motion.button>
+                            </motion.div>
+                    </div>
+            </div>
         </div>
 
             
