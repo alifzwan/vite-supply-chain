@@ -488,7 +488,7 @@ const Register = () => {
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Based In</th>
-                                            <th>Contract Address</th>
+                                            <th>Account Address</th>
                                         </tr>
                                     </thead>
 
@@ -547,7 +547,7 @@ const Register = () => {
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Based In</th>
-                                            <th>Contract Address</th>
+                                            <th>Account Address</th>
                                         </tr>
                                     </thead>
 
@@ -608,7 +608,7 @@ const Register = () => {
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Based In</th>
-                                        <th>Contract Address</th>
+                                        <th>Account Address</th>
                                     </tr>
                                 </thead>
 
@@ -665,7 +665,7 @@ const Register = () => {
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Based In</th>
-                                            <th>Contract Address</th>
+                                            <th>Account Address</th>
                                         </tr>
                                     </thead>
 
@@ -724,7 +724,7 @@ const Register = () => {
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Based In</th>
-                                            <th>Contract Address</th>
+                                            <th>Account Address</th>
                                         </tr>
                                     </thead>
 
@@ -784,7 +784,7 @@ const Register = () => {
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Based In</th>
-                                            <th>Contract Address</th>
+                                            <th>Account Address</th>
                                         </tr>
                                     </thead>
 
@@ -841,7 +841,7 @@ const Register = () => {
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Based In</th>
-                                    <th>Contract Address</th>
+                                    <th>Account Address</th>
                                 </tr>
                             </thead>
 

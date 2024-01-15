@@ -1669,7 +1669,7 @@ if (TrackTillSlaughterhouse) {
                     <motion.div className="input-container" variants={variants}>
                         <form onSubmit={adminRegister}>
                             <motion.div variants={itemVariants}>
-                                <input type="text" onChange ={adminID} placeholder="Enter ID" required/><br />
+                                <input type="text" onChange ={adminID} placeholder="Enter Item ID" required/><br />
                             </motion.div>
 
                             <motion.div variants={itemVariants} className="track-button">

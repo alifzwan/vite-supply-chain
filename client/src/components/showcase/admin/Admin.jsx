@@ -302,7 +302,7 @@ const Admin = () => {
                                     <motion.div className="input-container" variants={variants}>
 
                                         <motion.div variants={itemVariants}>
-                                            <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                            <input type="text" onChange={adminID} placeholder="Enter Item ID" required/><br />
                                         </motion.div>
 
                                     <motion.div variants={itemVariants} className="admin-button">
@@ -326,7 +326,7 @@ const Admin = () => {
                                     <motion.div className="input-container" variants={variants}>
 
                                         <motion.div variants={itemVariants}>
-                                            <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                            <input type="text" onChange={adminID} placeholder="Enter Item ID" required/><br />
                                         </motion.div>
 
                                     <motion.div variants={itemVariants} className="admin-button">
@@ -350,7 +350,7 @@ const Admin = () => {
                                     <motion.div className="input-container" variants={variants}>
 
                                         <motion.div variants={itemVariants}>
-                                            <input type="text"  onChange={adminID} placeholder="Enter ID" /><br />
+                                            <input type="text"  onChange={adminID} placeholder="Enter Item ID" /><br />
                                         </motion.div>
 
                                     <motion.div variants={itemVariants} className="admin-button">
@@ -375,7 +375,7 @@ const Admin = () => {
                                     <motion.div className="input-container" variants={variants}>
 
                                         <motion.div variants={itemVariants}>
-                                            <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                            <input type="text" onChange={adminID} placeholder="Enter Item ID" required/><br />
                                         </motion.div>
 
                                     <motion.div variants={itemVariants} className="admin-button">
@@ -400,7 +400,7 @@ const Admin = () => {
 
                                     <motion.div className="input-container" variants={variants}>
                                         <motion.div variants={itemVariants}>
-                                            <input type="text"  onChange={adminID} placeholder="Enter ID" required/><br />
+                                            <input type="text"  onChange={adminID} placeholder="Enter Item ID" required/><br />
                                         </motion.div>
 
                                     <motion.div variants={itemVariants} className="admin-button">
@@ -425,7 +425,7 @@ const Admin = () => {
                                 <form onSubmit={adminDistribute}>
                                     <motion.div className="input-container" variants={variants}>
                                     <motion.div variants={itemVariants}>
-                                        <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                        <input type="text" onChange={adminID} placeholder="Enter Item ID" required/><br />
                                     </motion.div>
 
                                     <motion.div variants={itemVariants} className="admin-button">
@@ -449,7 +449,7 @@ const Admin = () => {
                                 <form onSubmit={adminRetail}>
                                     <motion.div className="input-container" variants={variants}>
                                     <motion.div variants={itemVariants}>
-                                        <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                        <input type="text" onChange={adminID} placeholder="Enter Item ID" required/><br />
                                     </motion.div>
 
                                     <motion.div variants={itemVariants} className="admin-button">
@@ -472,7 +472,7 @@ const Admin = () => {
                             <form onSubmit={adminSold}>
                                 <motion.div className="input-container" variants={variants}>
                                     <motion.div variants={itemVariants}>
-                                        <input type="text" onChange={adminID} placeholder="Enter ID" required/><br />
+                                        <input type="text" onChange={adminID} placeholder="Enter Item ID" required/><br />
                                     </motion.div>
 
                                     <motion.div variants={itemVariants} className="admin-button">

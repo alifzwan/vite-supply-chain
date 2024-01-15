@@ -200,7 +200,7 @@ const Order = () => {
                                     whileTap={{ scale: 0.95 }}
                                     onSubmit={regItem}
                                 >
-                                    Order
+                                    Register
                                 </motion.button>
                             </motion.div>
                         </motion.form>
