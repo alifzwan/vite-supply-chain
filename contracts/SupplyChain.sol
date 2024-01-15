@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
+
 contract SupplyChain {
 
      address public Creator;  // msg.sender - whoever deploy this contract (creator)
@@ -28,7 +29,7 @@ contract SupplyChain {
       - If you put it above, it will tell the function to do the function first 
        */
     modifier onlyCreator() {   // This modifier is to esatblish certain function that can only be run by Creator
-        require(msg.sender == Creator , "Not owner");  
+        require(msg.sender == Creator);  
         _;
     }
 
@@ -283,7 +284,6 @@ contract SupplyChain {
         return "Unknown item chronology";
     }
 
-
     /* MAPPING
 
         Notes: https://www.tutorialspoint.com/solidity/solidity_mappings.htm
@@ -298,6 +298,8 @@ contract SupplyChain {
         We store struct "farmer" into the myFarmer that will be used in the future
 
      */
+
+   
 
 
     struct farmer {
@@ -368,8 +370,6 @@ contract SupplyChain {
 
 
    
-
-
     /*-----------------STAKEHOLDER REGISTRATION----------------------
 
      Poultry ==> Slaughterhouse ==> Verifier ==> Manufacturer ==> Distributor ==> Retailer ==> Sold 
@@ -396,12 +396,6 @@ contract SupplyChain {
 
         The count will increase. The Owner will register 3 attributes occupied with the flow.
 
-
-
-
-
-     
-
     /* Data Location
 
         Notes: https://solidity-by-example.org/data-locations/
@@ -421,6 +415,10 @@ contract SupplyChain {
 
         - This convention helps avoid naming conflicts and makes the code more readable.
      */
+
+  
+
+    
 
 
     function regFarmer(
@@ -490,8 +488,6 @@ contract SupplyChain {
         retailerInfo[retailerCount] = retailer(_address, retailerCount, _name, _location); // All this attributes will be stored in retailerInfo
     }
 
-
-
     /*-----------------PRODUCT REGISTRATION----------------------
       
      So the function will going to consists with approximately 3 attributes (Well for now):
@@ -532,6 +528,8 @@ contract SupplyChain {
      } 
      */
 
+   
+
     function orderItems(
         string memory _name,
         string memory _origin,
@@ -545,8 +543,6 @@ contract SupplyChain {
         ItemsSlaughter[itemsCount] = SLAUGHTER.NonSlaughter;
         ItemsHalalStatus[itemsCount] = HALALSTATUS.NonHalalVerified;
     }  
-
-
 
 
 
@@ -575,9 +571,6 @@ contract SupplyChain {
 
 
      */
-
-    
-
 
     /* ----------------Tracking------------------
       
@@ -621,7 +614,8 @@ contract SupplyChain {
         Sold
      }
      */
-
+      
+     
     // To change the flow from Ordered ==> Farmer
     function Farmering(uint256 _itemID) public {
         require(_itemID > 0 && _itemID <= itemsCount);          // Ensure that we already order an Item and  
@@ -799,11 +793,11 @@ contract SupplyChain {
         ItemsInfo[_itemID].chronology = PHASE.Sold;
     }
 
-
     /* ----------------ITEM INFORMATION--------------------
         - This section is to see all of the product information
         - The user will key in the itemID to retrieve the info
         */ 
+    
 
     // To view the product information
     function info(uint256 _itemID) public view returns (
@@ -979,4 +973,110 @@ contract SupplyChain {
           
         }
     }
+
+
+
+
+
+
+    //-------------------------DAUS's PART---------------------------------------
+
+    //----------------RETRIEVE PARTICULAR INFORMATION-----------------------------
+
+
+    // Retrieve Name from the specific item
+    function itemName(uint256 _itemID) public view returns (uint256 id, string memory name) {  
+    require(_itemID > 0 && _itemID <= itemsCount);
+    
+    id = ItemsInfo[_itemID].id;
+    name = ItemsInfo[_itemID].name;
+   
+    }
+
+    // Retrieve Origin from the specific item
+    function itemOrigin(uint256 _itemID) public view returns (uint256 id, string memory origin) {
+    require(_itemID > 0 && _itemID <= itemsCount);
+    
+    id = ItemsInfo[_itemID].id;
+    origin = ItemsInfo[_itemID].origin;
+    }
+
+    // Retrieve Nutrition from the specific item
+    function itemNutrition(uint256 _itemID) public view returns (uint256 id, string memory nutritionInfo) {
+    require(_itemID > 0 && _itemID <= itemsCount);
+   
+    id = ItemsInfo[_itemID].id;
+    nutritionInfo = ItemsInfo[_itemID].nutritionInfo;
+    }
+
+    // Retrieve Phase from the specific item
+    function itemPhase(uint256 _itemID) public view returns (uint256 id, PHASE chronology) {
+        require(_itemID > 0 && _itemID <= itemsCount);
+    
+        id = ItemsInfo[_itemID].id;
+        chronology = ItemsInfo[_itemID].chronology;
+    }
+
+
+    function getFarmerName(uint256 _itemID) public view returns (string memory) {
+        uint256 farmerId = ItemsInfo[_itemID].farmerId;
+        return farmerInfo[farmerId].name;
+    }
+
+    function getFarmerLocation(uint256 _itemID) public view returns (string memory) {
+        uint256 farmerId = ItemsInfo[_itemID].farmerId;
+        return farmerInfo[farmerId].location;
+    }
+
+    function getMardiName(uint256 _itemID) public view returns (string memory) {
+        uint256 mardiId = ItemsInfo[_itemID].mardiId;
+        return mardiInfo[mardiId].name;
+    }
+
+    function getMardiLocation(uint256 _itemID) public view returns (string memory) {
+        uint256 mardiId = ItemsInfo[_itemID].mardiId;
+        return mardiInfo[mardiId].location;
+    }
+
+
+    function getVerifierName(uint256 _itemID) public view returns (string memory) {
+        uint256 verifierId = ItemsInfo[_itemID].verifierId;
+        return verifierInfo[verifierId].name;
+    }
+
+    function getVerifierLocation(uint256 _itemID) public view returns (string memory) {
+        uint256 verifierId = ItemsInfo[_itemID].verifierId;
+        return verifierInfo[verifierId].location;
+    }
+
+    function getManufacturerName(uint256 _itemID) public view returns (string memory) {
+        uint256 manufacturerId = ItemsInfo[_itemID].manufacturerId;
+        return manufacturerInfo[manufacturerId].name;
+    }
+
+    function getManufacturerLocation(uint256 _itemID) public view returns (string memory) {
+        uint256 manufacturerId = ItemsInfo[_itemID].manufacturerId;
+        return manufacturerInfo[manufacturerId].location;
+    }
+
+    function getDistributorName(uint256 _itemID) public view returns (string memory) {
+        uint256 distributorId = ItemsInfo[_itemID].distributorId;
+        return distributorInfo[distributorId].name;
+    }
+
+    function getDistributorLocation(uint256 _itemID) public view returns (string memory) {
+        uint256 distributorId = ItemsInfo[_itemID].distributorId;
+        return distributorInfo[distributorId].location;
+    }
+
+    function getRetailerName(uint256 _itemID) public view returns (string memory) {
+        uint256 retailerId = ItemsInfo[_itemID].retailerId;
+        return retailerInfo[retailerId].name;
+    }
+
+    function getRetailerLocation(uint256 _itemID) public view returns (string memory) {
+        uint256 retailerId = ItemsInfo[_itemID].retailerId;
+        return retailerInfo[retailerId].location;
+    }
+
 }
