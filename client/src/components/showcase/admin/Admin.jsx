@@ -130,6 +130,9 @@ const Admin = () => {
     const redirect_to_project = () => {
       navigate('/project')
     }
+    const redirect_to_example = () => {
+        navigate('/example')
+      }
 
     const adminID = (event) => {
         setItemID(event.target.value);
@@ -502,6 +505,14 @@ const Admin = () => {
                                 onClick={redirect_to_project}
                             >
                                 Back to Project 
+                            </motion.button>
+                            <motion.button
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={redirect_to_example}
+                            >
+                                Example 
                             </motion.button>
                         </motion.div>
                     </div>

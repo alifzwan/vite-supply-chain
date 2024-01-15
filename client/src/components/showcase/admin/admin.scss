@@ -245,10 +245,11 @@
         }
 
         .admin-back-button-container{
-            transform: translateY(50%);
+            transform: translateY(100%);
             display: flex;
-            justify-content: flex-end;
+           
             .admin-back-button{
+                gap: 20px;
                 max-width: 1366px;
                 margin: auto;
                 display: flex;

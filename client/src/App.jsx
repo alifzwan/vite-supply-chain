@@ -6,13 +6,16 @@ import Home from "./components/home/Home"
 import Project from "./components/showcase/project/Project";
 import Architecture from "./components/showcase/architecture/Architecture";
 import Chronology from "./components/showcase/chronology/Chronology";
+import Backend from "./components/showcase/tools/Backend";
+import Frontend from "./components/showcase/tools/Frontend";
+import Example from "./components/showcase/example/Example";
+
 import Blockchain from "./components/showcase/blockchain/Blockchain";
 import BlockchainWork from "./components/showcase/blockchain/blockchainwork/BlockchainWork";
 import BlockchainDecentralization from "./components/showcase/blockchain/blockchaindecentralization/BlockchainDecentralization";
 import BlockchainTransparency from "./components/showcase/blockchain/blockchaintransparency/BlockchainTransparency";
 import BlockchainSecure from "./components/showcase/blockchain/blockchainsecure/BlockchainSecure";
-import Backend from "./components/showcase/tools/Backend";
-import Frontend from "./components/showcase/tools/Frontend";
+
 
 
 import ProjectHero from "./components/showcase/project/projectHero/ProjectHero";
@@ -39,6 +42,8 @@ const App = () => {
           <Route path = '/backend' exact element={<Backend />} />
           <Route path = '/frontend' exact element={<Frontend />} />
 
+          <Route path = '/example' exact element={<Example />} />
+
 
           <Route path = '/blockchain' exact element={<Blockchain />} />
           <Route path = '/blockchainwork' exact element={<BlockchainWork />} />
@@ -57,6 +62,8 @@ const App = () => {
           <Route path = '/admin' exact element={<Admin />} />
           <Route path = '/track' exact element={<Track />} />
           <Route path = '/info' exact element={<Info />} />
+
+
         </Routes>
     </Router>
     </>
