@@ -6,6 +6,8 @@ import Web3 from "web3";
 import "ldrs/cardio"; 
 import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
+import IoTDataJson from "/src/artifacts/TemperatureData.json";
+
 
 const variants = {
     open: {
@@ -83,7 +85,11 @@ const SlaughterVerify = () => {
     const [SlaughterComply      , displayComply] = useState(false);
     const [SlaughterVerification, displaySlaughterVerification] = useState(false);
     const [Slaughtered          , displaySlaughtered          ] = useState(false);
+    const [IoTDataState         , setIoTDataState] = useState([]);
 
+    useEffect(() => {
+        setIoTDataState(IoTDataJson.data);  // Set the IoT data when the component mounts
+    }, []);
 
 
     const loadWeb3 = async () => {
@@ -222,8 +228,11 @@ const SlaughterVerify = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Based In</th>
+                                        <th>Origin</th>
                                         <th>Description</th>
+                                        <th>Timestamp</th>
+                                        <th>Temperature(°C)</th>
+                                        <th>Humidity</th>
                                         <th>Current Stage</th>
                                         <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
@@ -238,6 +247,9 @@ const SlaughterVerify = () => {
                                                 <td>{Items[key].name}</td>
                                                 <td>{Items[key].origin}</td>
                                                 <td>{Items[key].nutritionInfo}</td>
+                                                <td>{IoTDataState[key]?.timestamp}</td>
+                                                <td>{IoTDataState[key]?.temperature}</td>
+                                                <td>{IoTDataState[key]?.humidity}</td>
                                                 <td>{ItemPhase[key]}</td>
                                                 <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[key]}
@@ -299,8 +311,11 @@ const SlaughterVerify = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Based In</th>
+                                        <th>Origin</th>
                                         <th>Description</th>
+                                        <th>Timestamp</th>
+                                        <th>Temperature(°C)</th>
+                                        <th>Humidity</th>
                                         <th>Current Stage</th>
                                         <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
@@ -315,6 +330,9 @@ const SlaughterVerify = () => {
                                                 <td>{Items[key].name}</td>
                                                 <td>{Items[key].origin}</td>
                                                 <td>{Items[key].nutritionInfo}</td>
+                                                <td>{IoTDataState[key]?.timestamp}</td>
+                                                <td>{IoTDataState[key]?.temperature}</td>
+                                                <td>{IoTDataState[key]?.humidity}</td>
                                                 <td>{ItemPhase[key]}</td>
                                                 <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[key]}
@@ -378,8 +396,11 @@ const SlaughterVerify = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Based In</th>
+                                    <th>Origin</th>
                                     <th>Description</th>
+                                    <th>Timestamp</th>
+                                    <th>Temperature(°C)</th>
+                                    <th>Humidity</th>
                                     <th>Current Stage</th>
                                     <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
@@ -394,6 +415,9 @@ const SlaughterVerify = () => {
                                             <td>{Items[key].name}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
+                                            <td>{IoTDataState[key]?.timestamp}</td>
+                                            <td>{IoTDataState[key]?.temperature}</td>
+                                            <td>{IoTDataState[key]?.humidity}</td>
                                             <td>{ItemPhase[key]} </td>
                                             <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[key]}
@@ -553,8 +577,11 @@ const SlaughterVerify = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Based In</th>
+                                    <th>Origin</th>
                                     <th>Description</th>
+                                    <th>Timestamp</th>
+                                    <th>Temperature(°C)</th>
+                                    <th>Humidity</th>
                                     <th>Current Stage</th>
                                     <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
@@ -570,6 +597,9 @@ const SlaughterVerify = () => {
                                             <td>{Items[key].name}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
+                                            <td>{IoTDataState[key]?.timestamp}</td>
+                                            <td>{IoTDataState[key]?.temperature}</td>
+                                            <td>{IoTDataState[key]?.humidity}</td>
                                             <td>{ItemPhase[key]}</td>
                                             <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[key]}

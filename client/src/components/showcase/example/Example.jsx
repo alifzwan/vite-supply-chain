@@ -6,6 +6,8 @@ import React, { useState, useEffect } from 'react'
 import Web3 from "web3";
 import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
+import IoTDataJson from "/src/artifacts/TemperatureData.json";
+
 import "ldrs/cardio"; 
 
 const itemVariants = {
@@ -50,6 +52,11 @@ const Example = () => {
     const [MardiStatus   , setMardiStatus] = useState();
     const [SlaughterStatus, setSlaughterStatus] = useState();
     const [VerifyStatus   , setVerifyStatus]     = useState();
+    const [IoTDataState      , setIoTDataState] = useState([]);
+
+    useEffect(() => {
+        setIoTDataState(IoTDataJson.data);  // Set the IoT data when the component mounts
+    }, []);
   
 
 
@@ -154,8 +161,11 @@ const Example = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Based In</th>
+                                    <th>Origin</th>
                                     <th>Description</th>
+                                    <th>Timestamp</th>
+                                    <th>Temperature(°C)</th>                                    
+                                    <th>Humidity</th>
                                     <th>Current Stage</th>
                                     <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
@@ -170,6 +180,9 @@ const Example = () => {
                                             <td>{Items[key].name}</td> 
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
+                                            <td>{IoTDataState[key]?.timestamp}</td>
+                                            <td>{IoTDataState[key]?.temperature}</td>
+                                            <td>{IoTDataState[key]?.humidity}</td>
                                             <td>{ItemPhase[key]}</td>
                                             <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[key]}

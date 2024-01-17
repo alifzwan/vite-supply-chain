@@ -7,6 +7,8 @@ import Web3 from "web3";
 import "ldrs/cardio"; 
 import ProjectSideBar from '../project/projectsidebar/projectSideBar/ProjectSideBar';
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
+import IoTDataJson from "/src/artifacts/TemperatureData.json";
+
 
 
 
@@ -550,8 +552,11 @@ const Track = () => {
     const [TrackTillDistribute    , displayTrackTillDistribute    ] = useState(false);
     const [TrackTillRetail        , displayTrackTillRetail        ] = useState(false);
     const [TrackTillSold          , displayTrackTillSold          ] = useState(false);
+    const [IoTDataState   , setIoTDataState] = useState([]);
 
-
+    useEffect(() => {
+        setIoTDataState(IoTDataJson.data);  // Set the IoT data when the component mounts
+    }, []);
 
     const loadWeb3 = async () => {
         if (window.ethereum) {
@@ -704,8 +709,11 @@ const Track = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Based In</th>
+                                    <th>Origin</th>
                                     <th>Description</th>
+                                    <th>Timestamp</th>
+                                    <th>Temperature(°C)</th>
+                                    <th>Humidity</th>
                                     <th>Current Stage</th>
                                     <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
@@ -718,6 +726,9 @@ const Track = () => {
                                     <td>{Items[ItemID].name}</td>
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
+                                    <td>{IoTDataState[ItemID]?.timestamp}</td>
+                                    <td>{IoTDataState[ItemID]?.temperature}</td>
+                                    <td>{IoTDataState[ItemID]?.humidity}</td>
                                     <td>{ItemPhase[ItemID]}</td>
                                     <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -780,8 +791,11 @@ const Track = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Based In</th>
+                                        <th>Origin</th>
                                         <th>Description</th>
+                                        <th>Timestamp</th>
+                                        <th>Temperature(°C)</th>
+                                        <th>Humidity</th>
                                         <th>Current Stage</th>
                                         <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
@@ -794,6 +808,9 @@ const Track = () => {
                                         <td>{Items[ItemID].name}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{IoTDataState[ItemID]?.timestamp}</td>
+                                        <td>{IoTDataState[ItemID]?.temperature}</td>
+                                        <td>{IoTDataState[ItemID]?.humidity}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -879,8 +896,11 @@ const Track = () => {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Based In</th>
+                                        <th>Origin</th>
                                         <th>Description</th>
+                                        <th>Timestamp</th>
+                                        <th>Temperature(°C)</th>
+                                        <th>Humidity</th>
                                         <th>Current Stage</th>
                                         <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
@@ -893,6 +913,9 @@ const Track = () => {
                                         <td>{Items[ItemID].name}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{IoTDataState[ItemID]?.timestamp}</td>
+                                        <td>{IoTDataState[ItemID]?.temperature}</td>
+                                        <td>{IoTDataState[ItemID]?.humidity}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -979,8 +1002,11 @@ if (TrackTillSlaughterhouse) {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Based In</th>
+                                    <th>Origin</th>
                                     <th>Description</th>
+                                    <th>Timestamp</th>
+                                    <th>Temperature(°C)</th>
+                                    <th>Humidity</th>
                                     <th>Current Stage</th>
                                     <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
@@ -993,6 +1019,9 @@ if (TrackTillSlaughterhouse) {
                                     <td>{Items[ItemID].name}</td>
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
+                                    <td>{IoTDataState[ItemID]?.timestamp}</td>
+                                    <td>{IoTDataState[ItemID]?.temperature}</td>
+                                    <td>{IoTDataState[ItemID]?.humidity}</td>
                                     <td>{ItemPhase[ItemID]}</td>
                                     <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1079,8 +1108,11 @@ if (TrackTillSlaughterhouse) {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Based In</th>
+                                        <th>Origin</th>
                                         <th>Description</th>
+                                        <th>Timestamp</th>
+                                        <th>Temperature(°C)</th>
+                                        <th>Humidity</th>
                                         <th>Current Stage</th>
                                         <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
@@ -1093,6 +1125,9 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].name}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{IoTDataState[ItemID]?.timestamp}</td>
+                                        <td>{IoTDataState[ItemID]?.temperature}</td>
+                                        <td>{IoTDataState[ItemID]?.humidity}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1181,8 +1216,11 @@ if (TrackTillSlaughterhouse) {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Based In</th>
+                                        <th>Origin</th>
                                         <th>Description</th>
+                                        <th>Timestamp</th>
+                                        <th>Temperature(°C)</th>
+                                        <th>Humidity</th>
                                         <th>Current Stage</th>
                                         <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
@@ -1195,6 +1233,9 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].name}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{IoTDataState[ItemID]?.timestamp}</td>
+                                        <td>{IoTDataState[ItemID]?.temperature}</td>
+                                        <td>{IoTDataState[ItemID]?.humidity}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1282,8 +1323,11 @@ if (TrackTillSlaughterhouse) {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Based In</th>
+                                        <th>Origin</th>
                                         <th>Description</th>
+                                        <th>Timestamp</th>
+                                        <th>Temperature(°C)</th>
+                                        <th>Humidity</th>
                                         <th>Current Stage</th>
                                         <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
@@ -1296,6 +1340,9 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].name}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{IoTDataState[ItemID]?.timestamp}</td>
+                                        <td>{IoTDataState[ItemID]?.temperature}</td>
+                                        <td>{IoTDataState[ItemID]?.humidity}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1382,8 +1429,11 @@ if (TrackTillSlaughterhouse) {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Based In</th>
+                                    <th>Origin</th>
                                     <th>Description</th>
+                                    <th>Timestamp</th>
+                                    <th>Temperature(°C)</th>
+                                    <th>Humidity</th>
                                     <th>Current Stage</th>
                                     <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
@@ -1396,6 +1446,9 @@ if (TrackTillSlaughterhouse) {
                                     <td>{Items[ItemID].name}</td>
                                     <td>{Items[ItemID].origin}</td>
                                     <td>{Items[ItemID].nutritionInfo}</td>
+                                    <td>{IoTDataState[ItemID]?.timestamp}</td>
+                                    <td>{IoTDataState[ItemID]?.temperature}</td>
+                                    <td>{IoTDataState[ItemID]?.humidity}</td>
                                     <td>{ItemPhase[ItemID]}</td>
                                     <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1484,8 +1537,11 @@ if (TrackTillSlaughterhouse) {
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Based In</th>
+                                        <th>Origin</th>
                                         <th>Description</th>
+                                        <th>Timestamp</th>
+                                        <th>Temperature(°C)</th>
+                                        <th>Humidity</th>
                                         <th>Current Stage</th>
                                         <th>Mardi Status</th>
                                         <th>Slaughter Status</th>
@@ -1498,6 +1554,9 @@ if (TrackTillSlaughterhouse) {
                                         <td>{Items[ItemID].name}</td>
                                         <td>{Items[ItemID].origin}</td>
                                         <td>{Items[ItemID].nutritionInfo}</td>
+                                        <td>{IoTDataState[ItemID]?.timestamp}</td>
+                                        <td>{IoTDataState[ItemID]?.temperature}</td>
+                                        <td>{IoTDataState[ItemID]?.humidity}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1632,8 +1691,11 @@ if (TrackTillSlaughterhouse) {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Based In</th>
+                                    <th>Origin</th>
                                     <th>Description</th>
+                                    <th>Timestamp</th>
+                                    <th>Temperature(°C)</th>
+                                    <th>Humidity</th>
                                     <th>Current Stage</th>
                                     <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
@@ -1649,6 +1711,9 @@ if (TrackTillSlaughterhouse) {
                                             <td>{Items[key].name}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
+                                            <td>{IoTDataState[key]?.timestamp}</td>
+                                            <td>{IoTDataState[key]?.temperature}</td>
+                                            <td>{IoTDataState[key]?.humidity}</td>
                                             <td>{ItemPhase[key]}</td>
                                             <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[key]}

@@ -7,6 +7,7 @@ import "ldrs/cardio";
 import React, { useState, useEffect } from 'react'
 import Web3 from "web3";
 import SupplyChainABI from "/src/artifacts/SupplyChain.json"
+import IoTDataJson from "/src/artifacts/TemperatureData.json";
 
 const variants = {
     open: {
@@ -65,6 +66,11 @@ const Order = () => {
     const [SlaughterStatus, setSlaughterStatus] = useState();
     const [VerifyStatus   , setVerifyStatus   ]  = useState();
     const [MardiStatus    , setMardiStatus   ]  = useState();
+    const [IoTDataState   , setIoTDataState] = useState([]);
+
+    useEffect(() => {
+        setIoTDataState(IoTDataJson.data);  // Set the IoT data when the component mounts
+    }, []);
     
     const loadWeb3 = async () => {
         if (window.ethereum) {
@@ -148,10 +154,11 @@ const Order = () => {
     const regItem = async (event) => {
         event.preventDefault();
         try {
-            var receipt = await SupplyChain.methods.orderItems(
+            const receipt = await SupplyChain.methods.orderItems(
                 ItemName, 
                 ItemOrigin, 
-                ItemDescription).send({ from: currentaccount });
+                ItemDescription
+                ).send({ from: currentaccount });
                 
             if (receipt) {
                 await loadBlockchaindata();
@@ -184,8 +191,8 @@ const Order = () => {
                             </motion.div>
 
                             <motion.div variants={itemVariants}>
-                                <label>Based In:</label><br />
-                                <input type="text" onChange={regItemOrigin} placeholder="Based In" required/><br />
+                                <label>Origin:</label><br />
+                                <input type="text" onChange={regItemOrigin} placeholder="Origin" required/><br />
                             </motion.div>
 
                             <motion.div variants={itemVariants}>
@@ -211,8 +218,11 @@ const Order = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Based In</th>
+                                    <th>Origin</th>
                                     <th>Description</th>
+                                    <th>Timestamp</th>
+                                    <th>Temperature(°C)</th>
+                                    <th>Humidity</th>
                                     <th>Current Stage</th>
                                     <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
@@ -227,6 +237,13 @@ const Order = () => {
                                             <td>{Items[key].name}</td>
                                             <td>{Items[key].origin}</td>
                                             <td>{Items[key].nutritionInfo}</td>
+                                            {ItemPhase[key] !== "Item Registered, awaiting processing." && (
+                                                <>
+                                                    <td>{IoTDataState[key]?.timestamp}</td>
+                                                    <td>{IoTDataState[key]?.temperature}</td>
+                                                    <td>{IoTDataState[key]?.humidity}</td>
+                                                </>
+                                            )}
                                             <td>{ItemPhase[key]}</td>
                                             <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[key]}

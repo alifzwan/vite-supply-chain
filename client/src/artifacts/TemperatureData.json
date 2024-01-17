@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "timestamp": "2024-01-17 23:00:14",
+      "temperature": 30.8,
+      "humidity": 81.0
+    },
+    {
+      "timestamp": "2024-01-17 23:00:15",
+      "temperature": 30.8,
+      "humidity": 81.0
+    },
+    {
+      "timestamp": "2024-01-17 23:01:15",
+      "temperature": 30.8,
+      "humidity": 81.0
+    },
+    {
+      "timestamp": "2024-01-17 23:02:16",
+      "temperature": 30.8,
+      "humidity": 81.0
+    },
+    {
+      "timestamp": "2024-01-17 23:03:16",
+      "temperature": 30.8,
+      "humidity": 81.0
+    },
+    {
+      "timestamp": "2024-01-17 23:04:16",
+      "temperature": 30.8,
+      "humidity": 80.0
+    },
+    {
+      "timestamp": "2024-01-17 23:05:16",
+      "temperature": 30.8,
+      "humidity": 79.0
+    },
+    {
+      "timestamp": "2024-01-17 23:06:16",
+      "temperature": 30.8,
+      "humidity": 80.0
+    },
+    {
+      "timestamp": "2024-01-17 23:07:16",
+      "temperature": 31.3,
+      "humidity": 80.0
+    },
+    {
+      "timestamp": "2024-01-17 23:08:16",
+      "temperature": 31.3,
+      "humidity": 80.0
+    },
+    {
+      "timestamp": "2024-01-17 23:09:16",
+      "temperature": 31.3,
+      "humidity": 80.0
+    }
+  ]
+}
