@@ -220,9 +220,20 @@ const Order = () => {
                                     <th>Name</th>
                                     <th>Origin</th>
                                     <th>Description</th>
-                                    <th>Timestamp</th>
-                                    <th>Temperature(°C)</th>
-                                    <th>Humidity</th>
+                                    {Object.keys(Items).map(function (key) {
+                                        return (
+                                            <React.Fragment key={key}>
+                                                {ItemPhase[key] !== "Item Registered, awaiting processing." && (
+                                                    <>
+                                                        <th>Timestamp</th>
+                                                        <th>Temperature(°C)</th>
+                                                        <th>Humidity</th>
+                                                        <th>Food Status</th>
+                                                    </>
+                                                )}
+                                            </React.Fragment>
+                                        );
+                                    })}
                                     <th>Current Stage</th>
                                     <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
@@ -242,6 +253,7 @@ const Order = () => {
                                                     <td>{IoTDataState[key]?.timestamp}</td>
                                                     <td>{IoTDataState[key]?.temperature}</td>
                                                     <td>{IoTDataState[key]?.humidity}</td>
+                                                    <td>{IoTDataState[key]?.['food status']}</td>
                                                 </>
                                             )}
                                             <td>{ItemPhase[key]}</td>

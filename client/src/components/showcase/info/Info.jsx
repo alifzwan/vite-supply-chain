@@ -166,6 +166,7 @@ const Info = () => {
                                     <th>Timestamp</th>
                                     <th>Temperature(°C)</th>
                                     <th>Humidity</th>
+                                    <th>Food Status</th>
                                     <th>Current Stage</th>
                                     <th>Mardi Status</th>
                                     <th>Slaughter Status</th>
@@ -183,6 +184,7 @@ const Info = () => {
                                             <td>{IoTDataState[key]?.timestamp}</td>
                                             <td>{IoTDataState[key]?.temperature}</td>
                                             <td>{IoTDataState[key]?.humidity}</td>
+                                            <td>{IoTDataState[key]?.['food status']}</td>
                                             <td>{ItemPhase[key]}</td>
                                             <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[key]}

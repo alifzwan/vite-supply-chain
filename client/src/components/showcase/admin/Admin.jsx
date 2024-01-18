@@ -277,6 +277,7 @@ const Admin = () => {
                                 <th>Timestamp</th>
                                 <th>Temperature(°C)</th>
                                 <th>Humidity</th>
+                                <th>Food Status</th>
                                 <th>Current Stage</th>
                                 <th>Mardi Status</th>
                                 <th>Slaughter Status</th>
@@ -291,13 +292,10 @@ const Admin = () => {
                                         <td>{Items[key].name}</td>
                                         <td>{Items[key].origin}</td>
                                         <td>{Items[key].nutritionInfo}</td>
-                                        {ItemPhase[key] !== "Item Registered, awaiting processing." && (
-                                            <>
-                                                <td>{IoTDataState[key]?.timestamp}</td>
-                                                <td>{IoTDataState[key]?.temperature}</td>
-                                                <td>{IoTDataState[key]?.humidity}</td>
-                                            </>
-                                        )}
+                                        <td>{IoTDataState[key]?.timestamp}</td>
+                                        <td>{IoTDataState[key]?.temperature}</td>
+                                        <td>{IoTDataState[key]?.humidity}</td>
+                                        <td>{IoTDataState[key]?.['food status']}</td>
                                         <td>{ItemPhase[key]}</td>
                                         <td className={MardiStatus[key] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[key]}
