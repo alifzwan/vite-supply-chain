@@ -1,59 +1,70 @@
 {
   "data": [
     {
-      "timestamp": "2024-01-17 23:00:14",
-      "temperature": 30.8,
-      "humidity": 81.0
+      "timestamp": "2024-01-18 14:46:17",
+      "temperature": 31.8,
+      "humidity": 98.0,
+      "food status": "Normal"
     },
     {
-      "timestamp": "2024-01-17 23:00:15",
-      "temperature": 30.8,
-      "humidity": 81.0
+      "timestamp": "2024-01-18 14:47:15",
+      "temperature": 33.8,
+      "humidity": 98.0,
+      "food status": "Exposed to high temperature"
     },
     {
-      "timestamp": "2024-01-17 23:01:15",
-      "temperature": 30.8,
-      "humidity": 81.0
+      "timestamp": "2024-01-18 14:48:15",
+      "temperature": 31.8,
+      "humidity": 98.0,
+      "food status": "Normal"
     },
     {
-      "timestamp": "2024-01-17 23:02:16",
-      "temperature": 30.8,
-      "humidity": 81.0
+      "timestamp": "2024-01-18 14:49:15",
+      "temperature": 32.8,
+      "humidity": 98.0,
+      "food status": "Exposed to high temperature"
     },
     {
-      "timestamp": "2024-01-17 23:03:16",
-      "temperature": 30.8,
-      "humidity": 81.0
+      "timestamp": "2024-01-18 14:50:15",
+      "temperature": 32.3,
+      "humidity": 98.0,
+      "food status": "Exposed to high temperature"
     },
     {
-      "timestamp": "2024-01-17 23:04:16",
-      "temperature": 30.8,
-      "humidity": 80.0
+      "timestamp": "2024-01-18 14:51:16",
+      "temperature": 32.3,
+      "humidity": 98.0,
+      "food status": "Exposed to high temperature"
     },
     {
-      "timestamp": "2024-01-17 23:05:16",
-      "temperature": 30.8,
-      "humidity": 79.0
+      "timestamp": "2024-01-18 14:52:16",
+      "temperature": 31.8,
+      "humidity": 98.0,
+      "food status": "Normal"
     },
     {
-      "timestamp": "2024-01-17 23:06:16",
-      "temperature": 30.8,
-      "humidity": 80.0
+      "timestamp": "2024-01-18 14:53:16",
+      "temperature": 31.8,
+      "humidity": 98.0,
+      "food status": "Normal"
     },
     {
-      "timestamp": "2024-01-17 23:07:16",
-      "temperature": 31.3,
-      "humidity": 80.0
+      "timestamp": "2024-01-18 14:54:16",
+      "temperature": 31.8,
+      "humidity": 98.0,
+      "food status": "Normal"
     },
     {
-      "timestamp": "2024-01-17 23:08:16",
-      "temperature": 31.3,
-      "humidity": 80.0
+      "timestamp": "2024-01-18 14:55:16",
+      "temperature": 31.8,
+      "humidity": 98.0,
+      "food status": "Normal"
     },
     {
-      "timestamp": "2024-01-17 23:09:16",
-      "temperature": 31.3,
-      "humidity": 80.0
+      "timestamp": "2024-01-18 14:56:16",
+      "temperature": 31.8,
+      "humidity": 98.0,
+      "food status": "Normal"
     }
   ]
 }
