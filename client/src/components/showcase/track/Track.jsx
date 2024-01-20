@@ -730,7 +730,7 @@ const Track = () => {
                                     <td>{IoTDataState[ItemID]?.timestamp}</td>
                                     <td>{IoTDataState[ItemID]?.temperature}</td>
                                     <td>{IoTDataState[ItemID]?.humidity}</td>
-                                    <td>{IoTDataState[key]?.['food status']}</td>
+                                    <td>{IoTDataState[ItemID]?.['food status']}</td>
                                     <td>{ItemPhase[ItemID]}</td>
                                     <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -814,7 +814,7 @@ const Track = () => {
                                         <td>{IoTDataState[ItemID]?.timestamp}</td>
                                         <td>{IoTDataState[ItemID]?.temperature}</td>
                                         <td>{IoTDataState[ItemID]?.humidity}</td>
-                                        <td>{IoTDataState[key]?.['food status']}</td>
+                                        <td>{IoTDataState[ItemID]?.['food status']}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -921,7 +921,7 @@ const Track = () => {
                                         <td>{IoTDataState[ItemID]?.timestamp}</td>
                                         <td>{IoTDataState[ItemID]?.temperature}</td>
                                         <td>{IoTDataState[ItemID]?.humidity}</td>
-                                        <td>{IoTDataState[key]?.['food status']}</td>
+                                        <td>{IoTDataState[ItemID]?.['food status']}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1029,7 +1029,7 @@ if (TrackTillSlaughterhouse) {
                                     <td>{IoTDataState[ItemID]?.timestamp}</td>
                                     <td>{IoTDataState[ItemID]?.temperature}</td>
                                     <td>{IoTDataState[ItemID]?.humidity}</td>
-                                    <td>{IoTDataState[key]?.['food status']}</td>
+                                    <td>{IoTDataState[ItemID]?.['food status']}</td>
                                     <td>{ItemPhase[ItemID]}</td>
                                     <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1137,7 +1137,7 @@ if (TrackTillSlaughterhouse) {
                                         <td>{IoTDataState[ItemID]?.timestamp}</td>
                                         <td>{IoTDataState[ItemID]?.temperature}</td>
                                         <td>{IoTDataState[ItemID]?.humidity}</td>
-                                        <td>{IoTDataState[key]?.['food status']}</td>
+                                        <td>{IoTDataState[ItemID]?.['food status']}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1247,7 +1247,7 @@ if (TrackTillSlaughterhouse) {
                                         <td>{IoTDataState[ItemID]?.timestamp}</td>
                                         <td>{IoTDataState[ItemID]?.temperature}</td>
                                         <td>{IoTDataState[ItemID]?.humidity}</td>
-                                        <td>{IoTDataState[key]?.['food status']}</td>
+                                        <td>{IoTDataState[ItemID]?.['food status']}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1356,7 +1356,7 @@ if (TrackTillSlaughterhouse) {
                                         <td>{IoTDataState[ItemID]?.timestamp}</td>
                                         <td>{IoTDataState[ItemID]?.temperature}</td>
                                         <td>{IoTDataState[ItemID]?.humidity}</td>
-                                        <td>{IoTDataState[key]?.['food status']}</td>
+                                        <td>{IoTDataState[ItemID]?.['food status']}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1464,6 +1464,7 @@ if (TrackTillSlaughterhouse) {
                                     <td>{IoTDataState[ItemID]?.timestamp}</td>
                                     <td>{IoTDataState[ItemID]?.temperature}</td>
                                     <td>{IoTDataState[ItemID]?.humidity}</td>
+                                    <td>{IoTDataState[ItemID]?.['food status']}</td>
                                     <td>{ItemPhase[ItemID]}</td>
                                     <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}
@@ -1573,7 +1574,7 @@ if (TrackTillSlaughterhouse) {
                                         <td>{IoTDataState[ItemID]?.timestamp}</td>
                                         <td>{IoTDataState[ItemID]?.temperature}</td>
                                         <td>{IoTDataState[ItemID]?.humidity}</td>
-                                        <td>{IoTDataState[key]?.['food status']}</td>
+                                        <td>{IoTDataState[ItemID]?.['food status']}</td>
                                         <td>{ItemPhase[ItemID]}</td>
                                         <td className={MardiStatus[ItemID] === "Your Item is Quality Complied" ? "green-text" : "red-text"}>
                                                 {MardiStatus[ItemID]}

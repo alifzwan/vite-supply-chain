@@ -984,6 +984,8 @@ contract SupplyChain {
     //----------------RETRIEVE PARTICULAR INFORMATION-----------------------------
 
 
+    //----------------------Item Info---------------------------------
+
     // Retrieve Name from the specific item
     function itemName(uint256 _itemID) public view returns (uint256 id, string memory name) {  
     require(_itemID > 0 && _itemID <= itemsCount);
@@ -1017,6 +1019,8 @@ contract SupplyChain {
         chronology = ItemsInfo[_itemID].chronology;
     }
 
+    //------------------------Poultry Info---------------------------------
+
 
     function getFarmerName(uint256 _itemID) public view returns (string memory) {
         uint256 farmerId = ItemsInfo[_itemID].farmerId;
@@ -1027,6 +1031,9 @@ contract SupplyChain {
         uint256 farmerId = ItemsInfo[_itemID].farmerId;
         return farmerInfo[farmerId].location;
     }
+
+
+    //------------------------Mardi Info---------------------------------
 
     function getMardiName(uint256 _itemID) public view returns (string memory) {
         uint256 mardiId = ItemsInfo[_itemID].mardiId;
@@ -1039,6 +1046,23 @@ contract SupplyChain {
     }
 
 
+     //------------------------Slaughterhouse Info---------------------------------
+
+    function getSlaughterhouseName(uint256 _itemID) public view returns (string memory) {
+        uint256 slaughterhouseId = ItemsInfo[_itemID].slaughterhouseId;
+        return slaughterhouseInfo[slaughterhouseId].name;
+    }
+
+    function getSlaughterhouseLocation(uint256 _itemID) public view returns (string memory) {
+        uint256 slaughterhouseId = ItemsInfo[_itemID].slaughterhouseId;
+        return slaughterhouseInfo[slaughterhouseId].location;
+    }
+
+
+
+     //------------------------Verifier Info---------------------------------
+
+
     function getVerifierName(uint256 _itemID) public view returns (string memory) {
         uint256 verifierId = ItemsInfo[_itemID].verifierId;
         return verifierInfo[verifierId].name;
@@ -1048,6 +1072,10 @@ contract SupplyChain {
         uint256 verifierId = ItemsInfo[_itemID].verifierId;
         return verifierInfo[verifierId].location;
     }
+
+
+    //------------------------Manufacturer Info---------------------------------
+
 
     function getManufacturerName(uint256 _itemID) public view returns (string memory) {
         uint256 manufacturerId = ItemsInfo[_itemID].manufacturerId;
@@ -1059,6 +1087,9 @@ contract SupplyChain {
         return manufacturerInfo[manufacturerId].location;
     }
 
+
+      //------------------------Distributor Info---------------------------------
+
     function getDistributorName(uint256 _itemID) public view returns (string memory) {
         uint256 distributorId = ItemsInfo[_itemID].distributorId;
         return distributorInfo[distributorId].name;
@@ -1068,6 +1099,8 @@ contract SupplyChain {
         uint256 distributorId = ItemsInfo[_itemID].distributorId;
         return distributorInfo[distributorId].location;
     }
+
+     //------------------------Retailer Info---------------------------------
 
     function getRetailerName(uint256 _itemID) public view returns (string memory) {
         uint256 retailerId = ItemsInfo[_itemID].retailerId;
