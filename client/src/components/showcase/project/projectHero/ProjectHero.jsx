@@ -63,12 +63,20 @@ const ProjectHero = () => {
 
               </div>
 
-              <p className="project-description">
+              {/* <p className="project-description">
                   <b>Only </b> 
                   <a href="https://coinsbench.com/understanding-contract-ownership-in-solidity-and-access-control-patterns-1a04116042ce#:~:text=Contract%20ownership%20refers%20to%20the,transferred%20dynamically%20using%20specific%20functions." target="_blank" rel="noopener noreferrer"> 
                     Creator/Owner 
                   </a> 
                   <b> can register the supply chain. Creator/Owner is the person who deployed the smart contract on the blockchain</b>
+              </p> */}
+
+              <p className="project-description">
+                <p className="title">Objectives:</p> <br />
+                <ul>
+                  <li>To facilitate the provision of extensive detail to consumer regarding the product they purchased by implementing blockchain technology in food supply chain system.</li><br />
+                  <li>To enable real-time surveillance and monitoring of food product, providing stakeholder with accurate information by using smart contract and consensus algorithm </li>
+                </ul>
               </p>
 
 
